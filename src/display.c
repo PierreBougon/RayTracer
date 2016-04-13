@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Wed Apr 13 18:28:39 2016 romain samuel
+** Last update Wed Apr 13 21:57:47 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -76,7 +76,5 @@ int			display(t_rt *s)
 	}
       pos.y++;
     }
-  bunny_blit(&s->win->buffer, &s->img->clipable, NULL);
-  bunny_display(s->win);
   return (0);
 }
