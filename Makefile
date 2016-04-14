@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Thu Apr 14 16:34:36 2016 romain samuel
+## Last update Thu Apr 14 18:57:13 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -20,39 +20,41 @@ ECHO	=	echo -e
 
 # RT VARIABLES
 
-MAIN		=	src/
+MAIN		=	src/main/
+
+ENGINE		=	src/engine/
 
 ITFC		=	src/interface/
 
 SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
 			$(MAIN)delete_clipables.c \
-			$(MAIN)antialiasing.c \
-			$(MAIN)clear_list.c \
-			$(MAIN)create_obj_list.c \
-			$(MAIN)diffuse_light.c \
-			$(MAIN)display.c \
-			$(MAIN)display_objects.c \
-			$(MAIN)get_norm.c \
-			$(MAIN)get_simple_coords.c \
-			$(MAIN)inters.c \
-			$(MAIN)limited_objects.c \
-			$(MAIN)load_cone.c \
-			$(MAIN)load_cylinder.c \
-			$(MAIN)load_file.c \
-			$(MAIN)load_light.c \
-			$(MAIN)load_plan.c \
-			$(MAIN)load_sphere.c \
-			$(MAIN)order_hit_list.c \
-			$(MAIN)rotations.c \
-			$(MAIN)set_hit_values.c \
-			$(MAIN)shade.c \
-			$(MAIN)shadow.c \
-			$(MAIN)shadow_inters.c \
-			$(MAIN)specular_light.c \
-			$(MAIN)tekpixel.c \
-			$(MAIN)update_hit_list.c \
 			$(MAIN)blit_clipables.c \
+			$(ENGINE)antialiasing.c \
+			$(ENGINE)clear_list.c \
+			$(ENGINE)create_obj_list.c \
+			$(ENGINE)diffuse_light.c \
+			$(ENGINE)display.c \
+			$(ENGINE)display_objects.c \
+			$(ENGINE)get_norm.c \
+			$(ENGINE)get_simple_coords.c \
+			$(ENGINE)inters.c \
+			$(ENGINE)limited_objects.c \
+			$(ENGINE)load_cone.c \
+			$(ENGINE)load_cylinder.c \
+			$(ENGINE)load_file.c \
+			$(ENGINE)load_light.c \
+			$(ENGINE)load_plan.c \
+			$(ENGINE)load_sphere.c \
+			$(ENGINE)order_hit_list.c \
+			$(ENGINE)rotations.c \
+			$(ENGINE)set_hit_values.c \
+			$(ENGINE)shade.c \
+			$(ENGINE)shadow.c \
+			$(ENGINE)shadow_inters.c \
+			$(ENGINE)specular_light.c \
+			$(ENGINE)tekpixel.c \
+			$(ENGINE)update_hit_list.c \
 			$(ITFC)init_itfc.c \
 			$(ITFC)check_buttons.c \
 			src/debug.c
