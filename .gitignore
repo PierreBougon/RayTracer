@@ -1,0 +1,14 @@
+# Object
+*.o
+vgcore*
+
+# Lib
+*.a
+
+# Exec
+*.out
+
+# Tmp
+.#*
+*~
+\#*#
