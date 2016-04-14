@@ -1,0 +1,11 @@
+# PhotoShop
+
+Spot color
+cylider -> cylinder
+
+# INTERFACE
+
+Balancer le check du boutton en selection depuis le mainloop
+Init le tab de ptr sur fonction dans le init itfc
+Faire la correspondance et balancer dans la fonction correspondante
+Coder les OPT en premier : mouse / move / rotate / render / live

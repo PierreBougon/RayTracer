@@ -5,11 +5,13 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Thu Apr 14 02:39:25 2016 bougon_p
+** Last update Thu Apr 14 21:18:35 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
 # define INTERFACE_H_
+
+# include "button.h"
 
 # define CONTEXT_WIDTH 289
 # define CONTEXT_HEIGHT 1010
@@ -18,11 +20,6 @@
 # define MAX_WORK_SPACE_X 1904
 # define WORK_SPACE_Y 72
 # define MAX_WORK_SPACE_Y 985
-
-# define BT_X 9
-# define BT_Y 126
-# define BT_WDT 110
-# define BT_HGT 110
 
 typedef struct		s_itfc
 {
@@ -36,6 +33,9 @@ typedef struct		s_itfc
 /*
 ** Buttons
 */
-void	check_all_buttons(t_itfc *);
+int	check_all_buttons(t_itfc *);
 
+void	form_button(t_itfc *, const t_bunny_position *);
+void	gen_button(t_itfc *, const t_bunny_position *);
+void	set_butt_false(t_itfc *);
 #endif /* !INTERFACE  */

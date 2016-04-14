@@ -5,11 +5,16 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu Apr 14 18:06:50 2016 romain samuel
+** Last update Thu Apr 14 21:12:16 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
 # define RAYTRACER_H_
+
+/*
+**DEBUG
+*/
+# include <stdio.h>
 
 /*
 ** WINDOW DEFINES
