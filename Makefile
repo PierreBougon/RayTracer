@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Wed Apr 13 21:32:34 2016 bougon_p
+## Last update Thu Apr 14 02:48:13 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -22,31 +22,39 @@ ECHO	=	echo -e
 
 MAIN		=	src/
 
-SRC		=	src/antialiasing.c \
-			src/clear_list.c \
-			src/create_obj_list.c \
-			src/diffuse_light.c \
-			src/display.c \
-			src/display_objects.c \
-			src/get_norm.c \
-			src/get_simple_coords.c \
-			src/inters.c \
-			src/load_cone.c \
-			src/load_cylinder.c \
-			src/load_file.c \
-			src/load_light.c \
-			src/load_plan.c \
-			src/load_sphere.c \
-			src/main.c \
-			src/order_hit_list.c \
-			src/rotations.c \
-			src/set_hit_values.c \
-			src/shade.c \
-			src/shadow.c \
-			src/shadow_inters.c \
-			src/specular_light.c \
-			src/tekpixel.c \
-			src/update_hit_list.c \
+ITFC		=	src/interface/
+
+SRC		=	$(MAIN)main.c \
+			$(MAIN)init_main.c \
+			$(MAIN)delete_clipables.c \
+			$(MAIN)antialiasing.c \
+			$(MAIN)clear_list.c \
+			$(MAIN)create_obj_list.c \
+			$(MAIN)diffuse_light.c \
+			$(MAIN)display.c \
+			$(MAIN)display_objects.c \
+			$(MAIN)get_norm.c \
+			$(MAIN)get_simple_coords.c \
+			$(MAIN)inters.c \
+			$(MAIN)load_cone.c \
+			$(MAIN)load_cylinder.c \
+			$(MAIN)load_file.c \
+			$(MAIN)load_light.c \
+			$(MAIN)load_plan.c \
+			$(MAIN)load_sphere.c \
+			$(MAIN)order_hit_list.c \
+			$(MAIN)rotations.c \
+			$(MAIN)set_hit_values.c \
+			$(MAIN)shade.c \
+			$(MAIN)shadow.c \
+			$(MAIN)shadow_inters.c \
+			$(MAIN)specular_light.c \
+			$(MAIN)tekpixel.c \
+			$(MAIN)update_hit_list.c \
+			$(MAIN)blit_clipables.c \
+			$(ITFC)init_itfc.c \
+			$(ITFC)check_buttons.c \
+			src/debug.c
 
 OBJS    	=	$(SRC:.c=.o)
 
@@ -104,7 +112,7 @@ NAME	=	raytracer
 
 IFLAG	=	-Iinclude/
 
-CFLAGS  =	-W -Wall -Wextra
+CFLAGS  =	-W -Wall -Wextra -g
 
 CC      =	gcc $(CFLAGS) $(IFLAG)
 

@@ -5,16 +5,27 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Wed Apr 13 22:02:25 2016 bougon_p
+** Last update Thu Apr 14 02:49:44 2016 bougon_p
 */
 
 #include "raytracer.h"
 
+t_bunny_response        my_click(t_bunny_event_state state,
+				 t_bunny_mousebutton mbutton,
+				 void *_data)
+{
+  t_data	*data;
+
+  data = _data;
+  if (mbutton == BMB_LEFT && state == GO_DOWN)
+    check_all_buttons(&data->itfc);
+  return (GO_ON);
+}
+
 t_bunny_response	my_key(t_bunny_event_state state,
 			       t_bunny_keysym keysym,
-			       void *data)
+			       UNUSED void *_data)
 {
-  (void)data;
   if (state == GO_DOWN && keysym == BKS_ESCAPE)
     return (EXIT_ON_SUCCESS);
   return (GO_ON);
@@ -22,34 +33,35 @@ t_bunny_response	my_key(t_bunny_event_state state,
 
 t_bunny_response        mainloop(void *_data)
 {
-  t_rt			*rt;
+  t_data			*data;
+  UNUSED t_rt				*rt;
+  UNUSED t_itfc			*itfc;
 
-  rt = _data;
-  bunny_blit(&rt->win->buffer, &rt->img->clipable, 0);
-  bunny_display(rt->win);
+  data = _data;
+  rt = &data->rt;
+  itfc = &data->itfc;
+  /* debug_pos(); */
+  blit_clipables(data);
+  bunny_display(data->win);
   return (GO_ON);
 }
 
-int	main(int argc, char **argv, char **env)
+int		main(int argc, char **argv, char **env)
 {
-  t_rt	rt;
+  t_data	data;
 
   if (*env == NULL)
     return (my_puterr("Invalid environment"));
-  if (argc != 2)
-    return (my_puterr("Usage: ./raytracer1 scene"));
-  bunny_set_maximum_ram(50000000);
-  if (load_file(&rt, argv[1]) == -1)
-    return (-1);
-  if ((rt.win = bunny_start(WIDTH, HEIGHT, false, "RAYTRACER")) == NULL)
-    return (my_puterr("Could not perform bunny_start"));
-  if ((rt.img = bunny_new_pixelarray(WIDTH, HEIGHT)) == NULL)
-    return (my_puterr("Could not perform bunny_new_pixelarray"));
-  bunny_set_key_response((t_bunny_key)&my_key);
+  bunny_set_maximum_ram(100000000);
+  if (init_main_data(&data) == -1 ||
+      init_rt_data(&data.rt, argc, argv) == -1 ||
+      init_itfc_data(&data.itfc) == -1)
+    return (1);
+  bunny_set_key_response(my_key);
+  bunny_set_click_response(my_click);
   bunny_set_loop_main_function(mainloop);
-  display(&rt);
-  bunny_loop(rt.win, 30, &rt);
-  bunny_delete_clipable(&rt.img->clipable);
-  bunny_stop(rt.win);
+  bunny_loop(data.win, 30, &data);
+  delete_all_clipables(&data);
+  bunny_stop(data.win);
   return (0);
 }

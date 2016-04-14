@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:43:34 2016 romain samuel
-** Last update Sat Apr  9 13:45:56 2016 romain samuel
+** Last update Wed Apr 13 23:27:54 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -54,9 +54,9 @@ t_color			antialiasing(t_rt *s,
       j = -1;
       while (++j < x)
 	{
-	  vct->x = ((double)WIDTH / 2.0)
+	  vct->x = ((double)s->width / 2.0)
 	    - ((double)pos->x + (1.0 / (double)x) * j);
-	  vct->y = ((double)HEIGHT / 2.0)
+	  vct->y = ((double)s->height / 2.0)
 	    - ((double)pos->y + (1.0 / (double)x) * i);
 	  vct->z = 1000;
 	  rotation(vct, &s->eye.rot);

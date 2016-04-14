@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Tue Apr 12 22:03:29 2016 romain samuel
+** Last update Thu Apr 14 02:49:37 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -14,26 +14,29 @@
 /*
 ** WINDOW DEFINES
 */
-#define WIDTH 720
-#define HEIGHT 720
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+# define INIT_WIDTH 720
+# define INIT_HEIGHT 720
 
 /*
 ** TEXTURE DEFINES
 */
-#define FULL 1
-#define PERLIN_NOISE 2
-#define MARBLE_NOISE 3
-#define WOOD_NOISE 4
-#define IMAGE 5
+# define FULL 1
+# define PERLIN_NOISE 2
+# define MARBLE_NOISE 3
+# define WOOD_NOISE 4
+# define IMAGE 5
 
 /*
 ** includes
 */
-#include <math.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <lapin.h>
-#include "my.h"
+# include <math.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <lapin.h>
+# include "my.h"
+# include "interface.h"
 
 /*
 ** structures
@@ -207,7 +210,6 @@ typedef struct		s_shade
 
 typedef struct		s_rt
 {
-  t_bunny_window	*win;
   t_bunny_pixelarray	*img;
   t_object		*obj;
   t_object		*obj_hit;
@@ -217,7 +219,33 @@ typedef struct		s_rt
   t_opt			opt;
   t_eye			eye;
   t_color		final_color;
+  int			width;
+  int			height;
 }			t_rt;
+
+typedef struct		s_data
+{
+  t_rt			rt;
+  t_itfc		itfc;
+  t_bunny_window	*win;
+}			t_data;
+
+/*
+** Init
+*/
+int	init_main_data(t_data *);
+int	init_rt_data(t_rt *, int, char **);
+int	init_itfc_data(t_itfc *);
+
+/*
+** Blit
+*/
+void	blit_clipables(t_data *);
+
+/*
+** Free
+*/
+void	delete_all_clipables(t_data *);
 
 /*
 ** antialiasing.c
