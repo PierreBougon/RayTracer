@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 21:43:19 2016 romain samuel
-** Last update Tue Apr 12 23:08:55 2016 romain samuel
+** Last update Thu Apr 14 18:45:26 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -40,6 +40,8 @@ double		diffuse_light(t_rt *s, t_object *it)
   s->hit.nnorm.x = s->hit.norm.x / len;
   s->hit.nnorm.y = s->hit.norm.y / len;
   s->hit.nnorm.z = s->hit.norm.z / len;
+  /*printf("nnorm = %f %f %f\n", s->hit.nnorm.x, s->hit.nnorm.y, s->hit.nnorm.z);
+    printf("nvct = %f %f %f\n", s->shade.nvct.x, s->shade.nvct.y, s->shade.nvct.z);*/
   s->hit.cos_theta = (s->hit.nnorm.x * s->shade.nvct.x * -1)
     + (s->hit.nnorm.y * s->shade.nvct.y * -1)
     + (s->hit.nnorm.z * s->shade.nvct.z * -1);

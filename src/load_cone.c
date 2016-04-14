@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:56:19 2016 romain samuel
-** Last update Sun Apr 10 21:11:39 2016 romain samuel
+** Last update Thu Apr 14 18:17:21 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -46,7 +46,9 @@ int		load_cone_datas2(t_cone *s, t_bunny_ini *ini, char *scope)
 
   if ((field = bunny_ini_get_field(ini, scope, "angle", 0)) == NULL)
     return (my_puterr("load_datas: missing cone angle"));
-  s->angle = my_getnbr((char *)field);
+  s->angle = 90 - my_getnbr((char *)field);
+  if (s->angle >= 90 || s->angle <= 0)
+    return (my_puterr("load_datas: invalid cone angle"));
   if ((field = bunny_ini_get_field(ini, scope, "real", 0)) == NULL)
     return (my_puterr("load_datas: missing cone type"));
   s->real = my_getnbr((char *)field);

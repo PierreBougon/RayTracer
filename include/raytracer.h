@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu Apr 14 02:49:37 2016 bougon_p
+** Last update Thu Apr 14 18:06:50 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -291,10 +291,10 @@ int		display_plan(t_rt *s, t_object *obj);
 /*
 ** get_norm.c
 */
-void		get_norm_plan(t_rt *s);
+void		get_norm_plan(t_rt *s, t_plan *plan);
 void		get_norm_sphere(t_rt *s);
-void		get_norm_cylinder(t_rt *s);
-void		get_norm_cone(t_rt *s);
+void		get_norm_cylinder(t_rt *s, t_cylinder *cylinder);
+void		get_norm_cone(t_rt *s, t_cone *cone);
 
 /*
 ** get_simple_inters.c
@@ -309,6 +309,15 @@ int		inter_plan(t_rt *s, t_plan *plan);
 int		inter_sphere(t_rt *s, t_sphere *sphere);
 int		inter_cone(t_rt *s, t_cone *cone);
 int		inter_cylinder(t_rt *s, t_cylinder *cylinder);
+
+/*
+** limited_objects.c
+*/
+int		get_cylinder_plan_inter1(t_rt *s, t_cylinder *cylinder);
+int		get_cylinder_plan_inter2(t_rt *s, t_cylinder *cylinder);
+int		get_cone_plan_inter(t_rt *s, t_cone *cone);
+int		limited_cylinder(t_rt *s, t_cylinder *cylinder);
+int		limited_cone(t_rt *s, t_cone *cone);
 
 /*
 ** load_cone.c

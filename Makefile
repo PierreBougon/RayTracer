@@ -1,11 +1,11 @@
 ##
 ## Makefile for RAYTRACER in /home/bougon_p/rendu/gfx_raytracer2
-## 
+##
 ## Made by bougon_p
 ## Login   <bougon_p@epitech.net>
-## 
+##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Thu Apr 14 02:48:13 2016 bougon_p
+## Last update Thu Apr 14 16:34:36 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -36,6 +36,7 @@ SRC		=	$(MAIN)main.c \
 			$(MAIN)get_norm.c \
 			$(MAIN)get_simple_coords.c \
 			$(MAIN)inters.c \
+			$(MAIN)limited_objects.c \
 			$(MAIN)load_cone.c \
 			$(MAIN)load_cylinder.c \
 			$(MAIN)load_file.c \

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Wed Apr 13 21:57:47 2016 bougon_p
+** Last update Thu Apr 14 18:45:07 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -64,11 +64,11 @@ int			display(t_rt *s)
 
   if ((color = malloc(sizeof(t_color) * s->opt.aa)) == NULL)
     return (my_puterr("display: could not perform malloc"));
-  pos.y = 0;
-  while (pos.y < 720)
+  pos.y = 90;
+  while (pos.y < 91)
     {
-      pos.x = 0;
-      while (pos.x < 720)
+      pos.x = 360;
+      while (pos.x < 361)
 	{
 	  final_color = antialiasing(s, &pos, &vct, color);
 	  tekpixel(s->img, &pos, &final_color);
