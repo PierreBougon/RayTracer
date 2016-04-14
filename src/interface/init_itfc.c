@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Thu Apr 14 02:53:00 2016 bougon_p
+** Last update Thu Apr 14 13:08:28 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -33,6 +33,7 @@ int	init_pix(t_itfc *itfc)
       (itfc->context[8] =
        bunny_load_pixelarray("assets/img/context_save.png")) == NULL)
     return (my_puterr("Could not perform bunny_load_pixelarray"));
+  return (0);
 }
 
 int	init_itfc_data(t_itfc *itfc)
