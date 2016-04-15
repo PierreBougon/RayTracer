@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 02:25:05 2016 bougon_p
-** Last update Thu Apr 14 23:07:26 2016 bougon_p
+** Last update Fri Apr 15 18:36:25 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -28,7 +28,20 @@ void	set_butt_false(t_itfc *itfc)
   int	i;
 
   i = 0;
-  while (i < 19)
+  while (i < NB_BUTTON)
+    {
+      if (i != MOUSE && i != MOVE && i != ROTATE)
+	itfc->button[i] = false;
+      i++;
+    }
+}
+
+void	set_status_false(t_itfc *itfc)
+{
+  int	i;
+
+  i = START_STATUS;
+  while (i < NB_STATUS + START_STATUS)
     {
       itfc->button[i] = false;
       i++;
@@ -87,12 +100,12 @@ void	file_button(t_itfc *itfc, const t_bunny_position *mpos)
     }
 }
 
-void	opt_button(t_itfc *itfc, const t_bunny_position *mpos)
+void	status_button(t_itfc *itfc, const t_bunny_position *mpos)
 {
   int	nb_bt;
 
-  nb_bt = 11;
-  while (nb_bt < 16)
+  nb_bt = START_STATUS;
+  while (nb_bt < START_STATUS + NB_STATUS)
     {
       if (mpos->x >= OPT_X + (OPT_WDT * (nb_bt - 11)) + 7 * (nb_bt - 11)
 	  && mpos->x <= OPT_X + OPT_WDT + (OPT_WDT * (nb_bt - 11)) + 7 * (nb_bt - 11)
@@ -108,15 +121,38 @@ void	opt_button(t_itfc *itfc, const t_bunny_position *mpos)
 		printf("==> BUTTON MOVE :  JE SUIS TOUCHE\n");
 	      else if (nb_bt == 13)
 		printf("==> BUTTON ROTATE :  JE SUIS TOUCHE\n");
-	      else if (nb_bt == 14)
-		printf("==> BUTTON RENDER :  JE SUIS TOUCHE\n");
-	      else if (nb_bt == 15)
-		printf("==> BUTTON LIVE :  JE SUIS TOUCHE\n");
 	      /* !DEBUG */
-	      set_butt_false(itfc);
+	      set_status_false(itfc);
 	      itfc->button[nb_bt] = true;
-	      itfc->act_context = 0;
+	      /* itfc->act_context = 0; */
 	    }
+	}
+      nb_bt++;
+    }
+}
+
+void	opt_button(t_itfc *itfc, const t_bunny_position *mpos)
+{
+  int	nb_bt;
+
+  status_button(itfc, mpos);
+  nb_bt = START_STATUS + NB_STATUS;
+  while (nb_bt < 16)
+    {
+      if (mpos->x >= OPT_X + (OPT_WDT * (nb_bt - 11)) + 7 * (nb_bt - 11)
+	  && mpos->x <= OPT_X + OPT_WDT + (OPT_WDT * (nb_bt - 11)) + 7 * (nb_bt - 11)
+	  && mpos->y >= OPT_Y
+	  && mpos->y <= OPT_Y + OPT_HGT)
+	{
+	  /* DEBUG */
+	  if (nb_bt == 14)
+	    printf("==> BUTTON RENDER :  JE SUIS TOUCHE\n");
+	  else if (nb_bt == 15)
+	    printf("==> BUTTON LIVE :  JE SUIS TOUCHE\n");
+	  /* !DEBUG */
+	  set_butt_false(itfc);
+	  itfc->button[nb_bt] = true;
+	  /* itfc->act_context = 0; */
 	}
       nb_bt++;
     }

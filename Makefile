@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Thu Apr 14 21:16:17 2016 bougon_p
+## Last update Fri Apr 15 16:07:20 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -55,6 +55,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)specular_light.c \
 			$(ENGINE)tekpixel.c \
 			$(ENGINE)update_hit_list.c \
+			$(ITFC)interface.c \
 			$(ITFC)init_itfc.c \
 			$(ITFC)check_buttons.c \
 			$(ITFC)check_menu_buttons.c \

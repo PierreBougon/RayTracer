@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 21:09:55 2016 bougon_p
-** Last update Thu Apr 14 23:04:52 2016 bougon_p
+** Last update Fri Apr 15 16:23:15 2016 bougon_p
 */
 
 #ifndef BUTTON_H_
@@ -31,5 +31,7 @@
 # define OPT_Y 0
 # define OPT_WDT 62
 # define OPT_HGT 62
+
+# define NB_BUTTON 19
 
 #endif /* !BUTTON_H_ */

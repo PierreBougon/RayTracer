@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Thu Apr 14 13:08:28 2016 bougon_p
+** Last update Fri Apr 15 17:12:16 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -50,5 +50,6 @@ int	init_itfc_data(t_itfc *itfc)
   while (i < 19)
     itfc->button[i++] = false;
   itfc->button[0] = true;
+  itfc->status = S_MOUSE;
   return (0);
 }
