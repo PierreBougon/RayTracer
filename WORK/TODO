@@ -5,7 +5,8 @@ cylider -> cylinder
 
 # INTERFACE
 
-Balancer le check du boutton en selection depuis le mainloop
-Init le tab de ptr sur fonction dans le init itfc
-Faire la correspondance et balancer dans la fonction correspondante
 Coder les OPT en premier : mouse / move / rotate / render / live
+Refaire la répartitions dans les fichiers
+STATUS LIVE / RENDER
+Bien gérer les différents status et clarifier chaque fonctions
+Commenter les fonctions de check

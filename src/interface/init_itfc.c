@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Fri Apr 15 17:12:16 2016 bougon_p
+** Last update Fri Apr 15 22:36:11 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -36,6 +36,26 @@ int	init_pix(t_itfc *itfc)
   return (0);
 }
 
+void	init_ptr_context(t_itfc *itfc)
+{
+  itfc->fct_context[0] = modif_form;
+  itfc->fct_context[1] = add_form;
+  itfc->fct_context[2] = sub_form;
+  itfc->fct_context[3] = spotlight;
+  itfc->fct_context[4] = new_scene;
+  itfc->fct_context[5] = filters;
+  itfc->fct_context[6] = gen_opt;
+  itfc->fct_context[7] = save;
+}
+
+void	init_ptr_button(t_itfc *itfc)
+{
+  itfc->fct_button[0] = open_file;
+  itfc->fct_button[1] = help;
+  itfc->fct_button[2] = render;
+  itfc->fct_button[3] = live;
+}
+
 int	init_itfc_data(t_itfc *itfc)
 {
   int	i;
@@ -51,5 +71,7 @@ int	init_itfc_data(t_itfc *itfc)
     itfc->button[i++] = false;
   itfc->button[0] = true;
   itfc->status = S_MOUSE;
+  init_ptr_context(itfc);
+  init_ptr_button(itfc);
   return (0);
 }

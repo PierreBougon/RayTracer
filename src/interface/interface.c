@@ -5,10 +5,16 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 15:51:45 2016 bougon_p
-** Last update Fri Apr 15 19:00:56 2016 bougon_p
+** Last update Fri Apr 15 22:41:53 2016 bougon_p
 */
 
 #include "raytracer.h"
+
+/*
+** This file is use to check which button is currently
+** Activated, that call the function pointer needed by this button
+** That also set itfc->status on the right enum
+*/
 
 int	check_context_activated(t_itfc *itfc, t_data *data)
 {
@@ -20,12 +26,36 @@ int	check_context_activated(t_itfc *itfc, t_data *data)
       if (itfc->button[i])
 	{
 	  /* printf("\n==Button : %d IS Activated==\n", i); */
-	  //itfc->fct_context[i](data);
+	  itfc->fct_context[i - 1](data);
 	  return (-1);
 	}
       i++;
     }
   return (i);
+}
+
+void	check_bt_activated(t_itfc *itfc, t_data *data)
+{
+  int	i;
+  int	n;
+
+  i = 9;
+  n = i;
+  while (i < NB_BUTTON)
+    {
+      if (i == MOUSE || i == MOVE || i == ROTATE)
+	{
+	  i++;
+	  n = 12;
+	}
+      if (itfc->button[i])
+	{
+	  /* printf("\n==Button : %d IS Activated== FOR %d\n", i, i - n); */
+	  itfc->fct_button[i - n](data);
+	  return ;
+	}
+      i++;
+    }
 }
 
 void	check_status_selected(t_itfc *itfc)
@@ -60,17 +90,7 @@ void	check_button_activated(t_itfc *itfc, t_data *data)
   i = check_context_activated(itfc, data);
   if (i == -1)
     return ;
-  while (i < NB_BUTTON)
-    {
-      if (i == MOUSE || i == MOVE || i == ROTATE)
-	i++;
-      if (itfc->button[i])
-	{
-	  /* printf("\n==Button : %d IS Activated==\n", i); */
-	  //itfc->
-	}
-      i++;
-    }
+  check_bt_activated(itfc, data);
 }
 
 int	interface(t_data *data)
