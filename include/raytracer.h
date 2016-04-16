@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu Apr 14 21:12:16 2016 bougon_p
+** Last update Sat Apr 16 17:41:10 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -226,6 +226,7 @@ typedef struct		s_rt
   t_color		final_color;
   int			width;
   int			height;
+  bool			live;
 }			t_rt;
 
 typedef struct		s_data
@@ -240,7 +241,7 @@ typedef struct		s_data
 */
 int	init_main_data(t_data *);
 int	init_rt_data(t_rt *, int, char **);
-int	init_itfc_data(t_itfc *);
+int	init_itfc_data(t_itfc *, int);
 
 /*
 ** Blit

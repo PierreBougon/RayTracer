@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Fri Apr 15 16:31:35 2016 bougon_p
+** Last update Sat Apr 16 17:40:36 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -58,7 +58,7 @@ int		main(int argc, char **argv, char **env)
   bunny_set_maximum_ram(100000000);
   if (init_main_data(&data) == -1 ||
       init_rt_data(&data.rt, argc, argv) == -1 ||
-      init_itfc_data(&data.itfc) == -1)
+      init_itfc_data(&data.itfc, argc) == -1)
     return (1);
   bunny_set_key_response(my_key);
   bunny_set_click_response(my_click);

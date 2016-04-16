@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Thu Apr 14 00:15:46 2016 bougon_p
+** Last update Sat Apr 16 16:32:34 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -23,8 +23,10 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
   rt->width = INIT_WIDTH;
   rt->height = INIT_HEIGHT;
   rt->img = NULL;
+  rt->live = true;
   if (argc == 2)
     {
+      rt->live = false;
       if ((rt->img = bunny_new_pixelarray(rt->width, rt->height)) == NULL)
 	return (my_puterr("Could not perform bunny_new_pixelarray"));
       if (load_file(rt, argv[1]) == -1)

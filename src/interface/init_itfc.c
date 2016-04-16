@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Fri Apr 15 22:36:11 2016 bougon_p
+** Last update Sat Apr 16 17:40:08 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -56,7 +56,7 @@ void	init_ptr_button(t_itfc *itfc)
   itfc->fct_button[3] = live;
 }
 
-int	init_itfc_data(t_itfc *itfc)
+int	init_itfc_data(t_itfc *itfc, int ac)
 {
   int	i;
 
@@ -73,5 +73,8 @@ int	init_itfc_data(t_itfc *itfc)
   itfc->status = S_MOUSE;
   init_ptr_context(itfc);
   init_ptr_button(itfc);
+  itfc->rendering = false;
+  if (ac == 2)
+    itfc->rendering = true;
   return (0);
 }
