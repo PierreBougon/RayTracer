@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat Apr 16 18:20:23 2016 bougon_p
+** Last update Sat Apr 16 18:53:27 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -256,6 +256,7 @@ void	blit_clipables(t_data *);
 */
 void	delete_all_clipables(t_data *);
 
+
 /*
 ** antialiasing.c
 */
@@ -453,11 +454,13 @@ double		shadow_inter_plan(t_rt *s, t_plan *plan);
 double		specular_light(t_rt *s, t_acc *vision);
 
 /*
-** tekpixel.c
+** TOOLS
 */
 void		tekpixel(t_bunny_pixelarray *pix,
 			 t_bunny_position *pos,
 			 t_color *color);
+void		fill_pxlarray(t_bunny_pixelarray *pxar,
+			     unsigned int color);
 
 /*
 ** update_hit_list.c

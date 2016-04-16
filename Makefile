@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Fri Apr 15 22:17:49 2016 bougon_p
+## Last update Sat Apr 16 18:55:34 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -30,6 +30,7 @@ SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
 			$(MAIN)delete_clipables.c \
 			$(MAIN)blit_clipables.c \
+			$(MAIN)fill_pxlarray.c \
 			$(ENGINE)antialiasing.c \
 			$(ENGINE)clear_list.c \
 			$(ENGINE)create_obj_list.c \
@@ -63,6 +64,7 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)context.c \
 			$(ITFC)context_gen.c \
 			$(ITFC)save.c \
+			$(ITFC)rendering.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
@@ -98,8 +100,6 @@ SRCLIB	=	$(LIBPATH)my/get_next_line.c \
 		$(LIBPATH)my/my_strdup.c \
 		$(LIBPATH)my/my_strlen.c \
 		$(LIBPATH)my/my_strncmp.c \
-		$(LIBPATH)my/my_strncmp.c \
-		$(LIBPATH)my/my_getcolor.c \
 		$(LIBPATH)my/my_puterr.c \
 		$(LIBPATH)my/my_strcpy.c \
 		$(LIBPATH)my/my_strcat.c \

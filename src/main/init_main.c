@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Sat Apr 16 16:32:34 2016 bougon_p
+** Last update Sat Apr 16 19:08:52 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -31,7 +31,9 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
 	return (my_puterr("Could not perform bunny_new_pixelarray"));
       if (load_file(rt, argv[1]) == -1)
 	return (-1);
-      display(rt);
+      fill_pxlarray(rt->img, 0xFF262626);
+      /* For fast RT debugging */
+      /* display(rt); */
     }
   return (0);
 }

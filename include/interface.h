@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sat Apr 16 17:40:53 2016 bougon_p
+** Last update Sat Apr 16 18:41:43 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -69,6 +69,7 @@ typedef struct		s_itfc
   int			(*fct_context[NB_CONTEXT])(t_data *);
   int			(*fct_button[4])(t_data *);
   bool			rendering;
+  bool			rendered;
 }			t_itfc;
 
 /*
@@ -100,5 +101,10 @@ int	live(t_data *);
 int	open_file(t_data *);
 int	help(t_data *);
 int	save(t_data *);
+
+/*
+** RENDERING
+*/
+void	start_rendering(t_data *);
 
 #endif /* !INTERFACE  */
