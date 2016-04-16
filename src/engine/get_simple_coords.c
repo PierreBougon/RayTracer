@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 10 22:46:15 2016 romain samuel
-** Last update Thu Apr 14 16:24:18 2016 romain samuel
+** Last update Thu Apr 14 19:03:29 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -17,6 +17,12 @@ int		get_simple_inter(t_rt *s, t_acc *vct, t_acc *eye)
   if (s->hit.k1 < 0.000001 && s->hit.k2 < 0.000001)
     return (-1);
   if (s->hit.k2 < s->hit.k1 && s->hit.k2 > 0.000001)
+    {
+      tmp = s->hit.k2;
+      s->hit.k2 = s->hit.k1;
+      s->hit.k1 = tmp;
+    }
+  if (s->hit.k1 < 0.000001 && s->hit.k2 > 0.000001)
     {
       tmp = s->hit.k2;
       s->hit.k2 = s->hit.k1;

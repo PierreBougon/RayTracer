@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:47:40 2016 romain samuel
-** Last update Tue Apr 12 23:06:59 2016 romain samuel
+** Last update Sat Apr 16 17:38:27 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -24,6 +24,7 @@ void		set_hit_values_from_sphere(t_rt *s, t_object *obj)
   s->hit.ka = sphere->ka;
   s->hit.kd = sphere->kd;
   s->hit.ks = sphere->ks;
+  s->hit.limited = 0;
   s->final_color = sphere->color;
 }
 
@@ -41,6 +42,7 @@ void		set_hit_values_from_cylinder(t_rt *s, t_object *obj)
   s->hit.ka = cylinder->ka;
   s->hit.kd = cylinder->kd;
   s->hit.ks = cylinder->ks;
+  s->hit.limited = cylinder->limited;
   s->final_color = cylinder->color;
 }
 
@@ -58,6 +60,7 @@ void		set_hit_values_from_cone(t_rt *s, t_object *obj)
   s->hit.ka = cone->ka;
   s->hit.kd = cone->kd;
   s->hit.ks = cone->ks;
+  s->hit.limited = cone->limited;
   s->final_color = cone->color;
 }
 
@@ -81,15 +84,13 @@ void		set_hit_values_from_plan(t_rt *s, t_object *obj)
 int	set_hit_values(t_rt *s, t_object *obj)
 {
   void	(**ftab)(t_rt *, t_object *obj);
-  int	i;
 
-  i = 0;
   if ((ftab = malloc(sizeof(ftab) * 4)) == NULL)
     return (my_puterr("set_hit_values: could not perform malloc"));
   ftab[0] = &set_hit_values_from_sphere;
   ftab[1] = &set_hit_values_from_cylinder;
   ftab[2] = &set_hit_values_from_cone;
   ftab[3] = &set_hit_values_from_plan;
-  ftab[i](s, obj);
+  ftab[obj->type - 1](s, obj);
   return (0);
 }

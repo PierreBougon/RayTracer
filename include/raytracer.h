@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat Apr 16 17:41:10 2016 bougon_p
+** Last update Sat Apr 16 18:20:23 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -128,6 +128,7 @@ typedef struct		s_cone
   t_acc			simple_inter2;
   t_acc			simple_inter1;
   t_acc			norm;
+  int			limited;
 }			t_cone;
 
 typedef struct		s_cylinder
@@ -151,6 +152,7 @@ typedef struct		s_cylinder
   t_acc			simple_inter2;
   t_acc			simple_inter1;
   t_acc			norm;
+  int			limited;
 }			t_cylinder;
 
 typedef struct		s_light
@@ -203,6 +205,7 @@ typedef struct		s_hit
   double		ka;
   double		ks;
   double		kd;
+  int			limited;
 }			t_hit;
 
 typedef struct		s_shade

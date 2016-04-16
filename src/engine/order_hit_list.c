@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 10 20:49:25 2016 romain samuel
-** Last update Tue Apr 12 23:08:06 2016 romain samuel
+** Last update Sat Apr 16 16:21:28 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -13,7 +13,8 @@
 int		swap_objs(t_object *it, t_object *it_prev)
 {
   it_prev->prev->next = it;
-  it->next->prev = it_prev;
+  if (it->next != NULL)
+    it->next->prev = it_prev;
   it_prev->next = it->next;
   it->prev = it_prev->prev;
   it->next = it_prev;

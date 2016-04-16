@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 14 16:26:45 2016 romain samuel
-** Last update Thu Apr 14 18:22:30 2016 romain samuel
+** Last update Sat Apr 16 14:36:12 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -29,6 +29,7 @@ int		get_cylinder_plan_inter1(t_rt *s, t_cylinder *cylinder)
   get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
   end_rotation(s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan);
+  s->hit.limited = 1;
   return (0);
 }
 
@@ -51,6 +52,7 @@ int		get_cylinder_plan_inter2(t_rt *s, t_cylinder *cylinder)
   get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
   end_rotation(s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan);
+  s->hit.limited = 1;
   return (0);
 }
 
@@ -76,7 +78,7 @@ int		get_cone_plan_inter(t_rt *s, t_cone *cone)
 
   pos.x = 0;
   pos.y = 0;
-  pos.z = cone->height;
+  pos.z = - cone->height;
   end_rotation(&pos, &cone->rot);
   plan.pos.x = cone->pos.x + pos.x;
   plan.pos.y = cone->pos.y + pos.y;
@@ -88,18 +90,21 @@ int		get_cone_plan_inter(t_rt *s, t_cone *cone)
   get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
   end_rotation(s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan);
+  s->hit.limited = 1;
   return (0);
 }
 
 int	limited_cone(t_rt *s, t_cone *cone)
 {
-  /*if (s->hit.simple_inter1.z < 0 ||
-      (s->hit.simple_inter1.z > cone->height &&
-       s->hit.simple_inter2.z > cone->height))
-       return (-1);*/
-  /*
-  else if (s->hit.simple_inter1.z < - cone->height)
-  return (get_cone_plan_inter(s, cone));*/
+  if (s->hit.simple_inter1.z < 0)
+    return (-1);
+  else if (s->hit.simple_inter1.z > cone->height)
+    {
+      if (s->hit.simple_inter2.z > 0.0 && s->hit.simple_inter2.z < cone->height)
+	return (get_cone_plan_inter(s, cone));
+      else
+	return (-1);
+    }
   get_norm_cone(s, cone);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 12 15:55:24 2016 romain samuel
-** Last update Wed Apr 13 19:15:37 2016 romain samuel
+** Last update Thu Apr 14 19:18:52 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -27,7 +27,8 @@ double		specular_light(t_rt *s, t_acc *vision)
     + (nvision.y * s->hit.r.y)
     + (nvision.z * s->hit.r.z);
   a = pow(a, 100);
-  if (a < 0.0001)
+  /*printf("s = %f\n", a);*/
+  if (a < 0.1)
     a = 0.0;
   /*coef = (nvision.x * s->hit.nnorm.x)
     + (nvision.y * s->hit.nnorm.y)

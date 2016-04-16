@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:22:45 2016 romain samuel
-** Last update Thu Apr 14 18:44:46 2016 romain samuel
+** Last update Sat Apr 16 17:37:28 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -15,6 +15,10 @@ void		init_lum(t_rt *s, t_acc *vct, t_acc eye, t_light *light)
   s->shade.inter.x = eye.x + s->hit.k1 * vct->x;
   s->shade.inter.y = eye.y + s->hit.k1 * vct->y;
   s->shade.inter.z = eye.z + s->hit.k1 * vct->z;
+  /*printf("eye = %f %f %f\n", eye.x, eye.y, eye.z);
+  printf("vct = %f %f %f\n", vct->x, vct->y, vct->z);
+  printf("k = %f\n", s->hit.k1);
+  printf("inter = %f %f %f\n", s->shade.inter.x, s->shade.inter.y, s->shade.inter.z);*/
   s->shade.vct.x = s->shade.inter.x - (double)light->pos.x;
   s->shade.vct.y = s->shade.inter.y - (double)light->pos.y;
   s->shade.vct.z = s->shade.inter.z - (double)light->pos.z;
@@ -74,9 +78,12 @@ double		apply_light(t_rt *s, t_light *light, t_color *light_color)
 
   add = 0;
   add = diffuse_light(s, s->obj_hit->next);
+  /*  printf("add = %f\n", add);*/
   if (add > 0.1)
     {
+      /*printf("add = %f, int = %f, kd = %f\n", add, light->intensity, s->hit.kd);*/
       add = add * light->intensity * s->hit.kd;
+      /*printf("add = %f\n", add);*/
       add += (specular_light(s, s->ray.vct) * light->intensity * s->hit.ks);
       *light_color = add_light_color(*light_color, light->color);
     }
@@ -86,6 +93,7 @@ double		apply_light(t_rt *s, t_light *light, t_color *light_color)
 int		shade(t_rt *s, t_acc *vct, t_acc eye)
 {
   t_object	*it;
+
   t_light	*light;
   double	i;
   t_color	light_color;
