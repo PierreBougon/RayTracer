@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Sat Apr 16 18:55:34 2016 bougon_p
+## Last update Sun Apr 17 01:35:59 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -25,6 +25,8 @@ MAIN		=	src/main/
 ENGINE		=	src/engine/
 
 ITFC		=	src/interface/
+
+CONTEXT		=	src/interface/context/
 
 SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
@@ -61,10 +63,10 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)check_buttons.c \
 			$(ITFC)check_menu_buttons.c \
 			$(ITFC)buttons.c \
-			$(ITFC)context.c \
-			$(ITFC)context_gen.c \
 			$(ITFC)save.c \
 			$(ITFC)rendering.c \
+			$(CONTEXT)context.c \
+			$(CONTEXT)context_gen.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
