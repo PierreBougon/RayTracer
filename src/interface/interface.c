@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 15:51:45 2016 bougon_p
-** Last update Fri Apr 15 22:41:53 2016 bougon_p
+** Last update Sun Apr 17 18:47:45 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -40,40 +40,40 @@ void	check_bt_activated(t_itfc *itfc, t_data *data)
   int	n;
 
   i = 9;
-  n = i;
+  n = 0;
   while (i < NB_BUTTON)
     {
-      if (i == MOUSE || i == MOVE || i == ROTATE)
-	{
-	  i++;
-	  n = 12;
-	}
+      while (i == MOUSE || i == MOVE || i == ROTATE)
+	i++;
       if (itfc->button[i])
 	{
-	  /* printf("\n==Button : %d IS Activated== FOR %d\n", i, i - n); */
-	  itfc->fct_button[i - n](data);
+	  /* printf("\n==Button : %d IS Activated== FOR %d\n", i, n); */
+	  itfc->fct_button[n](data);
 	  return ;
 	}
       i++;
+      n++;
     }
 }
 
-void	check_status_selected(t_itfc *itfc)
+void	check_status_selected(t_data *data)
 {
-  int	i;
-
-  i = START_STATUS;
-  while (i < NB_STATUS + START_STATUS)
+  if (data->itfc.status == S_MOUSE)
     {
-      if (itfc->button[i])
-	{
-	  itfc->button[MOUSE] = false;
-	  itfc->button[MOVE] = false;
-	  itfc->button[ROTATE] = false;
-	  itfc->status = i - START_STATUS;
-	  itfc->button[i] = true;
-	}
-      i++;
+      printf("STATUS -> MOUSE\n");
+      return ;
+    }
+  else if (data->itfc.status == S_MOVE)
+    {
+      printf("STATUS -> MOVE\n");
+      if (data->itfc.left_click)
+	move_eye(data);
+    }
+  else if (data->itfc.status == S_ROTATE)
+    {
+      printf("STATUS -> ROTATE\n");
+      if (data->itfc.left_click)
+	rotate_eye(data);
     }
 }
 
@@ -81,7 +81,7 @@ void	check_button_activated(t_itfc *itfc, t_data *data)
 {
   int	i;
 
-  check_status_selected(itfc);
+  check_status_selected(data);
   if (itfc->button[0])
     {
       /* printf("No Button is activated\n"); */
@@ -95,6 +95,7 @@ void	check_button_activated(t_itfc *itfc, t_data *data)
 
 int	interface(t_data *data)
 {
+  /* debug_tabbool(data->itfc.button); */
   check_button_activated(&data->itfc, data);
   /* printf("STATUS => %d\n", data->itfc.status); */
   return (0);

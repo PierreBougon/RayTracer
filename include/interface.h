@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sat Apr 16 18:41:43 2016 bougon_p
+** Last update Sun Apr 17 18:48:36 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -58,6 +58,13 @@ enum			buttons
 
 typedef struct	s_data	t_data;
 
+typedef	struct		S_move
+{
+  bool			needmoving;
+  t_bunny_position	first_pos;
+  t_bunny_position	second_pos;
+}			t_move;
+
 typedef struct		s_itfc
 {
   t_bunny_pixelarray	*layout;
@@ -68,14 +75,26 @@ typedef struct		s_itfc
   int			status;
   int			(*fct_context[NB_CONTEXT])(t_data *);
   int			(*fct_button[4])(t_data *);
+  int			(*fct_state[NB_STATUS])(t_data *,
+						t_bunny_event_state,
+						t_bunny_mousebutton);
   bool			rendering;
   bool			rendered;
+  bool			left_click;
+  t_move		move;
 }			t_itfc;
 
 /*
-** MAIN
+** Main
 */
 int	interface(t_data *data);
+
+/*
+** State
+*/
+int	mouse_state(t_data *, t_bunny_event_state, t_bunny_mousebutton);
+int	move_state(t_data *, t_bunny_event_state, t_bunny_mousebutton);
+int	rotate_state(t_data *, t_bunny_event_state, t_bunny_mousebutton);
 
 /*
 ** Buttons

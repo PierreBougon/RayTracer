@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Sat Apr 16 17:40:36 2016 bougon_p
+** Last update Sun Apr 17 17:06:55 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -20,6 +20,7 @@ t_bunny_response        my_click(t_bunny_event_state state,
   if (mbutton == BMB_LEFT && state == GO_DOWN)
     if (check_all_buttons(&data->itfc) == 1)
       return (EXIT_ON_SUCCESS);
+  data->itfc.fct_state[data->itfc.status](data, state, mbutton);
   return (GO_ON);
 }
 
@@ -43,6 +44,8 @@ t_bunny_response        mainloop(void *_data)
   itfc = &data->itfc;
   interface(data);
   /* debug_pos(); */
+  if (data->rt.live && data->rt.img != NULL)
+    display(&data->rt);
   blit_clipables(data);
   bunny_display(data->win);
   return (GO_ON);

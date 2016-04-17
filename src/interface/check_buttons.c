@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 02:25:05 2016 bougon_p
-** Last update Fri Apr 15 18:36:25 2016 bougon_p
+** Last update Sun Apr 17 17:01:39 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -38,14 +38,9 @@ void	set_butt_false(t_itfc *itfc)
 
 void	set_status_false(t_itfc *itfc)
 {
-  int	i;
-
-  i = START_STATUS;
-  while (i < NB_STATUS + START_STATUS)
-    {
-      itfc->button[i] = false;
-      i++;
-    }
+  itfc->button[MOUSE] = false;
+  itfc->button[MOVE] = false;
+  itfc->button[ROTATE] = false;
 }
 
 void	save_button(t_itfc *itfc, const t_bunny_position *mpos)
@@ -124,6 +119,7 @@ void	status_button(t_itfc *itfc, const t_bunny_position *mpos)
 	      /* !DEBUG */
 	      set_status_false(itfc);
 	      itfc->button[nb_bt] = true;
+	      itfc->status = nb_bt - START_STATUS;
 	      /* itfc->act_context = 0; */
 	    }
 	}
@@ -145,14 +141,17 @@ void	opt_button(t_itfc *itfc, const t_bunny_position *mpos)
 	  && mpos->y <= OPT_Y + OPT_HGT)
 	{
 	  /* DEBUG */
-	  if (nb_bt == 14)
-	    printf("==> BUTTON RENDER :  JE SUIS TOUCHE\n");
-	  else if (nb_bt == 15)
-	    printf("==> BUTTON LIVE :  JE SUIS TOUCHE\n");
-	  /* !DEBUG */
-	  set_butt_false(itfc);
-	  itfc->button[nb_bt] = true;
-	  /* itfc->act_context = 0; */
+	  if (!itfc->button[nb_bt])
+	    {
+	      if (nb_bt == 14)
+		printf("==> BUTTON RENDER :  JE SUIS TOUCHE\n");
+	      else if (nb_bt == 15)
+		printf("==> BUTTON LIVE :  JE SUIS TOUCHE\n");
+	      /* !DEBUG */
+	      set_butt_false(itfc);
+	      itfc->button[nb_bt] = true;
+	      /* itfc->act_context = 0; */
+	    }
 	}
       nb_bt++;
     }
