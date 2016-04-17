@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 22:00:12 2016 bougon_p
-** Last update Sun Apr 17 02:10:30 2016 bougon_p
+** Last update Sun Apr 17 23:55:12 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -16,6 +16,7 @@ int	render(UNUSED t_data *data)
   if (!data->itfc.rendering && !data->itfc.rendered)
     {
       data->itfc.rendering = true;
+      data->rt.live = false;
       start_rendering(data);
     }
   return (0);
