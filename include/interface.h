@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sun Apr 17 18:48:36 2016 bougon_p
+** Last update Sun Apr 17 18:58:36 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -95,6 +95,8 @@ int	interface(t_data *data);
 int	mouse_state(t_data *, t_bunny_event_state, t_bunny_mousebutton);
 int	move_state(t_data *, t_bunny_event_state, t_bunny_mousebutton);
 int	rotate_state(t_data *, t_bunny_event_state, t_bunny_mousebutton);
+void	move_eye(t_data *);
+void	rotate_eye(t_data *);
 
 /*
 ** Buttons
