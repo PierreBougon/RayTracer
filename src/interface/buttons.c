@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 22:00:12 2016 bougon_p
-** Last update Sat Apr 16 18:42:46 2016 bougon_p
+** Last update Sun Apr 17 02:10:30 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -25,6 +25,7 @@ int	live(t_data *data)
 {
   printf("FCT => LIVE\n");
   data->rt.live = true;
+  data->itfc.rendered = false;
   return (0);
 }
 
