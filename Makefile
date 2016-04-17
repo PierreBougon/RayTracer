@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Sun Apr 17 01:35:59 2016 bougon_p
+## Last update Sun Apr 17 02:08:14 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -26,7 +26,7 @@ ENGINE		=	src/engine/
 
 ITFC		=	src/interface/
 
-CONTEXT		=	src/interface/context/
+CONTEXT		=	context/
 
 SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
@@ -63,10 +63,13 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)check_buttons.c \
 			$(ITFC)check_menu_buttons.c \
 			$(ITFC)buttons.c \
-			$(ITFC)save.c \
 			$(ITFC)rendering.c \
-			$(CONTEXT)context.c \
-			$(CONTEXT)context_gen.c \
+			$(ITFC)$(CONTEXT)save.c \
+			$(ITFC)$(CONTEXT)modif_form.c \
+			$(ITFC)$(CONTEXT)add_form.c \
+			$(ITFC)$(CONTEXT)sub_form.c \
+			$(ITFC)$(CONTEXT)spotlight.c \
+			$(ITFC)$(CONTEXT)context_gen.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
@@ -131,14 +134,16 @@ CC      =	gcc $(CFLAGS) $(IFLAG)
 # PROJECT RULES
 
 $(NAME)		: 	$(LIB) $(OBJS)
-			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n> Linking \"$(NAME)\"\n\twith \
-\"$(CC)\"\n\n>>>>>>>>>>>>>>>\t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n>" 
+			@$(ECHO)"Linking \"$(NAME)\"\n\twith"
+			@$(ECHO)"\"$(CC)\"\n\n>>>>>>>>>>>>>>>\t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIB) $(LIBBUNNY)
 
 $(LIB)		:	$(OBJSLIB)
 			@ar rc $(LIB) $(OBJSLIB)
 			@ranlib $(LIB)
-			@$(ECHO) "$(GREEN)\n> Compiling Library\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n> Compiling Library\t"
+			@$(ECHO) " >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 
 all		:	$(NAME)
@@ -146,12 +151,14 @@ all		:	$(NAME)
 clean		:
 			@$(RM) $(OBJS)
 			@$(RM) $(OBJSLIB)
-			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n> Cleaning repository\t"
+			@$(ECHO) " >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 fclean		: 	clean
 			@$(RM) $(NAME)
 			@$(RM) $(LIB)
-			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t"
+			@$(ECHO) " >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 re		:	fclean all
 
