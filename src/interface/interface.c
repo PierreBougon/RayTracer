@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 15:51:45 2016 bougon_p
-** Last update Mon Apr 18 20:27:01 2016 bougon_p
+** Last update Tue Apr 19 00:59:48 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -16,8 +16,30 @@
 ** the interface it's just reday to code
 */
 
+void	check_status_selected(t_data *data)
+{
+  if (data->itfc.status == S_MOUSE)
+    {
+      /* printf("STATUS -> MOUSE\n"); */
+      return ;
+    }
+  else if (data->itfc.status == S_MOVE)
+    {
+      printf("STATUS -> MOVE\n");
+      if (data->itfc.left_click)
+	move_eye(data);
+    }
+  else if (data->itfc.status == S_ROTATE)
+    {
+      printf("STATUS -> ROTATE\n");
+      if (data->itfc.left_click)
+	rotate_eye(data);
+    }
+}
+
 int	interface(UNUSED t_data *data)
 {
+  check_status_selected(data);
   /* debug_tabbool(data->itfc.button); */
   /* check_button_activated(&data->itfc, data); */
   /* printf("STATUS => %d\n", data->itfc.status); */

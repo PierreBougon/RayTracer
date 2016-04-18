@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon Apr 18 20:22:42 2016 bougon_p
-** Last update Mon Apr 18 20:23:29 2016 bougon_p
+** Last update Tue Apr 19 00:59:55 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -56,32 +56,10 @@ void	check_bt_activated(t_itfc *itfc, t_data *data)
     }
 }
 
-void	check_status_selected(t_data *data)
-{
-  if (data->itfc.status == S_MOUSE)
-    {
-      /* printf("STATUS -> MOUSE\n"); */
-      return ;
-    }
-  else if (data->itfc.status == S_MOVE)
-    {
-      printf("STATUS -> MOVE\n");
-      if (data->itfc.left_click)
-	move_eye(data);
-    }
-  else if (data->itfc.status == S_ROTATE)
-    {
-      printf("STATUS -> ROTATE\n");
-      if (data->itfc.left_click)
-	rotate_eye(data);
-    }
-}
-
 void	check_button_activated(t_itfc *itfc, t_data *data)
 {
   int	i;
 
-  check_status_selected(data);
   if (itfc->button[0])
     {
       /* printf("No Button is activated\n"); */

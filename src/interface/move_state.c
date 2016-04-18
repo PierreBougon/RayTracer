@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 15:42:56 2016 bougon_p
-** Last update Mon Apr 18 00:00:16 2016 bougon_p
+** Last update Tue Apr 19 01:02:02 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -14,15 +14,19 @@ int	move_state(t_data *data,
 		   t_bunny_event_state mstate,
 		   t_bunny_mousebutton mbutton)
 {
-  if (mbutton == BMB_LEFT && mstate == GO_DOWN)
+  printf("move state\n");
+  if (data->rt.img != NULL)
     {
-      data->itfc.left_click = true;
-      data->itfc.move.needmoving = false;
-    }
-  else if (mbutton == BMB_LEFT && mstate == GO_UP)
-    {
-      data->itfc.left_click = false;
-      data->itfc.move.needmoving = false;
+      if (mbutton == BMB_LEFT && mstate == GO_DOWN)
+	{
+	  data->itfc.left_click = true;
+	  data->itfc.move.needmoving = false;
+	}
+      else if (mbutton == BMB_LEFT && mstate == GO_UP)
+	{
+	  data->itfc.left_click = false;
+	  data->itfc.move.needmoving = false;
+	}
     }
   return (0);
 }
