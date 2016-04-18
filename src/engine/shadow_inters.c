@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:12:34 2016 romain samuel
-** Last update Mon Apr 11 18:03:43 2016 romain samuel
+** Last update Sun Apr 17 12:16:39 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -70,7 +70,7 @@ double		shadow_inter_cone(t_rt *s, t_cone *cone)
     return (0);
   k[0] = (- b + sqrt(delta)) / (2 * a);
   k[1] = (- b - sqrt(delta)) / (2 * a);
-  return (return_k(k));
+  return (shadow_simple_inters(s, &vct, &eye, k));
 }
 
 double		shadow_inter_cylinder(t_rt *s, t_cylinder *cylinder)
@@ -96,7 +96,7 @@ double		shadow_inter_cylinder(t_rt *s, t_cylinder *cylinder)
     return (0);
   k[0] = (- b + sqrt(delta)) / (2 * a);
   k[1] = (- b - sqrt(delta)) / (2 * a);
-  return (return_k(k));
+  return (shadow_simple_inters(s, &vct, &eye, k));
 }
 
 double		shadow_inter_plan(t_rt *s, t_plan *plan)

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 21:09:55 2016 bougon_p
-** Last update Fri Apr 15 16:23:15 2016 bougon_p
+** Last update Mon Apr 18 20:30:04 2016 bougon_p
 */
 
 #ifndef BUTTON_H_

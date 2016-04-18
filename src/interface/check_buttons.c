@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 02:25:05 2016 bougon_p
-** Last update Sun Apr 17 17:01:39 2016 bougon_p
+** Last update Mon Apr 18 19:52:48 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -169,15 +169,13 @@ int	exit_button(UNUSED t_itfc *itfc, const t_bunny_position *mpos)
 
 int	check_all_buttons(t_itfc *itfc)
 {
-  const	t_bunny_position	*mpos;
-
-  mpos = bunny_get_mouse_position();
-  form_button(itfc, mpos);
-  gen_button(itfc, mpos);
-  save_button(itfc, mpos);
-  file_button(itfc, mpos);
-  opt_button(itfc, mpos);
-  if (exit_button(itfc, mpos) == 1)
+  itfc->mpos = bunny_get_mouse_position();
+  form_button(itfc, itfc->mpos);
+  gen_button(itfc, itfc->mpos);
+  save_button(itfc, itfc->mpos);
+  file_button(itfc, itfc->mpos);
+  opt_button(itfc, itfc->mpos);
+  if (exit_button(itfc, itfc->mpos) == 1)
     return (1);
   return (0);
 }

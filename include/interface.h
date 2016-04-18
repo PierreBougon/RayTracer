@@ -5,18 +5,14 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sun Apr 17 18:58:36 2016 bougon_p
+** Last update Mon Apr 18 20:29:51 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
 # define INTERFACE_H_
 
 # include "button.h"
-
-# define CONTEXT_WIDTH 289
-# define CONTEXT_HEIGHT 1010
-
-# define NB_CONTEXT 8
+# include "context.h"
 
 # define WORK_SPACE_X 433
 # define MAX_WORK_SPACE_X 1904
@@ -26,14 +22,14 @@
 # define START_STATUS 11
 # define NB_STATUS 3
 
-enum			status
+typedef enum			e_status
   {
     S_MOUSE,
     S_MOVE,
     S_ROTATE
-  };
+  }				t_status;
 
-enum			buttons
+typedef enum			e_buttons
   {
     NO_BUTTON,
     MODIF_FORM,
@@ -54,35 +50,36 @@ enum			buttons
     PREV,
     NEXT,
     EXIT
-  };
+  }				t_buttons;
 
-typedef struct	s_data	t_data;
+typedef struct	s_data		t_data;
 
-typedef	struct		S_move
+typedef	struct			s_move
 {
-  bool			needmoving;
-  t_bunny_position	first_pos;
-  t_bunny_position	second_pos;
-}			t_move;
+  bool				needmoving;
+  t_bunny_position		first_pos;
+  t_bunny_position		second_pos;
+}				t_move;
 
-typedef struct		s_itfc
+typedef struct			s_itfc
 {
-  t_bunny_pixelarray	*layout;
-  t_bunny_pixelarray	*context[9];
-  int			act_context;
-  t_bunny_position	context_pos;
-  bool			button[19];
-  int			status;
-  int			(*fct_context[NB_CONTEXT])(t_data *);
-  int			(*fct_button[4])(t_data *);
-  int			(*fct_state[NB_STATUS])(t_data *,
-						t_bunny_event_state,
-						t_bunny_mousebutton);
-  bool			rendering;
-  bool			rendered;
-  bool			left_click;
-  t_move		move;
-}			t_itfc;
+  t_bunny_pixelarray		*layout;
+  t_bunny_pixelarray		*context[9];
+  int				act_context;
+  t_bunny_position		context_pos;
+  bool				button[19];
+  int				status;
+  int				(*fct_context[NB_CONTEXT])(t_data *);
+  int				(*fct_button[4])(t_data *);
+  int				(*fct_state[NB_STATUS])(t_data *,
+							t_bunny_event_state,
+							t_bunny_mousebutton);
+  bool				rendering;
+  bool				rendered;
+  bool				left_click;
+  t_move			move;
+  const	t_bunny_position	*mpos;
+}				t_itfc;
 
 /*
 ** Main
@@ -102,7 +99,7 @@ void	rotate_eye(t_data *);
 ** Buttons
 */
 int	check_all_buttons(t_itfc *);
-
+void	check_button_activated(t_itfc *, t_data *);
 void	form_button(t_itfc *, const t_bunny_position *);
 void	gen_button(t_itfc *, const t_bunny_position *);
 void	set_butt_false(t_itfc *);

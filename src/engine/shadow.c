@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:49:09 2016 romain samuel
-** Last update Wed Apr 13 14:31:24 2016 romain samuel
+** Last update Sun Apr 17 17:27:04 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -33,6 +33,7 @@ int		shadow_cone(t_rt *s, t_object *obj)
     return (0);
   shape = (t_cone *)obj->datas;
   k = shadow_inter_cone(s, shape);
+  k = shadow_limited_cone(s, shape, k);
   if (k > 0.000001 && k < 1)
     return (1);
   return (0);
@@ -47,6 +48,7 @@ int		shadow_cylinder(t_rt *s, t_object *obj)
     return (0);
   shape = (t_cylinder *)obj->datas;
   k = shadow_inter_cylinder(s, shape);
+  k = shadow_limited_cylinder(s, shape, k);
   if (k > 0.000001 && k < 1)
     return (1);
   return (0);
@@ -68,20 +70,17 @@ int		shadow_plan(t_rt *s, t_object *obj)
 
 int			shadow(t_rt *s)
 {
-  int			(**ftab)(t_rt *, t_object *);
   t_object		*it;
 
-  if ((ftab = malloc(sizeof(ftab) * 4)) == NULL)
-    return (my_puterr("shadow: could not perform bunny_malloc"));
-  ftab[0] = &shadow_sphere;
-  ftab[1] = &shadow_cylinder;
-  ftab[2] = &shadow_cone;
-  ftab[3] = &shadow_plan;
+  s->ftabs.shadow_ftab[0] = &shadow_sphere;
+  s->ftabs.shadow_ftab[1] = &shadow_cylinder;
+  s->ftabs.shadow_ftab[2] = &shadow_cone;
+  s->ftabs.shadow_ftab[3] = &shadow_plan;
   it = s->obj;
   while (it != NULL)
     {
       if (it->type < 5)
-	if (ftab[it->type - 1](s, it) == 1)
+	if (s->ftabs.shadow_ftab[it->type - 1](s, it) == 1)
 	  return (1);
       it = it->next;
     }

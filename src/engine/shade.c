@@ -5,26 +5,56 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:22:45 2016 romain samuel
-** Last update Sat Apr 16 17:37:28 2016 romain samuel
+** Last update Mon Apr 18 16:06:43 2016 romain samuel
 */
 
 #include "raytracer.h"
+
+int		init_soft_shadow(t_rt *s)
+{
+  int		rd;
+
+  /*s->shade.x_diff[0] = 0;
+  s->shade.x_diff[1] = 500;
+  s->shade.x_diff[2] = - 500;
+  s->shade.x_diff[3] = 0;
+  s->shade.x_diff[4] = 0;
+  s->shade.x_diff[5] = 0;
+  s->shade.x_diff[6] = 0;
+  s->shade.y_diff[0] = 0;
+  s->shade.y_diff[1] = 0;
+  s->shade.y_diff[2] = 0;
+  s->shade.y_diff[3] = 500;
+  s->shade.y_diff[4] = - 500;
+  s->shade.y_diff[5] = 0;
+  s->shade.y_diff[6] = 0;
+  s->shade.z_diff[0] = 0;
+  s->shade.z_diff[1] = 0;
+  s->shade.z_diff[2] = 0;
+  s->shade.z_diff[3] = 0;
+  s->shade.z_diff[4] = 0;
+  s->shade.z_diff[5] = 500;
+  s->shade.z_diff[6] = - 500;*/
+  rd = rand() % 1000;
+  s->shade.x_diff = rd - 500;
+  rd = rand() % 1000;
+  s->shade.y_diff = rd - 500;
+  rd = rand() % 1000;
+  s->shade.z_diff = rd - 500;
+  return (0);
+}
 
 void		init_lum(t_rt *s, t_acc *vct, t_acc eye, t_light *light)
 {
   s->shade.inter.x = eye.x + s->hit.k1 * vct->x;
   s->shade.inter.y = eye.y + s->hit.k1 * vct->y;
   s->shade.inter.z = eye.z + s->hit.k1 * vct->z;
-  /*printf("eye = %f %f %f\n", eye.x, eye.y, eye.z);
-  printf("vct = %f %f %f\n", vct->x, vct->y, vct->z);
-  printf("k = %f\n", s->hit.k1);
-  printf("inter = %f %f %f\n", s->shade.inter.x, s->shade.inter.y, s->shade.inter.z);*/
-  s->shade.vct.x = s->shade.inter.x - (double)light->pos.x;
-  s->shade.vct.y = s->shade.inter.y - (double)light->pos.y;
-  s->shade.vct.z = s->shade.inter.z - (double)light->pos.z;
-  s->shade.light_pos.x = light->pos.x;
-  s->shade.light_pos.y = light->pos.y;
-  s->shade.light_pos.z = light->pos.z;
+  s->shade.light_pos.x = light->pos.x + s->shade.x_diff;
+  s->shade.light_pos.y = light->pos.y + s->shade.y_diff;
+  s->shade.light_pos.z = light->pos.z + s->shade.z_diff;
+  s->shade.vct.x = s->shade.inter.x - (double)s->shade.light_pos.x;
+  s->shade.vct.y = s->shade.inter.y - (double)s->shade.light_pos.y;
+  s->shade.vct.z = s->shade.inter.z - (double)s->shade.light_pos.z;
 }
 
 t_color			add_light_color(t_color color,
@@ -78,41 +108,60 @@ double		apply_light(t_rt *s, t_light *light, t_color *light_color)
 
   add = 0;
   add = diffuse_light(s, s->obj_hit->next);
-  /*  printf("add = %f\n", add);*/
-  if (add > 0.1)
+  if (add > 0.000000001)
     {
-      /*printf("add = %f, int = %f, kd = %f\n", add, light->intensity, s->hit.kd);*/
       add = add * light->intensity * s->hit.kd;
-      /*printf("add = %f\n", add);*/
       add += (specular_light(s, s->ray.vct) * light->intensity * s->hit.ks);
       *light_color = add_light_color(*light_color, light->color);
     }
   return (add);
 }
 
+double		get_soft_intensity(double tab[500])
+{
+  double	i;
+  int		j;
+
+  j = 0;
+  while (j < 500)
+    {
+      i += tab[j];
+      j++;
+    }
+  i = i / 500;
+  return (i);
+}
+
 int		shade(t_rt *s, t_acc *vct, t_acc eye)
 {
   t_object	*it;
-
   t_light	*light;
   double	i;
+  double	itab[500];
   t_color	light_color;
 
   it = s->obj;
-  i = 0;
   light_color.full = BLACK;
   while (it != NULL)
     {
       if (it->type == 5)
 	{
+	  s->shade.diff = 0;
 	  light = (t_light *)it->datas;
-	  init_lum(s, vct, eye, light);
-	  if (shadow(s) == 0)
-	    i += apply_light(s, light, &light_color);
+	  while (s->shade.diff < 500)
+	    {
+	      init_soft_shadow(s);
+	      init_lum(s, vct, eye, light);
+	      if (shadow(s) == 0)
+		itab[s->shade.diff] = apply_light(s, light, &light_color);
+	      else
+		itab[s->shade.diff] = 0;
+	      s->shade.diff++;
+	    }
 	}
       it = it->next;
     }
-  i += s->opt.ambient * s->hit.ka;
+  i = get_soft_intensity(itab) + s->opt.ambient * s->hit.ka;
   if (i > 1)
     i = 1;
   s->final_color = apply_b(s->final_color, light_color, s->hit.brightness, i);

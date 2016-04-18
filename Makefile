@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Sun Apr 17 18:49:29 2016 bougon_p
+## Last update Mon Apr 18 20:25:43 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -55,6 +55,8 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)shade.c \
 			$(ENGINE)shadow.c \
 			$(ENGINE)shadow_inters.c \
+			$(ENGINE)shadow_limited_objects.c \
+			$(ENGINE)shadow_simple_inters.c \
 			$(ENGINE)specular_light.c \
 			$(ENGINE)tekpixel.c \
 			$(ENGINE)update_hit_list.c \
@@ -62,6 +64,7 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)init_itfc.c \
 			$(ITFC)check_buttons.c \
 			$(ITFC)check_menu_buttons.c \
+			$(ITFC)check_bt_activated.c \
 			$(ITFC)buttons.c \
 			$(ITFC)rendering.c \
 			$(ITFC)mouse_state.c \
