@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 18:34:07 2016 bougon_p
-** Last update Tue Apr 19 01:08:29 2016 bougon_p
+** Last update Tue Apr 19 01:16:49 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -17,7 +17,6 @@ void				move_eye(t_data *data)
 
   rt = &data->rt;
   mpos = data->itfc.mpos;
-  printf("move eye \n");
   if (mpos->x > ((((MAX_WORK_SPACE_X - WORK_SPACE_X) / 2) + WORK_SPACE_X) -
   		(rt->img->clipable.clip_width / 2))
       && mpos->x < ((((MAX_WORK_SPACE_X - WORK_SPACE_X) / 2) + WORK_SPACE_X) -
