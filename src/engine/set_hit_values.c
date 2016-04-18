@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:47:40 2016 romain samuel
-** Last update Sat Apr 16 17:38:27 2016 romain samuel
+** Last update Sun Apr 17 17:14:57 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -83,14 +83,10 @@ void		set_hit_values_from_plan(t_rt *s, t_object *obj)
 
 int	set_hit_values(t_rt *s, t_object *obj)
 {
-  void	(**ftab)(t_rt *, t_object *obj);
-
-  if ((ftab = malloc(sizeof(ftab) * 4)) == NULL)
-    return (my_puterr("set_hit_values: could not perform malloc"));
-  ftab[0] = &set_hit_values_from_sphere;
-  ftab[1] = &set_hit_values_from_cylinder;
-  ftab[2] = &set_hit_values_from_cone;
-  ftab[3] = &set_hit_values_from_plan;
-  ftab[obj->type - 1](s, obj);
+  s->ftabs.hit_ftab[0] = &set_hit_values_from_sphere;
+  s->ftabs.hit_ftab[1] = &set_hit_values_from_cylinder;
+  s->ftabs.hit_ftab[2] = &set_hit_values_from_cone;
+  s->ftabs.hit_ftab[3] = &set_hit_values_from_plan;
+  s->ftabs.hit_ftab[obj->type - 1](s, obj);
   return (0);
 }

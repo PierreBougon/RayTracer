@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat Apr 16 18:53:27 2016 bougon_p
+** Last update Mon Apr 18 15:52:36 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -40,12 +40,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <lapin.h>
+# include <time.h>
 # include "my.h"
 # include "interface.h"
 
 /*
 ** structures
 */
+typedef struct		s_rt t_rt;
+
 typedef struct		s_pos
 {
   int			x;
@@ -208,19 +211,39 @@ typedef struct		s_hit
   int			limited;
 }			t_hit;
 
+typedef struct		s_shadow
+{
+  t_acc			simple_inter1;
+  t_acc			simple_inter2;
+}			t_shadow;
+
 typedef struct		s_shade
 {
   t_acc			inter;
   t_acc			vct;
   t_acc			nvct;
   t_acc			light_pos;
+  t_shadow		shadow;
+  int			diff;
+  double		x_diff;
+  double		y_diff;
+  double		z_diff;
 }			t_shade;
+
+typedef struct		s_ftab
+{
+  int			(**inters_ftab)(t_rt *, t_object *);
+  int			(**shadow_ftab)(t_rt *, t_object *);
+  void			(**hit_ftab)(t_rt *, t_object *);
+}			t_ftab;
 
 typedef struct		s_rt
 {
   t_bunny_pixelarray	*img;
   t_object		*obj;
   t_object		*obj_hit;
+  t_color		*pixel_color;
+  t_ftab		ftabs;
   t_ray			ray;
   t_shade		shade;
   t_hit			hit;
@@ -245,6 +268,7 @@ typedef struct		s_data
 int	init_main_data(t_data *);
 int	init_rt_data(t_rt *, int, char **);
 int	init_itfc_data(t_itfc *, int);
+int	init_engine_ftabs(t_ftab *ftabs);
 
 /*
 ** Blit
@@ -447,6 +471,17 @@ double		shadow_inter_sphere(t_rt *s, t_sphere *sphere);
 double		shadow_inter_cone(t_rt *s, t_cone *cone);
 double		shadow_inter_cylinder(t_rt *s, t_cylinder *cylinder);
 double		shadow_inter_plan(t_rt *s, t_plan *plan);
+
+/*
+** shadow_limited_objects.c
+*/
+double		shadow_limited_cylinder(t_rt *s, t_cylinder *cylinder, double k);
+double		shadow_limited_cone(t_rt *s, t_cone *cone, double k);
+
+/*
+** shadow_simple_inters.c
+*/
+int		shadow_simple_inters(t_rt *s, t_acc *vct, t_acc *eye, double k[2]);
 
 /*
 ** specular_light.c
