@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Tue Apr 19 14:26:13 2016 romain samuel
+** Last update Tue Apr 19 18:49:30 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -23,6 +23,12 @@
 # define WIN_HEIGHT 1080
 # define INIT_WIDTH 720
 # define INIT_HEIGHT 720
+
+/*
+** COLOR DEFINES
+*/
+# define NULL_COLOR 0x00000000
+# define BLUE_LOAD 0xFF5C5540
 
 /*
 ** TEXTURE DEFINES
@@ -43,6 +49,7 @@
 # include <time.h>
 # include "my.h"
 # include "interface.h"
+# include "live_engine.h"
 
 /*
 ** structures
@@ -253,7 +260,20 @@ typedef struct		s_rt
   int			width;
   int			height;
   bool			live;
+  float			coef_load;
+  int			nb_coef;
+  t_bunny_position	pos;
 }			t_rt;
+
+typedef	struct		s_loading
+{
+  t_bunny_position	pos;
+  t_bunny_pixelarray	*loading;
+  int			curr_line;
+  int			nb_coef;
+  float			coef_load;
+  int			save_width;
+}			t_loading;
 
 typedef struct		s_data
 {
@@ -262,6 +282,7 @@ typedef struct		s_data
   t_bunny_window	*win;
   t_bunny_event_state	mstate;
   t_bunny_mousebutton	mbutton;
+  t_loading		ld;
 }			t_data;
 
 /*
@@ -324,7 +345,7 @@ double		diffuse_light(t_rt *s, t_object *it);
 */
 int		inter_objects(t_rt *s);
 t_color		display_objects(t_rt *s, t_acc *vct, t_acc eye, int rec);
-int		display(t_rt *s);
+int		display(t_rt *s, t_data *data);
 
 /*
 ** display_objects.c
@@ -516,6 +537,9 @@ void		tekpixel(t_bunny_pixelarray *pix,
 			 t_color *color);
 void		fill_pxlarray(t_bunny_pixelarray *pxar,
 			     unsigned int color);
+int		fill_next_lines(t_bunny_pixelarray *pxar,
+				unsigned int color,
+				int line, int nb_line);
 
 /*
 ** update_hit_list.c

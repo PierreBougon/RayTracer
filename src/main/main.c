@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Tue Apr 19 01:16:29 2016 bougon_p
+** Last update Tue Apr 19 18:52:25 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -69,7 +69,7 @@ t_bunny_response        mainloop(void *_data)
   interface(data);
   /* debug_pos(); */
   if (data->rt.live && data->rt.img != NULL)
-    display(&data->rt);
+    live_display(&data->rt);
   blit_clipables(data);
   bunny_display(data->win);
   return (GO_ON);

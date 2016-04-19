@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 16 18:34:35 2016 bougon_p
-** Last update Sat Apr 16 18:42:27 2016 bougon_p
+** Last update Tue Apr 19 17:04:34 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -13,7 +13,10 @@
 void	start_rendering(t_data *data)
 {
   if (data->rt.img != NULL)
-    display(&data->rt);
+    {
+      fill_pxlarray(data->rt.img, 0xFF262626);
+      display(&data->rt, data);
+    }
   /*
   ** /!\
   **

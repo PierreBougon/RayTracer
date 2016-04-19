@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Mon Apr 18 20:29:51 2016 bougon_p
+** Last update Tue Apr 19 18:14:08 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -21,6 +21,13 @@
 
 # define START_STATUS 11
 # define NB_STATUS 3
+
+# define LOADING_COEF 14
+# define LOADING_X 443
+# define LOADING_Y 1025
+# define LOADING_WDT 1450
+# define LOADING_HGT 75
+
 
 typedef enum			e_status
   {

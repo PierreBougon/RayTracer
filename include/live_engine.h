@@ -5,13 +5,15 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 20:20:50 2016 romain samuel
-** Last update Tue Apr 19 11:49:53 2016 romain samuel
+** Last update Tue Apr 19 15:42:55 2016 bougon_p
 */
 
 #ifndef LIVE_ENGINE_H_
 # define LIVE_ENGINE_H_
 
-#include "raytracer.h"
+typedef	struct	s_acc	t_acc;
+typedef	struct	s_rt	t_rt;
+
 
 /*
 ** display.c
