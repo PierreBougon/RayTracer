@@ -5,16 +5,21 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:12:34 2016 romain samuel
-** Last update Sun Apr 17 12:16:39 2016 romain samuel
+** Last update Tue Apr 19 17:48:20 2016 romain samuel
 */
 
 #include "raytracer.h"
 
 double		return_k(double k[2])
 {
-  if (k[0] < k[1] && k[0] > 0.000001)
-    return (k[0]);
-  else if (k[1] < k[0] && k[1] > 0.000001)
+  double	kf;
+
+  if (k[0] <= k[1] && k[0] > 0.000001)
+    {
+      kf = k[0];
+      return (kf);
+    }
+  else if (k[1] <= k[0] && k[1] > 0.000001)
     return (k[1]);
   else
     return (-1);
