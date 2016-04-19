@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Mon Apr 18 20:25:43 2016 bougon_p
+## Last update Tue Apr 19 14:27:00 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -24,6 +24,8 @@ MAIN		=	src/main/
 
 ENGINE		=	src/engine/
 
+LIVE_ENGINE	=	src/live_engine/
+
 ITFC		=	src/interface/
 
 CONTEXT		=	context/
@@ -35,12 +37,14 @@ SRC		=	$(MAIN)main.c \
 			$(MAIN)fill_pxlarray.c \
 			$(ENGINE)antialiasing.c \
 			$(ENGINE)clear_list.c \
+			$(ENGINE)color_operations.c \
 			$(ENGINE)create_obj_list.c \
 			$(ENGINE)diffuse_light.c \
 			$(ENGINE)display.c \
 			$(ENGINE)display_objects.c \
 			$(ENGINE)get_norm.c \
 			$(ENGINE)get_simple_coords.c \
+			$(ENGINE)init_shade.c \
 			$(ENGINE)inters.c \
 			$(ENGINE)limited_objects.c \
 			$(ENGINE)load_cone.c \
@@ -60,6 +64,8 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)specular_light.c \
 			$(ENGINE)tekpixel.c \
 			$(ENGINE)update_hit_list.c \
+			$(LIVE_ENGINE)display.c \
+			$(LIVE_ENGINE)live_shade.c \
 			$(ITFC)interface.c \
 			$(ITFC)init_itfc.c \
 			$(ITFC)check_buttons.c \

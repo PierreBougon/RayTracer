@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 14 16:26:45 2016 romain samuel
-** Last update Sun Apr 17 11:30:01 2016 romain samuel
+** Last update Tue Apr 19 12:46:41 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -100,7 +100,8 @@ int	limited_cone(t_rt *s, t_cone *cone)
     return (-1);
   else if (s->hit.simple_inter1.z > cone->height)
     {
-      if (s->hit.simple_inter2.z > 0.0 && s->hit.simple_inter2.z < cone->height)
+      if (s->hit.simple_inter2.z > 0.0 &&
+	  s->hit.simple_inter2.z < cone->height)
 	return (get_cone_plan_inter(s, cone));
       else
 	return (-1);

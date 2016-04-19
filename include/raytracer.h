@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Mon Apr 18 19:54:23 2016 bougon_p
+** Last update Tue Apr 19 14:26:13 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -298,6 +298,16 @@ t_color		antialiasing(t_rt *s,
 int		clear_list(t_object *root);
 
 /*
+** color_operations.c
+*/
+t_color		add_light_color(t_color color,
+				t_color second_color);
+t_color		apply_b(t_color color,
+			t_color light_color,
+			double brightness,
+			double i);
+
+/*
 ** create_obj_list.c
 */
 t_object	*create_obj_list();
@@ -336,6 +346,13 @@ void		get_norm_cone(t_rt *s, t_cone *cone);
 ** get_simple_inters.c
 */
 int		get_simple_inter(t_rt *s, t_acc *vct, t_acc *eye);
+/*
+** init_shade.c
+*/
+int		init_soft_shadow(t_rt *s);
+void		init_itab(double itab[1]);
+void		init_lum(t_rt *s, t_acc *vct, t_acc eye, t_light *light);
+
 
 /*
 ** inters.c
@@ -454,6 +471,7 @@ t_color		apply_b(t_color color,
 			t_color light_color,
 			double brightness,
 			double i);
+double		apply_light(t_rt *s, t_light *light, t_color *light_color);
 int		shade(t_rt *s, t_acc *vct, t_acc eye);
 
 /*
