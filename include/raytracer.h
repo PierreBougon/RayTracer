@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Tue Apr 19 14:26:13 2016 romain samuel
+** Last update Tue Apr 19 17:47:33 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -170,6 +170,7 @@ typedef struct		s_object
   void			*datas;
   int			type;
   double		k;
+  int			real;
   struct s_object	*next;
   struct s_object	*prev;
 }			t_object;
@@ -501,7 +502,7 @@ double		shadow_limited_cone(t_rt *s, t_cone *cone, double k);
 /*
 ** shadow_simple_inters.c
 */
-int		shadow_simple_inters(t_rt *s, t_acc *vct, t_acc *eye, double k[2]);
+double		shadow_simple_inters(t_rt *s, t_acc *vct, t_acc *eye, double k[2]);
 
 /*
 ** specular_light.c
@@ -521,5 +522,11 @@ void		fill_pxlarray(t_bunny_pixelarray *pxar,
 ** update_hit_list.c
 */
 int		update_hit_list(t_rt *s, void *shape, int type, double k);
+
+/*
+** update_real_hit_list.c
+*/
+int		update_real_hit_list(t_rt *s);
+int		delete_false_hit_objects(t_rt *s);
 
 #endif /* !RAYTRACER_H_ */

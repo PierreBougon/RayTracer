@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 10 14:03:22 2016 romain samuel
-** Last update Mon Apr 11 15:00:45 2016 romain samuel
+** Last update Tue Apr 19 17:48:48 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -24,6 +24,7 @@ int		update_hit_list(t_rt *s, void *shape, int type, double k)
       if (add_obj_elem(s->obj_hit) == -1)
 	return (-1);
       it = s->obj_hit;
+      it->real = 1;
       while (it->next != NULL)
 	it = it->next;
       it->datas = shape;

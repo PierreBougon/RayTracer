@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Tue Apr 19 14:27:00 2016 romain samuel
+## Last update Tue Apr 19 15:28:36 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -64,6 +64,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)specular_light.c \
 			$(ENGINE)tekpixel.c \
 			$(ENGINE)update_hit_list.c \
+			$(ENGINE)update_real_hit_list.c \
 			$(LIVE_ENGINE)display.c \
 			$(LIVE_ENGINE)live_shade.c \
 			$(ITFC)interface.c \
