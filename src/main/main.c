@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Tue Apr 19 18:52:25 2016 bougon_p
+** Last update Wed Apr 20 15:22:26 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -37,14 +37,17 @@ t_bunny_response        my_wheel(int wheelid,
   t_data	*data;
 
   data = _data;
-  if (delta == 1 && wheelid == 0)
-    data->rt.eye.pos.z += 100;
-  else if (delta == -1 && wheelid == 0)
-    data->rt.eye.pos.z -= 100;
-  if (delta == 1 && wheelid == 1)
-    data->rt.eye.pos.x += 100;
-  else if (delta == -1 && wheelid == 1)
-    data->rt.eye.pos.x -= 100;
+  if (data->rt.live)
+    {
+      if (delta == 1 && wheelid == 0)
+	data->rt.eye.pos.z += 100;
+      else if (delta == -1 && wheelid == 0)
+	data->rt.eye.pos.z -= 100;
+      if (delta == 1 && wheelid == 1)
+	data->rt.eye.pos.x += 100;
+      else if (delta == -1 && wheelid == 1)
+	data->rt.eye.pos.x -= 100;
+    }
   return (GO_ON);
 }
 

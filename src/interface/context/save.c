@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 21:58:12 2016 bougon_p
-** Last update Tue Apr 19 16:52:44 2016 romain samuel
+** Last update Tue Apr 19 21:50:46 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -40,7 +40,7 @@ int				save(t_data *data)
 	    {
 	      if (i == 0)
 		{
-		  /* bunny_save_pixelarray("test.png"); */
+		  /* bunny_save_pixelarray(data->rt.img, "test.png"); */
 		}
 	      if (i == 1)
 		{
