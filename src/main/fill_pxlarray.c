@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 16 18:45:46 2016 bougon_p
-** Last update Tue Apr 19 18:06:00 2016 bougon_p
+** Last update Wed Apr 20 17:00:57 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -35,7 +35,8 @@ int			fill_next_lines(t_bunny_pixelarray *pxar,
   return (i);
 }
 
-void			fill_pxlarray(t_bunny_pixelarray *pxar, unsigned int color)
+void			fill_pxlarray(t_bunny_pixelarray *pxar,
+				      unsigned int color)
 {
   int			i;
   int			j;

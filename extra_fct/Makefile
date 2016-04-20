@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Wed Apr 20 17:10:27 2016 bougon_p
+## Last update Wed Apr 20 17:50:40 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -20,72 +20,8 @@ ECHO	=	echo -e
 
 # RT VARIABLES
 
-MAIN		=	src/main/
-
-ENGINE		=	src/engine/
-
-LIVE_ENGINE	=	src/live_engine/
-
-ITFC		=	src/interface/
-
-CONTEXT		=	context/
-
-SRC		=	$(MAIN)main.c \
-			$(MAIN)init_main.c \
-			$(MAIN)delete_clipables.c \
-			$(MAIN)blit_clipables.c \
-			$(MAIN)fill_pxlarray.c \
-			$(ENGINE)antialiasing.c \
-			$(ENGINE)clear_list.c \
-			$(ENGINE)color_operations.c \
-			$(ENGINE)create_obj_list.c \
-			$(ENGINE)diffuse_light.c \
-			$(ENGINE)display.c \
-			$(ENGINE)display_objects.c \
-			$(ENGINE)get_norm.c \
-			$(ENGINE)get_simple_coords.c \
-			$(ENGINE)init_shade.c \
-			$(ENGINE)inters.c \
-			$(ENGINE)limited_objects.c \
-			$(ENGINE)load_cone.c \
-			$(ENGINE)load_cylinder.c \
-			$(ENGINE)load_file.c \
-			$(ENGINE)load_light.c \
-			$(ENGINE)load_plan.c \
-			$(ENGINE)load_sphere.c \
-			$(ENGINE)order_hit_list.c \
-			$(ENGINE)rotations.c \
-			$(ENGINE)set_hit_values.c \
-			$(ENGINE)shade.c \
-			$(ENGINE)shadow.c \
-			$(ENGINE)shadow_inters.c \
-			$(ENGINE)shadow_limited_objects.c \
-			$(ENGINE)shadow_simple_inters.c \
-			$(ENGINE)specular_light.c \
-			$(ENGINE)tekpixel.c \
-			$(ENGINE)update_hit_list.c \
-			$(ENGINE)update_real_hit_list.c \
-			$(LIVE_ENGINE)display.c \
-			$(LIVE_ENGINE)live_shade.c \
-			$(ITFC)interface.c \
-			$(ITFC)init_itfc.c \
-			$(ITFC)check_buttons.c \
-			$(ITFC)check_menu_buttons.c \
-			$(ITFC)check_bt_activated.c \
-			$(ITFC)buttons.c \
-			$(ITFC)rendering.c \
-			$(ITFC)mouse_state.c \
-			$(ITFC)move_state.c \
-			$(ITFC)rotate_state.c \
-			$(ITFC)move_eye.c \
-			$(ITFC)rotate_eye.c \
-			$(ITFC)$(CONTEXT)save.c \
-			$(ITFC)$(CONTEXT)modif_form.c \
-			$(ITFC)$(CONTEXT)add_form.c \
-			$(ITFC)$(CONTEXT)sub_form.c \
-			$(ITFC)$(CONTEXT)spotlight.c \
-			$(ITFC)$(CONTEXT)context_gen.c \
-			src/debug.c \
+SRC		=	blit.c \
+			tekpixel.c \
 
 OBJS    	=	$(SRC:.c=.o)
 
@@ -101,9 +37,9 @@ LIBBUNNY     =		-L/home/${USER}/.froot/lib/ -llapin \
 			-lstdc++ -ldl \
 			-lm
 
-LIBPATH =       lib/
+LIBPATH =       ../lib/
 
-LIB	=	lib/libmy.a
+LIB	=	../lib/libmy.a
 
 SRCLIB	=	$(LIBPATH)my/get_next_line.c \
 		$(LIBPATH)my/my_getnbr.c \
@@ -137,11 +73,11 @@ OBJSLIB	=	$(SRCLIB:.c=.o)
 
 # PROJECT VARIABLES
 
-NAME	=	raytracer
+NAME	=	my_blit
 
-IFLAG	=	-Iinclude/
+IFLAG	=	-I../include/
 
-CFLAGS  =	-W -Wall -Wextra
+CFLAGS  =	-W -Wall -Wextra -g
 
 CC      =	gcc $(CFLAGS) $(IFLAG)
 

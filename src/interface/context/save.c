@@ -5,17 +5,15 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 21:58:12 2016 bougon_p
-** Last update Tue Apr 19 21:50:46 2016 bougon_p
+** Last update Wed Apr 20 16:34:41 2016 bougon_p
 */
 
 #include "raytracer.h"
 
-/*   ___
-**  // \\
-** // ! \\
-** -------
-**
-** Error while testing save pixel array dunno why ??
+/*
+** Use to save the RT pixelarray
+** You can save as png / jpg / bmp
+** You can also save as .ini to save your scene and reopen this as scene
 */
 
 int				save(t_data *data)
@@ -40,15 +38,15 @@ int				save(t_data *data)
 	    {
 	      if (i == 0)
 		{
-		  /* bunny_save_pixelarray(data->rt.img, "test.png"); */
+		  bunny_save_pixelarray(data->rt.img, "test.png");
 		}
 	      if (i == 1)
 		{
-		  /* bunny_save_pixelarray(data->rt.img, "test.jpg"); */
+		  bunny_save_pixelarray(data->rt.img, "test.jpg");
 		}
 	      if (i == 2)
 		{
-		  /* bunny_save_pixelarray(data->rt.img, "test.bmp"); */
+		  bunny_save_pixelarray(data->rt.img, "test.bmp");
 		}
 	      if (i == 3)
 		{
