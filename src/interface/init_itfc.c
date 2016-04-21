@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Sun Apr 17 18:48:10 2016 bougon_p
+** Last update Thu Apr 21 12:02:08 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -13,26 +13,26 @@
 int	init_pix(t_itfc *itfc)
 {
   if ((itfc->layout =
-       bunny_load_pixelarray("assets/img/layout.png")) == NULL ||
+       bunny_load_picture("assets/img/layout.png")) == NULL ||
       (itfc->context[0] =
-       bunny_load_pixelarray("assets/img/context_basic.png")) == NULL ||
+       bunny_load_picture("assets/img/context_basic.png")) == NULL ||
       (itfc->context[1] =
-       bunny_load_pixelarray("assets/img/context_modifs.png")) == NULL ||
+       bunny_load_picture("assets/img/context_modifs.png")) == NULL ||
       (itfc->context[2] =
-       bunny_load_pixelarray("assets/img/context_addform.png")) == NULL ||
+       bunny_load_picture("assets/img/context_addform.png")) == NULL ||
       (itfc->context[3] =
-       bunny_load_pixelarray("assets/img/context_delete.png")) == NULL ||
+       bunny_load_picture("assets/img/context_delete.png")) == NULL ||
       (itfc->context[4] =
-       bunny_load_pixelarray("assets/img/context_spot.png")) == NULL ||
+       bunny_load_picture("assets/img/context_spot.png")) == NULL ||
       (itfc->context[5] =
-       bunny_load_pixelarray("assets/img/context_scene.png")) == NULL ||
+       bunny_load_picture("assets/img/context_scene.png")) == NULL ||
       (itfc->context[6] =
-       bunny_load_pixelarray("assets/img/context_basic.png")) == NULL ||
+       bunny_load_picture("assets/img/context_basic.png")) == NULL ||
       (itfc->context[7] =
-       bunny_load_pixelarray("assets/img/context_genopt.png")) == NULL ||
+       bunny_load_picture("assets/img/context_genopt.png")) == NULL ||
       (itfc->context[8] =
-       bunny_load_pixelarray("assets/img/context_save.png")) == NULL)
-    return (my_puterr("Could not perform bunny_load_pixelarray"));
+       bunny_load_picture("assets/img/context_save.png")) == NULL)
+    return (my_puterr("Could not perform bunny_load_picture"));
   return (0);
 }
 
