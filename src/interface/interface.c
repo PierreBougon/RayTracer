@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 15:51:45 2016 bougon_p
-** Last update Tue Apr 19 00:59:48 2016 bougon_p
+** Last update Thu Apr 21 22:53:00 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -25,13 +25,13 @@ void	check_status_selected(t_data *data)
     }
   else if (data->itfc.status == S_MOVE)
     {
-      printf("STATUS -> MOVE\n");
+      /* printf("STATUS -> MOVE\n"); */
       if (data->itfc.left_click)
 	move_eye(data);
     }
   else if (data->itfc.status == S_ROTATE)
     {
-      printf("STATUS -> ROTATE\n");
+      /* printf("STATUS -> ROTATE\n"); */
       if (data->itfc.left_click)
 	rotate_eye(data);
     }
@@ -39,6 +39,7 @@ void	check_status_selected(t_data *data)
 
 int	interface(UNUSED t_data *data)
 {
+  data->itfc.live = data->rt.live;
   check_status_selected(data);
   /* debug_tabbool(data->itfc.button); */
   /* check_button_activated(&data->itfc, data); */

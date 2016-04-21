@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Thu Apr 21 12:06:04 2016 bougon_p
+** Last update Thu Apr 21 22:52:33 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -84,6 +84,7 @@ typedef struct			s_itfc
   bool				rendering;
   bool				rendered;
   bool				left_click;
+  bool				live;
   t_move			move;
   const	t_bunny_position	*mpos;
 }				t_itfc;

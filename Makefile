@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Wed Apr 20 17:10:27 2016 bougon_p
+## Last update Thu Apr 21 22:43:51 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -34,6 +34,7 @@ SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
 			$(MAIN)delete_clipables.c \
 			$(MAIN)blit_clipables.c \
+			$(MAIN)tekpixel.c \
 			$(MAIN)fill_pxlarray.c \
 			$(ENGINE)antialiasing.c \
 			$(ENGINE)clear_list.c \
@@ -62,7 +63,6 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)shadow_limited_objects.c \
 			$(ENGINE)shadow_simple_inters.c \
 			$(ENGINE)specular_light.c \
-			$(ENGINE)tekpixel.c \
 			$(ENGINE)update_hit_list.c \
 			$(ENGINE)update_real_hit_list.c \
 			$(LIVE_ENGINE)display.c \
