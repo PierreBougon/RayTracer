@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Fri Apr 22 19:08:49 2016 bougon_p
+## Last update Fri Apr 22 22:51:41 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -32,6 +32,7 @@ CONTEXT		=	context/
 
 SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
+			$(MAIN)free.c \
 			$(MAIN)delete_clipables.c \
 			$(MAIN)blit_clipables.c \
 			$(MAIN)tekpixel.c \

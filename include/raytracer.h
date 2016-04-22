@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Tue Apr 19 18:55:27 2016 bougon_p
+** Last update Fri Apr 22 22:48:25 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -302,6 +302,7 @@ void	blit_clipables(t_data *);
 /*
 ** Free
 */
+void	free_all(t_data *);
 void	delete_all_clipables(t_data *);
 
 

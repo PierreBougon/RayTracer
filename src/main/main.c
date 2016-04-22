@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Fri Apr 22 22:24:03 2016 bougon_p
+** Last update Fri Apr 22 22:46:54 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -118,6 +118,7 @@ int		main(int argc, char **argv, char **env)
   bunny_set_loop_main_function(mainloop);
   bunny_loop(data.win, 30, &data);
   delete_all_clipables(&data);
+  free_all(&data);
   bunny_stop(data.win);
   return (0);
 }
