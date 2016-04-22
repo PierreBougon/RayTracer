@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Thu Apr 21 12:02:08 2016 bougon_p
+** Last update Fri Apr 22 22:00:46 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -63,6 +63,21 @@ void	init_ptr_state(t_itfc *itfc)
   itfc->fct_state[2] = rotate_state;
 }
 
+void	init_ptr_save(t_itfc *itfc)
+{
+  itfc->save.need_save = false;
+  itfc->save.curs = 0;
+  if ((itfc->save.file = malloc(sizeof(char) * FILE_LEN + 4 + 1)) == NULL)
+    exit(1);
+  my_bzero(itfc->save.file, FILE_LEN + 1);
+  itfc->save.save_state = NOTHING;
+  itfc->save.fct_save[0] = nothing_selected;
+  itfc->save.fct_save[1] = save_png;
+  itfc->save.fct_save[2] = save_jpg;
+  itfc->save.fct_save[3] = save_bmp;
+  itfc->save.fct_save[4] = save_ini;
+}
+
 int	init_itfc_data(t_itfc *itfc, UNUSED int ac)
 {
   int	i;
@@ -81,9 +96,12 @@ int	init_itfc_data(t_itfc *itfc, UNUSED int ac)
   init_ptr_context(itfc);
   init_ptr_button(itfc);
   init_ptr_state(itfc);
+  init_ptr_save(itfc);
   itfc->rendering = false;
   itfc->rendered = false;
   itfc->move.needmoving = false;
   itfc->left_click = false;
+  if ((itfc->txt.font = bunny_load_picture("assets/img/font.png")) == NULL)
+    return (my_puterr("Could not perform bunny_load_picture"));
   return (0);
 }

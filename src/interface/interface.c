@@ -5,15 +5,15 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 15:51:45 2016 bougon_p
-** Last update Thu Apr 21 22:53:00 2016 bougon_p
+** Last update Fri Apr 22 19:44:46 2016 bougon_p
 */
 
 #include "raytracer.h"
 
 /*
 ** This fonction is called from the main loop
-** It has actually no actions from main loop for
-** the interface it's just reday to code
+** Redirect into the right function which need to be called
+** Every loop.
 */
 
 void	check_status_selected(t_data *data)
@@ -41,8 +41,14 @@ int	interface(UNUSED t_data *data)
 {
   data->itfc.live = data->rt.live;
   check_status_selected(data);
+  if (data->itfc.button[SAVE])
+    data->itfc.save.fct_save[data->itfc.save.save_state](data);
+
+  /*
+  ** DEBUG
+  */
+
   /* debug_tabbool(data->itfc.button); */
-  /* check_button_activated(&data->itfc, data); */
   /* printf("STATUS => %d\n", data->itfc.status); */
   return (0);
 }

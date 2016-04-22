@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Tue Apr 19 18:54:44 2016 bougon_p
+** Last update Fri Apr 22 19:45:14 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -13,15 +13,17 @@
 
 int	init_main_data(t_data *data)
 {
-  if ((data->win = bunny_start_style(WIN_WIDTH, WIN_HEIGHT,
-			      DEFAULT_WIN_STYLE, "RAYTRACER")) == NULL)
+  if ((data->win = bunny_start(WIN_WIDTH, WIN_HEIGHT,
+			       false, "RAYTRACER")) == NULL)
     return (my_puterr("Could not perform bunny_start"));
-      if ((data->ld.loading =
-	   bunny_new_pixelarray(LOADING_WDT, LOADING_HGT)) == NULL)
-	return (my_puterr("Could not perform bunny_new_pixelarray"));
-      data->ld.pos.x = LOADING_X;
-      data->ld.pos.y = LOADING_Y;
-      data->ld.coef_load = 14.5;
+  if ((data->ld.loading =
+       bunny_new_pixelarray(LOADING_WDT, LOADING_HGT)) == NULL)
+    return (my_puterr("Could not perform bunny_new_pixelarray"));
+  fill_pxlarray(data->ld.loading, BLUE_LOAD);
+  data->ld.pos.x = LOADING_X;
+  data->ld.pos.y = LOADING_Y;
+  data->ld.coef_load = 14.5;
+  data->itfc.txt.win = data->win;
   return (0);
 }
 

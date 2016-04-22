@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Thu Apr 21 22:52:33 2016 bougon_p
+** Last update Fri Apr 22 22:11:37 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -13,6 +13,9 @@
 
 # include "button.h"
 # include "context.h"
+
+# define DELETE 8
+# define RETURN 13
 
 # define WORK_SPACE_X 433
 # define MAX_WORK_SPACE_X 1904
@@ -22,12 +25,29 @@
 # define START_STATUS 11
 # define NB_STATUS 3
 
+/*
+** LOADING DEFINES
+*/
 # define LOADING_COEF 14
 # define LOADING_X 443
 # define LOADING_Y 1025
 # define LOADING_WDT 1450
-# define LOADING_HGT 75
+# define LOADING_HGT 36
 
+/*
+** SAVE DEFINES
+*/
+# define FILE_LEN 50
+# define TXT_X (LOADING_X + (LOADING_WDT / 2) - ((FILE_LEN * 19) / 2))
+# define TXT_Y LOADING_Y - 4
+
+/*
+** TXT DEFINES
+*/
+#define FIRST_Y 12
+#define DECAL_X 2
+#define SIZE_Y 36
+#define CH_LINE 32
 
 typedef enum			e_status
   {
@@ -35,6 +55,15 @@ typedef enum			e_status
     S_MOVE,
     S_ROTATE
   }				t_status;
+
+typedef enum			e_save_state
+  {
+    NOTHING,
+    PNG,
+    JPG,
+    BMP,
+    INI
+  }				t_save_state;
 
 typedef enum			e_buttons
   {
@@ -68,25 +97,43 @@ typedef	struct			s_move
   t_bunny_position		second_pos;
 }				t_move;
 
+typedef	struct			s_text
+{
+  t_bunny_window		*win;
+  t_bunny_position		txt_pos;
+  t_bunny_picture		*font;
+}				t_text;
+
+typedef	struct			s_save
+{
+  int				(*fct_save[5])(t_data *);
+  int				save_state;
+  int				curs;
+  char				*file;
+  bool				need_save;
+}				t_save;
+
 typedef struct			s_itfc
 {
+  t_move			move;
+  t_text			txt;
+  t_save			save;
   t_bunny_picture		*layout;
   t_bunny_picture		*context[9];
   int				act_context;
   t_bunny_position		context_pos;
   bool				button[19];
   int				status;
+  bool				rendering;
+  bool				rendered;
+  bool				left_click;
+  bool				live;
+  const	t_bunny_position	*mpos;
   int				(*fct_context[NB_CONTEXT])(t_data *);
   int				(*fct_button[4])(t_data *);
   int				(*fct_state[NB_STATUS])(t_data *,
 							t_bunny_event_state,
 							t_bunny_mousebutton);
-  bool				rendering;
-  bool				rendered;
-  bool				left_click;
-  bool				live;
-  t_move			move;
-  const	t_bunny_position	*mpos;
 }				t_itfc;
 
 /*
@@ -132,5 +179,19 @@ int	save(t_data *);
 ** RENDERING
 */
 void	start_rendering(t_data *);
+
+/*
+** TEXT
+*/
+void	text(char *, t_itfc *, int, int);
+
+/*
+** SAVE
+*/
+int	nothing_selected(t_data *);
+int	save_png(t_data *);
+int	save_jpg(t_data *);
+int	save_bmp(t_data *);
+int	save_ini(t_data *);
 
 #endif /* !INTERFACE  */

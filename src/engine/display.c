@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Tue Apr 19 18:55:01 2016 bougon_p
+** Last update Fri Apr 22 18:16:17 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -57,9 +57,7 @@ void	prerender(t_rt *rt, int y, t_data *data)
   if (y % (int)rt->coef_load == 0)
     {
       data->ld.save_width = data->ld.loading->clipable.clip_width;
-      data->ld.curr_line =
-	fill_next_lines(data->ld.loading,
-		       BLUE_LOAD, data->ld.curr_line, LOADING_COEF);
+      data->ld.curr_line += LOADING_COEF;
       data->ld.loading->clipable.clip_width = data->ld.curr_line;
       bunny_blit(&data->win->buffer,
 		 &data->ld.loading->clipable, &data->ld.pos);
@@ -82,7 +80,6 @@ int			display(t_rt *s, t_data *data)
 
   s->nb_coef = 1;
   data->ld.nb_coef = 1;
-  fill_pxlarray(data->ld.loading, NULL_COLOR);
   data->ld.curr_line = 0;
   if ((s->pixel_color = malloc(sizeof(t_color) * s->opt.aa)) == NULL)
     return (my_puterr("display: could not perform malloc"));

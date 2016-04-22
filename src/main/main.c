@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Wed Apr 20 15:22:26 2016 bougon_p
+** Last update Fri Apr 22 22:24:03 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -51,6 +51,25 @@ t_bunny_response        my_wheel(int wheelid,
   return (GO_ON);
 }
 
+t_bunny_response        my_txtinput(uint32_t unicode,
+				    void *_data)
+{
+  t_data	*data;
+
+  data = _data;
+  if (unicode == DELETE && data->itfc.save.curs > 0)
+      data->itfc.save.file[--data->itfc.save.curs] = 0;
+  else if (unicode == RETURN)
+    data->itfc.save.need_save = true;
+  else if (data->itfc.button[SAVE]
+      && data->itfc.save.curs < FILE_LEN)
+    {
+      printf("%c => %d\n", unicode, unicode);
+      data->itfc.save.file[data->itfc.save.curs++] = unicode;
+    }
+  return (GO_ON);
+}
+
 t_bunny_response	my_key(t_bunny_event_state state,
 			       t_bunny_keysym keysym,
 			       UNUSED void *_data)
@@ -69,11 +88,11 @@ t_bunny_response        mainloop(void *_data)
   data = _data;
   rt = &data->rt;
   itfc = &data->itfc;
-  interface(data);
   /* debug_pos(); */
   if (data->rt.live && data->rt.img != NULL)
     live_display(&data->rt);
   blit_clipables(data);
+  interface(data);
   bunny_display(data->win);
   return (GO_ON);
 }
@@ -95,6 +114,7 @@ int		main(int argc, char **argv, char **env)
   bunny_set_key_response(my_key);
   bunny_set_click_response(my_click);
   bunny_set_wheel_response(my_wheel);
+  bunny_set_text_response(my_txtinput);
   bunny_set_loop_main_function(mainloop);
   bunny_loop(data.win, 30, &data);
   delete_all_clipables(&data);

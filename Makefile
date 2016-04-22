@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Thu Apr 21 22:43:51 2016 bougon_p
+## Last update Fri Apr 22 19:08:49 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -68,6 +68,7 @@ SRC		=	$(MAIN)main.c \
 			$(LIVE_ENGINE)display.c \
 			$(LIVE_ENGINE)live_shade.c \
 			$(ITFC)interface.c \
+			$(ITFC)text.c \
 			$(ITFC)init_itfc.c \
 			$(ITFC)check_buttons.c \
 			$(ITFC)check_menu_buttons.c \
@@ -79,6 +80,7 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)rotate_state.c \
 			$(ITFC)move_eye.c \
 			$(ITFC)rotate_eye.c \
+			$(ITFC)$(CONTEXT)save_bt.c \
 			$(ITFC)$(CONTEXT)save.c \
 			$(ITFC)$(CONTEXT)modif_form.c \
 			$(ITFC)$(CONTEXT)add_form.c \
