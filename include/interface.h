@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Tue Apr 19 18:14:08 2016 bougon_p
+** Last update Thu Apr 21 22:52:33 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -70,8 +70,8 @@ typedef	struct			s_move
 
 typedef struct			s_itfc
 {
-  t_bunny_pixelarray		*layout;
-  t_bunny_pixelarray		*context[9];
+  t_bunny_picture		*layout;
+  t_bunny_picture		*context[9];
   int				act_context;
   t_bunny_position		context_pos;
   bool				button[19];
@@ -84,6 +84,7 @@ typedef struct			s_itfc
   bool				rendering;
   bool				rendered;
   bool				left_click;
+  bool				live;
   t_move			move;
   const	t_bunny_position	*mpos;
 }				t_itfc;

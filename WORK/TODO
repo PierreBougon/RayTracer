@@ -5,9 +5,15 @@ cylider -> cylinder
 
 # INTERFACE
 
-Coder les OPT en premier : move
 Faire les hitbox de chaque  context
 Balancer dans le bon pointeur sur fontion -> 
-8 ptr sur fonctions a init
+8 tab ptr sur fonctions a init
 COMMENCER LA CREATION D'OBJ
-DEBUG => SAVE_PXLARRAY
+Faire effet BT
+
+# FONCTION DEPLACEMENT
+Voir pour la rotation oeil
+Voir pour le mouvement oeil
+
+# EXTRA FCT
+save bmp
