@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 15:51:45 2016 bougon_p
-** Last update Fri Apr 22 19:44:46 2016 bougon_p
+** Last update Sat Apr 23 19:43:50 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -37,13 +37,15 @@ void	check_status_selected(t_data *data)
     }
 }
 
-int	interface(UNUSED t_data *data)
+int	interface(t_data *data)
 {
   data->itfc.live = data->rt.live;
   check_status_selected(data);
   if (data->itfc.button[SAVE])
     data->itfc.save.fct_save[data->itfc.save.save_state](data);
-
+  else if (data->itfc.button[OPEN])
+    if (f_open_file(data) == 1)
+      return (1);
   /*
   ** DEBUG
   */

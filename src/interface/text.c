@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 21 12:09:03 2016 bougon_p
-** Last update Fri Apr 22 19:53:41 2016 bougon_p
+** Last update Sat Apr 23 15:07:41 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -34,10 +34,11 @@ void	blit_char(t_text *text, t_bunny_picture *font, char ch)
   text->txt_pos.x += size_x;
 }
 
-void	text(char *str, t_itfc *itfc, int x, int y)
+void			text(char *str, t_itfc *itfc, int x, int y)
 {
-  int		i;
-  int		size;
+  static unsigned int	curs = 0;
+  int			i;
+  int			size;
 
   itfc->txt.txt_pos.x = x;
   itfc->txt.txt_pos.y = y;
@@ -48,4 +49,6 @@ void	text(char *str, t_itfc *itfc, int x, int y)
       blit_char(&itfc->txt, itfc->txt.font, str[i]);
       i++;
     }
+  if (curs++ % 60 < 40)
+    blit_char(&itfc->txt, itfc->txt.font, '|');
 }

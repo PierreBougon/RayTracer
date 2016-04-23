@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Fri Apr 22 22:51:41 2016 bougon_p
+## Last update Sat Apr 23 16:56:55 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -70,6 +70,7 @@ SRC		=	$(MAIN)main.c \
 			$(LIVE_ENGINE)live_shade.c \
 			$(ITFC)interface.c \
 			$(ITFC)text.c \
+			$(ITFC)open_file.c \
 			$(ITFC)init_itfc.c \
 			$(ITFC)check_buttons.c \
 			$(ITFC)check_menu_buttons.c \
@@ -144,7 +145,7 @@ NAME	=	raytracer
 
 IFLAG	=	-Iinclude/
 
-CFLAGS  =	-W -Wall -Wextra
+CFLAGS  =	-W -Wall -Wextra -ffast-math
 
 CC      =	gcc $(CFLAGS) $(IFLAG)
 
@@ -152,7 +153,7 @@ CC      =	gcc $(CFLAGS) $(IFLAG)
 # PROJECT RULES
 
 $(NAME)		: 	$(LIB) $(OBJS)
-			@$(ECHO) "$(GREEN)\n\n> Linking \"$(NAME)\"with : \n\
+			@$(ECHO) "$(GREEN)\n\n> Linking \"$(NAME)\" with : \n\
 $(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIB) $(LIBBUNNY)
 

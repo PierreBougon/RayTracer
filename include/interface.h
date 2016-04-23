@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Fri Apr 22 22:11:37 2016 bougon_p
+** Last update Sat Apr 23 15:38:48 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -37,7 +37,7 @@
 /*
 ** SAVE DEFINES
 */
-# define FILE_LEN 50
+# define FILE_LEN 75
 # define TXT_X (LOADING_X + (LOADING_WDT / 2) - ((FILE_LEN * 19) / 2))
 # define TXT_Y LOADING_Y - 4
 
@@ -113,11 +113,19 @@ typedef	struct			s_save
   bool				need_save;
 }				t_save;
 
+typedef	struct			s_open
+{
+  int				curs;
+  char				*file;
+  bool				need_open;
+}				t_open;
+
 typedef struct			s_itfc
 {
   t_move			move;
   t_text			txt;
   t_save			save;
+  t_open			open;
   t_bunny_picture		*layout;
   t_bunny_picture		*context[9];
   int				act_context;
@@ -193,5 +201,10 @@ int	save_png(t_data *);
 int	save_jpg(t_data *);
 int	save_bmp(t_data *);
 int	save_ini(t_data *);
+
+/*
+** OPEN
+*/
+int	f_open_file(t_data *);
 
 #endif /* !INTERFACE  */

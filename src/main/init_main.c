@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Fri Apr 22 19:45:14 2016 bougon_p
+** Last update Sat Apr 23 15:55:00 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -50,7 +50,7 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
       if ((rt->img = bunny_new_pixelarray(rt->width, rt->height)) == NULL)
 	return (my_puterr("Could not perform bunny_new_pixelarray"));
       if (load_file(rt, argv[1]) == -1)
-	return (-1);
+	return (my_puterr("Load : Could not load the scene"), -1);
       rt->pos = center_rt(rt);
       fill_pxlarray(rt->img, 0xFF262626);
       live_display(rt);

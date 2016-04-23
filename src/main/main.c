@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Fri Apr 22 22:46:54 2016 bougon_p
+** Last update Sat Apr 23 19:43:49 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -57,15 +57,24 @@ t_bunny_response        my_txtinput(uint32_t unicode,
   t_data	*data;
 
   data = _data;
-  if (unicode == DELETE && data->itfc.save.curs > 0)
-      data->itfc.save.file[--data->itfc.save.curs] = 0;
-  else if (unicode == RETURN)
-    data->itfc.save.need_save = true;
-  else if (data->itfc.button[SAVE]
-      && data->itfc.save.curs < FILE_LEN)
+  /* printf("%c => %d\n", unicode, unicode); */
+  if (data->itfc.button[SAVE])
     {
-      printf("%c => %d\n", unicode, unicode);
-      data->itfc.save.file[data->itfc.save.curs++] = unicode;
+      if (unicode == DELETE && data->itfc.save.curs > 0)
+	data->itfc.save.file[--data->itfc.save.curs] = 0;
+      else if (unicode == RETURN)
+	data->itfc.save.need_save = true;
+      else if (data->itfc.save.curs < FILE_LEN)
+	data->itfc.save.file[data->itfc.save.curs++] = unicode;
+    }
+  else if (data->itfc.button[OPEN])
+    {
+      if (unicode == DELETE && data->itfc.open.curs > 0)
+	data->itfc.open.file[--data->itfc.open.curs] = 0;
+      else if (unicode == RETURN)
+	data->itfc.open.need_open = true;
+      else if (data->itfc.open.curs < FILE_LEN)
+	data->itfc.open.file[data->itfc.open.curs++] = unicode;
     }
   return (GO_ON);
 }
@@ -92,7 +101,8 @@ t_bunny_response        mainloop(void *_data)
   if (data->rt.live && data->rt.img != NULL)
     live_display(&data->rt);
   blit_clipables(data);
-  interface(data);
+  if (interface(data) == 1)
+    return (EXIT_ON_SUCCESS);
   bunny_display(data->win);
   return (GO_ON);
 }
