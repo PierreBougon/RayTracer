@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sat Apr 23 15:38:48 2016 bougon_p
+** Last update Sun Apr 24 18:36:30 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -142,12 +142,14 @@ typedef struct			s_itfc
   int				(*fct_state[NB_STATUS])(t_data *,
 							t_bunny_event_state,
 							t_bunny_mousebutton);
+  int				(*fct_bt_context)(t_data *);
 }				t_itfc;
 
 /*
 ** Main
 */
 int	interface(t_data *data);
+int	nothing_selected(t_data *data);
 
 /*
 ** State
@@ -206,5 +208,16 @@ int	save_ini(t_data *);
 ** OPEN
 */
 int	f_open_file(t_data *);
+
+/*
+** ADD FORM
+*/
+int	add_plane(t_data *);
+int	add_sphere(t_data *);
+int	add_cone(t_data *);
+int	add_cylinder(t_data *);
+int	add_cube(t_data *);
+int	add_torus(t_data *);
+int	add_perf_cube(t_data *);
 
 #endif /* !INTERFACE  */

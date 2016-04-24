@@ -5,15 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 22 19:09:00 2016 bougon_p
-** Last update Sat Apr 23 15:57:22 2016 bougon_p
+** Last update Sun Apr 24 18:35:17 2016 bougon_p
 */
 
 #include "raytracer.h"
-
-int	nothing_selected(UNUSED t_data *data)
-{
-  return (0);
-}
 
 int	save_png(t_data *data)
 {

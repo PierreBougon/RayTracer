@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 15:51:45 2016 bougon_p
-** Last update Sat Apr 23 19:43:50 2016 bougon_p
+** Last update Sun Apr 24 18:35:09 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -15,6 +15,10 @@
 ** Redirect into the right function which need to be called
 ** Every loop.
 */
+int	nothing_selected(UNUSED t_data *data)
+{
+  return (0);
+}
 
 void	check_status_selected(t_data *data)
 {
@@ -46,6 +50,9 @@ int	interface(t_data *data)
   else if (data->itfc.button[OPEN])
     if (f_open_file(data) == 1)
       return (1);
+  if (data->itfc.button[NO_BUTTON])
+    data->itfc.fct_bt_context = nothing_selected;
+  data->itfc.fct_bt_context(data);
   /*
   ** DEBUG
   */

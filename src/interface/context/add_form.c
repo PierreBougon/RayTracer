@@ -5,13 +5,60 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:34 2016 bougon_p
-** Last update Sun Apr 17 01:54:49 2016 bougon_p
+** Last update Sun Apr 24 17:23:37 2016 bougon_p
 */
 
 #include "raytracer.h"
 
-int     add_form(UNUSED t_data *data)
+/*
+** This file is use to find the button which is hit when you're
+** On the right context. This is called from tab of functions pointers
+** On a click action. Set the right fontion in the function pointer
+** To call this on the main loop.
+*/
+void	first_add(t_data *data, int i)
 {
+  if (i == 0)
+    data->itfc.fct_bt_context = add_plane;
+  else if (i == 1)
+    data->itfc.fct_bt_context = add_sphere;
+  else if (i == 2)
+    data->itfc.fct_bt_context = add_cone;
+}
+
+void	second_add(t_data *data, int i)
+{
+  if (i == 3)
+    data->itfc.fct_bt_context = add_cylinder;
+  else if (i == 4)
+    data->itfc.fct_bt_context = add_cube;
+  else if (i == 5)
+    data->itfc.fct_bt_context = add_torus;
+}
+
+int				add_form(t_data *data)
+{
+  int				i;
+  const t_bunny_position	*mpos;
+
   printf("FCT => ADD FORM\n");
+  mpos = data->itfc.mpos;
+  i = 0;
+  while (i < NB_ADD_BT)
+    {
+      if (mpos->x > ADD_BT_X
+	  && mpos->x < ADD_BT_X + ADD_BT_WDT
+	  && mpos->y > ADD_BT_Y + (ADD_BT_HGT * i) + (ADD_BT_DECAL * i)
+	  && mpos->y < ADD_BT_Y + (ADD_BT_HGT * i) + (ADD_BT_DECAL * i) + ADD_BT_HGT)
+	{
+	  if (i >= 0 && i < 3)
+	    first_add(data, i);
+	  else if (i >= 3 && i < 6)
+	    second_add(data, i);
+	  else if (i == 6)
+	    data->itfc.fct_bt_context = add_perf_cube;
+	}
+      i++;
+    }
   return (0);
 }

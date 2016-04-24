@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sat Apr 23 16:56:55 2016 bougon_p
+## Last update Sun Apr 24 18:28:01 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -82,6 +82,13 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)rotate_state.c \
 			$(ITFC)move_eye.c \
 			$(ITFC)rotate_eye.c \
+			$(ITFC)$(CONTEXT)add_plane.c \
+			$(ITFC)$(CONTEXT)add_sphere.c \
+			$(ITFC)$(CONTEXT)add_cone.c \
+			$(ITFC)$(CONTEXT)add_cylinder.c \
+			$(ITFC)$(CONTEXT)add_cube.c \
+			$(ITFC)$(CONTEXT)add_torus.c \
+			$(ITFC)$(CONTEXT)add_perf_cube.c \
 			$(ITFC)$(CONTEXT)save_bt.c \
 			$(ITFC)$(CONTEXT)save.c \
 			$(ITFC)$(CONTEXT)modif_form.c \

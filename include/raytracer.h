@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat Apr 23 16:21:19 2016 bougon_p
+** Last update Sun Apr 24 15:12:04 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -536,6 +536,9 @@ double		specular_light(t_rt *s, t_acc *vision);
 ** TOOLS
 */
 void		tekpixel(t_bunny_pixelarray *pix,
+			 t_bunny_position *pos,
+			 t_color *color);
+void		mult_tekpixel(t_bunny_pixelarray *pix,
 			 t_bunny_position *pos,
 			 t_color *color);
 void		fill_pxlarray(t_bunny_pixelarray *pxar,
