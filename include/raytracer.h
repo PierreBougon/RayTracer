@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun Apr 24 15:12:04 2016 bougon_p
+** Last update Mon Apr 25 14:53:46 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -23,6 +23,8 @@
 # define WIN_HEIGHT 1080
 # define INIT_WIDTH 720
 # define INIT_HEIGHT 720
+# define FULL_WIDTH 1450
+# define FULL_HEIGHT 920
 
 /*
 ** COLOR DEFINES

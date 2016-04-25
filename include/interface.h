@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sun Apr 24 18:36:30 2016 bougon_p
+** Last update Mon Apr 25 19:05:16 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -19,8 +19,8 @@
 
 # define WORK_SPACE_X 433
 # define MAX_WORK_SPACE_X 1904
-# define WORK_SPACE_Y 72
-# define MAX_WORK_SPACE_Y 985
+# define WORK_SPACE_Y 75
+# define MAX_WORK_SPACE_Y 1012
 
 # define START_STATUS 11
 # define NB_STATUS 3
@@ -44,10 +44,14 @@
 /*
 ** TXT DEFINES
 */
-#define FIRST_Y 12
-#define DECAL_X 2
-#define SIZE_Y 36
-#define CH_LINE 32
+# define FIRST_Y 12
+# define DECAL_X 2
+# define SIZE_Y 36
+# define CH_LINE 32
+
+# define PAST_X 341
+# define PAST_Y 210
+# define PAST_DECAL_Y 89
 
 typedef enum			e_status
   {
@@ -120,12 +124,19 @@ typedef	struct			s_open
   bool				need_open;
 }				t_open;
 
+typedef	struct			s_past
+{
+  t_bunny_position		pos;
+  t_bunny_picture		*img;
+}				t_past;
+
 typedef struct			s_itfc
 {
   t_move			move;
   t_text			txt;
   t_save			save;
   t_open			open;
+  t_past			past;
   t_bunny_picture		*layout;
   t_bunny_picture		*context[9];
   int				act_context;

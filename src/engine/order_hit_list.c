@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 10 20:49:25 2016 romain samuel
-** Last update Tue Apr 19 15:18:43 2016 romain samuel
+** Last update Mon Apr 25 14:27:01 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -33,7 +33,7 @@ int		order_list(t_object *root)
   it_prev = root->next;
   while (it != NULL)
     {
-      if (it_prev->real == 0 && it->real == 0 && it->k < it_prev->k)
+      if (it->k < it_prev->k)
 	{
 	  swap_objs(it, it_prev);
 	  return (-1);

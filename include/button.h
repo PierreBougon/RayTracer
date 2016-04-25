@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 21:09:55 2016 bougon_p
-** Last update Sun Apr 24 18:41:36 2016 bougon_p
+** Last update Mon Apr 25 18:54:46 2016 bougon_p
 */
 
 #ifndef BUTTON_H_
@@ -34,11 +34,11 @@
 
 # define NB_BUTTON 19
 
-# define ADD_BT_X 135
+# define ADD_BT_X 145
 # define ADD_BT_Y 200
-# define ADD_BT_WDT 225
-# define ADD_BT_HGT 55
-# define ADD_BT_DECAL 30
+# define ADD_BT_WDT 215
+# define ADD_BT_HGT 60
+# define ADD_BT_DECAL 25
 # define NB_ADD_BT 7
 
 

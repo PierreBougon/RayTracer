@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:34 2016 bougon_p
-** Last update Sun Apr 24 17:23:37 2016 bougon_p
+** Last update Mon Apr 25 19:01:57 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -40,16 +40,20 @@ int				add_form(t_data *data)
 {
   int				i;
   const t_bunny_position	*mpos;
+  int				save;
 
   printf("FCT => ADD FORM\n");
   mpos = data->itfc.mpos;
   i = 0;
+  save = NB_ADD_BT + 1;
   while (i < NB_ADD_BT)
     {
       if (mpos->x > ADD_BT_X
 	  && mpos->x < ADD_BT_X + ADD_BT_WDT
-	  && mpos->y > ADD_BT_Y + (ADD_BT_HGT * i) + (ADD_BT_DECAL * i)
-	  && mpos->y < ADD_BT_Y + (ADD_BT_HGT * i) + (ADD_BT_DECAL * i) + ADD_BT_HGT)
+	  && mpos->y > ADD_BT_Y + (ADD_BT_HGT * i)
+	  + (ADD_BT_DECAL * i)
+	  && mpos->y < ADD_BT_Y + (ADD_BT_HGT * i)
+	  + (ADD_BT_DECAL * i) + ADD_BT_HGT)
 	{
 	  if (i >= 0 && i < 3)
 	    first_add(data, i);
@@ -57,8 +61,18 @@ int				add_form(t_data *data)
 	    second_add(data, i);
 	  else if (i == 6)
 	    data->itfc.fct_bt_context = add_perf_cube;
+	  save = i;
+	  printf("SAVE = %d\n", save);
 	}
       i++;
     }
+  if (save < NB_ADD_BT)
+    {
+      data->itfc.past.pos.x = PAST_X;
+      data->itfc.past.pos.y = PAST_Y + save * PAST_DECAL_Y;
+    }
+  else
+    data->itfc.past.pos.x = 0;
+  printf("HIT -> %d", save);
   return (0);
 }

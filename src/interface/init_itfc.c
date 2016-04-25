@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Sat Apr 23 16:17:43 2016 bougon_p
+** Last update Mon Apr 25 15:58:26 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -116,7 +116,13 @@ int	init_itfc_data(t_itfc *itfc, UNUSED int ac)
   itfc->rendered = false;
   itfc->move.needmoving = false;
   itfc->left_click = false;
-  if ((itfc->txt.font = bunny_load_picture("assets/img/font.png")) == NULL)
+  if ((itfc->txt.font =
+       bunny_load_picture("assets/img/incoshow.png")) == NULL)
     return (my_puterr("Could not perform bunny_load_picture"));
+  if ((itfc->past.img =
+       bunny_load_picture("assets/img/past.png")) == NULL)
+    return (my_puterr("Could not perform bunny_load_picture"));
+  itfc->past.pos.x = 0;
+  itfc->past.pos.y = 0;
   return (0);
 }

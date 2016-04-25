@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Sun Apr 24 18:26:08 2016 bougon_p
+** Last update Mon Apr 25 20:19:10 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -35,18 +35,37 @@ t_bunny_response        my_wheel(int wheelid,
 				 void *_data)
 {
   t_data	*data;
+  t_acc		vec;
 
   data = _data;
+  vec.x = 0;
+  vec.y = 0;
+  vec.z = 500;
   if (data->rt.live)
     {
       if (delta == 1 && wheelid == 0)
-	data->rt.eye.pos.z += 100;
+	{
+	  rotate_x(&vec, (double)data->rt.eye.rot.x);
+	  rotate_y(&vec, (double)data->rt.eye.rot.y);
+	  rotate_z(&vec, (double)data->rt.eye.rot.z);
+	  data->rt.eye.pos.x += vec.x;
+	  data->rt.eye.pos.y += vec.y;
+	  data->rt.eye.pos.z += vec.z;
+	}
       else if (delta == -1 && wheelid == 0)
-	data->rt.eye.pos.z -= 100;
-      if (delta == 1 && wheelid == 1)
-	data->rt.eye.pos.x += 100;
-      else if (delta == -1 && wheelid == 1)
-	data->rt.eye.pos.x -= 100;
+	{
+	  vec.z = -500;
+	  rotate_x(&vec, (double)data->rt.eye.rot.x);
+	  rotate_y(&vec, (double)data->rt.eye.rot.y);
+	  rotate_z(&vec, (double)data->rt.eye.rot.z);
+	  data->rt.eye.pos.x += vec.x;
+	  data->rt.eye.pos.y += vec.y;
+	  data->rt.eye.pos.z += vec.z;
+	}
+      /* if (delta == 1 && wheelid == 1) */
+      /* 	data->rt.eye.pos.x += 100; */
+      /* else if (delta == -1 && wheelid == 1) */
+      /* 	data->rt.eye.pos.x -= 100; */
     }
   return (GO_ON);
 }
