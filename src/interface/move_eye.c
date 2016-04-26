@@ -5,13 +5,16 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 18:34:07 2016 bougon_p
-** Last update Thu Apr 21 22:31:27 2016 bougon_p
+** Last update Tue Apr 26 16:29:11 2016 bougon_p
 */
 
 #include "raytracer.h"
 
 void	move(t_data *data, const t_bunny_position *mpos)
 {
+  t_acc	vec;
+
+  vec.z = 0;
   if (!data->itfc.move.needmoving)
     {
       data->itfc.move.first_pos = *mpos;
@@ -20,10 +23,11 @@ void	move(t_data *data, const t_bunny_position *mpos)
   else
     {
       data->itfc.move.second_pos = *mpos;
-      data->rt.eye.pos.x +=
+      vec.x =
 	(data->itfc.move.second_pos.x - data->itfc.move.first_pos.x) * 10;
-      data->rt.eye.pos.y +=
+      vec.y =
 	(data->itfc.move.second_pos.y - data->itfc.move.first_pos.y) * 10;
+      translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
       data->itfc.move.first_pos = data->itfc.move.second_pos;
     }
 }

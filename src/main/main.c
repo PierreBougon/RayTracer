@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Tue Apr 26 15:20:10 2016 bougon_p
+** Last update Tue Apr 26 16:24:50 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -21,7 +21,6 @@ t_bunny_response        my_click(t_bunny_event_state state,
   data->mstate = state;
   if (data->rt.live)
     data->itfc.fct_state[data->itfc.status](data, state, mbutton);
-  if (LAST_BUNNY_MOUSEBUTTON == BMB_LEFT && BMB_LEFT)
   if (mbutton == BMB_LEFT && state == GO_DOWN)
     {
       if (check_all_buttons(&data->itfc) == 1)
@@ -45,28 +44,22 @@ t_bunny_response        my_wheel(int wheelid,
   if (data->rt.live)
     {
       if (delta == 1 && wheelid == 0)
-	{
-	  rotate_x(&vec, (double)data->rt.eye.rot.x);
-	  rotate_y(&vec, (double)data->rt.eye.rot.y);
-	  rotate_z(&vec, (double)data->rt.eye.rot.z);
-	  data->rt.eye.pos.x += vec.x;
-	  data->rt.eye.pos.y += vec.y;
-	  data->rt.eye.pos.z += vec.z;
-	}
+	translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
       else if (delta == -1 && wheelid == 0)
 	{
 	  vec.z = -500;
-	  rotate_x(&vec, (double)data->rt.eye.rot.x);
-	  rotate_y(&vec, (double)data->rt.eye.rot.y);
-	  rotate_z(&vec, (double)data->rt.eye.rot.z);
-	  data->rt.eye.pos.x += vec.x;
-	  data->rt.eye.pos.y += vec.y;
-	  data->rt.eye.pos.z += vec.z;
+	  translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
 	}
-      /* if (delta == 1 && wheelid == 1) */
-      /* 	data->rt.eye.pos.x += 100; */
-      /* else if (delta == -1 && wheelid == 1) */
-      /* 	data->rt.eye.pos.x -= 100; */
+      vec.x = 300;
+      vec.y = 0;
+      vec.z = 0;
+      if (delta == 1 && wheelid == 1)
+	translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+      else if (delta == -1 && wheelid == 1)
+      	{
+	  vec.x = -300;
+	  translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+	}
     }
   return (GO_ON);
 }

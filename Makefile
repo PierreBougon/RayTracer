@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun Apr 24 18:28:01 2016 bougon_p
+## Last update Tue Apr 26 16:25:04 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -38,6 +38,7 @@ SRC		=	$(MAIN)main.c \
 			$(MAIN)tekpixel.c \
 			$(MAIN)fill_pxlarray.c \
 			$(ENGINE)antialiasing.c \
+			$(ENGINE)translation.c \
 			$(ENGINE)clear_list.c \
 			$(ENGINE)color_operations.c \
 			$(ENGINE)create_obj_list.c \

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Tue Apr 26 15:20:17 2016 bougon_p
+** Last update Tue Apr 26 16:26:08 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -308,6 +308,10 @@ void	blit_clipables(t_data *);
 void	free_all(t_data *);
 void	delete_all_clipables(t_data *);
 
+/*
+** Translation
+*/
+void	translation(t_acc *vec, t_pos *rot, t_acc *pos);
 
 /*
 ** antialiasing.c
