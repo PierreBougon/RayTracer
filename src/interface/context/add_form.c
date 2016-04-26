@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:34 2016 bougon_p
-** Last update Mon Apr 25 19:01:57 2016 bougon_p
+** Last update Tue Apr 26 15:31:12 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -70,6 +70,7 @@ int				add_form(t_data *data)
     {
       data->itfc.past.pos.x = PAST_X;
       data->itfc.past.pos.y = PAST_Y + save * PAST_DECAL_Y;
+      data->itfc.add.need_form = true;
     }
   else
     data->itfc.past.pos.x = 0;

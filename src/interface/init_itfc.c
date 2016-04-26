@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Mon Apr 25 15:58:26 2016 bougon_p
+** Last update Tue Apr 26 15:29:04 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -124,5 +124,6 @@ int	init_itfc_data(t_itfc *itfc, UNUSED int ac)
     return (my_puterr("Could not perform bunny_load_picture"));
   itfc->past.pos.x = 0;
   itfc->past.pos.y = 0;
+  itfc->add.need_form = false;
   return (0);
 }

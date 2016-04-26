@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Mon Apr 25 14:53:46 2016 bougon_p
+** Last update Tue Apr 26 15:20:17 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_

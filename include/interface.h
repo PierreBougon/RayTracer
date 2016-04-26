@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Mon Apr 25 19:05:16 2016 bougon_p
+** Last update Tue Apr 26 15:28:09 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -130,9 +130,15 @@ typedef	struct			s_past
   t_bunny_picture		*img;
 }				t_past;
 
+typedef	struct			s_add
+{
+  bool				need_form;
+}				t_add;
+
 typedef struct			s_itfc
 {
   t_move			move;
+  t_add				add;
   t_text			txt;
   t_save			save;
   t_open			open;
