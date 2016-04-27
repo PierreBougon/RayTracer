@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 02:44:00 2016 bougon_p
-** Last update Fri Apr 22 22:45:03 2016 bougon_p
+** Last update Thu Apr 28 00:02:52 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -22,6 +22,8 @@ void	delete_all_clipables(t_data *data)
     bunny_delete_clipable(data->itfc.layout);
   if (data->itfc.txt.font != NULL)
     bunny_delete_clipable(data->itfc.txt.font);
+  if (data->itfc.past.img != NULL)
+    bunny_delete_clipable(data->itfc.past.img);
   i = 0;
   while (i < 9)
     {
@@ -29,4 +31,5 @@ void	delete_all_clipables(t_data *data)
 	bunny_delete_clipable(data->itfc.context[i]);
       i++;
     }
+
 }

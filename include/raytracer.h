@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Wed Apr 27 19:49:12 2016 bougon_p
+** Last update Wed Apr 27 20:13:36 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -59,7 +59,7 @@ typedef enum	e_obj
     SPHERE	= 1,
     CYLINDER	= 2,
     CONE	= 3,
-    PLAN	= 4
+    PLANE	= 4
   }		t_obj;
 
 /*

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 02:25:05 2016 bougon_p
-** Last update Mon Apr 18 19:52:48 2016 bougon_p
+** Last update Wed Apr 27 20:38:30 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -150,7 +150,7 @@ void	opt_button(t_itfc *itfc, const t_bunny_position *mpos)
 	      /* !DEBUG */
 	      set_butt_false(itfc);
 	      itfc->button[nb_bt] = true;
-	      /* itfc->act_context = 0; */
+	      itfc->act_context = 0;
 	    }
 	}
       nb_bt++;
