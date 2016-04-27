@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Mon Apr 25 15:03:15 2016 bougon_p
+** Last update Wed Apr 27 17:51:13 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -24,6 +24,8 @@ int	init_main_data(t_data *data)
   data->ld.pos.y = LOADING_Y;
   data->ld.coef_load = 14.5;
   data->itfc.txt.win = data->win;
+  data->wait_click = false;
+  data->click_action = false;
   return (0);
 }
 
