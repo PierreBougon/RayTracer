@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 28 12:31:13 2016 romain samuel
-** Last update Thu Apr 28 12:40:12 2016 romain samuel
+** Last update Thu Apr 28 17:00:59 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -14,13 +14,15 @@
 void		smooth_noise(t_rt *s)
 {
   double	noise;
+  double	vec[3];
 
-  noise = PerlinNoise3D(s->hit.simple_inter1.x * 0.0005,
-			s->hit.simple_inter1.y * 0.0005,
-			s->hit.simple_inter1.z * 0.0005,
-			2,
-			2,
-			4);
+  vec[0] = s->hit.simple_inter1.x * 0.0005;
+  vec[1] = s->hit.simple_inter1.y * 0.0005;
+  vec[2] = s->hit.simple_inter1.z * 0.0005;
+  noise = perlin_noise_3d(vec,
+			  2,
+			  2,
+			  4);
   if (noise < 0)
     noise *= -1;
   s->final_color = compute_colors(s->hit.color1, s->hit.color2, noise);
@@ -29,13 +31,15 @@ void		smooth_noise(t_rt *s)
 void		marble_noise(t_rt *s)
 {
   double	noise;
+  double	vec[3];
 
-  noise = PerlinNoise3D(s->hit.simple_inter1.x * 0.0005,
-			s->hit.simple_inter1.y * 0.0005,
-			s->hit.simple_inter1.z * 0.0005,
-			2,
-			2,
-			4);
+  vec[0] = s->hit.simple_inter1.x * 0.0005;
+  vec[1] = s->hit.simple_inter1.y * 0.0005;
+  vec[2] = s->hit.simple_inter1.z * 0.0005;
+  noise = perlin_noise_3d(vec,
+			  2,
+			  2,
+			  4);
   noise = 0.5 * sin((s->hit.simple_inter1.x + s->hit.simple_inter1.y) * 0.001 + noise) + 0.5;
   if (noise < 0)
     noise *= -1;

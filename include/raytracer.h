@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu Apr 28 12:38:22 2016 romain samuel
+** Last update Thu Apr 28 15:54:42 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -536,16 +536,6 @@ void		marble_noise(t_rt *s);
 int		swap_objs(t_object *it, t_object *it_prev);
 int		order_list(t_object *root);
 int		order_hit_list(t_object *root);
-
-/*
-** perlin_noise.c
-*/
-double		linear_interpolate(double a, double b, double t);
-double		dot_product(const int *v, const double x,
-			    const double y, const double z);
-int		*get_grad(int x, int y, int z);
-double		quintic_poly(const double t);
-double		perlin_noise_3d(double x_pos, double y_pos, double z_pos);
 
 /*
 ** rotations.c
