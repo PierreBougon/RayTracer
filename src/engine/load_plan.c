@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:03:56 2016 romain samuel
-** Last update Sun Apr 10 21:13:07 2016 romain samuel
+** Last update Tue Apr 26 12:39:49 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -72,10 +72,20 @@ int		load_plan_datas3(t_plan *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
+  if ((field = bunny_ini_get_field(ini, scope, "refraction", 0)) == NULL)
+    return (my_puterr("load_datas: missing refraction"));
+  s->refraction = atof((char *)field);
+  return (load_plan_datas4(s, ini, scope));
+}
+
+int		load_plan_datas4(t_plan *s, t_bunny_ini *ini, char *scope)
+{
+  const char	*field;
+
   if ((field = bunny_ini_get_field(ini, scope, "tex_type", 0)) == NULL)
     return (my_puterr("load_datas: missing plan tex_type"));
   s->tex_type = my_getnbr((char *)field);
-  if (s->tex_type != 5)
+  if (s->tex_type != IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
 	return (my_puterr("load_datas: missing plan color1"));

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:56:19 2016 romain samuel
-** Last update Thu Apr 14 18:17:21 2016 romain samuel
+** Last update Mon Apr 25 18:10:34 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -90,11 +90,17 @@ int		load_cone_datas4(t_cone *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
+  if ((field = bunny_ini_get_field(ini, scope, "refraction", 0)) == NULL)
+    return (my_puterr("load_datas: missing refraction"));
+  s->refraction = atof((char *)field);
   if (s->tex_type != IMAGE)
     {
-      if ((field = bunny_ini_get_field(ini, scope, "color", 0)) == NULL)
-	return (my_puterr("load_datas: missing cone color"));
-      s->color.full = my_getcolor((char *)field, "0123456789ABCDEF");
+      if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
+	return (my_puterr("load_datas: missing cone color1"));
+      s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
+      if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
+	return (my_puterr("load_datas: missing cone color2"));
+      s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
     }
   else
     {

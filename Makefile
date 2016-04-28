@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Tue Apr 19 15:28:36 2016 romain samuel
+## Last update Thu Apr 28 12:39:37 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -36,6 +36,7 @@ SRC		=	$(MAIN)main.c \
 			$(MAIN)blit_clipables.c \
 			$(MAIN)fill_pxlarray.c \
 			$(ENGINE)antialiasing.c \
+			$(ENGINE)checkerboards.c \
 			$(ENGINE)clear_list.c \
 			$(ENGINE)color_operations.c \
 			$(ENGINE)create_obj_list.c \
@@ -43,17 +44,22 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)display.c \
 			$(ENGINE)display_objects.c \
 			$(ENGINE)get_norm.c \
+			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
+			$(ENGINE)get_texels.c \
 			$(ENGINE)init_shade.c \
 			$(ENGINE)inters.c \
 			$(ENGINE)limited_objects.c \
+			$(ENGINE)limited_plan.c \
 			$(ENGINE)load_cone.c \
 			$(ENGINE)load_cylinder.c \
 			$(ENGINE)load_file.c \
 			$(ENGINE)load_light.c \
 			$(ENGINE)load_plan.c \
 			$(ENGINE)load_sphere.c \
+			$(ENGINE)noise_textures.c \
 			$(ENGINE)order_hit_list.c \
+			$(ENGINE)perlin.c \
 			$(ENGINE)rotations.c \
 			$(ENGINE)set_hit_values.c \
 			$(ENGINE)shade.c \
@@ -65,6 +71,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)tekpixel.c \
 			$(ENGINE)update_hit_list.c \
 			$(ENGINE)update_real_hit_list.c \
+			$(ENGINE)texturize_obj.c \
 			$(LIVE_ENGINE)display.c \
 			$(LIVE_ENGINE)live_shade.c \
 			$(ITFC)interface.c \

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Sun Apr 10 22:30:51 2016 romain samuel
+** Last update Sat Apr 23 16:37:38 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -90,6 +90,10 @@ int		load_scene_parameters(t_rt *s, t_bunny_ini *ini)
       == NULL)
     return (my_puterr("load_file: missing supersampling coef"));
   s->opt.aa = my_getnbr((char *)field);
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "ambient_refraction", 0))
+      == NULL)
+    return (my_puterr("load_file: missing ambient_refraction"));
+  s->opt.ambient_refraction = atof((char *)field);
   aa = sqrt(s->opt.aa);
   if (aa != (int)aa)
     return (my_puterr("load_file: invalid antialiasing settings"));
