@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Wed Apr 27 18:23:39 2016 bougon_p
+** Last update Thu Apr 28 15:16:43 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -81,7 +81,7 @@ t_bunny_response        my_txtinput(uint32_t unicode,
     {
       if (unicode == DELETE && data->itfc.save.curs > 0)
 	data->itfc.save.file[--data->itfc.save.curs] = 0;
-      else if (unicode == RETURN)
+      else if (unicode == RETURN && data->itfc.save.curs > 0)
 	data->itfc.save.need_save = true;
       else if (data->itfc.save.curs < FILE_LEN)
 	data->itfc.save.file[data->itfc.save.curs++] = unicode;

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:03:39 2016 bougon_p
-** Last update Thu Apr 28 00:21:02 2016 bougon_p
+** Last update Thu Apr 28 14:45:39 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -17,9 +17,9 @@ static	void	pos_cone(t_data *data, t_cone *con)
   vec.x = 0;
   vec.y = 0;
   vec.z = 10000;
-  con->pos.x = 0;
-  con->pos.y = 0;
-  con->pos.z = 0;
+  con->pos.x = data->rt.eye.pos.x;
+  con->pos.y = data->rt.eye.pos.y;
+  con->pos.z = data->rt.eye.pos.z;
   translation_obj(&vec, &data->rt.eye.rot, &con->pos);
   con->rot.x = 90;
   con->rot.y = 0;

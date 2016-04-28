@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:04:18 2016 bougon_p
-** Last update Wed Apr 27 20:27:20 2016 bougon_p
+** Last update Thu Apr 28 14:46:02 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -17,9 +17,9 @@ static	void	pos_cylinder(t_data *data, t_cylinder *cyl)
   vec.x = 0;
   vec.y = 0;
   vec.z = 8000;
-  cyl->pos.x = 0;
-  cyl->pos.y = 0;
-  cyl->pos.z = 0;
+  cyl->pos.x = data->rt.eye.pos.x;
+  cyl->pos.y = data->rt.eye.pos.y;
+  cyl->pos.z = data->rt.eye.pos.z;
   translation_obj(&vec, &data->rt.eye.rot, &cyl->pos);
   cyl->rot.x = 90;
   cyl->rot.y = 0;

@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Tue Apr 26 16:25:04 2016 bougon_p
+## Last update Thu Apr 28 15:00:25 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -153,7 +153,7 @@ NAME	=	raytracer
 
 IFLAG	=	-Iinclude/
 
-CFLAGS  =	-W -Wall -Wextra -ffast-math
+CFLAGS  =	-W -Wall -Wextra
 
 CC      =	gcc $(CFLAGS) $(IFLAG)
 
@@ -171,8 +171,13 @@ $(LIB)		:	$(OBJSLIB)
 			@$(ECHO) "$(GREEN)\n> Compiling Library\t\
  >>>>>>>>>> \t DONE\n$(WHITE)"
 
+comp		:	$(OBJS)
+			@$(ECHO) "$(GREEN)\n\n> Linking \"$(NAME)\" with : \n\
+$(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
+			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIB) $(LIBBUNNY)
 
-all		:	$(NAME)
+all		:	$(LIB)
+			@make -j 4 comp
 
 clean		:
 			@$(RM) $(OBJS)
@@ -191,3 +196,5 @@ re		:	fclean all
 .c.o		:
 			@$(CC) -c $< -o $@
 			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
+
+.PHONY		:	comp all clean fclean re
