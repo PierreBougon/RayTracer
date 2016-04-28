@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:22:45 2016 romain samuel
-** Last update Mon Apr 25 18:17:03 2016 romain samuel
+** Last update Thu Apr 28 18:05:13 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -41,13 +41,21 @@ double		get_soft_intensity(double tab[1])
   return (i);
 }
 
+double			expose(double i)
+{
+  float			exposure;
+
+  exposure = -1.0;
+  i = 1.0 - expf(i * exposure);
+  return (i);
+}
+
 void		get_final_color(t_rt *s, t_color light_color, double itab[1])
 {
   double	i;
 
   i = get_soft_intensity(itab) + s->opt.ambient * s->hit.ka;
-  if (i > 1)
-    i = 1;
+  i = expose(i);
   s->final_color = apply_b(s->final_color, light_color, s->hit.brightness, i);
 }
 
