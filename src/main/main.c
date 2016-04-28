@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Thu Apr 28 15:16:43 2016 bougon_p
+** Last update Thu Apr 28 16:28:51 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -31,7 +31,6 @@ t_bunny_response        my_click(t_bunny_event_state state,
       if (check_all_buttons(&data->itfc) == 1)
 	return (EXIT_ON_SUCCESS);
       check_button_activated(&data->itfc, data);
-      /* set_right_states(data); */
     }
   return (GO_ON);
 }
@@ -41,59 +40,12 @@ t_bunny_response        my_wheel(int wheelid,
 				 void *_data)
 {
   t_data	*data;
-  t_acc		vec;
 
   data = _data;
-  vec.x = 0;
-  vec.y = 0;
-  vec.z = 500;
   if (data->rt.live)
     {
-      if (delta == 1 && wheelid == 0)
-	translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
-      else if (delta == -1 && wheelid == 0)
-	{
-	  vec.z = -500;
-	  translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
-	}
-      vec.x = 300;
-      vec.y = 0;
-      vec.z = 0;
-      if (delta == 1 && wheelid == 1)
-	translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
-      else if (delta == -1 && wheelid == 1)
-      	{
-	  vec.x = -300;
-	  translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
-	}
-    }
-  return (GO_ON);
-}
-
-t_bunny_response        my_txtinput(uint32_t unicode,
-				    void *_data)
-{
-  t_data	*data;
-
-  data = _data;
-  /* printf("%c => %d\n", unicode, unicode); */
-  if (data->itfc.button[SAVE])
-    {
-      if (unicode == DELETE && data->itfc.save.curs > 0)
-	data->itfc.save.file[--data->itfc.save.curs] = 0;
-      else if (unicode == RETURN && data->itfc.save.curs > 0)
-	data->itfc.save.need_save = true;
-      else if (data->itfc.save.curs < FILE_LEN)
-	data->itfc.save.file[data->itfc.save.curs++] = unicode;
-    }
-  else if (data->itfc.button[OPEN])
-    {
-      if (unicode == DELETE && data->itfc.open.curs > 0)
-	data->itfc.open.file[--data->itfc.open.curs] = 0;
-      else if (unicode == RETURN)
-	data->itfc.open.need_open = true;
-      else if (data->itfc.open.curs < FILE_LEN)
-	data->itfc.open.file[data->itfc.open.curs++] = unicode;
+      zoom(data, wheelid, delta);
+      move_on_wheel(data, wheelid, delta);
     }
   return (GO_ON);
 }

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 21 12:09:03 2016 bougon_p
-** Last update Sat Apr 23 15:07:41 2016 bougon_p
+** Last update Thu Apr 28 15:20:23 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -51,4 +51,31 @@ void			text(char *str, t_itfc *itfc, int x, int y)
     }
   if (curs++ % 60 < 40)
     blit_char(&itfc->txt, itfc->txt.font, '|');
+}
+
+t_bunny_response        my_txtinput(uint32_t unicode,
+				    void *_data)
+{
+  t_data	*data;
+
+  data = _data;
+  if (data->itfc.button[SAVE])
+    {
+      if (unicode == DELETE && data->itfc.save.curs > 0)
+	data->itfc.save.file[--data->itfc.save.curs] = 0;
+      else if (unicode == RETURN && data->itfc.save.curs > 0)
+	data->itfc.save.need_save = true;
+      else if (data->itfc.save.curs < FILE_LEN)
+	data->itfc.save.file[data->itfc.save.curs++] = unicode;
+    }
+  else if (data->itfc.button[OPEN])
+    {
+      if (unicode == DELETE && data->itfc.open.curs > 0)
+	data->itfc.open.file[--data->itfc.open.curs] = 0;
+      else if (unicode == RETURN)
+	data->itfc.open.need_open = true;
+      else if (data->itfc.open.curs < FILE_LEN)
+	data->itfc.open.file[data->itfc.open.curs++] = unicode;
+    }
+  return (GO_ON);
 }

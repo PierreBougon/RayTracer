@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Thu Apr 28 15:00:25 2016 bougon_p
+## Last update Thu Apr 28 16:32:14 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -69,13 +69,17 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)update_real_hit_list.c \
 			$(LIVE_ENGINE)display.c \
 			$(LIVE_ENGINE)live_shade.c \
+			$(ITFC)init_itfc.c \
+			$(ITFC)init_ftabs.c \
 			$(ITFC)interface.c \
+			$(ITFC)zoom.c \
 			$(ITFC)text.c \
 			$(ITFC)open_file.c \
-			$(ITFC)init_itfc.c \
 			$(ITFC)check_buttons.c \
 			$(ITFC)check_menu_buttons.c \
+			$(ITFC)check_file_buttons.c \
 			$(ITFC)check_bt_activated.c \
+			$(ITFC)set_bt_false.c \
 			$(ITFC)buttons.c \
 			$(ITFC)rendering.c \
 			$(ITFC)mouse_state.c \

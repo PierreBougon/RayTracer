@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:34 2016 bougon_p
-** Last update Wed Apr 27 18:07:08 2016 bougon_p
+** Last update Thu Apr 28 16:10:14 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -16,7 +16,7 @@
 ** On a click action. Set the right fontion in the function pointer
 ** To call this on the main loop.
 */
-void	first_add(t_data *data, int i)
+static void	first_add(t_data *data, int i)
 {
   if (i == 0)
     data->itfc.fct_bt_context = add_plane;
@@ -26,7 +26,7 @@ void	first_add(t_data *data, int i)
     data->itfc.fct_bt_context = add_cone;
 }
 
-void	second_add(t_data *data, int i)
+static void	second_add(t_data *data, int i)
 {
   if (i == 3)
     data->itfc.fct_bt_context = add_cylinder;
@@ -36,36 +36,18 @@ void	second_add(t_data *data, int i)
     data->itfc.fct_bt_context = add_torus;
 }
 
-int				add_form(t_data *data)
+static	void	check_hit(int i, t_data *data)
 {
-  int				i;
-  const t_bunny_position	*mpos;
-  int				save;
+  if (i >= 0 && i < 3)
+    first_add(data, i);
+  else if (i >= 3 && i < 6)
+    second_add(data, i);
+  else if (i == 6)
+    data->itfc.fct_bt_context = add_perf_cube;
+}
 
-  printf("FCT => ADD FORM\n");
-  mpos = data->itfc.mpos;
-  i = 0;
-  save = NB_ADD_BT + 1;
-  while (i < NB_ADD_BT)
-    {
-      if (mpos->x > ADD_BT_X
-	  && mpos->x < ADD_BT_X + ADD_BT_WDT
-	  && mpos->y > ADD_BT_Y + (ADD_BT_HGT * i)
-	  + (ADD_BT_DECAL * i)
-	  && mpos->y < ADD_BT_Y + (ADD_BT_HGT * i)
-	  + (ADD_BT_DECAL * i) + ADD_BT_HGT)
-	{
-	  if (i >= 0 && i < 3)
-	    first_add(data, i);
-	  else if (i >= 3 && i < 6)
-	    second_add(data, i);
-	  else if (i == 6)
-	    data->itfc.fct_bt_context = add_perf_cube;
-	  save = i;
-	  printf("SAVE = %d\n", save);
-	}
-      i++;
-    }
+static void	set_value_for_hit(t_data *data, int save)
+{
   if (save < NB_ADD_BT)
     {
       data->itfc.past.pos.x = PAST_X;
@@ -74,6 +56,30 @@ int				add_form(t_data *data)
     }
   else
     data->itfc.past.pos.x = 0;
-  printf("HIT -> %d\n\n", save);
+}
+
+int				add_form(t_data *data)
+{
+  int				i;
+  const t_bunny_position	*mpos;
+  int				save;
+
+  mpos = data->itfc.mpos;
+  i = 0;
+  save = NB_ADD_BT + 1;
+  while (i < NB_ADD_BT)
+    {
+      if (mpos->x > ADD_BT_X
+	  && mpos->x < ADD_BT_X + ADD_BT_WDT
+	  && mpos->y > ADD_BT_Y + (ADD_BT_HGT * i) + (ADD_BT_DECAL * i)
+	  && mpos->y < ADD_BT_Y + (ADD_BT_HGT * i)
+	  + (ADD_BT_DECAL * i) + ADD_BT_HGT)
+	{
+	  check_hit(i, data);
+	  save = i;
+	}
+      i++;
+    }
+  set_value_for_hit(data, save);
   return (0);
 }

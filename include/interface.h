@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Wed Apr 27 18:30:50 2016 bougon_p
+** Last update Thu Apr 28 16:31:54 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -161,15 +161,21 @@ typedef struct			s_itfc
 */
 int	interface(t_data *data);
 int	nothing_selected(t_data *data);
+int	init_ftabs(t_itfc *);
 
+/*
+** Eye
+*/
+void	move_eye(t_data *);
+void	rotate_eye(t_data *);
+void	zoom(t_data *, int, int);
+void	move_on_wheel(t_data *, int, int);
 /*
 ** State
 */
 int	mouse_state(t_data *, t_bunny_event_state, t_bunny_mousebutton);
 int	move_state(t_data *, t_bunny_event_state, t_bunny_mousebutton);
 int	rotate_state(t_data *, t_bunny_event_state, t_bunny_mousebutton);
-void	move_eye(t_data *);
-void	rotate_eye(t_data *);
 
 /*
 ** Buttons
@@ -177,8 +183,11 @@ void	rotate_eye(t_data *);
 int	check_all_buttons(t_itfc *);
 void	check_button_activated(t_itfc *, t_data *);
 void	form_button(t_itfc *, const t_bunny_position *);
+void	save_button(t_itfc *, const t_bunny_position *);
+void	file_button(t_itfc *, const t_bunny_position *);
 void	gen_button(t_itfc *, const t_bunny_position *);
 void	set_butt_false(t_itfc *);
+void	set_status_false(t_itfc *);
 
 /*
 ** Functions Pointer
@@ -197,17 +206,18 @@ int	help(t_data *);
 int	save(t_data *);
 
 /*
-** RENDERING
+** Rendering
 */
 void	start_rendering(t_data *);
 
 /*
-** TEXT
+** Text
 */
-void	text(char *, t_itfc *, int, int);
+void			text(char *, t_itfc *, int, int);
+t_bunny_response	my_txtinput(uint32_t, void *);
 
 /*
-** SAVE
+** Save
 */
 int	nothing_selected(t_data *);
 int	save_png(t_data *);
@@ -216,12 +226,12 @@ int	save_bmp(t_data *);
 int	save_ini(t_data *);
 
 /*
-** OPEN
+** Open
 */
 int	f_open_file(t_data *);
 
 /*
-** ADD FORM
+** Add form
 */
 int	add_plane(t_data *);
 int	add_sphere(t_data *);

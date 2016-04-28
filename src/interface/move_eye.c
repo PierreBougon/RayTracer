@@ -5,11 +5,37 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 18:34:07 2016 bougon_p
-** Last update Tue Apr 26 16:29:11 2016 bougon_p
+** Last update Thu Apr 28 16:29:50 2016 bougon_p
 */
 
 #include "raytracer.h"
 
+/*
+** Fuction call from my_wheel on wheel event
+** Move on x axe from a vector 300 on x
+*/
+void	move_on_wheel(t_data *data, int wheelid, int delta)
+{
+  t_acc	vec;
+
+  vec.x = 300;
+  vec.y = 0;
+  vec.z = 0;
+  if (delta == 1 && wheelid == 1)
+    translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+  else if (delta == -1 && wheelid == 1)
+    {
+      vec.x = -300;
+      translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+    }
+}
+
+/*
+** Those functions are use to move the eye's position
+** From the status movement in the top bar
+** Calc a coef from 2 pos of the mouse
+** To set a vector then eye take this new position
+*/
 void	move(t_data *data, const t_bunny_position *mpos)
 {
   t_acc	vec;
