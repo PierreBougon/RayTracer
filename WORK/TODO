@@ -1,12 +1,13 @@
 # PhotoShop
-Spot color
+Spot color ?
 
 # INTERFACE
 
 Fonction select OBJ
-SAVE ini
-Faire les hitbox de chaque  context
+Faire les hitbox de chaque  context -> en cours
+Delete item
 Faire effet BT
+Debug save ini
 
 # EXTRA FCT
 save bmp
