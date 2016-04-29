@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Thu Apr 28 16:31:54 2016 bougon_p
+** Last update Fri Apr 29 01:44:57 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -111,10 +111,12 @@ typedef	struct			s_text
 typedef	struct			s_save
 {
   int				(*fct_save[5])(t_data *);
+  char				*(*fct_save_ini_name[NB_OBJ])(t_data *, int);
   int				save_state;
   int				curs;
   char				*file;
   bool				need_save;
+  char				**obj_names;
 }				t_save;
 
 typedef	struct			s_open
@@ -224,6 +226,12 @@ int	save_png(t_data *);
 int	save_jpg(t_data *);
 int	save_bmp(t_data *);
 int	save_ini(t_data *);
+void	save_new_ini(t_data *);
+char	*sphere_name(t_data *, int);
+char	*cylinder_name(t_data *, int);
+char	*cone_name(t_data *, int);
+char	*plane_name(t_data *, int);
+char	*light_name(t_data *, int);
 
 /*
 ** Open

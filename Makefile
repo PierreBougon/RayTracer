@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Thu Apr 28 16:32:14 2016 bougon_p
+## Last update Fri Apr 29 02:03:50 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -17,6 +17,8 @@ GREEN	=	\033[1;32m
 WHITE	=	\033[0m
 
 ECHO	=	echo -e
+
+DEBUG	=	yes
 
 # RT VARIABLES
 
@@ -33,6 +35,7 @@ CONTEXT		=	context/
 SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
 			$(MAIN)free.c \
+			$(MAIN)setnbr.c \
 			$(MAIN)delete_clipables.c \
 			$(MAIN)blit_clipables.c \
 			$(MAIN)tekpixel.c \
@@ -96,6 +99,8 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)add_perf_cube.c \
 			$(ITFC)$(CONTEXT)save_bt.c \
 			$(ITFC)$(CONTEXT)save.c \
+			$(ITFC)$(CONTEXT)save_ini.c \
+			$(ITFC)$(CONTEXT)save_ini_obj.c \
 			$(ITFC)$(CONTEXT)modif_form.c \
 			$(ITFC)$(CONTEXT)add_form.c \
 			$(ITFC)$(CONTEXT)sub_form.c \
@@ -157,7 +162,11 @@ NAME	=	raytracer
 
 IFLAG	=	-Iinclude/
 
-CFLAGS  =	-W -Wall -Wextra
+CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
+
+ifeq ($(DEBUG),yes)
+CFLAGS	+=	-g
+endif
 
 CC      =	gcc $(CFLAGS) $(IFLAG)
 
@@ -175,13 +184,13 @@ $(LIB)		:	$(OBJSLIB)
 			@$(ECHO) "$(GREEN)\n> Compiling Library\t\
  >>>>>>>>>> \t DONE\n$(WHITE)"
 
-comp		:	$(OBJS)
+compile		:	$(OBJS)
 			@$(ECHO) "$(GREEN)\n\n> Linking \"$(NAME)\" with : \n\
 $(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIB) $(LIBBUNNY)
 
 all		:	$(LIB)
-			@make -j 4 comp
+			@make -j 4 -s compile
 
 clean		:
 			@$(RM) $(OBJS)

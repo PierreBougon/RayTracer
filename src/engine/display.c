@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Mon Apr 25 14:44:57 2016 bougon_p
+** Last update Thu Apr 28 17:32:43 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -96,6 +96,5 @@ int			display(t_rt *s, t_data *data)
       prerender(s, pos.y, data);
       pos.y++;
     }
-  fill_pxlarray(data->ld.loading, BLUE_LOAD);
   return (0);
 }

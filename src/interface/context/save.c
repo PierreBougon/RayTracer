@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 22 19:09:00 2016 bougon_p
-** Last update Sun Apr 24 18:35:17 2016 bougon_p
+** Last update Thu Apr 28 17:12:03 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -76,12 +76,12 @@ int	save_ini(t_data *data)
       else
 	{
 	  my_strcat(data->itfc.save.file, ".ini");
+	  save_new_ini(data);
 	}
       data->itfc.save.need_save = false;
       my_bzero(data->itfc.save.file, FILE_LEN);
     }
   else
     text(data->itfc.save.file, &data->itfc, TXT_X, TXT_Y);
-  printf("INI\n");
   return (0);
 }
