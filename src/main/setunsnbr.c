@@ -1,11 +1,11 @@
 /*
-** setnbr.c for SETNBR in /home/bougon_p/rendu/gfx_tekpaint
+** setunsnbr.c for setnbr in /home/bougon_p/rendu/gfx_raytracer2
 **
 ** Made by bougon_p
 ** Login   <bougon_p@epitech.net>
 **
-** Started on  Fri Jan 22 05:11:57 2016 bougon_p
-** Last update Fri Apr 29 21:32:06 2016 bougon_p
+** Started on  Fri Apr 29 21:34:24 2016 bougon_p
+** Last update Fri Apr 29 21:57:55 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -20,7 +20,7 @@ static	char    *set_line_null(char *str, int length)
   return (str);
 }
 
-static	char    *cleanstr(char *nbr, bool neg)
+static	char    *cleanstr(char *nbr)
 {
   char		*clean;
   int		p;
@@ -30,8 +30,8 @@ static	char    *cleanstr(char *nbr, bool neg)
     return (NULL);
   clean = set_line_null(clean, 11);
   p = 0;
-  while (nbr[p++] == '0' && p < 10);
-  if (p == 10)
+  while (nbr[p++] == '0' && p < 11);
+  if (p == 11)
     {
       clean[0] = '0';
       clean[1] = 0;
@@ -40,33 +40,24 @@ static	char    *cleanstr(char *nbr, bool neg)
     }
   i = 0;
   p--;
-  if (neg)
-    clean[i++] = '-';
   while (nbr[p] != 0)
     clean[i++] = nbr[p++];
   bunny_free(nbr);
   return (clean);
 }
 
-char    *setnbr(int nbr)
+char    *setunsnbr(unsigned int nbr)
 {
   char  *numb;
   int   i;
   int   p;
-  bool	neg;
 
-  p = 8;
-  if ((numb = bunny_malloc(sizeof(char) * 10)) == NULL)
+  p = 9;
+  if ((numb = bunny_malloc(sizeof(char) * 11)) == NULL)
     return (NULL);
-  set_line_null(numb, 10);
-  neg = false;
-  if (nbr < 0)
-    {
-      neg = true;
-      nbr = -nbr;
-    }
+  set_line_null(numb, 11);
   i = 0;
   while (p >= 0)
     numb[p--] = ((nbr / (int)(pow(10, i++)) % 10) + '0');
-  return (cleanstr(numb, neg));
+  return (cleanstr(numb));
 }

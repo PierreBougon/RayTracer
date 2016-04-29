@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Fri Apr 29 01:40:56 2016 bougon_p
+** Last update Fri Apr 29 22:48:10 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -311,6 +311,8 @@ int			init_itfc_data(t_itfc *, int);
 int			init_engine_ftabs(t_ftab *ftabs);
 t_bunny_position	center_rt(t_rt *);
 char			*setnbr(int);
+char			*setunsnbr(unsigned int);
+char			*put_base(unsigned int, char *);
 
 /*
 ** Blit
@@ -321,6 +323,7 @@ void	blit_clipables(t_data *);
 ** Free
 */
 void	free_all(t_data *);
+void	free_tab(char **);
 void	delete_all_clipables(t_data *);
 
 /*

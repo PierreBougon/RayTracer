@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Fri Apr 29 02:03:50 2016 bougon_p
+## Last update Fri Apr 29 22:44:41 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -36,6 +36,8 @@ SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
 			$(MAIN)free.c \
 			$(MAIN)setnbr.c \
+			$(MAIN)setunsnbr.c \
+			$(MAIN)put_base.c \
 			$(MAIN)delete_clipables.c \
 			$(MAIN)blit_clipables.c \
 			$(MAIN)tekpixel.c \
@@ -100,7 +102,13 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)save_bt.c \
 			$(ITFC)$(CONTEXT)save.c \
 			$(ITFC)$(CONTEXT)save_ini.c \
+			$(ITFC)$(CONTEXT)save_ini_first_scope.c \
 			$(ITFC)$(CONTEXT)save_ini_obj.c \
+			$(ITFC)$(CONTEXT)save_ini_obj_scope_sphere.c \
+			$(ITFC)$(CONTEXT)save_ini_obj_scope_light.c \
+			$(ITFC)$(CONTEXT)save_ini_obj_scope_cone.c \
+			$(ITFC)$(CONTEXT)save_ini_obj_scope_cylinder.c \
+			$(ITFC)$(CONTEXT)save_ini_obj_scope_plane.c \
 			$(ITFC)$(CONTEXT)modif_form.c \
 			$(ITFC)$(CONTEXT)add_form.c \
 			$(ITFC)$(CONTEXT)sub_form.c \

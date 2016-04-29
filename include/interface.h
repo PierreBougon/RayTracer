@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Fri Apr 29 01:44:57 2016 bougon_p
+** Last update Fri Apr 29 18:33:52 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -93,6 +93,7 @@ typedef enum			e_buttons
   }				t_buttons;
 
 typedef struct	s_data		t_data;
+typedef struct	s_object	t_object;
 
 typedef	struct			s_move
 {
@@ -112,6 +113,8 @@ typedef	struct			s_save
 {
   int				(*fct_save[5])(t_data *);
   char				*(*fct_save_ini_name[NB_OBJ])(t_data *, int);
+  void				(*fct_save_ini_obj[NB_OBJ])(t_data *,
+							    t_object *, t_bunny_ini *, int);
   int				save_state;
   int				curs;
   char				*file;
@@ -226,12 +229,18 @@ int	save_png(t_data *);
 int	save_jpg(t_data *);
 int	save_bmp(t_data *);
 int	save_ini(t_data *);
+void	set_first_scope(t_data *, t_bunny_ini *);
 void	save_new_ini(t_data *);
 char	*sphere_name(t_data *, int);
 char	*cylinder_name(t_data *, int);
 char	*cone_name(t_data *, int);
 char	*plane_name(t_data *, int);
 char	*light_name(t_data *, int);
+void	sphere_obj(t_data *, t_object *, t_bunny_ini *, int);
+void	cylinder_obj(t_data *, t_object *, t_bunny_ini *, int);
+void	cone_obj(t_data *, t_object *, t_bunny_ini *, int);
+void	plane_obj(t_data *, t_object *, t_bunny_ini *, int);
+void	light_obj(t_data *, t_object *, t_bunny_ini *, int);
 
 /*
 ** Open
