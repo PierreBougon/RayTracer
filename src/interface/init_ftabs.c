@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 28 15:43:21 2016 bougon_p
-** Last update Fri Apr 29 17:28:30 2016 bougon_p
+** Last update Sat Apr 30 15:04:08 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -57,13 +57,13 @@ int	init_ptr_save(t_itfc *itfc)
 int	init_ptr_save_ini(t_itfc *itfc)
 {
   itfc->save.fct_save_ini_name[0] = sphere_name;
-  itfc->save.fct_save_ini_name[1] = cone_name;
-  itfc->save.fct_save_ini_name[2] = cylinder_name;
+  itfc->save.fct_save_ini_name[1] = cylinder_name;
+  itfc->save.fct_save_ini_name[2] = cone_name;
   itfc->save.fct_save_ini_name[3] = plane_name;
   itfc->save.fct_save_ini_name[4] = light_name;
   itfc->save.fct_save_ini_obj[0] = sphere_obj;
-  itfc->save.fct_save_ini_obj[1] = cone_obj;
-  itfc->save.fct_save_ini_obj[2] = cylinder_obj;
+  itfc->save.fct_save_ini_obj[1] = cylinder_obj;
+  itfc->save.fct_save_ini_obj[2] = cone_obj;
   itfc->save.fct_save_ini_obj[3] = plane_obj;
   itfc->save.fct_save_ini_obj[4] = light_obj;
   return (0);

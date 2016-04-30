@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:17:52 2016 bougon_p
-** Last update Fri Apr 29 22:46:34 2016 bougon_p
+** Last update Sat Apr 30 14:48:21 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -83,6 +83,7 @@ void		cone_obj(t_data *data, t_object *obj,
   value = setnbr(con->tex_type);
   bunny_ini_set_field(ini, scope, "tex_type", 0, value);
   bunny_free(value);
+  printf("%d\n", con->angle);
   value = setnbr(90 - con->angle);
   bunny_ini_set_field(ini, scope, "angle", 0, value);
   bunny_free(value);

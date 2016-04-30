@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:18:29 2016 bougon_p
-** Last update Fri Apr 29 22:47:04 2016 bougon_p
+** Last update Sat Apr 30 15:06:46 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -76,7 +76,7 @@ void		plane_obj(t_data *data, t_object *obj,
 
   pla = obj->datas;
   scope = data->itfc.save.obj_names[i];
-  bunny_ini_set_field(ini, scope, "type", 0, "plane");
+  bunny_ini_set_field(ini, scope, "type", 0, "plan");
   plane_pos(pla, ini, scope);
   plane_rot(pla, ini, scope);
   value = setnbr(pla->tex_type);
