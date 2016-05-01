@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:03:39 2016 bougon_p
-** Last update Thu Apr 28 14:45:39 2016 bougon_p
+** Last update Sun May  1 19:41:54 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -33,7 +33,13 @@ static	int	add_cone_obj(t_data *data)
 
   if ((con = malloc(sizeof(t_cone))) == NULL)
     return (1);
-  new = add_obj_elem_ret(data->rt.obj);
+  if (data->rt.obj != NULL)
+    new = add_obj_elem_ret(data->rt.obj);
+  else
+    {
+      data->rt.obj = create_obj_list();
+      new = data->rt.obj;
+    }
   pos_cone(data, con);
   con->tex_type = 1;
   con->angle = 80;

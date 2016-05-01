@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:04:18 2016 bougon_p
-** Last update Thu Apr 28 14:46:02 2016 bougon_p
+** Last update Sun May  1 19:42:10 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -16,7 +16,7 @@ static	void	pos_cylinder(t_data *data, t_cylinder *cyl)
 
   vec.x = 0;
   vec.y = 0;
-  vec.z = 8000;
+  vec.z = 15000;
   cyl->pos.x = data->rt.eye.pos.x;
   cyl->pos.y = data->rt.eye.pos.y;
   cyl->pos.z = data->rt.eye.pos.z;
@@ -33,10 +33,16 @@ static	int	add_cylinder_obj(t_data *data)
 
   if ((cyl = malloc(sizeof(t_cylinder))) == NULL)
     return (1);
-  new = add_obj_elem_ret(data->rt.obj);
+  if (data->rt.obj != NULL)
+    new = add_obj_elem_ret(data->rt.obj);
+  else
+    {
+      data->rt.obj = create_obj_list();
+      new = data->rt.obj;
+    }
   pos_cylinder(data, cyl);
   cyl->tex_type = 1;
-  cyl->size = 1000;
+  cyl->size = 2000;
   cyl->height = 5000;
   cyl->ka = 1.0;
   cyl->kd = 1.0;

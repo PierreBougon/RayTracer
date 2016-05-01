@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun May  1 01:17:22 2016 bougon_p
-** Last update Sun May  1 02:34:25 2016 bougon_p
+** Last update Sun May  1 19:17:23 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -22,14 +22,10 @@ static void     check_hit(t_data *data, int i)
 
 static void     set_value_for_hit(t_data *data, int save)
 {
-  if (save < NB_ADD_BT)
-    {
-      data->itfc.past.pos.x = PAST_X;
-      data->itfc.past.pos.y = PAST_Y + save * PAST_DECAL_Y;
-      data->wait_click = true;
-    }
+  if (save < NB_NEW_BT)
+    data->click_action = true;
   else
-    data->itfc.past.pos.x = 0;
+    data->click_action = false;
 }
 
 int				new_scene(t_data *data)
@@ -40,6 +36,7 @@ int				new_scene(t_data *data)
 
   mpos = data->itfc.mpos;
   i = 0;
+  save = NB_ADD_BT + 1;
   while (i < NB_ADD_BT)
     {
       if ((i == 0 && mpos->x > NEW_BT_X_FIRST

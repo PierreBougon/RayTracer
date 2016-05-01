@@ -1,0 +1,383 @@
+extra_fct/blit.c:	  col1.full = get_color(data->px1, pxpos);
+extra_fct/blit.c:	  col2.full = get_color(data->px2, pxpos);
+extra_fct/blit.c:          tekpixel(data->res, &pxpos, &colres);
+extra_fct/blit.c:  bunny_blit(&data->win->buffer, &data->res->clipable, 0);
+extra_fct/blit.c:  bunny_display(data->win);
+src/interface/text.c:  if (data->itfc.button[SAVE])
+src/interface/text.c:      if (unicode == DELETE && data->itfc.save.curs > 0)
+src/interface/text.c:	data->itfc.save.file[--data->itfc.save.curs] = 0;
+src/interface/text.c:      else if (unicode == RETURN && data->itfc.save.curs > 0)
+src/interface/text.c:	data->itfc.save.need_save = true;
+src/interface/text.c:      else if (data->itfc.save.curs < FILE_LEN)
+src/interface/text.c:	data->itfc.save.file[data->itfc.save.curs++] = unicode;
+src/interface/text.c:  else if (data->itfc.button[OPEN])
+src/interface/text.c:      if (unicode == DELETE && data->itfc.open.curs > 0)
+src/interface/text.c:	data->itfc.open.file[--data->itfc.open.curs] = 0;
+src/interface/text.c:	data->itfc.open.need_open = true;
+src/interface/text.c:      else if (data->itfc.open.curs < FILE_LEN)
+src/interface/text.c:	data->itfc.open.file[data->itfc.open.curs++] = unicode;
+src/interface/rotate_state.c:  if (data->rt.img != NULL)
+src/interface/rotate_state.c:	  data->itfc.left_click = true;
+src/interface/rotate_state.c:	  data->itfc.move.needmoving = false;
+src/interface/rotate_state.c:	  data->itfc.left_click = false;
+src/interface/rotate_state.c:	  data->itfc.move.needmoving = false;
+src/interface/buttons.c:  if (!data->itfc.rendering && !data->itfc.rendered)
+src/interface/buttons.c:      data->itfc.rendering = true;
+src/interface/buttons.c:      data->rt.live = false;
+src/interface/buttons.c:  data->rt.live = true;
+src/interface/buttons.c:  data->itfc.rendered = false;
+src/interface/open_file.c:  data->itfc.open.need_open = false;
+src/interface/open_file.c:  my_bzero(data->itfc.open.file, FILE_LEN);
+src/interface/open_file.c:  data->itfc.open.curs = 0;
+src/interface/open_file.c:  data->rt.pos = center_rt(&data->rt);
+src/interface/open_file.c:  data->itfc.open.need_open = false;
+src/interface/open_file.c:  my_bzero(data->itfc.open.file, FILE_LEN);
+src/interface/open_file.c:  data->rt.live = true;
+src/interface/open_file.c:  fill_pxlarray(data->rt.img, 0xFF262626);
+src/interface/open_file.c:  live_display(&data->rt);
+src/interface/open_file.c:  data->itfc.open.curs = 0;
+src/interface/open_file.c:  if (data->itfc.open.need_open && data->itfc.open.curs > 0)
+src/interface/open_file.c:      my_strcat(data->itfc.open.file, ".ini");
+src/interface/open_file.c:      name = myrealloc(name, my_strlen(data->itfc.open.file));
+src/interface/open_file.c:      my_strcat(name, data->itfc.open.file);
+src/interface/open_file.c:      if (load_file(&data->rt, name) == -1)
+src/interface/open_file.c:      if (data->rt.img != NULL)
+src/interface/open_file.c:	bunny_delete_clipable(&data->rt.img->clipable);
+src/interface/open_file.c:      if ((data->rt.img =
+src/interface/open_file.c:	   bunny_new_pixelarray(data->rt.width,
+src/interface/open_file.c:				data->rt.height)) == NULL)
+src/interface/open_file.c:    text(data->itfc.open.file, &data->itfc, TXT_X, TXT_Y);
+src/interface/move_eye.c:    translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+src/interface/move_eye.c:      translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+src/interface/move_eye.c:  if (!data->itfc.move.needmoving)
+src/interface/move_eye.c:      data->itfc.move.first_pos = *mpos;
+src/interface/move_eye.c:      data->itfc.move.needmoving = true;
+src/interface/move_eye.c:      data->itfc.move.second_pos = *mpos;
+src/interface/move_eye.c:	(data->itfc.move.second_pos.x - data->itfc.move.first_pos.x) * 10;
+src/interface/move_eye.c:	(data->itfc.move.second_pos.y - data->itfc.move.first_pos.y) * 10;
+src/interface/move_eye.c:      translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+src/interface/move_eye.c:      data->itfc.move.first_pos = data->itfc.move.second_pos;
+src/interface/move_eye.c:  rt = &data->rt;
+src/interface/move_eye.c:  mpos = data->itfc.mpos;
+src/interface/move_state.c:  if (data->rt.img != NULL)
+src/interface/move_state.c:	  data->itfc.left_click = true;
+src/interface/move_state.c:	  data->itfc.move.needmoving = false;
+src/interface/move_state.c:	  data->itfc.left_click = false;
+src/interface/move_state.c:	  data->itfc.move.needmoving = false;
+src/interface/context/add_torus.c:  if (data->rt.img != NULL
+src/interface/context/add_torus.c:      && data->click_action
+src/interface/context/add_torus.c:      && data->itfc.mpos->x > data->rt.pos.x
+src/interface/context/add_torus.c:      && data->itfc.mpos->x < data->rt.pos.x +
+src/interface/context/add_torus.c:      data->rt.img->clipable.clip_width
+src/interface/context/add_torus.c:      && data->itfc.mpos->y > data->rt.pos.y
+src/interface/context/add_torus.c:      && data->itfc.mpos->y < data->rt.pos.y +
+src/interface/context/add_torus.c:      data->rt.img->clipable.clip_height)
+src/interface/context/add_torus.c:      data->click_action = false;
+src/interface/context/add_torus.c:    data->click_action = false;
+src/interface/context/#create_scene.c#:  if (data->click_action)
+src/interface/context/#create_scene.c#:      if (data->rt.img != NULL)
+src/interface/context/#create_scene.c#:      if ((data->rt.img =
+src/interface/context/#create_scene.c#:	   bunny_new_pixelarray(data->rt.width,
+src/interface/context/#create_scene.c#:				data->rt.height)) == NULL)
+src/interface/context/#create_scene.c#:      data->rt.eye.pos.x = 0.0;
+src/interface/context/#create_scene.c#:      data->rt.eye.pos.y = 0.0;
+src/interface/context/#create_scene.c#:      data->rt.eye.pos.z = 0.0;
+src/interface/context/#create_scene.c#:      data->rt.eye.rot.x = 0;
+src/interface/context/#create_scene.c#:      data->rt.eye.rot.y = 0;
+src/interface/context/#create_scene.c#:      data->rt.eye.rot.z = 0;
+src/interface/context/#create_scene.c#:      data->rt.opt.ambient = 10.0 / 100.0;
+src/interface/context/#create_scene.c#:      data->rt.opt.aa = 1;
+src/interface/context/#create_scene.c#:      data->rt.obj_hit = NULL;
+src/interface/context/#create_scene.c#:      data->rt.obj = NULL;
+src/interface/context/#create_scene.c#:      data->click_action = false;
+src/interface/context/#create_scene.c#:      data->rt.pos = center_rt(&data->rt);
+src/interface/context/#create_scene.c#:    data->click_action = false;
+src/interface/context/#create_scene.c#:  if (data->rt.img != NULL
+src/interface/context/#create_scene.c#:      && data->click_action)
+src/interface/context/#create_scene.c#:      data->click_action = false;
+src/interface/context/#create_scene.c#:    data->click_action = false;
+src/interface/context/#create_scene.c#:  if (data->rt.img != NULL
+src/interface/context/#create_scene.c#:      && data->click_action)
+src/interface/context/#create_scene.c#:      data->click_action = false;
+src/interface/context/#create_scene.c#:    data->click_action = false;
+src/interface/context/add_form.c:    data->itfc.fct_bt_context = add_plane;
+src/interface/context/add_form.c:    data->itfc.fct_bt_context = add_sphere;
+src/interface/context/add_form.c:    data->itfc.fct_bt_context = add_cone;
+src/interface/context/add_form.c:    data->itfc.fct_bt_context = add_cylinder;
+src/interface/context/add_form.c:    data->itfc.fct_bt_context = add_cube;
+src/interface/context/add_form.c:    data->itfc.fct_bt_context = add_torus;
+src/interface/context/add_form.c:    data->itfc.fct_bt_context = add_perf_cube;
+src/interface/context/add_form.c:      data->itfc.past.pos.x = PAST_X;
+src/interface/context/add_form.c:      data->itfc.past.pos.y = PAST_Y + save * PAST_DECAL_Y;
+src/interface/context/add_form.c:      data->wait_click = true;
+src/interface/context/add_form.c:    data->itfc.past.pos.x = 0;
+src/interface/context/add_form.c:  mpos = data->itfc.mpos;
+src/interface/context/add_sphere.c:  sph->pos.x = data->rt.eye.pos.x;
+src/interface/context/add_sphere.c:  sph->pos.y = data->rt.eye.pos.y;
+src/interface/context/add_sphere.c:  sph->pos.z = data->rt.eye.pos.z;
+src/interface/context/add_sphere.c:  translation_obj(&vec, &data->rt.eye.rot, &sph->pos);
+src/interface/context/add_sphere.c:  if (data->rt.obj != NULL)
+src/interface/context/add_sphere.c:    new = add_obj_elem_ret(data->rt.obj);
+src/interface/context/add_sphere.c:      data->rt.obj = create_obj_list();
+src/interface/context/add_sphere.c:      new = data->rt.obj;
+src/interface/context/add_sphere.c:  if (data->rt.img != NULL
+src/interface/context/add_sphere.c:      && data->click_action
+src/interface/context/add_sphere.c:      && data->itfc.mpos->x > data->rt.pos.x
+src/interface/context/add_sphere.c:      && data->itfc.mpos->x < data->rt.pos.x +
+src/interface/context/add_sphere.c:      data->rt.img->clipable.clip_width
+src/interface/context/add_sphere.c:      && data->itfc.mpos->y > data->rt.pos.y
+src/interface/context/add_sphere.c:      && data->itfc.mpos->y < data->rt.pos.y +
+src/interface/context/add_sphere.c:      data->rt.img->clipable.clip_height)
+src/interface/context/add_sphere.c:      data->click_action = false;
+src/interface/context/add_sphere.c:    data->click_action = false;
+src/interface/context/add_cube.c:  if (data->rt.img != NULL
+src/interface/context/add_cube.c:      && data->click_action
+src/interface/context/add_cube.c:      && data->itfc.mpos->x > data->rt.pos.x
+src/interface/context/add_cube.c:      && data->itfc.mpos->x < data->rt.pos.x +
+src/interface/context/add_cube.c:      data->rt.img->clipable.clip_width
+src/interface/context/add_cube.c:      && data->itfc.mpos->y > data->rt.pos.y
+src/interface/context/add_cube.c:      && data->itfc.mpos->y < data->rt.pos.y +
+src/interface/context/add_cube.c:      data->rt.img->clipable.clip_height)
+src/interface/context/add_cube.c:      data->click_action = false;
+src/interface/context/add_cube.c:    data->click_action = false;
+src/interface/context/save.c:  if (data->itfc.save.need_save)
+src/interface/context/save.c:      if (data->rt.img == NULL)
+src/interface/context/save.c:	  my_strcat(data->itfc.save.file, ".png");
+src/interface/context/save.c:	  bunny_save_pixelarray(data->rt.img, data->itfc.save.file);
+src/interface/context/save.c:      data->itfc.save.need_save = false;
+src/interface/context/save.c:      my_bzero(data->itfc.save.file, FILE_LEN);
+src/interface/context/save.c:    text(data->itfc.save.file, &data->itfc, TXT_X, TXT_Y);
+src/interface/context/save.c:  if (data->itfc.save.need_save)
+src/interface/context/save.c:      if (data->rt.img == NULL)
+src/interface/context/save.c:	  my_strcat(data->itfc.save.file, ".jpg");
+src/interface/context/save.c:	  bunny_save_pixelarray(data->rt.img, data->itfc.save.file);
+src/interface/context/save.c:      data->itfc.save.need_save = false;
+src/interface/context/save.c:      my_bzero(data->itfc.save.file, FILE_LEN);
+src/interface/context/save.c:    text(data->itfc.save.file, &data->itfc, TXT_X, TXT_Y);
+src/interface/context/save.c:  if (data->itfc.save.need_save)
+src/interface/context/save.c:      if (data->rt.img == NULL)
+src/interface/context/save.c:	  my_strcat(data->itfc.save.file, ".bmp");
+src/interface/context/save.c:	  bunny_save_pixelarray(data->rt.img, data->itfc.save.file);
+src/interface/context/save.c:      data->itfc.save.need_save = false;
+src/interface/context/save.c:      my_bzero(data->itfc.save.file, FILE_LEN);
+src/interface/context/save.c:    text(data->itfc.save.file, &data->itfc, TXT_X, TXT_Y);
+src/interface/context/save.c:  if (data->itfc.save.need_save)
+src/interface/context/save.c:      if (data->rt.img == NULL)
+src/interface/context/save.c:	  my_strcat(data->itfc.save.file, ".ini");
+src/interface/context/save.c:      data->itfc.save.need_save = false;
+src/interface/context/save.c:      my_bzero(data->itfc.save.file, FILE_LEN);
+src/interface/context/save.c:    text(data->itfc.save.file, &data->itfc, TXT_X, TXT_Y);
+src/interface/context/new_scene.c:    data->itfc.fct_bt_context = create_scene;
+src/interface/context/new_scene.c:    data->itfc.fct_bt_context = basic_plane;
+src/interface/context/new_scene.c:    data->itfc.fct_bt_context = basic_wallpaper;
+src/interface/context/new_scene.c:    data->click_action = true;
+src/interface/context/new_scene.c:    data->click_action = false;
+src/interface/context/new_scene.c:  mpos = data->itfc.mpos;
+src/interface/context/save_bt.c:  itfc = &data->itfc;
+src/interface/context/save_bt.c:  mpos = data->itfc.mpos;
+src/interface/context/create_scene.c:  if (data->rt.img == NULL
+src/interface/context/create_scene.c:      && data->click_action)
+src/interface/context/create_scene.c:      if ((data->rt.img =
+src/interface/context/create_scene.c:	   bunny_new_pixelarray(data->rt.width,
+src/interface/context/create_scene.c:				data->rt.height)) == NULL)
+src/interface/context/create_scene.c:      data->rt.eye.pos.x = 0.0;
+src/interface/context/create_scene.c:      data->rt.eye.pos.y = 0.0;
+src/interface/context/create_scene.c:      data->rt.eye.pos.z = 0.0;
+src/interface/context/create_scene.c:      data->rt.eye.rot.x = 0;
+src/interface/context/create_scene.c:      data->rt.eye.rot.y = 0;
+src/interface/context/create_scene.c:      data->rt.eye.rot.z = 0;
+src/interface/context/create_scene.c:      data->rt.opt.ambient = 10.0 / 100.0;
+src/interface/context/create_scene.c:      data->rt.opt.aa = 1;
+src/interface/context/create_scene.c:      data->rt.obj_hit = NULL;
+src/interface/context/create_scene.c:      data->rt.obj = NULL;
+src/interface/context/create_scene.c:      data->click_action = false;
+src/interface/context/create_scene.c:      data->rt.pos = center_rt(&data->rt);
+src/interface/context/create_scene.c:    data->click_action = false;
+src/interface/context/create_scene.c:  if (data->rt.img != NULL
+src/interface/context/create_scene.c:      && data->click_action)
+src/interface/context/create_scene.c:      data->click_action = false;
+src/interface/context/create_scene.c:    data->click_action = false;
+src/interface/context/create_scene.c:  if (data->rt.img != NULL
+src/interface/context/create_scene.c:      && data->click_action)
+src/interface/context/create_scene.c:      data->click_action = false;
+src/interface/context/create_scene.c:    data->click_action = false;
+src/interface/context/save_ini_obj_scope_sphere.c:  scope = data->itfc.save.obj_names[i];
+src/interface/context/save_ini.c:  name = myrealloc(name, my_strlen(data->itfc.save.file) + 1000);
+src/interface/context/save_ini.c:  my_strcat(name, data->itfc.save.file);
+src/interface/context/save_ini.c:      data->itfc.save.fct_save_ini_obj
+src/interface/context/save_ini.c:  act_obj = data->rt.obj;
+src/interface/context/save_ini.c:  free_tab(data->itfc.save.obj_names);
+src/interface/context/add_plane.c:  pla->pos.x = data->rt.eye.pos.x;
+src/interface/context/add_plane.c:  pla->pos.y = data->rt.eye.pos.y;
+src/interface/context/add_plane.c:  pla->pos.z = data->rt.eye.pos.z;
+src/interface/context/add_plane.c:  translation_obj(&vec, &data->rt.eye.rot, &pla->pos);
+src/interface/context/add_plane.c:  if (data->rt.obj != NULL)
+src/interface/context/add_plane.c:    new = add_obj_elem_ret(data->rt.obj);
+src/interface/context/add_plane.c:      data->rt.obj = create_obj_list();
+src/interface/context/add_plane.c:      new = data->rt.obj;
+src/interface/context/add_plane.c:  if (data->rt.img != NULL
+src/interface/context/add_plane.c:      && data->click_action
+src/interface/context/add_plane.c:      && data->itfc.mpos->x > data->rt.pos.x
+src/interface/context/add_plane.c:      && data->itfc.mpos->x < data->rt.pos.x +
+src/interface/context/add_plane.c:      data->rt.img->clipable.clip_width
+src/interface/context/add_plane.c:      && data->itfc.mpos->y > data->rt.pos.y
+src/interface/context/add_plane.c:      && data->itfc.mpos->y < data->rt.pos.y +
+src/interface/context/add_plane.c:      data->rt.img->clipable.clip_height)
+src/interface/context/add_plane.c:      data->click_action = false;
+src/interface/context/add_plane.c:    data->click_action = false;
+src/interface/context/save_ini_obj_scope_cylinder.c:  scope = data->itfc.save.obj_names[i];
+src/interface/context/add_cylinder.c:  cyl->pos.x = data->rt.eye.pos.x;
+src/interface/context/add_cylinder.c:  cyl->pos.y = data->rt.eye.pos.y;
+src/interface/context/add_cylinder.c:  cyl->pos.z = data->rt.eye.pos.z;
+src/interface/context/add_cylinder.c:  translation_obj(&vec, &data->rt.eye.rot, &cyl->pos);
+src/interface/context/add_cylinder.c:  if (data->rt.obj != NULL)
+src/interface/context/add_cylinder.c:    new = add_obj_elem_ret(data->rt.obj);
+src/interface/context/add_cylinder.c:      data->rt.obj = create_obj_list();
+src/interface/context/add_cylinder.c:      new = data->rt.obj;
+src/interface/context/add_cylinder.c:  if (data->rt.img != NULL
+src/interface/context/add_cylinder.c:      && data->click_action
+src/interface/context/add_cylinder.c:      && data->itfc.mpos->x > data->rt.pos.x
+src/interface/context/add_cylinder.c:      && data->itfc.mpos->x < data->rt.pos.x +
+src/interface/context/add_cylinder.c:      data->rt.img->clipable.clip_width
+src/interface/context/add_cylinder.c:      && data->itfc.mpos->y > data->rt.pos.y
+src/interface/context/add_cylinder.c:      && data->itfc.mpos->y < data->rt.pos.y +
+src/interface/context/add_cylinder.c:      data->rt.img->clipable.clip_height)
+src/interface/context/add_cylinder.c:      data->click_action = false;
+src/interface/context/add_cylinder.c:    data->click_action = false;
+src/interface/context/save_ini_first_scope.c:  value = setnbr(data->rt.eye.pos.x);
+src/interface/context/save_ini_first_scope.c:  value = setnbr(data->rt.eye.pos.y);
+src/interface/context/save_ini_first_scope.c:  value = setnbr(data->rt.eye.pos.z);
+src/interface/context/save_ini_first_scope.c:  value = setnbr(data->rt.eye.rot.x);
+src/interface/context/save_ini_first_scope.c:  value = setnbr(data->rt.eye.rot.y);
+src/interface/context/save_ini_first_scope.c:  value = setnbr(data->rt.eye.rot.z);
+src/interface/context/save_ini_first_scope.c:  data->itfc.save.obj_names =
+src/interface/context/save_ini_first_scope.c:    my_realloc_tab(data->itfc.save.obj_names, 1);
+src/interface/context/save_ini_first_scope.c:  data->itfc.save.obj_names[i] = name;
+src/interface/context/save_ini_first_scope.c:  obj = data->rt.obj;
+src/interface/context/save_ini_first_scope.c:  if ((data->itfc.save.obj_names = malloc(sizeof(char *) * 1)) == NULL)
+src/interface/context/save_ini_first_scope.c:  data->itfc.save.obj_names[0] = NULL;
+src/interface/context/save_ini_first_scope.c:      name = data->itfc.save.fct_save_ini_name
+src/interface/context/save_ini_first_scope.c:  value = setnbr((int)(data->rt.opt.ambient * 100));
+src/interface/context/save_ini_first_scope.c:  value = setnbr(data->rt.opt.aa);
+src/interface/context/save_ini_obj_scope_plane.c:  scope = data->itfc.save.obj_names[i];
+src/interface/context/add_perf_cube.c:  if (data->rt.img != NULL
+src/interface/context/add_perf_cube.c:      && data->click_action
+src/interface/context/add_perf_cube.c:      && data->itfc.mpos->x > data->rt.pos.x
+src/interface/context/add_perf_cube.c:      && data->itfc.mpos->x < data->rt.pos.x +
+src/interface/context/add_perf_cube.c:      data->rt.img->clipable.clip_width
+src/interface/context/add_perf_cube.c:      && data->itfc.mpos->y > data->rt.pos.y
+src/interface/context/add_perf_cube.c:      && data->itfc.mpos->y < data->rt.pos.y +
+src/interface/context/add_perf_cube.c:      data->rt.img->clipable.clip_height)
+src/interface/context/add_perf_cube.c:      data->click_action = false;
+src/interface/context/add_perf_cube.c:    data->click_action = false;
+src/interface/context/save_ini_obj_scope_light.c:  scope = data->itfc.save.obj_names[i];
+src/interface/context/add_cone.c:  con->pos.x = data->rt.eye.pos.x;
+src/interface/context/add_cone.c:  con->pos.y = data->rt.eye.pos.y;
+src/interface/context/add_cone.c:  con->pos.z = data->rt.eye.pos.z;
+src/interface/context/add_cone.c:  translation_obj(&vec, &data->rt.eye.rot, &con->pos);
+src/interface/context/add_cone.c:  if (data->rt.obj != NULL)
+src/interface/context/add_cone.c:    new = add_obj_elem_ret(data->rt.obj);
+src/interface/context/add_cone.c:      data->rt.obj = create_obj_list();
+src/interface/context/add_cone.c:      new = data->rt.obj;
+src/interface/context/add_cone.c:  if (data->rt.img != NULL
+src/interface/context/add_cone.c:      && data->click_action
+src/interface/context/add_cone.c:      && data->itfc.mpos->x > data->rt.pos.x
+src/interface/context/add_cone.c:      && data->itfc.mpos->x < data->rt.pos.x +
+src/interface/context/add_cone.c:      data->rt.img->clipable.clip_width
+src/interface/context/add_cone.c:      && data->itfc.mpos->y > data->rt.pos.y
+src/interface/context/add_cone.c:      && data->itfc.mpos->y < data->rt.pos.y +
+src/interface/context/add_cone.c:      data->rt.img->clipable.clip_height)
+src/interface/context/add_cone.c:      data->click_action = false;
+src/interface/context/add_cone.c:    data->click_action = false;
+src/interface/context/save_ini_obj_scope_cone.c:  scope = data->itfc.save.obj_names[i];
+src/interface/interface.c:  if (data->itfc.status == S_MOUSE)
+src/interface/interface.c:  else if (data->itfc.status == S_MOVE)
+src/interface/interface.c:      if (data->itfc.left_click)
+src/interface/interface.c:  else if (data->itfc.status == S_ROTATE)
+src/interface/interface.c:      if (data->itfc.left_click)
+src/interface/interface.c:  data->itfc.live = data->rt.live;
+src/interface/interface.c:  if (data->itfc.button[SAVE])
+src/interface/interface.c:    data->itfc.save.fct_save[data->itfc.save.save_state](data);
+src/interface/interface.c:  else if (data->itfc.button[OPEN])
+src/interface/interface.c:  if (data->itfc.button[NO_BUTTON])
+src/interface/interface.c:    data->itfc.fct_bt_context = nothing_selected;
+src/interface/interface.c:  if (data->itfc.fct_bt_context(data) == 1)
+src/interface/interface.c:  /* debug_tabbool(data->itfc.button); */
+src/interface/interface.c:  /* printf("STATUS => %d\n", data->itfc.status); */
+src/interface/rotate_eye.c:  if (!data->itfc.move.needmoving)
+src/interface/rotate_eye.c:      data->itfc.move.first_pos = *mpos;
+src/interface/rotate_eye.c:      data->itfc.move.needmoving = true;
+src/interface/rotate_eye.c:      data->itfc.move.second_pos = *mpos;
+src/interface/rotate_eye.c:      data->rt.eye.rot.y +=
+src/interface/rotate_eye.c:	((data->itfc.move.second_pos.x - data->itfc.move.first_pos.x) / 3);
+src/interface/rotate_eye.c:      data->rt.eye.rot.x -=
+src/interface/rotate_eye.c:	((data->itfc.move.second_pos.y - data->itfc.move.first_pos.y) / 3);
+src/interface/rotate_eye.c:      data->itfc.move.first_pos = data->itfc.move.second_pos;
+src/interface/rotate_eye.c:  rt = &data->rt;
+src/interface/rotate_eye.c:  mpos = data->itfc.mpos;
+src/interface/rendering.c:  if (data->rt.img != NULL)
+src/interface/rendering.c:      fill_pxlarray(data->rt.img, 0xFF262626);
+src/interface/rendering.c:      display(&data->rt, data);
+src/interface/rendering.c:  data->itfc.rendering = false;
+src/interface/rendering.c:  data->itfc.rendered = true;
+src/interface/zoom.c:    translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+src/interface/zoom.c:      translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+src/main/delete_clipables.c:  if (data->rt.img != NULL)
+src/main/delete_clipables.c:    bunny_delete_clipable(&data->rt.img->clipable);
+src/main/delete_clipables.c:  if (data->ld.loading != NULL)
+src/main/delete_clipables.c:    bunny_delete_clipable(&data->ld.loading->clipable);
+src/main/delete_clipables.c:  if (data->itfc.layout != NULL)
+src/main/delete_clipables.c:    bunny_delete_clipable(data->itfc.layout);
+src/main/delete_clipables.c:  if (data->itfc.txt.font != NULL)
+src/main/delete_clipables.c:    bunny_delete_clipable(data->itfc.txt.font);
+src/main/delete_clipables.c:  if (data->itfc.past.img != NULL)
+src/main/delete_clipables.c:    bunny_delete_clipable(data->itfc.past.img);
+src/main/delete_clipables.c:      if (data->itfc.context[i] != NULL)
+src/main/delete_clipables.c:	bunny_delete_clipable(data->itfc.context[i]);
+src/main/free.c:  free(data->itfc.save.file);
+src/main/free.c:  free(data->itfc.open.file);
+src/main/init_main.c:  if ((data->win = bunny_start(WIN_WIDTH, WIN_HEIGHT,
+src/main/init_main.c:  if ((data->ld.loading =
+src/main/init_main.c:  fill_pxlarray(data->ld.loading, BLUE_LOAD);
+src/main/init_main.c:  data->ld.pos.x = LOADING_X;
+src/main/init_main.c:  data->ld.pos.y = LOADING_Y;
+src/main/init_main.c:  data->ld.coef_load = 14.5;
+src/main/init_main.c:  data->itfc.txt.win = data->win;
+src/main/init_main.c:  data->wait_click = false;
+src/main/init_main.c:  data->click_action = false;
+src/main/blit_clipables.c:  rt = &data->rt;
+src/main/blit_clipables.c:  itfc = &data->itfc;
+src/main/blit_clipables.c:    bunny_blit(&data->win->buffer, itfc->layout, 0);
+src/main/blit_clipables.c:  bunny_blit(&data->win->buffer,
+src/main/blit_clipables.c:    bunny_blit(&data->win->buffer, &rt->img->clipable, &rt->pos);
+src/main/blit_clipables.c:  if (data->ld.loading != NULL && data->itfc.rendered
+src/main/blit_clipables.c:    bunny_blit(&data->win->buffer,
+src/main/blit_clipables.c:	       &data->ld.loading->clipable, &data->ld.pos);
+src/main/blit_clipables.c:  if (data->itfc.button[ADD_FORM] && data->itfc.past.pos.x != 0)
+src/main/blit_clipables.c:    bunny_blit(&data->win->buffer, itfc->past.img, &itfc->past.pos);
+src/main/main.c:  data->mbutton = mbutton;
+src/main/main.c:  data->mstate = state;
+src/main/main.c:  if (data->wait_click && mbutton == BMB_LEFT && state == GO_DOWN)
+src/main/main.c:      data->click_action = true;
+src/main/main.c:      data->wait_click = false;
+src/main/main.c:  if (data->rt.live)
+src/main/main.c:    data->itfc.fct_state[data->itfc.status](data, state, mbutton);
+src/main/main.c:      if (check_all_buttons(&data->itfc) == 1)
+src/main/main.c:      check_button_activated(&data->itfc, data);
+src/main/main.c:  if (data->rt.live)
+src/main/main.c:  rt = &data->rt;
+src/main/main.c:  itfc = &data->itfc;
+src/main/main.c:  if (data->rt.live && data->rt.img != NULL)
+src/main/main.c:    live_display(&data->rt);
+src/main/main.c:  bunny_display(data->win);
+src/engine/display.c:      data->ld.save_width = data->ld.loading->clipable.clip_width;
+src/engine/display.c:      data->ld.curr_line += LOADING_COEF;
+src/engine/display.c:      data->ld.loading->clipable.clip_width = data->ld.curr_line;
+src/engine/display.c:      bunny_blit(&data->win->buffer,
+src/engine/display.c:		 &data->ld.loading->clipable, &data->ld.pos);
+src/engine/display.c:      data->ld.loading->clipable.clip_width = data->ld.save_width;
+src/engine/display.c:      data->ld.nb_coef++;
+src/engine/display.c:      bunny_blit(&data->win->buffer, &rt->img->clipable, &rt->pos);
+src/engine/display.c:      bunny_display(data->win);
+src/engine/display.c:  data->ld.nb_coef = 1;
+src/engine/display.c:  data->ld.curr_line = 0;

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 21:09:55 2016 bougon_p
-** Last update Sun May  1 01:32:37 2016 bougon_p
+** Last update Sun May  1 19:13:58 2016 bougon_p
 */
 
 #ifndef BUTTON_H_
@@ -45,10 +45,10 @@
 # define NEW_BT_Y 335
 # define NEW_BT_WDT 215
 # define NEW_BT_HGT 80
-# define NEW_BT_X_FIRST 175
-# define NEW_BT_Y_FIRST 200
-# define NEW_BT_WDT_FIRST 175
-# define NEW_BT_HGT_FIRST 70
+# define NEW_BT_X_FIRST 160
+# define NEW_BT_Y_FIRST 180
+# define NEW_BT_WDT_FIRST 220
+# define NEW_BT_HGT_FIRST 100
 # define NEW_BT_DECAL 60
 # define NB_NEW_BT 3
 

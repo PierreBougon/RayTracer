@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 28 17:07:33 2016 bougon_p
-** Last update Fri Apr 29 18:31:36 2016 bougon_p
+** Last update Sun May  1 19:45:51 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -15,7 +15,7 @@ static char	*create_ini_name(t_data *data)
   char			*name;
 
   name = my_strdup("assets/scenes/");
-  name = myrealloc(name, my_strlen(data->itfc.save.file) + 1000);
+  name = myrealloc(name, my_strlen(data->itfc.save.file));
   my_strcat(name, data->itfc.save.file);
   return (name);
 }

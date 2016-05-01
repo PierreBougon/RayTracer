@@ -1,11 +1,11 @@
 ##
-## Makefile for BLIT in /home/bougon_p/rendu/gfx_raytracer2
+## Makefile for RT in /home/bougon_p/rendu/gfx_raytracer2
 ## 
 ## Made by bougon_p
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May  1 02:27:56 2016 bougon_p
+## Last update Sun May  1 14:07:17 2016 bougon_p
 ##
 
 # USEFUL VARIABLES

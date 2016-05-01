@@ -7,7 +7,8 @@ Fonction select OBJ
 Faire les hitbox de chaque  context -> en cours
 Delete item
 Faire effet BT
-Debug save ini
+
+/!\ CREATE ITEM -> CREER la liste quand elle existe pas !  
 
 # EXTRA FCT
 save bmp

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 17:59:29 2016 bougon_p
-** Last update Thu Apr 28 14:45:04 2016 bougon_p
+** Last update Sun May  1 19:21:22 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -33,7 +33,13 @@ static	int	add_sphere_obj(t_data *data)
 
   if ((sph = malloc(sizeof(t_sphere))) == NULL)
     return (1);
-  new = add_obj_elem_ret(data->rt.obj);
+  if (data->rt.obj != NULL)
+    new = add_obj_elem_ret(data->rt.obj);
+  else
+    {
+      data->rt.obj = create_obj_list();
+      new = data->rt.obj;
+    }
   pos_sphere(data, sph);
   sph->tex_type = 1;
   sph->size = 1000;
