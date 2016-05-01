@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 23 15:24:05 2016 bougon_p
-** Last update Thu Apr 28 21:58:46 2016 bougon_p
+** Last update Sat Apr 30 15:38:46 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -36,8 +36,11 @@ int     f_open_file(t_data *data)
     {
       my_strcat(data->itfc.open.file, ".ini");
       name = my_strdup("assets/scenes/");
+      printf("%s\n", name);
       name = myrealloc(name, my_strlen(data->itfc.open.file));
+      printf("%s\n", name);
       my_strcat(name, data->itfc.open.file);
+      printf("%s\n", name);
       if (load_file(&data->rt, name) == -1)
         return (reset_text_open(data),
 		my_puterr("Load : Could not load the scene"));

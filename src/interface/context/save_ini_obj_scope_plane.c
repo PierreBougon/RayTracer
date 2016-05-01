@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:18:29 2016 bougon_p
-** Last update Sat Apr 30 15:06:46 2016 bougon_p
+** Last update Sat Apr 30 15:41:56 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -82,10 +82,10 @@ void		plane_obj(t_data *data, t_object *obj,
   value = setnbr(pla->tex_type);
   bunny_ini_set_field(ini, scope, "tex_type", 0, value);
   bunny_free(value);
-  value = setnbr(pla->height);
+  value = setnbr(pla->height * 2);
   bunny_ini_set_field(ini, scope, "height", 0, value);
   bunny_free(value);
-  value = setnbr(pla->width);
+  value = setnbr(pla->width * 2);
   bunny_ini_set_field(ini, scope, "width", 0, value);
   bunny_free(value);
   plane_coef(pla, ini, scope);

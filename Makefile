@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Fri Apr 29 22:44:41 2016 bougon_p
+## Last update Sun May  1 02:27:56 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -114,6 +114,8 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)sub_form.c \
 			$(ITFC)$(CONTEXT)spotlight.c \
 			$(ITFC)$(CONTEXT)context_gen.c \
+			$(ITFC)$(CONTEXT)new_scene.c \
+			$(ITFC)$(CONTEXT)create_scene.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)

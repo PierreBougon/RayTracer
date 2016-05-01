@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Fri Apr 29 18:33:52 2016 bougon_p
+** Last update Sun May  1 02:29:35 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -257,5 +257,13 @@ int	add_cylinder(t_data *);
 int	add_cube(t_data *);
 int	add_torus(t_data *);
 int	add_perf_cube(t_data *);
+
+/*
+** Create scene
+*/
+int	create_scene(t_data *);
+int	basic_plane(t_data *);
+int	basic_wallpaper(t_data *);
+
 
 #endif /* !INTERFACE  */
