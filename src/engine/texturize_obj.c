@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 24 15:39:17 2016 romain samuel
-** Last update Thu Apr 28 12:56:25 2016 romain samuel
+** Last update Thu Apr 28 18:35:14 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -20,12 +20,12 @@ void		get_image_texel(t_rt *s)
 {
   t_color	*color;
 
-  color = s->hit.texture->pixels;
+  color = s->hit.texture1->pixels;
   s->hit.texels.x = s->hit.texels.x
-    * s->hit.texture->clipable.clip_width;
+    * s->hit.texture1->clipable.clip_width;
   s->hit.texels.y = s->hit.texels.y
-    * s->hit.texture->clipable.clip_height;
-  s->final_color = color[s->hit.texture->clipable.clip_width
+    * s->hit.texture1->clipable.clip_height;
+  s->final_color = color[s->hit.texture1->clipable.clip_width
 			 * (int)s->hit.texels.y
 			 + (int)s->hit.texels.x];
 }

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:47:40 2016 romain samuel
-** Last update Thu Apr 28 12:50:35 2016 romain samuel
+** Last update Thu Apr 28 19:14:24 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -32,7 +32,7 @@ void		set_hit_values_from_sphere(t_rt *s, t_object *obj)
   s->hit.color1 = sphere->color1;
   s->hit.color2 = sphere->color2;
   s->hit.tex_type = sphere->tex_type;
-  s->hit.texture = sphere->texture;
+  s->hit.texture1 = sphere->texture;
   get_texels_sphere(s, sphere);
 }
 
@@ -55,11 +55,23 @@ void		set_hit_values_from_cylinder(t_rt *s, t_object *obj)
   s->hit.n2 = cylinder->refraction;
   s->hit.limited = cylinder->limited;
   s->final_color = cylinder->color1;
-  s->hit.color1 = cylinder->color1;
-  s->hit.color2 = cylinder->color2;
+  if (s->hit.limited == 0)
+    {
+      s->hit.color1 = cylinder->color1;
+      s->hit.color2 = cylinder->color2;
+    }
+  if (s->hit.limited == 1)
+    {
+      s->hit.color1 = cylinder->color2;
+      s->hit.color2 = cylinder->color1;
+    }
   s->hit.tex_type = cylinder->tex_type;
-  s->hit.texture = cylinder->texture;
-  get_texels_cylinder(s, cylinder);
+  s->hit.texture1 = cylinder->texture1;
+  s->hit.texture2 = cylinder->texture2;
+  if (s->hit.limited == 0)
+    get_texels_cylinder(s, cylinder);
+  else
+    get_texels_cyl_plan(s, cylinder);
 }
 
 void		set_hit_values_from_cone(t_rt *s, t_object *obj)
@@ -84,7 +96,8 @@ void		set_hit_values_from_cone(t_rt *s, t_object *obj)
   s->hit.color1 = cone->color1;
   s->hit.color2 = cone->color2;
   s->hit.tex_type = cone->tex_type;
-  s->hit.texture = cone->texture;
+  s->hit.texture1 = cone->texture1;
+  s->hit.texture2 = cone->texture2;
 }
 
 void		set_hit_values_from_plan(t_rt *s, t_object *obj)
@@ -108,7 +121,7 @@ void		set_hit_values_from_plan(t_rt *s, t_object *obj)
   s->hit.color2 = plan->color2;
   s->final_color = plan->color1;
   s->hit.tex_type = plan->tex_type;
-  s->hit.texture = plan->texture;
+  s->hit.texture1 = plan->texture;
   get_texels_plan(s, plan);
 }
 

@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 13 20:06:22 2016 bougon_p
-## Last update Thu Apr 28 16:57:36 2016 romain samuel
+## Last update Sat Apr 30 15:54:04 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -46,6 +46,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)get_norm.c \
 			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
+			$(ENGINE)get_skybox_sides.c \
 			$(ENGINE)get_texels.c \
 			$(ENGINE)init_shade.c \
 			$(ENGINE)inters.c \
@@ -67,6 +68,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)shadow_inters.c \
 			$(ENGINE)shadow_limited_objects.c \
 			$(ENGINE)shadow_simple_inters.c \
+			$(ENGINE)skybox.c \
 			$(ENGINE)specular_light.c \
 			$(ENGINE)tekpixel.c \
 			$(ENGINE)update_hit_list.c \

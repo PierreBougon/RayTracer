@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:47:06 2016 romain samuel
-** Last update Mon Apr 25 18:11:12 2016 romain samuel
+** Last update Thu Apr 28 18:54:34 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -50,6 +50,9 @@ int		load_cylinder_datas2(t_cylinder *s, t_bunny_ini *ini, char *scope)
   if ((field = bunny_ini_get_field(ini, scope, "real", 0)) == NULL)
     return (my_puterr("load_datas: missing cylinder type"));
   s->real = my_getnbr((char *)field);
+  if ((field = bunny_ini_get_field(ini, scope, "refraction", 0)) == NULL)
+    return (my_puterr("load_datas: missing refraction"));
+  s->refraction = atof((char *)field);
   if (s->real == 1)
     return (load_cylinder_datas3(s, ini, scope));
   else
@@ -88,9 +91,6 @@ int		load_cylinder_datas4(t_cylinder *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
-  if ((field = bunny_ini_get_field(ini, scope, "refraction", 0)) == NULL)
-    return (my_puterr("load_datas: missing refraction"));
-  s->refraction = atof((char *)field);
   if (s->tex_type != IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
@@ -102,10 +102,14 @@ int		load_cylinder_datas4(t_cylinder *s, t_bunny_ini *ini, char *scope)
     }
   else
     {
-      if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
-	return (my_puterr("load_datas: missing cylinder texture"));
-      if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
-	return (-1);
+      if ((field = bunny_ini_get_field(ini, scope, "texture1", 0)) == NULL)
+	return (my_puterr("load_datas: missing cylinder texture1"));
+      if ((s->texture2 = bunny_load_pixelarray((char *)field)) == NULL)
+	return (my_puterr("load_datas: invalid cylinder texture1"));
+      if ((field = bunny_ini_get_field(ini, scope, "texture2", 0)) == NULL)
+	return (my_puterr("load_datas: missing cylinder texture2"));
+      if ((s->texture1 = bunny_load_pixelarray((char *)field)) == NULL)
+	return (my_puterr("load_datas: invalid cylinder texture2"));
     }
   return (0);
 }
@@ -131,7 +135,8 @@ int		load_cylinder(t_rt *rt, t_bunny_ini *ini, char *scope)
   while (it->next != NULL)
     it = it->next;
   it->type = 2;
-  load_cylinder_datas(s, ini, scope);
+  if (load_cylinder_datas(s, ini, scope) == -1)
+    return (-1);
   it->datas = s;
   return (0);
 }

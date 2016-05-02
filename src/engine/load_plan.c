@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:03:56 2016 romain samuel
-** Last update Tue Apr 26 12:39:49 2016 romain samuel
+** Last update Thu Apr 28 18:53:59 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -102,7 +102,7 @@ int		load_plan_datas4(t_plan *s, t_bunny_ini *ini, char *scope)
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
 	return (my_puterr("load_datas: missing plan texture"));
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
-	return (-1);
+	return (my_puterr("load_datas: invalid plan texture"));
     }
   return (0);
 }
@@ -128,7 +128,8 @@ int		load_plan(t_rt *rt, t_bunny_ini *ini, char *scope)
   while (it->next != NULL)
     it = it->next;
   it->type = 4;
-  load_plan_datas(s, ini, scope);
+  if (load_plan_datas(s, ini, scope) == -1)
+    return (-1);
   it->datas = s;
   return (0);
 }

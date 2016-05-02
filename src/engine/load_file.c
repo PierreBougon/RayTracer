@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Sat Apr 23 16:37:38 2016 romain samuel
+** Last update Sat Apr 30 17:42:06 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -77,13 +77,17 @@ int		load_eye(t_rt *s, t_bunny_ini *ini)
   return (0);
 }
 
+void		load_skybox_textures(t_rt *s)
+{
+  get_skybox_sides(s, s->opt.texture);
+}
+
 int		load_scene_parameters(t_rt *s, t_bunny_ini *ini)
 {
   const char	*field;
   double	aa;
 
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "ambiant_lum", 0))
-      == NULL)
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "ambiant_lum", 0)) == NULL)
     return (my_puterr("load_file: missing ambiant_lum"));
   s->opt.ambient = (double)my_getnbr((char *)field) / 100.0;
   if ((field = bunny_ini_get_field(ini, "RAYTRACER", "supersampling", 0))
@@ -97,6 +101,11 @@ int		load_scene_parameters(t_rt *s, t_bunny_ini *ini)
   aa = sqrt(s->opt.aa);
   if (aa != (int)aa)
     return (my_puterr("load_file: invalid antialiasing settings"));
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "cubemap_texture", 0)) == NULL)
+    return (0);
+  if ((s->opt.texture = bunny_load_pixelarray((char *)field)) == NULL)
+    return (my_puterr("load_file: invalid cubemap texture"));
+  load_skybox_textures(s);
   return (0);
 }
 

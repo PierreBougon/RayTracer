@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 24 17:59:06 2016 romain samuel
-** Last update Tue Apr 26 16:52:00 2016 romain samuel
+** Last update Thu Apr 28 19:34:08 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -39,23 +39,28 @@ void		get_texels_sphere(t_rt *s, t_sphere *sphere)
   s->hit.texels.y = col / M_PI;
 }
 
+void	get_texels_cyl_plan(t_rt *s, t_cylinder *cylinder)
+{
+  printf("%f %f %f\n", cylinder->simple_inter1.x, cylinder->simple_inter1.y, cylinder->simple_inter1.z);
+  s->hit.texels.x = ((cylinder->simple_inter1.x / cylinder->size) + 1.0) / 2.0;
+  s->hit.texels.y = ((cylinder->simple_inter1.y / cylinder->size) + 1.0) / 2.0;
+  printf("%f %f\n", s->hit.texels.x, s->hit.texels.y);
+}
+
 void	get_texels_cylinder(t_rt *s, t_cylinder *cylinder)
 {
   double	theta;
   double	y;
 
-  theta = acos(cylinder->simple_inter1.y
-	       / sqrt(pow(cylinder->simple_inter1.y, 2)
-		      + pow(cylinder->simple_inter1.x, 2)));
-  /* theta = (2 * M_PI) */
-  /*   - acos(cylinder->simple_inter1.y */
-  /* 	   / sqrt(pow(cylinder->simple_inter1.y, 2) */
-  /* 		  + pow(cylinder->simple_inter1.x, 2))); */
-  /*theta = atan(cylinder->simple_inter1.x / cylinder->simple_inter1.y);*/
+  if (s->hit.simple_inter1.x >= 0)
+    theta = acos(cylinder->simple_inter1.y
+		 / sqrt(pow(cylinder->simple_inter1.y, 2)
+			+ pow(cylinder->simple_inter1.x, 2)));
+  else
+    theta = (2 * M_PI) - acos(cylinder->simple_inter1.y
+			      / sqrt(pow(cylinder->simple_inter1.y, 2)
+				     + pow(cylinder->simple_inter1.x, 2)));
   y = (cylinder->simple_inter1.z + cylinder->height) / (2 * cylinder->height);
-  printf("%f %f %f\n", cylinder->simple_inter1.x, cylinder->simple_inter1.y, cylinder->simple_inter1.z);
-  printf("theta = %f y = %f\n", 180 * theta / M_PI, y);
   s->hit.texels.x = theta / (2 * M_PI);
   s->hit.texels.y = y;
-  printf("x = %f y = %f\n", s->hit.texels.x, s->hit.texels.y);
 }

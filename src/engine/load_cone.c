@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:56:19 2016 romain samuel
-** Last update Mon Apr 25 18:10:34 2016 romain samuel
+** Last update Sat Apr 30 15:02:24 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -52,6 +52,9 @@ int		load_cone_datas2(t_cone *s, t_bunny_ini *ini, char *scope)
   if ((field = bunny_ini_get_field(ini, scope, "real", 0)) == NULL)
     return (my_puterr("load_datas: missing cone type"));
   s->real = my_getnbr((char *)field);
+  if ((field = bunny_ini_get_field(ini, scope, "refraction", 0)) == NULL)
+    return (my_puterr("load_datas: missing refraction"));
+  s->refraction = atof((char *)field);
   if (s->real == 1)
     return (load_cone_datas3(s, ini, scope));
   else
@@ -90,9 +93,6 @@ int		load_cone_datas4(t_cone *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
-  if ((field = bunny_ini_get_field(ini, scope, "refraction", 0)) == NULL)
-    return (my_puterr("load_datas: missing refraction"));
-  s->refraction = atof((char *)field);
   if (s->tex_type != IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
@@ -104,13 +104,19 @@ int		load_cone_datas4(t_cone *s, t_bunny_ini *ini, char *scope)
     }
   else
     {
-      if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
-	return (my_puterr("load_datas: missing cone texture"));
-      if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
-	return (-1);
+      if ((field = bunny_ini_get_field(ini, scope, "texture1", 0)) == NULL)
+	return (my_puterr("load_datas: missing cone texture2"));
+      if ((s->texture2 = bunny_load_pixelarray((char *)field)) == NULL)
+	return (my_puterr("load_datas: invalid cone texture1"));
+      if ((field = bunny_ini_get_field(ini, scope, "texture2", 0)) == NULL)
+	return (my_puterr("load_datas: missing cone texture2"));
+      if ((s->texture1 = bunny_load_pixelarray((char *)field)) == NULL)
+	return (my_puterr("load_datas: invalid cone texture1"));
     }
   return (0);
 }
+
+
 
 int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope)
 {
@@ -133,7 +139,8 @@ int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope)
   while (it->next != NULL)
     it = it->next;
   it->type = 3;
-  load_cone_datas(s, ini, scope);
+  if (load_cone_datas(s, ini, scope) == -1)
+    return (-1);
   it->datas = s;
   return (0);
 }

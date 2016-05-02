@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu Apr 28 15:54:42 2016 romain samuel
+** Last update Mon May  2 15:54:52 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -155,7 +155,8 @@ typedef struct		s_cone
   double		refraction;
   t_color		color1;
   t_color		color2;
-  t_bunny_pixelarray	*texture;
+  t_bunny_pixelarray	*texture1;
+  t_bunny_pixelarray	*texture2;
   double		k1;
   double		k2;
   t_acc			simple_inter2;
@@ -184,7 +185,8 @@ typedef struct		s_cylinder
   double		refraction;
   t_color		color1;
   t_color		color2;
-  t_bunny_pixelarray	*texture;
+  t_bunny_pixelarray	*texture1;
+  t_bunny_pixelarray	*texture2;
   double		k1;
   double		k2;
   t_acc			simple_inter2;
@@ -224,6 +226,14 @@ typedef struct		s_opt
   double		ambient;
   double		ambient_refraction;
   int			aa;
+  int			cubemap;
+  t_bunny_pixelarray	*texture;
+  t_bunny_pixelarray	*skybox_right;
+  t_bunny_pixelarray	*skybox_left;
+  t_bunny_pixelarray	*skybox_up;
+  t_bunny_pixelarray	*skybox_down;
+  t_bunny_pixelarray	*skybox_forward;
+  t_bunny_pixelarray	*skybox_backward;
 }			t_opt;
 
 typedef struct		s_ray
@@ -255,7 +265,8 @@ typedef struct		s_hit
   double		n2;
   double		opacity;
   int			tex_type;
-  t_bunny_pixelarray	*texture;
+  t_bunny_pixelarray	*texture1;
+  t_bunny_pixelarray	*texture2;
   t_acc			texels;
   t_color		color1;
   t_color		color2;
@@ -422,10 +433,20 @@ t_fresnel	get_refracted_vec(t_rt *s, t_acc *norm, double n1, double n2);
 int		get_simple_inter(t_rt *s, t_acc *vct, t_acc *eye);
 
 /*
+** get_skybox_sides.c
+*/
+t_bunny_pixelarray	*get_skybox_side_0(t_bunny_pixelarray *img,
+					   t_bunny_position *start,
+					   t_bunny_position *end,
+					   t_bunny_position *size);
+int			get_skybox_sides(t_rt *s, t_bunny_pixelarray *img);
+
+/*
 ** get_texels.c
 */
 void		get_texels_plan(t_rt *s, t_plan *plan);
 void		get_texels_sphere(t_rt *s, t_sphere *sphere);
+void		get_texels_cyl_plan(t_rt *s, t_cylinder *cylinder);
 void		get_texels_cylinder(t_rt *s, t_cylinder *cylinder);
 
 /*
@@ -596,6 +617,14 @@ double		shadow_limited_cone(t_rt *s, t_cone *cone, double k);
 ** shadow_simple_inters.c
 */
 double		shadow_simple_inters(t_rt *s, t_acc *vct, t_acc *eye, double k[2]);
+
+/*
+** skybox.c
+*/
+void		skybox_x(t_rt *s, t_acc *vct);
+void		skybox_y(t_rt *s, t_acc *vct);
+void		skybox_z(t_rt *s, t_acc *vct);
+int		skybox(t_rt *s, t_acc *vct);
 
 /*
 ** specular_light.c
