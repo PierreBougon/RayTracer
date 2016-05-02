@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Sun May  1 19:28:31 2016 bougon_p
+** Last update Mon May  2 16:59:15 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -47,13 +47,16 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
   rt->img = NULL;
   rt->live = true;
   rt->coef_load = (float)rt->height / 100.0f;
+  init_cos_sin(&rt->rotation);
+  init_matrices(&rt->rotation);
   rt->obj = NULL;
   if (argc == 2)
     {
       if ((rt->img = bunny_new_pixelarray(rt->width, rt->height)) == NULL)
 	return (my_puterr("Could not perform bunny_new_pixelarray"));
-      if (load_file(rt, argv[1]) == -1)
-	return (my_puterr("Load : Could not load the scene"), -1);
+      if (load_file(rt, argv[1]) == -1 ||
+	  !(rt->pixel_color = malloc(sizeof(t_color) * rt->opt.aa)))
+	return (-1);
       rt->pos = center_rt(rt);
       fill_pxlarray(rt->img, 0xFF262626);
       live_display(rt);

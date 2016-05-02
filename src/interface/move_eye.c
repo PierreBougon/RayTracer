@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 18:34:07 2016 bougon_p
-** Last update Thu Apr 28 16:29:50 2016 bougon_p
+** Last update Mon May  2 17:08:24 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -22,11 +22,15 @@ void	move_on_wheel(t_data *data, int wheelid, int delta)
   vec.y = 0;
   vec.z = 0;
   if (delta == 1 && wheelid == 1)
-    translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+    translation(&data->rt.rotation, &vec,
+		&data->rt.eye.rot,
+		&data->rt.eye.pos);
   else if (delta == -1 && wheelid == 1)
     {
       vec.x = -300;
-      translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+      translation(&data->rt.rotation,
+		  &vec, &data->rt.eye.rot,
+		  &data->rt.eye.pos);
     }
 }
 
@@ -53,7 +57,8 @@ void	move(t_data *data, const t_bunny_position *mpos)
 	(data->itfc.move.second_pos.x - data->itfc.move.first_pos.x) * 10;
       vec.y =
 	(data->itfc.move.second_pos.y - data->itfc.move.first_pos.y) * 10;
-      translation(&vec, &data->rt.eye.rot, &data->rt.eye.pos);
+      translation(&data->rt.rotation, &vec,
+		  &data->rt.eye.rot, &data->rt.eye.pos);
       data->itfc.move.first_pos = data->itfc.move.second_pos;
     }
 }

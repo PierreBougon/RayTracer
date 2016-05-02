@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:02:53 2016 bougon_p
-** Last update Mon May  2 01:58:31 2016 bougon_p
+** Last update Mon May  2 17:08:59 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -20,7 +20,8 @@ static	void	pos_plane(t_data *data, t_plan *pla)
   pla->pos.x = data->rt.eye.pos.x;
   pla->pos.y = data->rt.eye.pos.y;
   pla->pos.z = data->rt.eye.pos.z;
-  translation_obj(&vec, &data->rt.eye.rot, &pla->pos);
+  translation_obj(&data->rt.rotation,
+		  &vec, &data->rt.eye.rot, &pla->pos);
   pla->rot.x = 0;
   pla->rot.y = 0;
   pla->rot.z = 0;

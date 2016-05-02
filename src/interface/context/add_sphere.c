@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 17:59:29 2016 bougon_p
-** Last update Sun May  1 19:21:22 2016 bougon_p
+** Last update Mon May  2 17:09:18 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -20,7 +20,9 @@ static	void	pos_sphere(t_data *data, t_sphere *sph)
   sph->pos.x = data->rt.eye.pos.x;
   sph->pos.y = data->rt.eye.pos.y;
   sph->pos.z = data->rt.eye.pos.z;
-  translation_obj(&vec, &data->rt.eye.rot, &sph->pos);
+  translation_obj(&data->rt.rotation,
+		  &vec, &data->rt.eye.rot,
+		  &sph->pos);
   sph->rot.x = 0;
   sph->rot.y = 0;
   sph->rot.z = 0;
