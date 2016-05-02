@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:03:56 2016 romain samuel
-** Last update Thu Apr 28 18:53:59 2016 romain samuel
+** Last update Mon May  2 18:04:18 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -85,19 +85,16 @@ int		load_plan_datas4(t_plan *s, t_bunny_ini *ini, char *scope)
   if ((field = bunny_ini_get_field(ini, scope, "tex_type", 0)) == NULL)
     return (my_puterr("load_datas: missing plan tex_type"));
   s->tex_type = my_getnbr((char *)field);
-  if (s->tex_type != IMAGE)
-    {
-      if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
-	return (my_puterr("load_datas: missing plan color1"));
-      s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
-      if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
-	return (my_puterr("load_datas: missing plan color2"));
-      s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
-      if ((field = bunny_ini_get_field(ini, scope, "case_size", 0)) == NULL)
-	return (my_puterr("load_datas: missing plan case_size"));
-      s->case_size = my_getnbr((char *)field);
-    }
-  else
+  if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
+    return (my_puterr("load_datas: missing plan color1"));
+  s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
+  if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
+    return (my_puterr("load_datas: missing plan color2"));
+  s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+  if ((field = bunny_ini_get_field(ini, scope, "case_size", 0)) == NULL)
+    return (my_puterr("load_datas: missing plan case_size"));
+  s->case_size = my_getnbr((char *)field);
+  if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
 	return (my_puterr("load_datas: missing plan texture"));
