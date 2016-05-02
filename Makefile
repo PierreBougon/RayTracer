@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May  1 14:07:17 2016 bougon_p
+## Last update Mon May  2 02:01:53 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -116,6 +116,8 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)context_gen.c \
 			$(ITFC)$(CONTEXT)new_scene.c \
 			$(ITFC)$(CONTEXT)create_scene.c \
+			$(ITFC)$(CONTEXT)basic_plane.c \
+			$(ITFC)$(CONTEXT)basic_wallpaper.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun May  1 02:25:51 2016 bougon_p
-** Last update Sun May  1 19:28:06 2016 bougon_p
+** Last update Mon May  2 01:57:05 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -32,33 +32,6 @@ int	create_scene(t_data *data)
       data->rt.obj = NULL;
       data->click_action = false;
       data->rt.pos = center_rt(&data->rt);
-      printf("JE SUIS LA\n");
-    }
-  else
-    data->click_action = false;
-  return (0);
-}
-
-int	basic_plane(t_data *data)
-{
-  if (data->rt.img != NULL
-      && data->click_action)
-    {
-      printf("CREATE plane\n");
-      data->click_action = false;
-    }
-  else
-    data->click_action = false;
-  return (0);
-}
-
-int	basic_wallpaper(t_data *data)
-{
-  if (data->rt.img != NULL
-      && data->click_action)
-    {
-      printf("CREATE WP\n");
-      data->click_action = false;
     }
   else
     data->click_action = false;
