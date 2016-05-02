@@ -5,16 +5,23 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Tue Apr 19 18:55:27 2016 bougon_p
+** Last update Sat Apr 23 11:19:04 2016 marc brout
 */
 
 #ifndef RAYTRACER_H_
 # define RAYTRACER_H_
 
 /*
-**DEBUG
+** DEBUG
 */
 # include <stdio.h>
+
+/*
+** MACROES
+*/
+# define CARRE(val) ((val) * (val))
+# define RAD(val) (((val) * M_PI) / 180)
+# define DEG(val) (((val) * 180) / M_PI)
 
 /*
 ** WINDOW DEFINES
@@ -245,6 +252,15 @@ typedef struct		s_ftab
   void			(**hit_ftab)(t_rt *, t_object *);
 }			t_ftab;
 
+typedef struct		s_rotation
+{
+  double		cos[360];
+  double		sin[360];
+  double		rotx[3][3];
+  double		roty[3][3];
+  double		rotz[3][3];
+}			t_rotation;
+
 typedef struct		s_rt
 {
   t_bunny_pixelarray	*img;
@@ -258,6 +274,7 @@ typedef struct		s_rt
   t_opt			opt;
   t_eye			eye;
   t_color		final_color;
+  t_rotation		rotation;
   int			width;
   int			height;
   bool			live;
@@ -459,6 +476,15 @@ int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini, char *scope);
 int		load_sphere(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
+** matrices.c
+*/
+void		init_cos_sin(t_rotation *rot);
+void		init_matrices(t_rotation *rot);
+void		set_rotx(t_rotation *rot, int teta);
+void		set_roty(t_rotation *rot, int teta);
+void		set_rotz(t_rotation *rot, int teta);
+
+/*
 ** order_hit_list.c
 */
 int		swap_objs(t_object *it, t_object *it_prev);
@@ -468,11 +494,11 @@ int		order_hit_list(t_object *root);
 /*
 ** rotations.c
 */
-t_acc		*rotate_x(t_acc *vct, double angle);
-t_acc		*rotate_y(t_acc *vct, double angle);
-t_acc		*rotate_z(t_acc *vct, double angle);
-t_acc		*rotation(t_acc *vct, t_pos *rot);
-t_acc		*end_rotation(t_acc *vct, t_pos *rot);
+t_acc		*rotate_x(t_rotation *r, t_acc *vct, int angle);
+t_acc		*rotate_y(t_rotation *r, t_acc *vct, int angle);
+t_acc		*rotate_z(t_rotation *r, t_acc *vct, int angle);
+t_acc		*rotation(t_rotation *r, t_acc *vct, t_pos *rot);
+t_acc		*end_rotation(t_rotation *r, t_acc *vct, t_pos *rot);
 
 /*
 ** set_hit_values.c

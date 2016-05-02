@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Thu Apr 21 22:43:51 2016 bougon_p
+## Last update Sat Apr 23 19:22:04 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -54,6 +54,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)load_light.c \
 			$(ENGINE)load_plan.c \
 			$(ENGINE)load_sphere.c \
+			$(ENGINE)matrices.c \
 			$(ENGINE)order_hit_list.c \
 			$(ENGINE)rotations.c \
 			$(ENGINE)set_hit_values.c \
@@ -143,7 +144,7 @@ IFLAG	=	-Iinclude/
 
 CFLAGS  =	-W -Wall -Wextra
 
-CC      =	gcc $(CFLAGS) $(IFLAG)
+CC      =	gcc -g -pg $(CFLAGS) $(IFLAG)
 
 
 # PROJECT RULES

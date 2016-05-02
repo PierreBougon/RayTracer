@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Tue Apr 19 18:55:01 2016 bougon_p
+** Last update Sat Apr 23 19:55:56 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -84,8 +84,6 @@ int			display(t_rt *s, t_data *data)
   data->ld.nb_coef = 1;
   fill_pxlarray(data->ld.loading, NULL_COLOR);
   data->ld.curr_line = 0;
-  if ((s->pixel_color = malloc(sizeof(t_color) * s->opt.aa)) == NULL)
-    return (my_puterr("display: could not perform malloc"));
   pos.y = 0;
   while (pos.y < 720)
     {
