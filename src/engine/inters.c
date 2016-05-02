@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:31:08 2016 romain samuel
-** Last update Fri Apr 22 16:22:53 2016 marc brout
+** Last update Mon May  2 17:34:10 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -43,6 +43,8 @@ int		inter_sphere(t_rt *s, t_sphere *sphere)
   s->ray.new_eye.x = (double)(s->ray.eye.x - sphere->pos.x);
   s->ray.new_eye.y = (double)(s->ray.eye.y - sphere->pos.y);
   s->ray.new_eye.z = (double)(s->ray.eye.z - sphere->pos.z);
+  rotation(&s->rotation, s->ray.vct, &sphere->rot);
+  rotation(&s->rotation, &s->ray.new_eye, &sphere->rot);
   a = CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y) +
     CARRE(s->ray.vct->z);
   b = 2 * (s->ray.new_eye.x * s->ray.vct->x + s->ray.new_eye.y

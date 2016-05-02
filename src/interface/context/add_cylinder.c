@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:04:18 2016 bougon_p
-** Last update Mon May  2 17:09:59 2016 marc brout
+** Last update Mon May  2 17:39:22 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -51,7 +51,7 @@ static	int	add_cylinder_obj(t_data *data)
   cyl->brightness = 0.0;
   cyl->reflection = 0.0;
   cyl->opacity = 1.0;
-  cyl->color.full = OBJ_COLOR;
+  cyl->color1.full = OBJ_COLOR;
   new->datas = cyl;
   new->type = CYLINDER;
   return (0);

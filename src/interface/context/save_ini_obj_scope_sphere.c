@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 17:08:46 2016 bougon_p
-** Last update Fri Apr 29 22:46:42 2016 bougon_p
+** Last update Mon May  2 18:29:42 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -83,11 +83,14 @@ void		sphere_obj(t_data *data, t_object *obj,
   value = setnbr(sph->tex_type);
   bunny_ini_set_field(ini, scope, "tex_type", 0, value);
   bunny_free(value);
+  value = setnbr(sph->refraction);
+  bunny_ini_set_field(ini, scope, "refraction", 0, value);
+  bunny_free(value);
   value = setnbr(sph->size);
   bunny_ini_set_field(ini, scope, "size", 0, value);
   bunny_free(value);
   sphere_coef(sph, ini, scope);
-  value = put_base(sph->color.full, "0123456789ABCDEF");
+  value = put_base(sph->color1.full, "0123456789ABCDEF");
   bunny_ini_set_field(ini, scope, "color", 0, value);
   bunny_free(value);
 }

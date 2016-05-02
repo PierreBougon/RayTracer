@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:44:39 2016 romain samuel
-** Last update Sun Apr 10 21:13:22 2016 romain samuel
+** Last update Thu Apr 28 18:53:46 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -85,18 +85,24 @@ int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
+  if ((field = bunny_ini_get_field(ini, scope, "refraction", 0)) == NULL)
+    return (my_puterr("load_datas: missing refraction"));
+  s->refraction = atof((char *)field);
   if (s->tex_type != IMAGE)
     {
-      if ((field = bunny_ini_get_field(ini, scope, "color", 0)) == NULL)
-	return (my_puterr("load_datas: missing sphere color"));
-      s->color.full = my_getcolor((char *)field, "0123456789ABCDEF");
+      if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
+	return (my_puterr("load_datas: missing sphere color1"));
+      s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
+      if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
+	return (my_puterr("load_datas: missing sphere color2"));
+      s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
     }
   else
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
 	return (my_puterr("load_datas: missing sphere texture"));
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
-	return (-1);
+	return (my_puterr("load_datas: invalid sphere texture"));
     }
   return (0);
 }
@@ -122,7 +128,8 @@ int		load_sphere(t_rt *rt, t_bunny_ini *ini, char *scope)
   while (it->next != NULL)
     it = it->next;
   it->type = 1;
-  load_sphere_datas(s, ini, scope);
+  if (load_sphere_datas(s, ini, scope) == -1)
+    return (-1);
   it->datas = s;
   return (0);
 }

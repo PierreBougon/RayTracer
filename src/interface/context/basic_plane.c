@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon May  2 01:52:59 2016 bougon_p
-** Last update Mon May  2 02:06:37 2016 bougon_p
+** Last update Mon May  2 18:22:21 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -36,8 +36,9 @@ static	int	add_basplane_obj(t_data *data)
     }
   pos_basplane(pla);
   pla->tex_type = 1;
-  pla->width = 50000;
-  pla->height = 50000;
+  pla->width = 500000;
+  pla->height = 500000;
+  pla->refraction = 1.0;
   pla->ka = 1.0;
   pla->kd = 1.0;
   pla->ks = 1.0;

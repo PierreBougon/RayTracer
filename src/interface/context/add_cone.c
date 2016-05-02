@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:03:39 2016 bougon_p
-** Last update Mon May  2 17:09:46 2016 marc brout
+** Last update Mon May  2 17:39:11 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -51,7 +51,7 @@ static	int	add_cone_obj(t_data *data)
   con->brightness = 0.0;
   con->reflection = 0.0;
   con->opacity = 1.0;
-  con->color.full = OBJ_COLOR;
+  con->color1.full = OBJ_COLOR;
   new->datas = con;
   new->type = CONE;
   return (0);

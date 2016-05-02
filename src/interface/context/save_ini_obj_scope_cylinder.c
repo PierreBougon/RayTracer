@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:18:12 2016 bougon_p
-** Last update Fri Apr 29 22:47:34 2016 bougon_p
+** Last update Mon May  2 18:30:15 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -89,8 +89,11 @@ void		cylinder_obj(t_data *data, t_object *obj,
   value = setnbr(cyl->height);
   bunny_ini_set_field(ini, scope, "height", 0, value);
   bunny_free(value);
+  value = setnbr(cyl->refraction);
+  bunny_ini_set_field(ini, scope, "refraction", 0, value);
+  bunny_free(value);
   cylinder_coef(cyl, ini, scope);
-  value = put_base(cyl->color.full, "0123456789ABCDEF");
+  value = put_base(cyl->color1.full, "0123456789ABCDEF");
   bunny_ini_set_field(ini, scope, "color", 0, value);
   bunny_free(value);
 }

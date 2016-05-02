@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Mon May  2 17:05:47 2016 marc brout
+** Last update Mon May  2 17:31:02 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -44,10 +44,13 @@
 ** TEXTURE DEFINES
 */
 # define FULL 1
-# define PERLIN_NOISE 2
-# define MARBLE_NOISE 3
-# define WOOD_NOISE 4
-# define IMAGE 5
+# define STRIPES 2
+# define CHECKBOARD_2D 3
+# define PLANAR_CHECKBOARD 4
+# define CHECKBOARD_3D 5
+# define PERLIN_NOISE 6
+# define MARBLE_NOISE 7
+# define IMAGE 8
 
 # define NB_OBJ 5
 
@@ -91,6 +94,22 @@ typedef struct		s_acc
   float			z;
 }			t_acc;
 
+typedef struct		s_fresnel
+{
+  double		cos_theta1;
+  double		cos_theta2;
+  double		sin_theta1;
+  double		sin_theta2;
+  double		reflectance_ortho;
+  double		reflectance_paral;
+  double		reflectance;
+  double		transmittance;
+  double		n1;
+  double		n2;
+  t_acc			reflection_vct;
+  t_acc			refraction_vct;
+}			t_fresnel;
+
 typedef struct		s_plan
 {
   t_pos			pos;
@@ -106,6 +125,7 @@ typedef struct		s_plan
   double		brightness;
   double		reflection;
   double		opacity;
+  double		refraction;
   t_color		color1;
   t_color		color2;
   t_bunny_pixelarray	*texture;
@@ -114,6 +134,9 @@ typedef struct		s_plan
   t_acc			simple_inter2;
   t_acc			simple_inter1;
   t_acc			norm;
+  t_fresnel		fresnel;
+  double		n1;
+  double		n2;
 }			t_plan;
 
 typedef struct		s_sphere
@@ -129,13 +152,18 @@ typedef struct		s_sphere
   double		brightness;
   double		reflection;
   double		opacity;
-  t_color		color;
+  double		refraction;
+  t_color		color1;
+  t_color		color2;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
   t_acc			simple_inter2;
   t_acc			simple_inter1;
   t_acc			norm;
+  t_fresnel		fresnel;
+  double		n1;
+  double		n2;
 }			t_sphere;
 
 typedef struct		s_cone
@@ -152,14 +180,20 @@ typedef struct		s_cone
   double		brightness;
   double		reflection;
   double		opacity;
-  t_color		color;
-  t_bunny_pixelarray	*texture;
+  double		refraction;
+  t_color		color1;
+  t_color		color2;
+  t_bunny_pixelarray	*texture1;
+  t_bunny_pixelarray	*texture2;
   double		k1;
   double		k2;
   t_acc			simple_inter2;
   t_acc			simple_inter1;
   t_acc			norm;
   int			limited;
+  t_fresnel		fresnel;
+  double		n1;
+  double		n2;
 }			t_cone;
 
 typedef struct		s_cylinder
@@ -176,14 +210,20 @@ typedef struct		s_cylinder
   double		brightness;
   double		reflection;
   double		opacity;
-  t_color		color;
-  t_bunny_pixelarray	*texture;
+  double		refraction;
+  t_color		color1;
+  t_color		color2;
+  t_bunny_pixelarray	*texture1;
+  t_bunny_pixelarray	*texture2;
   double		k1;
   double		k2;
   t_acc			simple_inter2;
   t_acc			simple_inter1;
   t_acc			norm;
   int			limited;
+  t_fresnel		fresnel;
+  double		n1;
+  double		n2;
 }			t_cylinder;
 
 typedef struct		s_light
@@ -212,7 +252,16 @@ typedef struct		s_eye
 typedef struct		s_opt
 {
   double		ambient;
+  double		ambient_refraction;
   int			aa;
+  int			cubemap;
+  t_bunny_pixelarray	*texture;
+  t_bunny_pixelarray	*skybox_right;
+  t_bunny_pixelarray	*skybox_left;
+  t_bunny_pixelarray	*skybox_up;
+  t_bunny_pixelarray	*skybox_down;
+  t_bunny_pixelarray	*skybox_forward;
+  t_bunny_pixelarray	*skybox_backward;
 }			t_opt;
 
 typedef struct		s_ray
@@ -238,13 +287,30 @@ typedef struct		s_hit
   double		ks;
   double		kd;
   int			limited;
+  double		reflection;
+  t_fresnel		fresnel;
+  double		n1;
+  double		n2;
+  double		opacity;
+  int			tex_type;
+  t_bunny_pixelarray	*texture1;
+  t_bunny_pixelarray	*texture2;
+  t_acc			texels;
+  t_color		color1;
+  t_color		color2;
 }			t_hit;
 
 typedef struct		s_shadow
 {
   t_acc			simple_inter1;
   t_acc			simple_inter2;
+  double		coef;
 }			t_shadow;
+
+typedef struct		s_noise
+{
+  int			p[512];
+}			t_noise;
 
 typedef struct		s_shade
 {
@@ -264,6 +330,7 @@ typedef struct		s_ftab
   int			(**inters_ftab)(t_rt *, t_object *);
   int			(**shadow_ftab)(t_rt *, t_object *);
   void			(**hit_ftab)(t_rt *, t_object *);
+  void			(**tex_ftab)(t_rt *);
 }			t_ftab;
 
 typedef struct		s_rotation
@@ -292,6 +359,7 @@ typedef struct		s_rt
   int			width;
   int			height;
   bool			live;
+  int			rec;
   float			coef_load;
   int			nb_coef;
   t_bunny_position	pos;
@@ -359,6 +427,14 @@ t_color		antialiasing(t_rt *s,
 			     t_color *color);
 
 /*
+** checkerboards.c
+*/
+void		stripes(t_rt *s);
+void		checkerboard_2d(t_rt *s);
+void		planar_checkerboard(t_rt *s);
+void		checkerboard_3d(t_rt *s);
+
+/*
 ** clear_list.c
 */
 int		clear_list(t_object *root);
@@ -366,6 +442,9 @@ int		clear_list(t_object *root);
 /*
 ** color_operations.c
 */
+t_color		compute_colors(t_color color1,
+			       t_color color2,
+			       double coef);
 t_color		add_light_color(t_color color,
 				t_color second_color);
 t_color		apply_b(t_color color,
@@ -390,7 +469,7 @@ double		diffuse_light(t_rt *s, t_object *it);
 ** display.c
 */
 int		inter_objects(t_rt *s);
-t_color		display_objects(t_rt *s, t_acc *vct, t_acc eye, int rec);
+t_color		display_objects(t_rt *s, t_acc *vct, t_acc eye);
 int		display(t_rt *s, t_data *data);
 
 /*
@@ -410,9 +489,32 @@ void		get_norm_cylinder(t_rt *s, t_cylinder *cylinder);
 void		get_norm_cone(t_rt *s, t_cone *cone);
 
 /*
+** get_refracted_vec.c
+*/
+t_fresnel	get_refracted_vec(t_rt *s, t_acc *norm, double n1, double n2);
+
+/*
 ** get_simple_inters.c
 */
 int		get_simple_inter(t_rt *s, t_acc *vct, t_acc *eye);
+
+/*
+** get_skybox_sides.c
+*/
+t_bunny_pixelarray	*get_skybox_side_0(t_bunny_pixelarray *img,
+					   t_bunny_position *start,
+					   t_bunny_position *end,
+					   t_bunny_position *size);
+int			get_skybox_sides(t_rt *s, t_bunny_pixelarray *img);
+
+/*
+** get_texels.c
+*/
+void		get_texels_plan(t_rt *s, t_plan *plan);
+void		get_texels_sphere(t_rt *s, t_sphere *sphere);
+void		get_texels_cyl_plan(t_rt *s, t_cylinder *cylinder);
+void		get_texels_cylinder(t_rt *s, t_cylinder *cylinder);
+
 /*
 ** init_shade.c
 */
@@ -438,6 +540,11 @@ int		get_cylinder_plan_inter2(t_rt *s, t_cylinder *cylinder);
 int		get_cone_plan_inter(t_rt *s, t_cone *cone);
 int		limited_cylinder(t_rt *s, t_cylinder *cylinder);
 int		limited_cone(t_rt *s, t_cone *cone);
+
+/*
+** limited_plan.c
+*/
+int		limited_plan(t_rt *s, t_plan *plan);
 
 /*
 ** load_cone.c
@@ -490,6 +597,7 @@ int		load_plan_datas(t_plan *s,
 				char *scope);
 int		load_plan_datas2(t_plan *s, t_bunny_ini *ini, char *scope);
 int		load_plan_datas3(t_plan *s, t_bunny_ini *ini, char *scope);
+int		load_plan_datas4(t_plan *s, t_bunny_ini *ini, char *scope);
 int		load_plan(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
@@ -502,6 +610,12 @@ int		load_sphere_datas2(t_sphere *s, t_bunny_ini *ini, char *scope);
 int		load_sphere_datas3(t_sphere *s, t_bunny_ini *ini, char *scope);
 int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini, char *scope);
 int		load_sphere(t_rt *rt, t_bunny_ini *ini, char *scope);
+
+/*
+** noise_textures.c
+*/
+void		smooth_noise(t_rt *s);
+void		marble_noise(t_rt *s);
 
 /*
 ** matrices.c
@@ -580,9 +694,24 @@ double		shadow_limited_cone(t_rt *s, t_cone *cone, double k);
 double		shadow_simple_inters(t_rt *s, t_acc *vct, t_acc *eye, double k[2]);
 
 /*
+** skybox.c
+*/
+void		skybox_x(t_rt *s, t_acc *vct);
+void		skybox_y(t_rt *s, t_acc *vct);
+void		skybox_z(t_rt *s, t_acc *vct);
+int		skybox(t_rt *s, t_acc *vct);
+
+/*
 ** specular_light.c
 */
 double		specular_light(t_rt *s, t_acc *vision);
+
+/*
+** texturize_obj.c
+*/
+void		full_color(t_rt *s);
+void		get_image_texel(t_rt *s);
+int		texturize_obj(t_rt *s);
 
 /*
 ** TOOLS

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:03:56 2016 romain samuel
-** Last update Sun Apr 10 21:13:07 2016 romain samuel
+** Last update Thu Apr 28 18:53:59 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -72,10 +72,20 @@ int		load_plan_datas3(t_plan *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
+  if ((field = bunny_ini_get_field(ini, scope, "refraction", 0)) == NULL)
+    return (my_puterr("load_datas: missing refraction"));
+  s->refraction = atof((char *)field);
+  return (load_plan_datas4(s, ini, scope));
+}
+
+int		load_plan_datas4(t_plan *s, t_bunny_ini *ini, char *scope)
+{
+  const char	*field;
+
   if ((field = bunny_ini_get_field(ini, scope, "tex_type", 0)) == NULL)
     return (my_puterr("load_datas: missing plan tex_type"));
   s->tex_type = my_getnbr((char *)field);
-  if (s->tex_type != 5)
+  if (s->tex_type != IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
 	return (my_puterr("load_datas: missing plan color1"));
@@ -92,7 +102,7 @@ int		load_plan_datas3(t_plan *s, t_bunny_ini *ini, char *scope)
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
 	return (my_puterr("load_datas: missing plan texture"));
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
-	return (-1);
+	return (my_puterr("load_datas: invalid plan texture"));
     }
   return (0);
 }
@@ -118,7 +128,8 @@ int		load_plan(t_rt *rt, t_bunny_ini *ini, char *scope)
   while (it->next != NULL)
     it = it->next;
   it->type = 4;
-  load_plan_datas(s, ini, scope);
+  if (load_plan_datas(s, ini, scope) == -1)
+    return (-1);
   it->datas = s;
   return (0);
 }

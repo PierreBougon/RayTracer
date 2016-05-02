@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:17:52 2016 bougon_p
-** Last update Sat Apr 30 14:48:21 2016 bougon_p
+** Last update Mon May  2 18:30:03 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -90,8 +90,11 @@ void		cone_obj(t_data *data, t_object *obj,
   value = setnbr(con->height);
   bunny_ini_set_field(ini, scope, "height", 0, value);
   bunny_free(value);
+  value = setnbr(con->refraction);
+  bunny_ini_set_field(ini, scope, "refraction", 0, value);
+  bunny_free(value);
   cone_coef(con, ini, scope);
-  value = put_base(con->color.full, "0123456789ABCDEF");
+  value = put_base(con->color1.full, "0123456789ABCDEF");
   bunny_ini_set_field(ini, scope, "color", 0, value);
   bunny_free(value);
 }

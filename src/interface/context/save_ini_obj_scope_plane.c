@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:18:29 2016 bougon_p
-** Last update Sat Apr 30 15:41:56 2016 bougon_p
+** Last update Mon May  2 18:30:48 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -93,6 +93,9 @@ void		plane_obj(t_data *data, t_object *obj,
   bunny_ini_set_field(ini, scope, "color1", 0, value);
   bunny_free(value);
   value = put_base(pla->color2.full, "0123456789ABCDEF");
+  value = setnbr(pla->refraction);
+  bunny_ini_set_field(ini, scope, "refraction", 0, value);
+  bunny_free(value);
   bunny_ini_set_field(ini, scope, "color2", 0, value);
   bunny_free(value);
 }

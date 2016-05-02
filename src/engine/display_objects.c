@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
-** Last update Fri Apr 22 16:20:44 2016 marc brout
+** Last update Mon May  2 17:50:59 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -19,7 +19,10 @@ int		display_sphere(t_rt *s, t_object *obj)
   inter_sphere(s, shape);
   if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
     {
+      end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+      end_rotation(&s->rotation, &s->hit.simple_inter1, &shape->rot);
       get_norm_sphere(s);
+      rotation(&s->rotation, &s->hit.simple_inter1, &shape->rot);
       shape->simple_inter1 = s->hit.simple_inter1;
       shape->simple_inter2 = s->hit.simple_inter2;
       shape->k1 = s->hit.k1;
@@ -93,14 +96,17 @@ int		display_plan(t_rt *s, t_object *obj)
   inter_plan(s, shape);
   if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
     {
-      end_rotation(&s->rotation, s->ray.vct, &shape->rot);
-      get_norm_plan(s, shape);
-      shape->simple_inter1 = s->hit.simple_inter1;
-      shape->simple_inter2 = s->hit.simple_inter2;
-      shape->k1 = s->hit.k1;
-      shape->k2 = s->hit.k2;
-      shape->norm = s->hit.norm;
-      update_hit_list(s, shape, 4, s->hit.k1);
+      if (limited_plan(s, shape) == 0)
+	{
+	  end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+	  get_norm_plan(s, shape);
+	  shape->simple_inter1 = s->hit.simple_inter1;
+	  shape->simple_inter2 = s->hit.simple_inter2;
+	  shape->k1 = s->hit.k1;
+	  shape->k2 = s->hit.k2;
+	  shape->norm = s->hit.norm;
+	  update_hit_list(s, shape, 4, s->hit.k1);
+	}
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &shape->rot);

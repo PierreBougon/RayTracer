@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 17:59:29 2016 bougon_p
-** Last update Mon May  2 17:09:18 2016 marc brout
+** Last update Mon May  2 17:38:45 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -51,7 +51,7 @@ static	int	add_sphere_obj(t_data *data)
   sph->brightness = 0.0;
   sph->reflection = 0.0;
   sph->opacity = 1.0;
-  sph->color.full = OBJ_COLOR;
+  sph->color1.full = OBJ_COLOR;
   new->datas = sph;
   new->type = SPHERE;
   return (0);

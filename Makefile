@@ -1,11 +1,11 @@
 ##
 ## Makefile for RT in /home/bougon_p/rendu/gfx_raytracer2
-## 
+##
 ## Made by bougon_p
 ## Login   <bougon_p@epitech.net>
-## 
+##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Mon May  2 17:13:49 2016 bougon_p
+## Last update Mon May  2 18:04:58 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -43,6 +43,7 @@ SRC		=	$(MAIN)main.c \
 			$(MAIN)tekpixel.c \
 			$(MAIN)fill_pxlarray.c \
 			$(ENGINE)antialiasing.c \
+			$(ENGINE)checkerboards.c \
 			$(ENGINE)translation.c \
 			$(ENGINE)clear_list.c \
 			$(ENGINE)color_operations.c \
@@ -51,18 +52,24 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)display.c \
 			$(ENGINE)display_objects.c \
 			$(ENGINE)get_norm.c \
+			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
+			$(ENGINE)get_skybox_sides.c \
+			$(ENGINE)get_texels.c \
 			$(ENGINE)init_shade.c \
 			$(ENGINE)inters.c \
 			$(ENGINE)limited_objects.c \
+			$(ENGINE)limited_plan.c \
 			$(ENGINE)load_cone.c \
 			$(ENGINE)load_cylinder.c \
 			$(ENGINE)load_file.c \
 			$(ENGINE)load_light.c \
 			$(ENGINE)load_plan.c \
 			$(ENGINE)load_sphere.c \
+			$(ENGINE)noise_textures.c \
 			$(ENGINE)matrices.c \
 			$(ENGINE)order_hit_list.c \
+			$(ENGINE)perlin.c \
 			$(ENGINE)rotations.c \
 			$(ENGINE)set_hit_values.c \
 			$(ENGINE)shade.c \
@@ -70,9 +77,11 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)shadow_inters.c \
 			$(ENGINE)shadow_limited_objects.c \
 			$(ENGINE)shadow_simple_inters.c \
+			$(ENGINE)skybox.c \
 			$(ENGINE)specular_light.c \
 			$(ENGINE)update_hit_list.c \
 			$(ENGINE)update_real_hit_list.c \
+			$(ENGINE)texturize_obj.c \
 			$(LIVE_ENGINE)display.c \
 			$(LIVE_ENGINE)live_shade.c \
 			$(ITFC)init_itfc.c \
@@ -178,10 +187,10 @@ IFLAG	=	-Iinclude/
 CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
 
 ifeq ($(DEBUG),yes)
-CFLAGS	+=	-g
+CFLAGS	+=	-g -pg
 endif
 
-CC      =	gcc -g -pg $(CFLAGS) $(IFLAG)
+CC      =	gcc $(CFLAGS) $(IFLAG)
 
 
 # PROJECT RULES

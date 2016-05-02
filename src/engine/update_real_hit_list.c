@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 19 15:11:57 2016 romain samuel
-** Last update Tue Apr 19 15:26:38 2016 romain samuel
+** Last update Tue Apr 19 18:24:00 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -23,6 +23,7 @@ int		update_real_hit_list(t_rt *s)
     it->real = 1;
   return (0);
 }
+
 
 int		delete_false_hit_objects(t_rt *s)
 {

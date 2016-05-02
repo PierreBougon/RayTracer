@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Mon May  2 17:00:48 2016 marc brout
+** Last update Mon May  2 17:30:32 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -21,8 +21,8 @@ int			inter_objects(t_rt *s)
   it = s->obj;
   while (it != NULL)
     {
-      s->hit.k1 = 0;
-      s->hit.k2 = 0;
+      s->hit.k1 = 0.0;
+      s->hit.k2 = 0.0;
       if (it->type < 5)
 	s->ftabs.inters_ftab[it->type - 1](s, it);
       it = it->next;
@@ -30,12 +30,15 @@ int			inter_objects(t_rt *s)
   return (0);
 }
 
-t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye, int rec)
+t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye)
 {
   t_color		color;
 
-  if (rec == 2)
-    return (s->final_color);
+  if (s->rec == 2)
+    {
+      s->rec = 0;
+      return (s->final_color);
+    }
   s->ray.eye = eye;
   s->ray.vct = vct;
   inter_objects(s);
@@ -47,7 +50,9 @@ t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye, int rec)
       color = s->final_color;
     }
   else
-    color.full = BLACK;
+    /* skybox(s, vct); */
+    s->final_color.full = BLACK;
+  color = s->final_color;
   s->obj_hit = NULL;
   return (color);
 }
@@ -87,6 +92,7 @@ int			display(t_rt *s, t_data *data)
       pos.x = 0;
       while (pos.x < s->width)
 	{
+	  s->rec = 0;
 	  final_color = antialiasing(s, &pos, &vct, s->pixel_color);
 	  tekpixel(s->img, &pos, &final_color);
 	  pos.x++;
