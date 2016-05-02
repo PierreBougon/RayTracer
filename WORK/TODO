@@ -1,12 +1,14 @@
 # PhotoShop
-
-Spot color
-cylider -> cylinder
+Spot color ?
 
 # INTERFACE
 
-Coder les OPT en premier : mouse / move / rotate / render / live
-Refaire la répartitions dans les fichiers
-STATUS LIVE / RENDER
-Bien gérer les différents status et clarifier chaque fonctions
-Commenter les fonctions de check
+Fonction select OBJ
+Faire les hitbox de chaque  context -> en cours
+Delete item
+Faire effet BT
+
+/!\ CREATE ITEM -> CREER la liste quand elle existe pas !  
+
+# EXTRA FCT
+save bmp

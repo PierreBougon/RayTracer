@@ -5,16 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 21:56:02 2016 bougon_p
-** Last update Fri Apr 15 22:07:41 2016 bougon_p
+** Last update Sun May  1 01:17:41 2016 bougon_p
 */
 
 #include "raytracer.h"
-
-int	new_scene(UNUSED t_data *data)
-{
-  printf("FCT => NEW SCENE\n");
-  return (0);
-}
 
 int	filters(UNUSED t_data *data)
 {

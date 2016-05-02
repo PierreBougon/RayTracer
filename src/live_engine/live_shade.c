@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 19 11:35:43 2016 romain samuel
-** Last update Tue Apr 19 12:27:03 2016 romain samuel
+** Last update Tue Apr 19 15:57:27 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -28,6 +28,7 @@ int		live_shade(t_rt *s, t_acc *vct, t_acc eye)
 	  light = (t_light *)it->datas;
 	  init_lum(s, vct, eye, light);
 	  i += diffuse_light(s, s->obj_hit->next) * light->intensity * s->hit.kd;
+	  /* i = 1; */
 	}
       it = it->next;
     }

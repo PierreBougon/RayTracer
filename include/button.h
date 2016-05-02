@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 21:09:55 2016 bougon_p
-** Last update Mon Apr 18 20:30:04 2016 bougon_p
+** Last update Sun May  1 19:13:58 2016 bougon_p
 */
 
 #ifndef BUTTON_H_
@@ -33,5 +33,24 @@
 # define OPT_HGT 62
 
 # define NB_BUTTON 19
+
+# define ADD_BT_X 145
+# define ADD_BT_Y 200
+# define ADD_BT_WDT 215
+# define ADD_BT_HGT 60
+# define ADD_BT_DECAL 25
+# define NB_ADD_BT 7
+
+# define NEW_BT_X 145
+# define NEW_BT_Y 335
+# define NEW_BT_WDT 215
+# define NEW_BT_HGT 80
+# define NEW_BT_X_FIRST 160
+# define NEW_BT_Y_FIRST 180
+# define NEW_BT_WDT_FIRST 220
+# define NEW_BT_HGT_FIRST 100
+# define NEW_BT_DECAL 60
+# define NB_NEW_BT 3
+
 
 #endif /* !BUTTON_H_ */

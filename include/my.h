@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Thu Oct  8 11:23:34 2015 marc brout
-** Last update Wed Apr 13 21:37:23 2016 bougon_p
+** Last update Thu Apr 28 21:58:07 2016 bougon_p
 */
 
 #ifndef MY_H_
@@ -57,7 +57,7 @@ int		my_strncmp(char *, char *, int);
 char		*my_strcat(char *, char *);
 char		*my_strcpy(char *, char *);
 char		**my_dup_tab(char **);
-char		*my_realloc(char *, size_t);
+char		*myrealloc(char *, size_t);
 char		**my_realloc_tab(char **, int);
 void		*my_bzero(void *, size_t);
 bool		is_alpha_num(char *);

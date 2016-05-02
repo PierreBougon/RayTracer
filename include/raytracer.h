@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Mon May  2 15:54:52 2016 romain samuel
+** Last update Mon May  2 17:31:02 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -17,12 +17,28 @@
 # include <stdio.h>
 
 /*
+** MACROES
+*/
+# define CARRE(val) ((val) * (val))
+# define RAD(val) (((val) * M_PI) / 180)
+# define DEG(val) (((val) * 180) / M_PI)
+
+/*
 ** WINDOW DEFINES
 */
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define INIT_WIDTH 720
 # define INIT_HEIGHT 720
+# define FULL_WIDTH 1450
+# define FULL_HEIGHT 920
+
+/*
+** COLOR DEFINES
+*/
+# define NULL_COLOR 0x00000000
+# define BLUE_LOAD 0xFF5C5540
+# define OBJ_COLOR 0xFFFFF020
 
 /*
 ** TEXTURE DEFINES
@@ -36,6 +52,8 @@
 # define MARBLE_NOISE 7
 # define IMAGE 8
 
+# define NB_OBJ 5
+
 /*
 ** includes
 */
@@ -46,6 +64,16 @@
 # include <time.h>
 # include "my.h"
 # include "interface.h"
+# include "live_engine.h"
+
+typedef enum	e_obj
+  {
+    SPHERE	= 1,
+    CYLINDER	= 2,
+    CONE	= 3,
+    PLANE	= 4,
+    LIGHT	= 5
+  }		t_obj;
 
 /*
 ** structures
@@ -305,6 +333,15 @@ typedef struct		s_ftab
   void			(**tex_ftab)(t_rt *);
 }			t_ftab;
 
+typedef struct		s_rotation
+{
+  double		cos[360];
+  double		sin[360];
+  double		rotx[3][3];
+  double		roty[3][3];
+  double		rotz[3][3];
+}			t_rotation;
+
 typedef struct		s_rt
 {
   t_bunny_pixelarray	*img;
@@ -318,11 +355,25 @@ typedef struct		s_rt
   t_opt			opt;
   t_eye			eye;
   t_color		final_color;
+  t_rotation		rotation;
   int			width;
   int			height;
   bool			live;
   int			rec;
+  float			coef_load;
+  int			nb_coef;
+  t_bunny_position	pos;
 }			t_rt;
+
+typedef	struct		s_loading
+{
+  t_bunny_position	pos;
+  t_bunny_pixelarray	*loading;
+  int			curr_line;
+  int			nb_coef;
+  float			coef_load;
+  int			save_width;
+}			t_loading;
 
 typedef struct		s_data
 {
@@ -331,15 +382,22 @@ typedef struct		s_data
   t_bunny_window	*win;
   t_bunny_event_state	mstate;
   t_bunny_mousebutton	mbutton;
+  bool			wait_click;
+  bool			click_action;
+  t_loading		ld;
 }			t_data;
 
 /*
 ** Init
 */
-int	init_main_data(t_data *);
-int	init_rt_data(t_rt *, int, char **);
-int	init_itfc_data(t_itfc *, int);
-int	init_engine_ftabs(t_ftab *ftabs);
+int			init_main_data(t_data *);
+int			init_rt_data(t_rt *, int, char **);
+int			init_itfc_data(t_itfc *, int);
+int			init_engine_ftabs(t_ftab *ftabs);
+t_bunny_position	center_rt(t_rt *);
+char			*setnbr(int);
+char			*setunsnbr(unsigned int);
+char			*put_base(unsigned int, char *);
 
 /*
 ** Blit
@@ -349,8 +407,15 @@ void	blit_clipables(t_data *);
 /*
 ** Free
 */
+void	free_all(t_data *);
+void	free_tab(char **);
 void	delete_all_clipables(t_data *);
 
+/*
+** Translation
+*/
+void	translation(t_rotation *r, t_acc *vec, t_pos *rot, t_acc *pos);
+void	translation_obj(t_rotation *r, t_acc *vec, t_pos *rot, t_pos *pos);
 
 /*
 ** antialiasing.c
@@ -392,6 +457,7 @@ t_color		apply_b(t_color color,
 */
 t_object	*create_obj_list();
 int		add_obj_elem(t_object *root);
+t_object	*add_obj_elem_ret(t_object *root);
 
 /*
 ** diffuse_light.c
@@ -404,7 +470,7 @@ double		diffuse_light(t_rt *s, t_object *it);
 */
 int		inter_objects(t_rt *s);
 t_color		display_objects(t_rt *s, t_acc *vct, t_acc eye);
-int		display(t_rt *s);
+int		display(t_rt *s, t_data *data);
 
 /*
 ** display_objects.c
@@ -552,6 +618,15 @@ void		smooth_noise(t_rt *s);
 void		marble_noise(t_rt *s);
 
 /*
+** matrices.c
+*/
+void		init_cos_sin(t_rotation *rot);
+void		init_matrices(t_rotation *rot);
+void		set_rotx(t_rotation *rot, int teta);
+void		set_roty(t_rotation *rot, int teta);
+void		set_rotz(t_rotation *rot, int teta);
+
+/*
 ** order_hit_list.c
 */
 int		swap_objs(t_object *it, t_object *it_prev);
@@ -561,11 +636,11 @@ int		order_hit_list(t_object *root);
 /*
 ** rotations.c
 */
-t_acc		*rotate_x(t_acc *vct, double angle);
-t_acc		*rotate_y(t_acc *vct, double angle);
-t_acc		*rotate_z(t_acc *vct, double angle);
-t_acc		*rotation(t_acc *vct, t_pos *rot);
-t_acc		*end_rotation(t_acc *vct, t_pos *rot);
+t_acc		*rotate_x(t_rotation *r, t_acc *vct, int angle);
+t_acc		*rotate_y(t_rotation *r, t_acc *vct, int angle);
+t_acc		*rotate_z(t_rotation *r, t_acc *vct, int angle);
+t_acc		*rotation(t_rotation *r, t_acc *vct, t_pos *rot);
+t_acc		*end_rotation(t_rotation *r, t_acc *vct, t_pos *rot);
 
 /*
 ** set_hit_values.c
@@ -644,8 +719,14 @@ int		texturize_obj(t_rt *s);
 void		tekpixel(t_bunny_pixelarray *pix,
 			 t_bunny_position *pos,
 			 t_color *color);
+void		mult_tekpixel(t_bunny_pixelarray *pix,
+			 t_bunny_position *pos,
+			 t_color *color);
 void		fill_pxlarray(t_bunny_pixelarray *pxar,
 			     unsigned int color);
+int		fill_next_lines(t_bunny_pixelarray *pxar,
+				unsigned int color,
+				int line, int nb_line);
 
 /*
 ** update_hit_list.c

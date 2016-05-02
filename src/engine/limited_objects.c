@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 14 16:26:45 2016 romain samuel
-** Last update Thu Apr 28 19:10:01 2016 romain samuel
+** Last update Mon May  2 17:17:23 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -18,7 +18,7 @@ int		get_cylinder_plan_inter1(t_rt *s, t_cylinder *cylinder)
   pos.x = 0;
   pos.y = 0;
   pos.z = cylinder->height;
-  end_rotation(&pos, &cylinder->rot);
+  end_rotation(&s->rotation, &pos, &cylinder->rot);
   plan.pos.x = cylinder->pos.x + pos.x;
   plan.pos.y = cylinder->pos.y + pos.y;
   plan.pos.z = cylinder->pos.z + pos.y;
@@ -27,7 +27,7 @@ int		get_cylinder_plan_inter1(t_rt *s, t_cylinder *cylinder)
   plan.rot.z = cylinder->rot.z;
   inter_plan(s, &plan);
   get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
-  end_rotation(s->ray.vct, &plan.rot);
+  end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan);
   s->hit.limited = 1;
   return (0);
@@ -41,7 +41,7 @@ int		get_cylinder_plan_inter2(t_rt *s, t_cylinder *cylinder)
   pos.x = 0;
   pos.y = 0;
   pos.z = - cylinder->height;
-  end_rotation(&pos, &cylinder->rot);
+  end_rotation(&s->rotation, &pos, &cylinder->rot);
   plan.pos.x = cylinder->pos.x + pos.x;
   plan.pos.y = cylinder->pos.y + pos.y;
   plan.pos.z = cylinder->pos.z + pos.y;
@@ -50,7 +50,7 @@ int		get_cylinder_plan_inter2(t_rt *s, t_cylinder *cylinder)
   plan.rot.z = cylinder->rot.z;
   inter_plan(s, &plan);
   get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
-  end_rotation(s->ray.vct, &plan.rot);
+  end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan);
   s->hit.limited = 1;
   return (0);
@@ -79,7 +79,7 @@ int		get_cone_plan_inter(t_rt *s, t_cone *cone)
   pos.x = 0;
   pos.y = 0;
   pos.z = - cone->height;
-  end_rotation(&pos, &cone->rot);
+  end_rotation(&s->rotation, &pos, &cone->rot);
   plan.pos.x = cone->pos.x + pos.x;
   plan.pos.y = cone->pos.y + pos.y;
   plan.pos.z = cone->pos.z + pos.y;
@@ -88,7 +88,7 @@ int		get_cone_plan_inter(t_rt *s, t_cone *cone)
   plan.rot.z = cone->rot.z;
   inter_plan(s, &plan);
   get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
-  end_rotation(s->ray.vct, &plan.rot);
+  end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan);
   s->hit.limited = 1;
   return (0);

@@ -5,16 +5,20 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 15:51:45 2016 bougon_p
-** Last update Tue Apr 19 00:59:48 2016 bougon_p
+** Last update Wed Apr 27 18:48:04 2016 bougon_p
 */
 
 #include "raytracer.h"
 
 /*
 ** This fonction is called from the main loop
-** It has actually no actions from main loop for
-** the interface it's just reday to code
+** Redirect into the right function which need to be called
+** Every loop.
 */
+int	nothing_selected(UNUSED t_data *data)
+{
+  return (0);
+}
 
 void	check_status_selected(t_data *data)
 {
@@ -25,23 +29,36 @@ void	check_status_selected(t_data *data)
     }
   else if (data->itfc.status == S_MOVE)
     {
-      printf("STATUS -> MOVE\n");
+      /* printf("STATUS -> MOVE\n"); */
       if (data->itfc.left_click)
 	move_eye(data);
     }
   else if (data->itfc.status == S_ROTATE)
     {
-      printf("STATUS -> ROTATE\n");
+      /* printf("STATUS -> ROTATE\n"); */
       if (data->itfc.left_click)
 	rotate_eye(data);
     }
 }
 
-int	interface(UNUSED t_data *data)
+int	interface(t_data *data)
 {
+  data->itfc.live = data->rt.live;
   check_status_selected(data);
+  if (data->itfc.button[SAVE])
+    data->itfc.save.fct_save[data->itfc.save.save_state](data);
+  else if (data->itfc.button[OPEN])
+    if (f_open_file(data) == 1)
+      return (1);
+  if (data->itfc.button[NO_BUTTON])
+    data->itfc.fct_bt_context = nothing_selected;
+  if (data->itfc.fct_bt_context(data) == 1)
+    return (1);
+  /*
+  ** DEBUG
+  */
+
   /* debug_tabbool(data->itfc.button); */
-  /* check_button_activated(&data->itfc, data); */
   /* printf("STATUS => %d\n", data->itfc.status); */
   return (0);
 }
