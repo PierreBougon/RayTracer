@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 15:55:32 2016 romain samuel
-** Last update Sun Apr 10 14:16:16 2016 romain samuel
+** Last update Wed Apr 27 18:39:40 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -35,4 +35,20 @@ int		add_obj_elem(t_object *root)
   new->prev = it;
   new->next = NULL;
   return (0);
+}
+
+t_object		*add_obj_elem_ret(t_object *root)
+{
+  t_object	*it;
+  t_object	*new;
+
+  it = root;
+  while (it->next != NULL)
+    it = it->next;
+  if ((new = malloc(sizeof(t_object))) == NULL)
+    return (my_puterror("could not peform bunny_malloc"));
+  it->next = new;
+  new->prev = it;
+  new->next = NULL;
+  return (new);
 }

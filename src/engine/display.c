@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Sat Apr 23 19:55:56 2016 marc brout
+** Last update Mon May  2 17:00:48 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -57,9 +57,7 @@ void	prerender(t_rt *rt, int y, t_data *data)
   if (y % (int)rt->coef_load == 0)
     {
       data->ld.save_width = data->ld.loading->clipable.clip_width;
-      data->ld.curr_line =
-	fill_next_lines(data->ld.loading,
-		       BLUE_LOAD, data->ld.curr_line, LOADING_COEF);
+      data->ld.curr_line += LOADING_COEF;
       data->ld.loading->clipable.clip_width = data->ld.curr_line;
       bunny_blit(&data->win->buffer,
 		 &data->ld.loading->clipable, &data->ld.pos);
@@ -82,13 +80,12 @@ int			display(t_rt *s, t_data *data)
 
   s->nb_coef = 1;
   data->ld.nb_coef = 1;
-  fill_pxlarray(data->ld.loading, NULL_COLOR);
   data->ld.curr_line = 0;
   pos.y = 0;
-  while (pos.y < 720)
+  while (pos.y < s->height)
     {
       pos.x = 0;
-      while (pos.x < 720)
+      while (pos.x < s->width)
 	{
 	  final_color = antialiasing(s, &pos, &vct, s->pixel_color);
 	  tekpixel(s->img, &pos, &final_color);
@@ -97,6 +94,5 @@ int			display(t_rt *s, t_data *data)
       prerender(s, pos.y, data);
       pos.y++;
     }
-  fill_pxlarray(data->ld.loading, BLUE_LOAD);
   return (0);
 }

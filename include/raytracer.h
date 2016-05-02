@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat Apr 23 11:19:04 2016 marc brout
+** Last update Mon May  2 17:05:47 2016 marc brout
 */
 
 #ifndef RAYTRACER_H_
@@ -30,12 +30,15 @@
 # define WIN_HEIGHT 1080
 # define INIT_WIDTH 720
 # define INIT_HEIGHT 720
+# define FULL_WIDTH 1450
+# define FULL_HEIGHT 920
 
 /*
 ** COLOR DEFINES
 */
 # define NULL_COLOR 0x00000000
 # define BLUE_LOAD 0xFF5C5540
+# define OBJ_COLOR 0xFFFFF020
 
 /*
 ** TEXTURE DEFINES
@@ -45,6 +48,8 @@
 # define MARBLE_NOISE 3
 # define WOOD_NOISE 4
 # define IMAGE 5
+
+# define NB_OBJ 5
 
 /*
 ** includes
@@ -57,6 +62,15 @@
 # include "my.h"
 # include "interface.h"
 # include "live_engine.h"
+
+typedef enum	e_obj
+  {
+    SPHERE	= 1,
+    CYLINDER	= 2,
+    CONE	= 3,
+    PLANE	= 4,
+    LIGHT	= 5
+  }		t_obj;
 
 /*
 ** structures
@@ -300,16 +314,22 @@ typedef struct		s_data
   t_bunny_window	*win;
   t_bunny_event_state	mstate;
   t_bunny_mousebutton	mbutton;
+  bool			wait_click;
+  bool			click_action;
   t_loading		ld;
 }			t_data;
 
 /*
 ** Init
 */
-int	init_main_data(t_data *);
-int	init_rt_data(t_rt *, int, char **);
-int	init_itfc_data(t_itfc *, int);
-int	init_engine_ftabs(t_ftab *ftabs);
+int			init_main_data(t_data *);
+int			init_rt_data(t_rt *, int, char **);
+int			init_itfc_data(t_itfc *, int);
+int			init_engine_ftabs(t_ftab *ftabs);
+t_bunny_position	center_rt(t_rt *);
+char			*setnbr(int);
+char			*setunsnbr(unsigned int);
+char			*put_base(unsigned int, char *);
 
 /*
 ** Blit
@@ -319,8 +339,15 @@ void	blit_clipables(t_data *);
 /*
 ** Free
 */
+void	free_all(t_data *);
+void	free_tab(char **);
 void	delete_all_clipables(t_data *);
 
+/*
+** Translation
+*/
+void	translation(t_rotation *r, t_acc *vec, t_pos *rot, t_acc *pos);
+void	translation_obj(t_rotation *r, t_acc *vec, t_pos *rot, t_pos *pos);
 
 /*
 ** antialiasing.c
@@ -351,6 +378,7 @@ t_color		apply_b(t_color color,
 */
 t_object	*create_obj_list();
 int		add_obj_elem(t_object *root);
+t_object	*add_obj_elem_ret(t_object *root);
 
 /*
 ** diffuse_light.c
@@ -560,6 +588,9 @@ double		specular_light(t_rt *s, t_acc *vision);
 ** TOOLS
 */
 void		tekpixel(t_bunny_pixelarray *pix,
+			 t_bunny_position *pos,
+			 t_color *color);
+void		mult_tekpixel(t_bunny_pixelarray *pix,
 			 t_bunny_position *pos,
 			 t_color *color);
 void		fill_pxlarray(t_bunny_pixelarray *pxar,
