@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Tue Apr 19 18:55:27 2016 bougon_p
+** Last update Tue Apr 26 13:39:15 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -140,6 +140,33 @@ typedef struct		s_cone
   t_acc			norm;
   int			limited;
 }			t_cone;
+
+typedef	struct		s_solv
+{
+  double		a;
+  double		b;
+  double		c;
+  double		d;
+  double		e;
+}			t_solv;
+
+typedef	struct		s_int_tore
+{
+  double		k1;
+  double		k2;
+  double		k3;
+  double		k4;
+}			t_int_tore;
+
+typedef struct		s_tore
+{
+  t_pos			pos;
+  t_pos			rot;
+  int			rad;
+  int			dist;
+  t_color		color;
+  t_bunny_pixelarray	*texture;
+}			t_tore;
 
 typedef struct		s_cylinder
 {
