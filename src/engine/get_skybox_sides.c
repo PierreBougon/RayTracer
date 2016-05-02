@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr 29 17:59:04 2016 romain samuel
-** Last update Mon May  2 17:02:41 2016 romain samuel
+** Last update Mon May  2 19:05:01 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -96,7 +96,7 @@ t_bunny_pixelarray	*get_skybox_left_side(t_bunny_pixelarray *img,
   min.y = start->y + (double)size->y / 3.0 + 2;
   max.y = start->y + (2.0 * (double)size->y) / 3.0 + 1;
   min.x = start->x + (double)size->x / 4.0 + 2;
-  max.x = start->x + (2.0 * (double)size->x) + 1;
+  max.x = start->x + (2.0 * (double)size->x);
   if ((side = bunny_new_pixelarray(size->x / 4.0,
 				   size->y / 3.0)) == NULL)
     return (NULL);
@@ -241,12 +241,12 @@ t_bunny_pixelarray	*get_skybox_backward_side(t_bunny_pixelarray *img,
   t_color		*color;
 
   color = (t_color *)img->pixels;
-  min.y = start->y + (double)size->y / 3.0;
-  max.y = start->y + (2.0 * (double)size->y) / 3.0;
+  min.y = start->y + (double)size->y / 3.0 + 2;
+  max.y = start->y + (2.0 * (double)size->y) / 3.0 + 2;
   min.x = start->x;
   max.x = start->x + (double)size->x / 4.0;
   if ((side = bunny_new_pixelarray(size->x / 4.0,
-				   size->y / 3.0)) == NULL)
+				   size->y / 3.0 + 1)) == NULL)
     return (NULL);
   pos.y = min.y;
   tex.y = 0;
@@ -288,10 +288,10 @@ int			get_skybox_sides(t_rt *s, t_bunny_pixelarray *img)
   size.x = end.x - start.x;
   size.y = end.y - start.y;
   s->opt.skybox_right = get_skybox_right_side(img, &start, &size);
-  /* s->opt.skybox_left = get_skybox_left_side(img, &start, &size); */
-  /* s->opt.skybox_up = get_skybox_up_side(img, &start, &size); */
-  /* s->opt.skybox_down = get_skybox_down_side(img, &start, &size); */
-  /* s->opt.skybox_forward = get_skybox_forward_side(img, &start, &size); */
-  /* s->opt.skybox_backward = get_skybox_backward_side(img, &start, &size); */
+  s->opt.skybox_left = get_skybox_left_side(img, &start, &size);
+  s->opt.skybox_up = get_skybox_up_side(img, &start, &size);
+  s->opt.skybox_down = get_skybox_down_side(img, &start, &size);
+  s->opt.skybox_forward = get_skybox_forward_side(img, &start, &size);
+  s->opt.skybox_backward = get_skybox_backward_side(img, &start, &size);
   return (0);
 }

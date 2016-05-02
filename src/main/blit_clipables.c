@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 00:25:51 2016 bougon_p
-** Last update Mon May  2 17:15:02 2016 romain samuel
+** Last update Mon May  2 18:37:44 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -22,7 +22,7 @@ void		blit_clipables(t_data *data)
   bunny_blit(&data->win->buffer,
 	     itfc->context[itfc->act_context], &itfc->context_pos);
   if (rt->img != NULL)
-    bunny_blit(&data->win->buffer, &rt->img->clipable, &rt->pos);
+    bunny_blit(&data->win->buffer, &rt->img->clipable /*&rt->opt.skybox_backward->clipable*/, &rt->pos);
   if (data->ld.loading != NULL && data->itfc.rendered
       && !rt->live && !itfc->button[SAVE] && !itfc->button[OPEN])
     bunny_blit(&data->win->buffer,
