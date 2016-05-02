@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Tue Apr 19 18:55:01 2016 bougon_p
+** Last update Mon May  2 19:07:26 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -21,8 +21,8 @@ int			inter_objects(t_rt *s)
   it = s->obj;
   while (it != NULL)
     {
-      s->hit.k1 = 0;
-      s->hit.k2 = 0;
+      s->hit.k1 = 0.0;
+      s->hit.k2 = 0.0;
       if (it->type < 5)
 	s->ftabs.inters_ftab[it->type - 1](s, it);
       it = it->next;
@@ -30,12 +30,15 @@ int			inter_objects(t_rt *s)
   return (0);
 }
 
-t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye, int rec)
+t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye)
 {
   t_color		color;
 
-  if (rec == 2)
-    return (s->final_color);
+  if (s->rec == 2)
+    {
+      s->rec = 0;
+      return (s->final_color);
+    }
   s->ray.eye = eye;
   s->ray.vct = vct;
   inter_objects(s);
@@ -47,7 +50,9 @@ t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye, int rec)
       color = s->final_color;
     }
   else
-    color.full = BLACK;
+    /* skybox(s, vct); */
+    s->final_color.full = BLACK;
+  color = s->final_color;
   s->obj_hit = NULL;
   return (color);
 }
@@ -57,9 +62,7 @@ void	prerender(t_rt *rt, int y, t_data *data)
   if (y % (int)rt->coef_load == 0)
     {
       data->ld.save_width = data->ld.loading->clipable.clip_width;
-      data->ld.curr_line =
-	fill_next_lines(data->ld.loading,
-		       BLUE_LOAD, data->ld.curr_line, LOADING_COEF);
+      data->ld.curr_line += LOADING_COEF;
       data->ld.loading->clipable.clip_width = data->ld.curr_line;
       bunny_blit(&data->win->buffer,
 		 &data->ld.loading->clipable, &data->ld.pos);
@@ -82,16 +85,14 @@ int			display(t_rt *s, t_data *data)
 
   s->nb_coef = 1;
   data->ld.nb_coef = 1;
-  fill_pxlarray(data->ld.loading, NULL_COLOR);
   data->ld.curr_line = 0;
-  if ((s->pixel_color = malloc(sizeof(t_color) * s->opt.aa)) == NULL)
-    return (my_puterr("display: could not perform malloc"));
   pos.y = 0;
   while (pos.y < 720)
     {
       pos.x = 0;
       while (pos.x < 720)
 	{
+	  s->rec = 0;
 	  final_color = antialiasing(s, &pos, &vct, s->pixel_color);
 	  tekpixel(s->img, &pos, &final_color);
 	  pos.x++;
@@ -99,6 +100,5 @@ int			display(t_rt *s, t_data *data)
       prerender(s, pos.y, data);
       pos.y++;
     }
-  fill_pxlarray(data->ld.loading, BLUE_LOAD);
   return (0);
 }

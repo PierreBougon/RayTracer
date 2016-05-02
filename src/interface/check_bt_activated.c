@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon Apr 18 20:22:42 2016 bougon_p
-** Last update Tue Apr 19 00:59:55 2016 bougon_p
+** Last update Wed Apr 27 17:45:28 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -25,7 +25,7 @@ int	check_context_activated(t_itfc *itfc, t_data *data)
     {
       if (itfc->button[i])
 	{
-	  /* printf("\n==Button : %d IS Activated==\n", i); */
+	  printf("\n==Button : %d IS Activated==\n", i);
 	  itfc->fct_context[i - 1](data);
 	  return (-1);
 	}

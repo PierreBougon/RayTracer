@@ -1,19 +1,14 @@
 # PhotoShop
-
-Spot color
-cylider -> cylinder
+Spot color ?
 
 # INTERFACE
 
-Faire les hitbox de chaque  context
-Balancer dans le bon pointeur sur fontion -> 
-8 tab ptr sur fonctions a init
-COMMENCER LA CREATION D'OBJ
+Fonction select OBJ
+Faire les hitbox de chaque  context -> en cours
+Delete item
 Faire effet BT
 
-# FONCTION DEPLACEMENT
-Voir pour la rotation oeil
-Voir pour le mouvement oeil
+/!\ CREATE ITEM -> CREER la liste quand elle existe pas !  
 
 # EXTRA FCT
 save bmp

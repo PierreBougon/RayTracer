@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 18:49:47 2016 bougon_p
-** Last update Thu Apr 21 22:32:41 2016 bougon_p
+** Last update Thu Apr 28 14:14:49 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -20,10 +20,10 @@ void	rotate(t_data *data, const t_bunny_position *mpos)
   else
     {
       data->itfc.move.second_pos = *mpos;
-      data->rt.eye.rot.x +=
-	((data->itfc.move.second_pos.x - data->itfc.move.first_pos.x) / 30);
-      data->rt.eye.pos.y +=
-	((data->itfc.move.second_pos.y - data->itfc.move.first_pos.y) / 30);
+      data->rt.eye.rot.y +=
+	((data->itfc.move.second_pos.x - data->itfc.move.first_pos.x) / 3);
+      data->rt.eye.rot.x -=
+	((data->itfc.move.second_pos.y - data->itfc.move.first_pos.y) / 3);
       data->itfc.move.first_pos = data->itfc.move.second_pos;
     }
 }

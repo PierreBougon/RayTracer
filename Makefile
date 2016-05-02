@@ -1,11 +1,11 @@
 ##
-## Makefile for BLIT in /home/bougon_p/rendu/gfx_raytracer2
-## 
+## Makefile for RT in /home/bougon_p/rendu/gfx_raytracer2
+##
 ## Made by bougon_p
 ## Login   <bougon_p@epitech.net>
-## 
+##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Thu Apr 21 22:43:51 2016 bougon_p
+## Last update Mon May  2 18:04:58 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -17,6 +17,8 @@ GREEN	=	\033[1;32m
 WHITE	=	\033[0m
 
 ECHO	=	echo -e
+
+DEBUG	=	yes
 
 # RT VARIABLES
 
@@ -32,11 +34,17 @@ CONTEXT		=	context/
 
 SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
+			$(MAIN)free.c \
+			$(MAIN)setnbr.c \
+			$(MAIN)setunsnbr.c \
+			$(MAIN)put_base.c \
 			$(MAIN)delete_clipables.c \
 			$(MAIN)blit_clipables.c \
 			$(MAIN)tekpixel.c \
 			$(MAIN)fill_pxlarray.c \
 			$(ENGINE)antialiasing.c \
+			$(ENGINE)checkerboards.c \
+			$(ENGINE)translation.c \
 			$(ENGINE)clear_list.c \
 			$(ENGINE)color_operations.c \
 			$(ENGINE)create_obj_list.c \
@@ -44,17 +52,24 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)display.c \
 			$(ENGINE)display_objects.c \
 			$(ENGINE)get_norm.c \
+			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
+			$(ENGINE)get_skybox_sides.c \
+			$(ENGINE)get_texels.c \
 			$(ENGINE)init_shade.c \
 			$(ENGINE)inters.c \
 			$(ENGINE)limited_objects.c \
+			$(ENGINE)limited_plan.c \
 			$(ENGINE)load_cone.c \
 			$(ENGINE)load_cylinder.c \
 			$(ENGINE)load_file.c \
 			$(ENGINE)load_light.c \
 			$(ENGINE)load_plan.c \
 			$(ENGINE)load_sphere.c \
+			$(ENGINE)noise_textures.c \
+			$(ENGINE)matrices.c \
 			$(ENGINE)order_hit_list.c \
+			$(ENGINE)perlin.c \
 			$(ENGINE)rotations.c \
 			$(ENGINE)set_hit_values.c \
 			$(ENGINE)shade.c \
@@ -62,16 +77,24 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)shadow_inters.c \
 			$(ENGINE)shadow_limited_objects.c \
 			$(ENGINE)shadow_simple_inters.c \
+			$(ENGINE)skybox.c \
 			$(ENGINE)specular_light.c \
 			$(ENGINE)update_hit_list.c \
 			$(ENGINE)update_real_hit_list.c \
+			$(ENGINE)texturize_obj.c \
 			$(LIVE_ENGINE)display.c \
 			$(LIVE_ENGINE)live_shade.c \
-			$(ITFC)interface.c \
 			$(ITFC)init_itfc.c \
+			$(ITFC)init_ftabs.c \
+			$(ITFC)interface.c \
+			$(ITFC)zoom.c \
+			$(ITFC)text.c \
+			$(ITFC)open_file.c \
 			$(ITFC)check_buttons.c \
 			$(ITFC)check_menu_buttons.c \
+			$(ITFC)check_file_buttons.c \
 			$(ITFC)check_bt_activated.c \
+			$(ITFC)set_bt_false.c \
 			$(ITFC)buttons.c \
 			$(ITFC)rendering.c \
 			$(ITFC)mouse_state.c \
@@ -79,12 +102,32 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)rotate_state.c \
 			$(ITFC)move_eye.c \
 			$(ITFC)rotate_eye.c \
+			$(ITFC)$(CONTEXT)add_plane.c \
+			$(ITFC)$(CONTEXT)add_sphere.c \
+			$(ITFC)$(CONTEXT)add_cone.c \
+			$(ITFC)$(CONTEXT)add_cylinder.c \
+			$(ITFC)$(CONTEXT)add_cube.c \
+			$(ITFC)$(CONTEXT)add_torus.c \
+			$(ITFC)$(CONTEXT)add_perf_cube.c \
+			$(ITFC)$(CONTEXT)save_bt.c \
 			$(ITFC)$(CONTEXT)save.c \
+			$(ITFC)$(CONTEXT)save_ini.c \
+			$(ITFC)$(CONTEXT)save_ini_first_scope.c \
+			$(ITFC)$(CONTEXT)save_ini_obj.c \
+			$(ITFC)$(CONTEXT)save_ini_obj_scope_sphere.c \
+			$(ITFC)$(CONTEXT)save_ini_obj_scope_light.c \
+			$(ITFC)$(CONTEXT)save_ini_obj_scope_cone.c \
+			$(ITFC)$(CONTEXT)save_ini_obj_scope_cylinder.c \
+			$(ITFC)$(CONTEXT)save_ini_obj_scope_plane.c \
 			$(ITFC)$(CONTEXT)modif_form.c \
 			$(ITFC)$(CONTEXT)add_form.c \
 			$(ITFC)$(CONTEXT)sub_form.c \
 			$(ITFC)$(CONTEXT)spotlight.c \
 			$(ITFC)$(CONTEXT)context_gen.c \
+			$(ITFC)$(CONTEXT)new_scene.c \
+			$(ITFC)$(CONTEXT)create_scene.c \
+			$(ITFC)$(CONTEXT)basic_plane.c \
+			$(ITFC)$(CONTEXT)basic_wallpaper.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
@@ -141,7 +184,11 @@ NAME	=	raytracer
 
 IFLAG	=	-Iinclude/
 
-CFLAGS  =	-W -Wall -Wextra
+CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
+
+ifeq ($(DEBUG),yes)
+CFLAGS	+=	-g -pg
+endif
 
 CC      =	gcc $(CFLAGS) $(IFLAG)
 
@@ -149,7 +196,7 @@ CC      =	gcc $(CFLAGS) $(IFLAG)
 # PROJECT RULES
 
 $(NAME)		: 	$(LIB) $(OBJS)
-			@$(ECHO) "$(GREEN)\n\n> Linking \"$(NAME)\"with : \n\
+			@$(ECHO) "$(GREEN)\n\n> Linking \"$(NAME)\" with : \n\
 $(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIB) $(LIBBUNNY)
 
@@ -159,8 +206,13 @@ $(LIB)		:	$(OBJSLIB)
 			@$(ECHO) "$(GREEN)\n> Compiling Library\t\
  >>>>>>>>>> \t DONE\n$(WHITE)"
 
+compile		:	$(OBJS)
+			@$(ECHO) "$(GREEN)\n\n> Linking \"$(NAME)\" with : \n\
+$(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
+			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIB) $(LIBBUNNY)
 
-all		:	$(NAME)
+all		:	$(LIB)
+			@make -j 4 -s compile
 
 clean		:
 			@$(RM) $(OBJS)
@@ -179,3 +231,5 @@ re		:	fclean all
 .c.o		:
 			@$(CC) -c $< -o $@
 			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
+
+.PHONY		:	comp all clean fclean re

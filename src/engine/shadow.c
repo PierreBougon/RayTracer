@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:49:09 2016 romain samuel
-** Last update Tue Apr 19 17:48:47 2016 romain samuel
+** Last update Sat Apr 23 18:19:58 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -20,7 +20,10 @@ int		shadow_sphere(t_rt *s, t_object *obj)
   shape = (t_sphere *)obj->datas;
   k = shadow_inter_sphere(s, shape);
   if (k > 0.000001 && k < 1)
-    return (1);
+    {
+      s->shade.shadow.coef += shape->opacity;
+      return (1);
+    }
   return (0);
 }
 
@@ -35,7 +38,10 @@ int		shadow_cone(t_rt *s, t_object *obj)
   k = shadow_inter_cone(s, shape);
   k = shadow_limited_cone(s, shape, k);
   if (k > 0.000001 && k < 1)
-    return (1);
+    {
+      s->shade.shadow.coef += shape->opacity;
+      return (1);
+    }
   return (0);
 }
 
@@ -50,7 +56,10 @@ int		shadow_cylinder(t_rt *s, t_object *obj)
   k = shadow_inter_cylinder(s, shape);
   k = shadow_limited_cylinder(s, shape, k);
   if (k > 0.000001 && k < 1)
-    return (1);
+    {
+      s->shade.shadow.coef += shape->opacity;
+      return (1);
+    }
   return (0);
 }
 
@@ -64,7 +73,10 @@ int		shadow_plan(t_rt *s, t_object *obj)
   shape = (t_plan *)obj->datas;
   k = shadow_inter_plan(s, shape);
   if (k > 0.000001 && k < 1)
-    return (1);
+    {
+      s->shade.shadow.coef += shape->opacity;
+      return (1);
+    }
   return (0);
 }
 
@@ -77,11 +89,13 @@ int			shadow(t_rt *s)
   s->ftabs.shadow_ftab[2] = &shadow_cone;
   s->ftabs.shadow_ftab[3] = &shadow_plan;
   it = s->obj;
+  s->shade.shadow.coef = 0;
   while (it != NULL)
     {
       if (it->type < 5)
-	if (s->ftabs.shadow_ftab[it->type - 1](s, it) == 1)
-	  return (1);
+	s->ftabs.shadow_ftab[it->type - 1](s, it);
+      if (s->shade.shadow.coef >= 1)
+	return (1);
       it = it->next;
     }
   return (0);

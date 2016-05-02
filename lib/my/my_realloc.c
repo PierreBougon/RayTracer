@@ -5,10 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr  1 20:37:47 2016 bougon_p
-** Last update Wed Apr  6 23:25:35 2016 bougon_p
+** Last update Thu Apr 28 21:57:42 2016 bougon_p
 */
 
 #include "my.h"
+
+#include <stdio.h>
 
 char	**my_realloc_tab(char **tab, int add_lines)
 {
@@ -29,25 +31,19 @@ char	**my_realloc_tab(char **tab, int add_lines)
   return (new_tab);
 }
 
-char	*my_realloc(char *line, size_t add)
+char	*myrealloc(char *line, size_t add)
 {
   char  *new_line;
   int   size;
   int   i;
 
-  i = 0;
-  size = 0;
-  while (line[size] != 0)
-    size++;
+  size = my_strlen(line);
   if ((new_line = malloc(sizeof(char) * (size + add + 2))) == NULL)
     return (NULL);
-  while (i < size)
-    {
-      new_line[i] = line[i];
-      i++;
-    }
-  while (i < (size + (int)add + 2))
-    new_line[i++] = 0;
+  my_bzero(new_line, size + add + 2);
+  i = -1;
+  while (line[++i])
+    new_line[i] = line[i];
   free(line);
   return (new_line);
 }
