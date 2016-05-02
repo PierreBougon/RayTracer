@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Mon May  2 17:30:32 2016 romain samuel
+** Last update Mon May  2 19:07:26 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -87,10 +87,10 @@ int			display(t_rt *s, t_data *data)
   data->ld.nb_coef = 1;
   data->ld.curr_line = 0;
   pos.y = 0;
-  while (pos.y < s->height)
+  while (pos.y < 720)
     {
       pos.x = 0;
-      while (pos.x < s->width)
+      while (pos.x < 720)
 	{
 	  s->rec = 0;
 	  final_color = antialiasing(s, &pos, &vct, s->pixel_color);

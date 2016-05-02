@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:47:06 2016 romain samuel
-** Last update Thu Apr 28 18:54:34 2016 romain samuel
+** Last update Mon May  2 18:08:21 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -91,16 +91,13 @@ int		load_cylinder_datas4(t_cylinder *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
-  if (s->tex_type != IMAGE)
-    {
-      if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
-	return (my_puterr("load_datas: missing cylinder color1"));
-      s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
-      if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
-	return (my_puterr("load_datas: missing cylinder color2"));
-      s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
-    }
-  else
+  if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
+    return (my_puterr("load_datas: missing cylinder color1"));
+  s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
+  if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
+    return (my_puterr("load_datas: missing cylinder color2"));
+  s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+  if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture1", 0)) == NULL)
 	return (my_puterr("load_datas: missing cylinder texture1"));

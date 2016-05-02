@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
-** Last update Mon May  2 17:50:59 2016 romain samuel
+** Last update Mon May  2 19:05:00 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -96,9 +96,9 @@ int		display_plan(t_rt *s, t_object *obj)
   inter_plan(s, shape);
   if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
     {
+      end_rotation(&s->rotation, s->ray.vct, &shape->rot);
       if (limited_plan(s, shape) == 0)
 	{
-	  end_rotation(&s->rotation, s->ray.vct, &shape->rot);
 	  get_norm_plan(s, shape);
 	  shape->simple_inter1 = s->hit.simple_inter1;
 	  shape->simple_inter2 = s->hit.simple_inter2;

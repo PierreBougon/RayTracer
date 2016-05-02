@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 24 17:59:06 2016 romain samuel
-** Last update Thu Apr 28 19:34:08 2016 romain samuel
+** Last update Mon May  2 19:18:02 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -41,10 +41,8 @@ void		get_texels_sphere(t_rt *s, t_sphere *sphere)
 
 void	get_texels_cyl_plan(t_rt *s, t_cylinder *cylinder)
 {
-  printf("%f %f %f\n", cylinder->simple_inter1.x, cylinder->simple_inter1.y, cylinder->simple_inter1.z);
   s->hit.texels.x = ((cylinder->simple_inter1.x / cylinder->size) + 1.0) / 2.0;
   s->hit.texels.y = ((cylinder->simple_inter1.y / cylinder->size) + 1.0) / 2.0;
-  printf("%f %f\n", s->hit.texels.x, s->hit.texels.y);
 }
 
 void	get_texels_cylinder(t_rt *s, t_cylinder *cylinder)
