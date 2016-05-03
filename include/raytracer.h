@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Mon May  2 17:31:02 2016 romain samuel
+** Last update Tue May  3 16:50:50 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -254,8 +254,7 @@ typedef struct		s_opt
   double		ambient;
   double		ambient_refraction;
   int			aa;
-  int			cubemap;
-  t_bunny_pixelarray	*texture;
+  int			skybox;
   t_bunny_pixelarray	*skybox_right;
   t_bunny_pixelarray	*skybox_left;
   t_bunny_pixelarray	*skybox_up;
@@ -497,15 +496,6 @@ t_fresnel	get_refracted_vec(t_rt *s, t_acc *norm, double n1, double n2);
 ** get_simple_inters.c
 */
 int		get_simple_inter(t_rt *s, t_acc *vct, t_acc *eye);
-
-/*
-** get_skybox_sides.c
-*/
-t_bunny_pixelarray	*get_skybox_side_0(t_bunny_pixelarray *img,
-					   t_bunny_position *start,
-					   t_bunny_position *end,
-					   t_bunny_position *size);
-int			get_skybox_sides(t_rt *s, t_bunny_pixelarray *img);
 
 /*
 ** get_texels.c

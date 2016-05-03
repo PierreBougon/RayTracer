@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Mon May  2 17:16:29 2016 romain samuel
+** Last update Tue May  3 16:53:43 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -77,9 +77,33 @@ int		load_eye(t_rt *s, t_bunny_ini *ini)
   return (0);
 }
 
-void		load_skybox_textures(t_rt *s)
+int		load_skybox_textures(t_rt *s, t_bunny_ini *ini, const char *field)
 {
-  get_skybox_sides(s, s->opt.texture);
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_right", 0)) == NULL)
+    return (my_puterr("load_datas: missing skybox right texture"));
+  if ((s->opt.skybox_right = bunny_load_pixelarray((char *)field)) == NULL)
+    return (my_puterr("load_datas: invalid skybox right texture"));
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_left", 0)) == NULL)
+    return (my_puterr("load_datas: missing skybox left texture"));
+  if ((s->opt.skybox_left = bunny_load_pixelarray((char *)field)) == NULL)
+    return (my_puterr("load_datas: invalid skybox left texture"));
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_up", 0)) == NULL)
+    return (my_puterr("load_datas: missing skybox up texture"));
+  if ((s->opt.skybox_up = bunny_load_pixelarray((char *)field)) == NULL)
+    return (my_puterr("load_datas: invalid skybox up texture"));
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_down", 0)) == NULL)
+    return (my_puterr("load_datas: missing skybox down texture"));
+  if ((s->opt.skybox_down = bunny_load_pixelarray((char *)field)) == NULL)
+    return (my_puterr("load_datas: invalid skybox down texture"));
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_forward", 0)) == NULL)
+    return (my_puterr("load_datas: missing skybox forward texture"));
+  if ((s->opt.skybox_forward = bunny_load_pixelarray((char *)field)) == NULL)
+    return (my_puterr("load_datas: invalid skybox forward texture"));
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_backward", 0)) == NULL)
+    return (my_puterr("load_datas: missing skybox backward texture"));
+  if ((s->opt.skybox_backward = bunny_load_pixelarray((char *)field)) == NULL)
+    return (my_puterr("load_datas: invalid skybox backward texture"));
+  return (0);
 }
 
 int		load_scene_parameters(t_rt *s, t_bunny_ini *ini)
@@ -101,12 +125,13 @@ int		load_scene_parameters(t_rt *s, t_bunny_ini *ini)
   aa = sqrt(s->opt.aa);
   if (aa != (int)aa)
     return (my_puterr("load_file: invalid antialiasing settings"));
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "cubemap_texture", 0)) == NULL)
-    return (0);
-  if ((s->opt.texture = bunny_load_pixelarray((char *)field)) == NULL)
-    return (my_puterr("load_file: invalid cubemap texture"));
-  load_skybox_textures(s);
-  return (0);
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox", 0)) == NULL)
+    {
+      s->opt.skybox = 0;
+      return (0);
+    }
+  s->opt.skybox = my_getnbr((char *)field);
+  return (load_skybox_textures(s, ini, field));
 }
 
 int		load_file(t_rt *s, char *file)

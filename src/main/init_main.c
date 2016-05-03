@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Mon May  2 17:14:35 2016 romain samuel
+** Last update Tue May  3 16:10:00 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -61,7 +61,7 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
       fill_pxlarray(rt->img, 0xFF262626);
       live_display(rt);
       /* For fast RT debugging */
-      /* display(rt); */
+      /*display(rt);*/
     }
   return (0);
 }

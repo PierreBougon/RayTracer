@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr 29 16:15:08 2016 romain samuel
-** Last update Mon May  2 16:38:28 2016 romain samuel
+** Last update Tue May  3 16:53:58 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -29,61 +29,64 @@ void	skybox_x(t_rt *s, t_acc *vct)
     {
       s->final_color.full = 0xFF0000FF;
       read_texture(s,
-		   1.0 - (vct->z / vct->x + 1.0) * 0.5,
-		   (vct->y / vct->x + 1.0) * 0.5,
+		   (vct->z / vct->x + 1.0) * 0.5,
+		   1.0 - (vct->y / vct->x + 1.0) * 0.5,
 		   s->opt.skybox_right);
     }
   else
     {
       s->final_color.full = 0xFF0000FF;
       read_texture(s,
-		   1.0 - (vct->z / vct->x + 1.0) * 0.5,
-		   1.0 - (vct->y / vct->x + 1.0) * 0.5,
-		   s->opt.skybox_right);
+		   (vct->z / vct->x + 1.0) * 0.5,
+		   (vct->y / vct->x + 1.0) * 0.5,
+		   s->opt.skybox_left);
     }
 }
 
 void	skybox_y(t_rt *s, t_acc *vct)
 {
   if (vct->y > 0.0)
-    s->final_color.full = 0xFF00FF00;
+    read_texture(s,
+		 1.0 - (vct->x / vct->y + 1.0) * 0.5,
+		 (vct->z / vct->y + 1.0) * 0.5,
+		 s->opt.skybox_up);
   else
-    s->final_color.full = 0xFF00FF00;
+    read_texture(s,
+		 (vct->x / vct->y + 1.0) * 0.5,
+		 1.0 - (vct->z / vct->y + 1.0) * 0.5,
+		 s->opt.skybox_down);
 }
 
 void	skybox_z(t_rt *s, t_acc *vct)
 {
   if (vct->z > 0.0)
     {
-      s->final_color.full = 0xFFFF0000;
       read_texture(s,
-		   (vct->x / vct->z + 1.0) * 0.5,
-		   (vct->y / vct->z + 1.0) * 0.5,
-		   s->opt.skybox_right);
+		   1.0 - (vct->x / vct->z + 1.0) * 0.5,
+		   1.0 - (vct->y / vct->z + 1.0) * 0.5,
+		   s->opt.skybox_forward);
     }
   else
     {
-      s->final_color.full = 0xFFFF0000;
       read_texture(s,
-		   (vct->x / vct->z + 1.0) * 0.5,
-		   1.0 - (vct->y / vct->z + 1.0) * 0.5,
-		   s->opt.skybox_right);
+		   1.0 - (vct->x / vct->z + 1.0) * 0.5,
+		   (vct->y / vct->z + 1.0) * 0.5,
+		   s->opt.skybox_backward);
     }
 }
 
 int	skybox(t_rt *s, t_acc *vct)
 {
+  if (s->opt.skybox == 0)
+    {
+      s->final_color.full = BLACK;
+      return (0);
+    }
   if (fabs(vct->x) >= fabs(vct->y) && fabs(vct->x) >= fabs(vct->z))
-    {
-      skybox_x(s, vct);
-    }
+    skybox_x(s, vct);
   else if (fabs(vct->y) >= fabs(vct->x) && fabs(vct->y) >= fabs(vct->z))
-    {
-      skybox_y(s, vct);
-    }
+    skybox_y(s, vct);
   else
-    {
-      skybox_z(s, vct);
-    }
+    skybox_z(s, vct);
   return (0);
 }

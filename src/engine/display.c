@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Mon May  2 19:07:26 2016 romain samuel
+** Last update Tue May  3 16:15:23 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -50,8 +50,7 @@ t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye)
       color = s->final_color;
     }
   else
-    /* skybox(s, vct); */
-    s->final_color.full = BLACK;
+    skybox(s, vct);
   color = s->final_color;
   s->obj_hit = NULL;
   return (color);
@@ -87,10 +86,10 @@ int			display(t_rt *s, t_data *data)
   data->ld.nb_coef = 1;
   data->ld.curr_line = 0;
   pos.y = 0;
-  while (pos.y < 720)
+  while (pos.y < s->height)
     {
       pos.x = 0;
-      while (pos.x < 720)
+      while (pos.x < s->width)
 	{
 	  s->rec = 0;
 	  final_color = antialiasing(s, &pos, &vct, s->pixel_color);

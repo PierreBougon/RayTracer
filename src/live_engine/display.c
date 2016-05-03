@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 19:05:58 2016 romain samuel
-** Last update Mon May  2 16:59:48 2016 marc brout
+** Last update Tue May  3 16:46:23 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -28,7 +28,8 @@ t_color			live_display_objects(t_rt *s, t_acc *vct, t_acc eye, int rec)
       color = s->final_color;
     }
   else
-    color.full = BLACK;
+    skybox(s, vct);
+  color = s->final_color;
   s->obj_hit = NULL;
   return (color);
 }
