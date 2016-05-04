@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Tue May  3 16:53:43 2016 romain samuel
+** Last update Wed May  4 18:22:07 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -16,17 +16,18 @@ int		load_type(t_rt *s,
 				       char *scope),
 			  char *scope)
 {
-  char		*tab[5];
+  char		*tab[6];
   int		i;
   const char	*field;
 
   i = -1;
-  tab[0] = my_strdup("sphere");
-  tab[1] = my_strdup("cone");
+  tab[0] = my_strdup("light");
+  tab[1] = my_strdup("sphere");
   tab[2] = my_strdup("cylinder");
-  tab[3] = my_strdup("plan");
-  tab[4] = my_strdup("light");
-  while (++i < 5)
+  tab[3] = my_strdup("cone");
+  tab[4] = my_strdup("plan");
+  tab[5] = my_strdup("box");
+  while (++i < 6)
     {
       if ((field = bunny_ini_get_field(ini, scope, "type", 0)) == NULL)
 	return (my_puterr("Could not perform bunny_ini_get_field"));
@@ -40,13 +41,14 @@ int		load_object(t_rt *s, t_bunny_ini *ini, char *scope)
 {
   int		(**ftab)(t_rt *s, t_bunny_ini *ini, char *scope);
 
-  if ((ftab = malloc(sizeof(ftab) * 5)) == NULL)
+  if ((ftab = bunny_malloc(sizeof(ftab) * 6)) == NULL)
     return (my_puterr("load_object: malloc failed"));
-  ftab[0] = &load_sphere;
-  ftab[1] = &load_cone;
+  ftab[0] = &load_light;
+  ftab[1] = &load_sphere;
   ftab[2] = &load_cylinder;
-  ftab[3] = &load_plan;
-  ftab[4] = &load_light;
+  ftab[3] = &load_cone;
+  ftab[4] = &load_plan;
+  ftab[5] = &load_box;
   if (load_type(s, ini, ftab, scope) == -1)
     return (-1);
   return (0);
@@ -106,11 +108,37 @@ int		load_skybox_textures(t_rt *s, t_bunny_ini *ini, const char *field)
   return (0);
 }
 
+int		load_shadow_params(t_rt *s, t_bunny_ini *ini)
+{
+  const char	*field;
+
+  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "soft_shadows", 0)) == NULL)
+    return (my_puterr("load_file: missing soft_shadows attribute"));
+  s->opt.ss = my_getnbr((char *)field);
+  if (s->opt.ss == 1)
+    {
+      if ((field = bunny_ini_get_field(ini, "RAYTRACER", "nb_rays_ss", 0)) == NULL)
+	return (my_puterr("load_file: missing soft shadows ray number"));
+      s->opt.nb_rays_ss = my_getnbr((char *)field);
+      if ((field = bunny_ini_get_field(ini, "RAYTRACER", "ray_ss", 0)) == NULL)
+	return (my_puterr("load_file: missing soft_shadows ray_ss"));
+      s->opt.ray_ss = my_getnbr((char *)field);
+    }
+  else
+    {
+      s->opt.nb_rays_ss = 1;
+      s->opt.ray_ss = 0;
+    }
+  return (0);
+}
+
 int		load_scene_parameters(t_rt *s, t_bunny_ini *ini)
 {
   const char	*field;
   double	aa;
 
+  if (load_shadow_params(s, ini) == -1)
+    return (-1);
   if ((field = bunny_ini_get_field(ini, "RAYTRACER", "ambiant_lum", 0)) == NULL)
     return (my_puterr("load_file: missing ambiant_lum"));
   s->opt.ambient = (double)my_getnbr((char *)field) / 100.0;

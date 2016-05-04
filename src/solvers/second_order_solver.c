@@ -5,8 +5,10 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Apr 13 13:45:54 2016 marc brout
-** Last update Wed Apr 13 13:59:59 2016 marc brout
+** Last update Mon May  2 20:31:33 2016 benjamin duhieu
 */
+
+#include "raytracer.h"
 
 void		second_order_solver(t_2order *res)
 {

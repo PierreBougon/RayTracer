@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:22:45 2016 romain samuel
-** Last update Thu Apr 28 18:05:13 2016 romain samuel
+** Last update Wed May  4 18:36:28 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -25,19 +25,19 @@ double		apply_light(t_rt *s, t_light *light, t_color *light_color)
   return (add);
 }
 
-double		get_soft_intensity(double tab[1])
+double		get_soft_intensity(t_rt *s, double *tab)
 {
   double	i;
   int		j;
 
   j = 0;
   i = 0;
-  while (j < 1)
+  while (j < s->opt.nb_rays_ss)
     {
       i += tab[j];
       j++;
     }
-  i = i / 1;
+  i = i / (double)s->opt.nb_rays_ss;
   return (i);
 }
 
@@ -50,11 +50,11 @@ double			expose(double i)
   return (i);
 }
 
-void		get_final_color(t_rt *s, t_color light_color, double itab[1])
+void		get_final_color(t_rt *s, t_color light_color, double *itab)
 {
   double	i;
 
-  i = get_soft_intensity(itab) + s->opt.ambient * s->hit.ka;
+  i = get_soft_intensity(s, itab) + s->opt.ambient * s->hit.ka;
   i = expose(i);
   s->final_color = apply_b(s->final_color, light_color, s->hit.brightness, i);
 }
@@ -62,7 +62,7 @@ void		get_final_color(t_rt *s, t_color light_color, double itab[1])
 void		fill_itab(t_rt *s,
 			  t_light *light,
 			  t_color *light_color,
-			  double itab[1])
+			  double *itab)
 {
   double	coef;
 
@@ -71,7 +71,7 @@ void		fill_itab(t_rt *s,
     coef = 1.0;
   else
     coef = s->shade.shadow.coef;
-  itab[s->shade.diff] += (apply_light(s, light, light_color) * (1.0 - coef));
+  itab[s->shade.diff] = (apply_light(s, light, light_color) * (1.0 - coef));
   s->shade.diff++;
 }
 
@@ -88,7 +88,7 @@ t_color		init_refraction(t_rt *s, t_acc *vct, t_acc eye)
       s->hit.k2 = 0.0;
       s->ray.eye = eye;
       s->ray.vct = vct;
-      s->ftabs.inters_ftab[s->obj_hit->next->type - 1](s, s->obj_hit->next);
+      s->ftabs.inters_ftab[s->obj_hit->next->type - 2](s, s->obj_hit->next);
       new_eye.x = eye.x + s->hit.k1 * vct->x;
       new_eye.y = eye.y + s->hit.k1 * vct->y;
       new_eye.z = eye.z + s->hit.k1 * vct->z;
@@ -152,29 +152,28 @@ int		shade(t_rt *s, t_acc *vct, t_acc eye)
 {
   t_object	*it;
   t_light	*light;
-  double	itab[1];
   t_color	light_color;
 
   it = s->obj;
   light_color.full = BLACK;
-  init_itab(itab);
+  init_itab(s->shade.itab);
   while (it != NULL)
     {
-      if (it->type == 5)
+      if (it->type == 1)
 	{
 	  s->shade.diff = 0;
 	  light = (t_light *)it->datas;
-	  while (s->shade.diff < 1)
+	  while (s->shade.diff < s->opt.nb_rays_ss)
 	    {
-	      /*init_soft_shadow(s);*/
+	      init_soft_shadow(s);
 	      init_lum(s, vct, eye, light);
-	      fill_itab(s, light, &light_color, itab);
+	      fill_itab(s, light, &light_color, s->shade.itab);
 	    }
 	}
       it = it->next;
     }
   texturize_obj(s);
-  get_final_color(s, light_color, itab);
+  get_final_color(s, light_color, s->shade.itab);
   /*if (s->rec == 0)
     fresnel_computation(s);*/
   return (0);

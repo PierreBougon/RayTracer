@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:56:19 2016 romain samuel
-** Last update Mon May  2 18:09:54 2016 romain samuel
+** Last update Tue May  3 18:11:36 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -135,7 +135,7 @@ int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope)
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
-  it->type = 3;
+  it->type = 4;
   if (load_cone_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;

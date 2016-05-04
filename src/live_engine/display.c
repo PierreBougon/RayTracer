@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 19:05:58 2016 romain samuel
-** Last update Tue May  3 16:46:23 2016 romain samuel
+** Last update Wed May  4 16:40:42 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -43,10 +43,10 @@ int			live_display(t_rt *s)
   if ((s->pixel_color = malloc(sizeof(t_color) * s->opt.aa)) == NULL)
     return (my_puterr("display: could not perform malloc"));
   pos.y = 0;
-  while (pos.y < s->height)
+  while (pos.y < 720)
     {
       pos.x = 0;
-      while (pos.x < s->width)
+      while (pos.x < 720)
 	{
 	  vct.x = ((double)s->width / 2.0) - (double)pos.x;
 	  vct.y = ((double)s->height / 2.0) - (double)pos.y;

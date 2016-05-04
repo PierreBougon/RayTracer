@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Tue May  3 16:10:00 2016 romain samuel
+** Last update Wed May  4 15:27:23 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -68,11 +68,11 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
 
 int	init_engine_ftabs(t_ftab *ftabs)
 {
-  if ((ftabs->inters_ftab = malloc(sizeof(ftabs->inters_ftab) * 4)) == NULL)
+  if ((ftabs->inters_ftab = malloc(sizeof(ftabs->inters_ftab) * 5)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
-  if ((ftabs->shadow_ftab = malloc(sizeof(ftabs->shadow_ftab) * 4)) == NULL)
+  if ((ftabs->shadow_ftab = malloc(sizeof(ftabs->shadow_ftab) * 5)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
-  if ((ftabs->hit_ftab = malloc(sizeof(ftabs->hit_ftab) * 4)) == NULL)
+  if ((ftabs->hit_ftab = malloc(sizeof(ftabs->hit_ftab) * 5)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
   if ((ftabs->tex_ftab = malloc(sizeof(ftabs->tex_ftab) * 8)) == NULL)
     return (my_puterr("Could not malloc ftabs"));

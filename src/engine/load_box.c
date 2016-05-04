@@ -1,115 +1,115 @@
 /*
-** load_plan.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/RAYTRACER
+** load_box.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
-** Started on  Tue Apr  5 17:03:56 2016 romain samuel
-** Last update Tue May  3 18:12:16 2016 romain samuel
+** Started on  Wed May  4 15:28:11 2016 romain samuel
+** Last update Wed May  4 15:40:38 2016 romain samuel
 */
 
 #include "raytracer.h"
 
-int		load_plan_datas(t_plan *s,
-				t_bunny_ini *ini,
-				char *scope)
+int		load_box_datas(t_box *s,
+			       t_bunny_ini *ini,
+			       char *scope)
 {
   const	char	*field;
 
   if ((field = bunny_ini_get_field(ini, scope, "pos", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan x_pos"));
+    return (my_puterr("load_datas: missing box x_pos"));
   s->pos.x = my_getnbr((char *)field);
   if ((field = bunny_ini_get_field(ini, scope, "pos", 1)) == NULL)
-    return (my_puterr("load_datas: missing plan y_pos"));
+    return (my_puterr("load_datas: missing box y_pos"));
   s->pos.y = my_getnbr((char *)field);
   if ((field = bunny_ini_get_field(ini, scope, "pos", 2)) == NULL)
-    return (my_puterr("load_datas: missing plan z_pos"));
+    return (my_puterr("load_datas: missing box z_pos"));
   s->pos.z = my_getnbr((char *)field);
   if ((field = bunny_ini_get_field(ini, scope, "rot", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan x_rot"));
+    return (my_puterr("load_datas: missing box x_rot"));
   s->rot.x = my_getnbr((char *)field);
   if ((field = bunny_ini_get_field(ini, scope, "rot", 1)) == NULL)
-    return (my_puterr("load_datas: missing plan y_rot"));
+    return (my_puterr("load_datas: missing box y_rot"));
   s->rot.y = my_getnbr((char *)field);
   if ((field = bunny_ini_get_field(ini, scope, "rot", 2)) == NULL)
-    return (my_puterr("load_datas: missing plan z_rot"));
+    return (my_puterr("load_datas: missing box z_rot"));
   s->rot.z = my_getnbr((char *)field);
   if ((field = bunny_ini_get_field(ini, scope, "reflection", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan reflection"));
+    return (my_puterr("load_datas: missing box reflection"));
   s->reflection = (double)my_getnbr((char *)field) / 100;
-  return (load_plan_datas2(s, ini, scope));
+  return (load_box_datas2(s, ini, scope));
 }
 
-int		load_plan_datas2(t_plan *s, t_bunny_ini *ini, char *scope)
+int		load_box_datas2(t_box *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
-  if ((field = bunny_ini_get_field(ini, scope, "height", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan height"));
-  s->height = my_getnbr((char *)field) / 2;
-  if ((field = bunny_ini_get_field(ini, scope, "width", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan width"));
-  s->width = my_getnbr((char *)field) / 2;
+  if ((field = bunny_ini_get_field(ini, scope, "size", 0)) == NULL)
+    return (my_puterr("load_datas: missing box x_size"));
+  s->size.x = my_getnbr((char *)field) / 2;
+  if ((field = bunny_ini_get_field(ini, scope, "size", 1)) == NULL)
+    return (my_puterr("load_datas: missing box y_size"));
+  s->size.y = my_getnbr((char *)field) / 2;
+  if ((field = bunny_ini_get_field(ini, scope, "size", 2)) == NULL)
+    return (my_puterr("load_datas: missing box z_size"));
+  s->size.z = my_getnbr((char *)field) / 2;
   if ((field = bunny_ini_get_field(ini, scope, "ka", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan ambient coef"));
+    return (my_puterr("load_datas: missing box ambient coef"));
   s->ka = (double)my_getnbr((char *)field) / 100;
   if ((field = bunny_ini_get_field(ini, scope, "kd", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan diffuse coef"));
+    return (my_puterr("load_datas: missing box diffuse coef"));
   s->kd = (double)my_getnbr((char *)field) / 100;
   if ((field = bunny_ini_get_field(ini, scope, "ks", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan specular coef"));
+    return (my_puterr("load_datas: missing box specular coef"));
   s->ks = (double)my_getnbr((char *)field) / 100;
   if ((field = bunny_ini_get_field(ini, scope, "brightness", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan brightness"));
+    return (my_puterr("load_datas: missing box brightness"));
   s->brightness = (double)my_getnbr((char *)field) / 100;
   if ((field = bunny_ini_get_field(ini, scope, "opacity", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan opacity"));
+    return (my_puterr("load_datas: missing box opacity"));
   s->opacity = (double)my_getnbr((char *)field) / 100;
-  return (load_plan_datas3(s, ini, scope));
+  return (load_box_datas3(s, ini, scope));
 }
 
-int		load_plan_datas3(t_plan *s, t_bunny_ini *ini, char *scope)
+int		load_box_datas3(t_box *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
   if ((field = bunny_ini_get_field(ini, scope, "refraction", 0)) == NULL)
-    return (my_puterr("load_datas: missing refraction"));
+    return (my_puterr("load_datas: missing box refraction"));
   s->refraction = atof((char *)field);
-  return (load_plan_datas4(s, ini, scope));
+  return (load_box_datas4(s, ini, scope));
 }
 
-int		load_plan_datas4(t_plan *s, t_bunny_ini *ini, char *scope)
+int		load_box_datas4(t_box *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
   if ((field = bunny_ini_get_field(ini, scope, "tex_type", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan tex_type"));
+    return (my_puterr("load_datas: missing box tex_type"));
   s->tex_type = my_getnbr((char *)field);
   if ((field = bunny_ini_get_field(ini, scope, "color1", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan color1"));
+    return (my_puterr("load_datas: missing box color1"));
   s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
   if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan color2"));
+    return (my_puterr("load_datas: missing box color2"));
   s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
-  if ((field = bunny_ini_get_field(ini, scope, "case_size", 0)) == NULL)
-    return (my_puterr("load_datas: missing plan case_size"));
-  s->case_size = my_getnbr((char *)field);
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
-	return (my_puterr("load_datas: missing plan texture"));
+	return (my_puterr("load_datas: missing box texture"));
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
-	return (my_puterr("load_datas: invalid plan texture"));
+	return (my_puterr("load_datas: invalid box texture"));
     }
   return (0);
 }
 
-int		load_plan(t_rt *rt, t_bunny_ini *ini, char *scope)
+int		load_box(t_rt *rt, t_bunny_ini *ini, char *scope)
 {
   t_object	*it;
-  t_plan	*s;
+  t_box		*s;
 
-  if ((s = malloc(sizeof(t_plan))) == NULL)
+  if ((s = malloc(sizeof(t_box))) == NULL)
     return (-1);
   if (rt->obj == NULL)
     {
@@ -124,8 +124,8 @@ int		load_plan(t_rt *rt, t_bunny_ini *ini, char *scope)
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
-  it->type = 5;
-  if (load_plan_datas(s, ini, scope) == -1)
+  it->type = 6;
+  if (load_box_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;
   return (0);

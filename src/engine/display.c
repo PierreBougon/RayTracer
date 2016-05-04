@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Tue May  3 16:15:23 2016 romain samuel
+** Last update Wed May  4 18:34:38 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -18,13 +18,14 @@ int			inter_objects(t_rt *s)
   s->ftabs.inters_ftab[1] = &display_cylinder;
   s->ftabs.inters_ftab[2] = &display_cone;
   s->ftabs.inters_ftab[3] = &display_plan;
+  s->ftabs.inters_ftab[4] = &display_box;
   it = s->obj;
   while (it != NULL)
     {
       s->hit.k1 = 0.0;
       s->hit.k2 = 0.0;
-      if (it->type < 5)
-	s->ftabs.inters_ftab[it->type - 1](s, it);
+      if (it->type > 1)
+	s->ftabs.inters_ftab[it->type - 2](s, it);
       it = it->next;
     }
   return (0);
@@ -86,10 +87,12 @@ int			display(t_rt *s, t_data *data)
   data->ld.nb_coef = 1;
   data->ld.curr_line = 0;
   pos.y = 0;
-  while (pos.y < s->height)
+  if ((s->shade.itab = malloc(sizeof(double) * s->opt.nb_rays_ss)) == NULL)
+    return (-1);
+  while (pos.y < 720)
     {
       pos.x = 0;
-      while (pos.x < s->width)
+      while (pos.x < 720)
 	{
 	  s->rec = 0;
 	  final_color = antialiasing(s, &pos, &vct, s->pixel_color);

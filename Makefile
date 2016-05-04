@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Tue May  3 16:50:36 2016 romain samuel
+## Last update Wed May  4 16:26:38 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -55,10 +55,12 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
 			$(ENGINE)get_texels.c \
+			$(ENGINE)inter_box_sides.c \
 			$(ENGINE)init_shade.c \
 			$(ENGINE)inters.c \
 			$(ENGINE)limited_objects.c \
 			$(ENGINE)limited_plan.c \
+			$(ENGINE)load_box.c \
 			$(ENGINE)load_cone.c \
 			$(ENGINE)load_cylinder.c \
 			$(ENGINE)load_file.c \
@@ -186,10 +188,10 @@ IFLAG	=	-Iinclude/
 CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
 
 ifeq ($(DEBUG),yes)
-CFLAGS	+=	-g
+CFLAGS	+=	-g -pg
 endif
 
-CC      =	gcc -g -pg $(CFLAGS) $(IFLAG)
+CC      =	gcc $(CFLAGS) $(IFLAG)
 
 
 # PROJECT RULES
