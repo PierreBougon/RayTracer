@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sun May  1 02:29:35 2016 bougon_p
+** Last update Wed May  4 19:31:17 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -49,9 +49,16 @@
 # define SIZE_Y 36
 # define CH_LINE 32
 
+/*
+** PAST DEFINES
+*/
 # define PAST_X 341
 # define PAST_Y 210
 # define PAST_DECAL_Y 89
+
+# define PAST_X_ 345
+# define PAST_Y_ 754
+# define PAST_DECAL_Y_ 40
 
 typedef enum			e_status
   {
@@ -135,6 +142,20 @@ typedef	struct			s_past
   t_bunny_picture		*img;
 }				t_past;
 
+/* typedef	struct			s_curs */
+/* { */
+/* }				t_curs; */
+
+typedef	struct			s_gen
+{
+  t_bunny_position		pos_curs_aa;
+  t_bunny_position		pos_curs_amb;
+  t_bunny_accurate_position	acc_curs_aa;
+  t_bunny_accurate_position	acc_curs_amb;
+  /* t_curs			curs_aa; */
+  /* t_curs			curs_amb; */
+}				t_gen;
+
 typedef struct			s_itfc
 {
   t_move			move;
@@ -142,6 +163,8 @@ typedef struct			s_itfc
   t_save			save;
   t_open			open;
   t_past			past;
+  t_gen				gen;
+  t_bunny_picture		*curs;
   t_bunny_picture		*layout;
   t_bunny_picture		*context[9];
   int				act_context;
@@ -265,5 +288,11 @@ int	create_scene(t_data *);
 int	basic_plane(t_data *);
 int	basic_wallpaper(t_data *);
 
+
+/*
+** Slide Bar
+*/
+int	slide_aa(t_data *);
+int	slide_amb(t_data *);
 
 #endif /* !INTERFACE  */

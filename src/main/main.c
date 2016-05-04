@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Sun May  1 02:30:38 2016 bougon_p
+** Last update Wed May  4 19:37:34 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -68,7 +68,7 @@ t_bunny_response        mainloop(void *_data)
   data = _data;
   rt = &data->rt;
   itfc = &data->itfc;
-  /* debug_pos(); */
+  debug_pos();
   if (data->rt.live && data->rt.img != NULL)
     live_display(&data->rt);
   blit_clipables(data);
@@ -90,7 +90,7 @@ int		main(int argc, char **argv, char **env)
   if (init_main_data(&data) == -1 ||
       init_engine_ftabs(&data.rt.ftabs) == -1 ||
       init_rt_data(&data.rt, argc, argv) == -1 ||
-      init_itfc_data(&data.itfc, argc) == -1)
+      init_itfc_data(&data.itfc, &data) == -1)
     return (1);
   bunny_set_key_response(my_key);
   bunny_set_click_response(my_click);

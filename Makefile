@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Mon May  2 18:04:58 2016 bougon_p
+## Last update Wed May  4 19:11:23 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -128,6 +128,9 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)create_scene.c \
 			$(ITFC)$(CONTEXT)basic_plane.c \
 			$(ITFC)$(CONTEXT)basic_wallpaper.c \
+			$(ITFC)$(CONTEXT)gen_opt.c \
+			$(ITFC)$(CONTEXT)slide_ambient.c \
+			$(ITFC)$(CONTEXT)slide_antialias.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
@@ -232,4 +235,4 @@ re		:	fclean all
 			@$(CC) -c $< -o $@
 			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
 
-.PHONY		:	comp all clean fclean re
+.PHONY		:	compile all clean fclean re

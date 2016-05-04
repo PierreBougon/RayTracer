@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Mon May  2 21:31:33 2016 benjamin duhieu
+** Last update Wed May  4 19:37:17 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -450,7 +450,7 @@ typedef struct		s_data
 */
 int			init_main_data(t_data *);
 int			init_rt_data(t_rt *, int, char **);
-int			init_itfc_data(t_itfc *, int);
+int			init_itfc_data(t_itfc *, t_data *);
 int			init_engine_ftabs(t_ftab *ftabs);
 t_bunny_position	center_rt(t_rt *);
 char			*setnbr(int);

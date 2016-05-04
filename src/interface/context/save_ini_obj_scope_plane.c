@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:18:29 2016 bougon_p
-** Last update Mon May  2 18:30:48 2016 bougon_p
+** Last update Wed May  4 14:49:24 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -62,7 +62,7 @@ static	void	plane_coef(t_plan *pla,
   value = setnbr(pla->reflection * 100);
   bunny_ini_set_field(ini, scope, "reflection", 0, value);
   bunny_free(value);
-  value = setnbr(pla->opacity);
+  value = setnbr(pla->opacity * 100);
   bunny_ini_set_field(ini, scope, "opacity", 0, value);
   bunny_free(value);
 }
@@ -93,9 +93,10 @@ void		plane_obj(t_data *data, t_object *obj,
   bunny_ini_set_field(ini, scope, "color1", 0, value);
   bunny_free(value);
   value = put_base(pla->color2.full, "0123456789ABCDEF");
+  bunny_ini_set_field(ini, scope, "color2", 0, value);
+  bunny_free(value);
   value = setnbr(pla->refraction);
   bunny_ini_set_field(ini, scope, "refraction", 0, value);
   bunny_free(value);
-  bunny_ini_set_field(ini, scope, "color2", 0, value);
-  bunny_free(value);
+  bunny_ini_set_field(ini, scope, "case_size", 0, "2000");
 }
