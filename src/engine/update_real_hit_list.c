@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 19 15:11:57 2016 romain samuel
-** Last update Thu May  5 19:28:10 2016 romain samuel
+** Last update Thu May  5 21:14:54 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -35,7 +35,7 @@ int		delete_false_hit_objects(t_rt *s)
     it = it->next;
   while (it->next->real == 0)
     {
-      free(it->next);
+      bunny_free(it->next);
       it->next = NULL;
       it = it->prev;
     }

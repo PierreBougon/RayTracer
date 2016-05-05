@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Jan  4 10:27:46 2016 marc brout
-** Last update Sat Mar  5 18:51:18 2016 marc brout
+** Last update Thu May  5 21:15:45 2016 romain samuel
 */
 
 #include "get_next_line.h"
@@ -15,7 +15,7 @@ char		*my_realloc(char *str, int size)
   char		*tmp;
   int		i;
 
-  if ((tmp = malloc(size + 1)) == NULL)
+  if ((tmp = bunny_malloc(size + 1)) == NULL)
     return (NULL);
   i = -1;
   while (str[++i] && i < size)
@@ -23,7 +23,7 @@ char		*my_realloc(char *str, int size)
   while (i <= size)
     tmp[i++] = 0;
   if (str != NULL)
-    free(str);
+    bunny_free(str);
   return (tmp);
 }
 
@@ -32,7 +32,7 @@ char		*get_last_buff(char *buff, int *ret, int *i, int *j)
   int		size;
   char		*str;
 
-  if ((str = malloc(1)) == NULL || *ret == 0)
+  if ((str = bunny_malloc(1)) == NULL || *ret == 0)
     return (NULL);
   str[0] = 0;
   size = 0;
@@ -70,6 +70,6 @@ char		*get_next_line(const int fd)
     }
   if (size)
     return (str);
-  free(str);
+  bunny_free(str);
   return (((i = -1) && (r = -1)) ? NULL : NULL);
 }

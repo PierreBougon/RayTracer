@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon Mar 28 12:33:47 2016 bougon_p
-** Last update Wed Apr  6 23:47:19 2016 bougon_p
+** Last update Thu May  5 21:13:13 2016 romain samuel
 */
 
 #include "my.h"
@@ -18,15 +18,15 @@ char	**my_dup_tab(char **tab)
 
   act_lines = -1;
   while (tab[++act_lines] != NULL);
-  if ((new_tab = malloc(sizeof(char *)
-			* (act_lines + 2))) == NULL)
+  if ((new_tab = bunny_malloc(sizeof(char *)
+			      * (act_lines + 2))) == NULL)
     return (NULL);
   new_tab[act_lines] = NULL;
   new_tab[act_lines + 1] = NULL;
   j = -1;
   while (++j < act_lines)
     {
-      if ((new_tab[j] = malloc(sizeof(char) * my_strlen(tab[j]))) == NULL)
+      if ((new_tab[j] = bunny_malloc(sizeof(char) * my_strlen(tab[j]))) == NULL)
 	return (NULL);
       new_tab[j] = my_strdup(tab[j]);
     }
@@ -39,7 +39,7 @@ char    *my_strdup(char *src)
   char  *dest;
 
   i = 0;
-  if ((dest = malloc(sizeof(char) * my_strlen(src) + 1)) == NULL)
+  if ((dest = bunny_malloc(sizeof(char) * my_strlen(src) + 1)) == NULL)
     return (NULL);
   while (src[i])
     {

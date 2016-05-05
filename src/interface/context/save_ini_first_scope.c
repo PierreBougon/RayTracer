@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 16:39:20 2016 bougon_p
-** Last update Thu May  5 19:42:10 2016 romain samuel
+** Last update Thu May  5 21:09:27 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -49,7 +49,7 @@ static	int	set_first_scope_obj(t_data *data, t_bunny_ini *ini)
 
   obj = data->rt.obj;
   i = 0;
-  if ((data->itfc.save.obj_names = malloc(sizeof(char *) * 1)) == NULL)
+  if ((data->itfc.save.obj_names = bunny_malloc(sizeof(char *) * 1)) == NULL)
     return (1);
   data->itfc.save.obj_names[0] = NULL;
   while (obj != NULL)
