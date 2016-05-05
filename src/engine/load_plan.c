@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:03:56 2016 romain samuel
-** Last update Tue May  3 18:12:16 2016 romain samuel
+** Last update Thu May  5 17:55:32 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -109,7 +109,7 @@ int		load_plan(t_rt *rt, t_bunny_ini *ini, char *scope)
   t_object	*it;
   t_plan	*s;
 
-  if ((s = malloc(sizeof(t_plan))) == NULL)
+  if ((s = bunny_malloc(sizeof(t_plan))) == NULL)
     return (-1);
   if (rt->obj == NULL)
     {

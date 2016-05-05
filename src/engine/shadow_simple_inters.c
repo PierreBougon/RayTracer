@@ -5,12 +5,15 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 17 11:55:00 2016 romain samuel
-** Last update Tue Apr 19 17:47:57 2016 romain samuel
+** Last update Thu May  5 19:28:55 2016 romain samuel
 */
 
 #include "raytracer.h"
 
-double		shadow_simple_inters(t_rt *s, t_acc *vct, t_acc *eye, double k[2])
+double		shadow_simple_inters(t_rt *s,
+				     t_acc *vct,
+				     t_acc *eye,
+				     double k[2])
 {
   double	tmp;
 

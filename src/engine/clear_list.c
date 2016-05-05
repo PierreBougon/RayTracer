@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 12 21:54:13 2016 romain samuel
-** Last update Wed Apr 13 14:28:04 2016 romain samuel
+** Last update Thu May  5 18:32:02 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -16,18 +16,13 @@ int		clear_list(t_object *root)
 
   if (root == NULL)
     return (0);
-  if (root->next != NULL)
+  it = root->next;
+  while (it->next != NULL)
     {
-      it = root;
-      while (it->next != NULL)
-	it = it->next;
-      while (it != NULL)
-	{
-	  free(it->next);
-	  it = it->prev;
-	}
+      it = it->next;
+      bunny_free(it->prev);
     }
-  free(root);
-  root = NULL;
+  bunny_free(root);
+  bunny_free(it);
   return (0);
 }

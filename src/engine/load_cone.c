@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:56:19 2016 romain samuel
-** Last update Tue May  3 18:11:36 2016 romain samuel
+** Last update Thu May  5 19:37:11 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -113,14 +113,12 @@ int		load_cone_datas4(t_cone *s, t_bunny_ini *ini, char *scope)
   return (0);
 }
 
-
-
 int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope)
 {
   t_object	*it;
   t_cone	*s;
 
-  if ((s = malloc(sizeof(t_cone))) == NULL)
+  if ((s = bunny_malloc(sizeof(t_cone))) == NULL)
     return (-1);
   if (rt->obj == NULL)
     {

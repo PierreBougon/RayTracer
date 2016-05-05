@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Wed May  4 16:26:38 2016 romain samuel
+## Last update Wed May  4 18:53:29 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -51,6 +51,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)diffuse_light.c \
 			$(ENGINE)display.c \
 			$(ENGINE)display_objects.c \
+			$(ENGINE)exposure.c \
 			$(ENGINE)get_norm.c \
 			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
@@ -79,6 +80,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)shadow_limited_objects.c \
 			$(ENGINE)shadow_simple_inters.c \
 			$(ENGINE)skybox.c \
+			$(ENGINE)soft_shadows.c \
 			$(ENGINE)specular_light.c \
 			$(ENGINE)update_hit_list.c \
 			$(ENGINE)update_real_hit_list.c \

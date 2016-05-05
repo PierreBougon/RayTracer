@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Wed May  4 18:34:39 2016 romain samuel
+** Last update Wed May  4 18:54:00 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -571,6 +571,11 @@ int		display_plan(t_rt *s, t_object *obj);
 int		display_box(t_rt *s, t_object *obj);
 
 /*
+** exposure.c
+*/
+double		expose(double i);
+
+/*
 ** get_norm.c
 */
 void		get_norm_plan(t_rt *s, t_plan *plan);
@@ -795,6 +800,11 @@ void		skybox_x(t_rt *s, t_acc *vct);
 void		skybox_y(t_rt *s, t_acc *vct);
 void		skybox_z(t_rt *s, t_acc *vct);
 int		skybox(t_rt *s, t_acc *vct);
+
+/*
+** soft_shadows.c
+*/
+double		get_soft_intensity(t_rt *s, double *tab);
 
 /*
 ** specular_light.c

@@ -5,14 +5,17 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 17 11:38:35 2016 romain samuel
-** Last update Tue Apr 19 18:10:34 2016 romain samuel
+** Last update Thu May  5 19:01:21 2016 romain samuel
 */
 
 #include "raytracer.h"
 
 double	shadow_limited_cylinder(t_rt *s, t_cylinder *cylinder, double k)
 {
-  if ((s->shade.shadow.simple_inter1.z < - cylinder->height &&
+  if (k < 0.0)
+    return (-1);
+  if ((s->shade.shadow.simple_inter1.z <
+       - cylinder->height &&
        s->shade.shadow.simple_inter2.z < - cylinder->height) ||
       (s->shade.shadow.simple_inter1.z > cylinder->height &&
        s->shade.shadow.simple_inter2.z > cylinder->height))

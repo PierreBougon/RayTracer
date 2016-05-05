@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 19:05:58 2016 romain samuel
-** Last update Wed May  4 16:40:42 2016 romain samuel
+** Last update Thu May  5 19:36:28 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -21,16 +21,17 @@ t_color			live_display_objects(t_rt *s, t_acc *vct, t_acc eye, int rec)
   s->ray.vct = vct;
   inter_objects(s);
   order_hit_list(s->obj_hit);
-  if (s->obj_hit != NULL && s->obj_hit != NULL)
+  if (s->obj_hit != NULL && s->obj_hit->next != NULL)
     {
       set_hit_values(s, s->obj_hit->next);
       live_shade(s, s->ray.vct, s->ray.eye);
       color = s->final_color;
+      clear_list(s->obj_hit);
+      s->obj_hit = NULL;
     }
   else
     skybox(s, vct);
   color = s->final_color;
-  s->obj_hit = NULL;
   return (color);
 }
 
@@ -40,13 +41,13 @@ int			live_display(t_rt *s)
   t_acc			vct;
   t_color		final_color;
 
-  if ((s->pixel_color = malloc(sizeof(t_color) * s->opt.aa)) == NULL)
+  if ((s->pixel_color = bunny_malloc(sizeof(t_color) * s->opt.aa)) == NULL)
     return (my_puterr("display: could not perform malloc"));
   pos.y = 0;
-  while (pos.y < 720)
+  while (pos.y < s->height)
     {
       pos.x = 0;
-      while (pos.x < 720)
+      while (pos.x < s->width)
 	{
 	  vct.x = ((double)s->width / 2.0) - (double)pos.x;
 	  vct.y = ((double)s->height / 2.0) - (double)pos.y;

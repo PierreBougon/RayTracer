@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Wed May  4 18:22:07 2016 romain samuel
+** Last update Thu May  5 19:39:52 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -58,22 +58,22 @@ int		load_eye(t_rt *s, t_bunny_ini *ini)
 {
   const char	*field;
 
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "eye_pos", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "eye_pos", 0)) == NULL)
     return (my_puterr("load_eye: missing eye xpos"));
   s->eye.pos.x = (double)my_getnbr((char *)field);
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "eye_pos", 1)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "eye_pos", 1)) == NULL)
     return (my_puterr("load_eye: missing eye ypos"));
   s->eye.pos.y = (double)my_getnbr((char *)field);
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "eye_pos", 2)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "eye_pos", 2)) == NULL)
     return (my_puterr("load_eye: missing eye zpos"));
   s->eye.pos.z = (double)my_getnbr((char *)field);
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "eye_rot", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "eye_rot", 0)) == NULL)
     return (my_puterr("load_eye: missing eye xrot"));
   s->eye.rot.x = my_getnbr((char *)field);
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "eye_rot", 1)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "eye_rot", 1)) == NULL)
     return (my_puterr("load_eye: missing eye yrot"));
   s->eye.rot.y = my_getnbr((char *)field);
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "eye_rot", 2)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "eye_rot", 2)) == NULL)
     return (my_puterr("load_eye: missing eye zrot"));
   s->eye.rot.z = my_getnbr((char *)field);
   return (0);
@@ -81,27 +81,27 @@ int		load_eye(t_rt *s, t_bunny_ini *ini)
 
 int		load_skybox_textures(t_rt *s, t_bunny_ini *ini, const char *field)
 {
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_right", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "sb_right", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox right texture"));
   if ((s->opt.skybox_right = bunny_load_pixelarray((char *)field)) == NULL)
     return (my_puterr("load_datas: invalid skybox right texture"));
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_left", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "sb_left", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox left texture"));
   if ((s->opt.skybox_left = bunny_load_pixelarray((char *)field)) == NULL)
     return (my_puterr("load_datas: invalid skybox left texture"));
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_up", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "sb_up", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox up texture"));
   if ((s->opt.skybox_up = bunny_load_pixelarray((char *)field)) == NULL)
     return (my_puterr("load_datas: invalid skybox up texture"));
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_down", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "sb_down", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox down texture"));
   if ((s->opt.skybox_down = bunny_load_pixelarray((char *)field)) == NULL)
     return (my_puterr("load_datas: invalid skybox down texture"));
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_forward", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "sb_forward", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox forward texture"));
   if ((s->opt.skybox_forward = bunny_load_pixelarray((char *)field)) == NULL)
     return (my_puterr("load_datas: invalid skybox forward texture"));
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox_backward", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "sb_backward", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox backward texture"));
   if ((s->opt.skybox_backward = bunny_load_pixelarray((char *)field)) == NULL)
     return (my_puterr("load_datas: invalid skybox backward texture"));
@@ -112,15 +112,17 @@ int		load_shadow_params(t_rt *s, t_bunny_ini *ini)
 {
   const char	*field;
 
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "soft_shadows", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "soft_shadows", 0))
+      == NULL)
     return (my_puterr("load_file: missing soft_shadows attribute"));
   s->opt.ss = my_getnbr((char *)field);
   if (s->opt.ss == 1)
     {
-      if ((field = bunny_ini_get_field(ini, "RAYTRACER", "nb_rays_ss", 0)) == NULL)
+      if ((field = bunny_ini_get_field(ini, "RT", "nb_rays_ss", 0))
+	  == NULL)
 	return (my_puterr("load_file: missing soft shadows ray number"));
       s->opt.nb_rays_ss = my_getnbr((char *)field);
-      if ((field = bunny_ini_get_field(ini, "RAYTRACER", "ray_ss", 0)) == NULL)
+      if ((field = bunny_ini_get_field(ini, "RT", "ray_ss", 0)) == NULL)
 	return (my_puterr("load_file: missing soft_shadows ray_ss"));
       s->opt.ray_ss = my_getnbr((char *)field);
     }
@@ -139,21 +141,21 @@ int		load_scene_parameters(t_rt *s, t_bunny_ini *ini)
 
   if (load_shadow_params(s, ini) == -1)
     return (-1);
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "ambiant_lum", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "ambiant_lum", 0)) == NULL)
     return (my_puterr("load_file: missing ambiant_lum"));
   s->opt.ambient = (double)my_getnbr((char *)field) / 100.0;
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "supersampling", 0))
+  if ((field = bunny_ini_get_field(ini, "RT", "supersampling", 0))
       == NULL)
     return (my_puterr("load_file: missing supersampling coef"));
   s->opt.aa = my_getnbr((char *)field);
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "ambient_refraction", 0))
+  if ((field = bunny_ini_get_field(ini, "RT", "ambient_refraction", 0))
       == NULL)
     return (my_puterr("load_file: missing ambient_refraction"));
   s->opt.ambient_refraction = atof((char *)field);
   aa = sqrt(s->opt.aa);
   if (aa != (int)aa)
     return (my_puterr("load_file: invalid antialiasing settings"));
-  if ((field = bunny_ini_get_field(ini, "RAYTRACER", "skybox", 0)) == NULL)
+  if ((field = bunny_ini_get_field(ini, "RT", "skybox", 0)) == NULL)
     {
       s->opt.skybox = 0;
       return (0);
@@ -176,7 +178,7 @@ int		load_file(t_rt *s, char *file)
     return (-1);
   if (load_scene_parameters(s, ini) == -1)
     return (-1);
-  while ((field = bunny_ini_get_field(ini, "RAYTRACER", "objs", i)) != NULL)
+  while ((field = bunny_ini_get_field(ini, "RT", "objs", i)) != NULL)
     {
       if (load_object(s, ini, (char *)field) == -1)
 	return (-1);

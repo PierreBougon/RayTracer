@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:44:39 2016 romain samuel
-** Last update Tue May  3 18:18:51 2016 romain samuel
+** Last update Thu May  5 17:55:42 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -109,7 +109,7 @@ int		load_sphere(t_rt *rt, t_bunny_ini *ini, char *scope)
   t_object	*it;
   t_sphere	*s;
 
-  if ((s = malloc(sizeof(t_sphere))) == NULL)
+  if ((s = bunny_malloc(sizeof(t_sphere))) == NULL)
     return (-1);
   if (rt->obj == NULL)
     {

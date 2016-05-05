@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Wed May  4 15:27:23 2016 romain samuel
+** Last update Thu May  5 17:57:54 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -55,7 +55,7 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
       if ((rt->img = bunny_new_pixelarray(rt->width, rt->height)) == NULL)
 	return (my_puterr("Could not perform bunny_new_pixelarray"));
       if (load_file(rt, argv[1]) == -1 ||
-	  !(rt->pixel_color = malloc(sizeof(t_color) * rt->opt.aa)))
+	  !(rt->pixel_color = bunny_malloc(sizeof(t_color) * rt->opt.aa)))
 	return (-1);
       rt->pos = center_rt(rt);
       fill_pxlarray(rt->img, 0xFF262626);
@@ -68,13 +68,13 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
 
 int	init_engine_ftabs(t_ftab *ftabs)
 {
-  if ((ftabs->inters_ftab = malloc(sizeof(ftabs->inters_ftab) * 5)) == NULL)
+  if ((ftabs->inters_ftab = bunny_malloc(sizeof(ftabs->inters_ftab) * 5)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
-  if ((ftabs->shadow_ftab = malloc(sizeof(ftabs->shadow_ftab) * 5)) == NULL)
+  if ((ftabs->shadow_ftab = bunny_malloc(sizeof(ftabs->shadow_ftab) * 5)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
-  if ((ftabs->hit_ftab = malloc(sizeof(ftabs->hit_ftab) * 5)) == NULL)
+  if ((ftabs->hit_ftab = bunny_malloc(sizeof(ftabs->hit_ftab) * 5)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
-  if ((ftabs->tex_ftab = malloc(sizeof(ftabs->tex_ftab) * 8)) == NULL)
+  if ((ftabs->tex_ftab = bunny_malloc(sizeof(ftabs->tex_ftab) * 8)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
   return (0);
 }
