@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon Apr 18 20:27:17 2016 bougon_p
-** Last update Wed May  4 22:25:25 2016 bougon_p
+** Last update Thu May  5 17:53:35 2016 bougon_p
 */
 
 #ifndef CONTEXT_H_
@@ -41,7 +41,12 @@
 # define CHOSE_SIZE_X 170
 # define CHOSE_SIZE_Y 763
 # define CHOSE_SIZE_WDT 190
-# define CHOSE_SIZE_HGT 30
+# define CHOSE_SIZE_HGT 32
 # define CHOSE_SIZE_DECAL_Y 40
+
+# define FULL_PAST_X 343
+# define FULL_PAST_Y 774
+# define DECAL_PAST_FULLY 43
+# define NB_SIZE_BT 5
 
 #endif /* !CONTEXT_H_ */

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 02:44:00 2016 bougon_p
-** Last update Wed May  4 20:04:37 2016 bougon_p
+** Last update Thu May  5 16:44:23 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -30,11 +30,11 @@ void	delete_all_clipables(t_data *data)
   while (i < 9)
     {
       if (data->itfc.context[i] != NULL)
-	bunny_delete_clipable(data->itfc.context[i]);
+  	bunny_delete_clipable(data->itfc.context[i]);
       i++;
     }
   if (data->rt.opt.skybox_right != NULL && data->rt.opt.skybox_left != NULL
-      && data->rt.opt.skybox_up != NULL && data->rt.opt.skybox_up != NULL
+      && data->rt.opt.skybox_up != NULL
       && data->rt.opt.skybox_down != NULL
       && data->rt.opt.skybox_forward != NULL
       && data->rt.opt.skybox_backward != NULL)

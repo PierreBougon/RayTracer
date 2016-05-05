@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Wed May  4 15:27:23 2016 romain samuel
+** Last update Thu May  5 16:38:13 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -42,8 +42,8 @@ t_bunny_position	center_rt(t_rt *rt)
 
 int	init_rt_data(t_rt *rt, int argc, char **argv)
 {
-  rt->width = INIT_WIDTH;
-  rt->height = INIT_HEIGHT;
+  rt->width = FULL_WIDTH;
+  rt->height = FULL_HEIGHT;
   rt->img = NULL;
   rt->live = true;
   rt->coef_load = (float)rt->height / 100.0f;
@@ -59,9 +59,6 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
 	return (-1);
       rt->pos = center_rt(rt);
       fill_pxlarray(rt->img, 0xFF262626);
-      live_display(rt);
-      /* For fast RT debugging */
-      /*display(rt);*/
     }
   return (0);
 }

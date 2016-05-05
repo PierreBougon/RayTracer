@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Wed May  4 23:15:24 2016 bougon_p
+** Last update Thu May  5 17:30:49 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -32,6 +32,14 @@
 # define INIT_HEIGHT 720
 # define FULL_WIDTH 1450
 # define FULL_HEIGHT 920
+# define HIGH_WIDTH 1280
+# define HIGH_HEIGHT 800
+# define HD_WIDTH 1280
+# define HD_HEIGHT 720
+# define XGA_WIDTH 1024
+# define XGA_HEIGHT 768
+# define VGA_WIDTH 640
+# define VGA_HEIGHT 480
 
 /*
 ** COLOR DEFINES

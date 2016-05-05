@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Thu May  5 15:15:00 2016 bougon_p
+** Last update Thu May  5 18:36:43 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -78,10 +78,10 @@ int			display(t_rt *s, t_data *data)
   t_acc			vct;
   t_color		final_color;
 
-  if (s->r_pos.y < 720)
+  if (s->r_pos.y < s->height)
     {
       s->r_pos.x = 0;
-      while (s->r_pos.x < 720)
+      while (s->r_pos.x < s->width)
 	{
 	  s->rec = 0;
 	  final_color = antialiasing(s, &s->r_pos, &vct, s->pixel_color);
@@ -90,7 +90,7 @@ int			display(t_rt *s, t_data *data)
 	}
       s->r_pos.y++;
     }
-  if (s->r_pos.y == 720)
+  if (s->r_pos.y == s->height)
     {
       data->itfc.rendering = false;
       data->itfc.rendered = true;

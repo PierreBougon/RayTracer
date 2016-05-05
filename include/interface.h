@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Wed May  4 23:39:06 2016 bougon_p
+** Last update Thu May  5 17:13:16 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -180,6 +180,7 @@ typedef struct			s_itfc
 							t_bunny_event_state,
 							t_bunny_mousebutton);
   int				(*fct_bt_context)(t_data *);
+  int				(*fct_set_size[NB_SIZE_BT])(t_data *);
 }				t_itfc;
 
 /*
@@ -292,5 +293,14 @@ int	basic_wallpaper(t_data *);
 */
 int	slide_aa(t_data *);
 int	slide_amb(t_data *);
+
+/*
+** Size functions
+*/
+int	set_full_size(t_data *);
+int	set_high_size(t_data *);
+int	set_hd_size(t_data *);
+int	set_xga_size(t_data *);
+int	set_vga_size(t_data *);
 
 #endif /* !INTERFACE  */

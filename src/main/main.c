@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Wed May  4 23:21:09 2016 bougon_p
+** Last update Thu May  5 18:30:01 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -69,6 +69,7 @@ t_bunny_response        mainloop(void *_data)
   data = _data;
   rt = &data->rt;
   itfc = &data->itfc;
+  blit_clipables(data);
   if (data->itfc.rendering)
     display(&data->rt, data);
   else
@@ -79,7 +80,6 @@ t_bunny_response        mainloop(void *_data)
       if (interface(data) == 1)
 	return (EXIT_ON_SUCCESS);
     }
-  blit_clipables(data);
   bunny_display(data->win);
   return (GO_ON);
 }
@@ -92,7 +92,7 @@ int		main(int argc, char **argv, char **env)
     return (my_puterr("Invalid environment"));
   srand(time(NULL));
   bunny_set_memory_check(true);
-  bunny_set_maximum_ram(400000000);
+  bunny_set_maximum_ram(600000000);
   if (init_main_data(&data) == -1 ||
       init_engine_ftabs(&data.rt.ftabs) == -1 ||
       init_rt_data(&data.rt, argc, argv) == -1 ||
