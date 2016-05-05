@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon Apr 18 20:22:42 2016 bougon_p
-** Last update Wed Apr 27 17:45:28 2016 bougon_p
+** Last update Wed May  4 23:25:46 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -34,7 +34,7 @@ int	check_context_activated(t_itfc *itfc, t_data *data)
   return (i);
 }
 
-void	check_bt_activated(t_itfc *itfc, t_data *data)
+int	check_bt_activated(t_itfc *itfc, t_data *data)
 {
   int	i;
   int	n;
@@ -48,25 +48,29 @@ void	check_bt_activated(t_itfc *itfc, t_data *data)
       if (itfc->button[i])
 	{
 	  /* printf("\n==Button : %d IS Activated== FOR %d\n", i, n); */
-	  itfc->fct_button[n](data);
-	  return ;
+	  if (itfc->fct_button[n](data) == 1)
+	    return (1);
+	  return (0);
 	}
       i++;
       n++;
     }
+  return (0);
 }
 
-void	check_button_activated(t_itfc *itfc, t_data *data)
+int	check_button_activated(t_itfc *itfc, t_data *data)
 {
   int	i;
 
   if (itfc->button[0])
     {
       /* printf("No Button is activated\n"); */
-      return ;
+      return (0);
     }
   i = check_context_activated(itfc, data);
   if (i == -1)
-    return ;
-  check_bt_activated(itfc, data);
+    return (0);
+  if (check_bt_activated(itfc, data) == 1)
+    return (1);
+  return (0);
 }

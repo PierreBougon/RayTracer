@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Wed May  4 19:11:23 2016 bougon_p
+## Last update Thu May  5 15:19:59 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -19,6 +19,8 @@ WHITE	=	\033[0m
 ECHO	=	echo -e
 
 DEBUG	=	yes
+
+OPTI	=	no
 
 # RT VARIABLES
 
@@ -54,12 +56,13 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)get_norm.c \
 			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
-			$(ENGINE)get_skybox_sides.c \
 			$(ENGINE)get_texels.c \
+			$(ENGINE)inter_box_sides.c \
 			$(ENGINE)init_shade.c \
 			$(ENGINE)inters.c \
 			$(ENGINE)limited_objects.c \
 			$(ENGINE)limited_plan.c \
+			$(ENGINE)load_box.c \
 			$(ENGINE)load_cone.c \
 			$(ENGINE)load_cylinder.c \
 			$(ENGINE)load_file.c \
@@ -190,7 +193,11 @@ IFLAG	=	-Iinclude/
 CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
 
 ifeq ($(DEBUG),yes)
-CFLAGS	+=	-g -pg
+CFLAGS	+=	-g
+endif
+
+ifeq ($(OPTI),yes)
+CFLAGS	+=	-O2
 endif
 
 CC      =	gcc $(CFLAGS) $(IFLAG)

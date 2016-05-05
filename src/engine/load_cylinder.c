@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:47:06 2016 romain samuel
-** Last update Mon May  2 18:08:21 2016 romain samuel
+** Last update Tue May  3 18:11:46 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -131,7 +131,7 @@ int		load_cylinder(t_rt *rt, t_bunny_ini *ini, char *scope)
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
-  it->type = 2;
+  it->type = 3;
   if (load_cylinder_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;

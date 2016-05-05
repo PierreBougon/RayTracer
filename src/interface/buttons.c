@@ -5,19 +5,19 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 22:00:12 2016 bougon_p
-** Last update Sun Apr 17 23:55:12 2016 bougon_p
+** Last update Thu May  5 00:04:11 2016 bougon_p
 */
 
 #include "raytracer.h"
 
 int	render(UNUSED t_data *data)
 {
-  printf("FCT => RENDER\n");
   if (!data->itfc.rendering && !data->itfc.rendered)
     {
       data->itfc.rendering = true;
       data->rt.live = false;
-      start_rendering(data);
+      if (start_rendering(data) == 1)
+	return (1);
     }
   return (0);
 }
@@ -27,6 +27,8 @@ int	live(t_data *data)
   printf("FCT => LIVE\n");
   data->rt.live = true;
   data->itfc.rendered = false;
+  data->itfc.rendering = false;
+  data->ld.loading->clipable.clip_width = 0;
   return (0);
 }
 

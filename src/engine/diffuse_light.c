@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 21:43:19 2016 romain samuel
-** Last update Sat Apr 16 16:43:46 2016 romain samuel
+** Last update Tue May  3 18:17:49 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -45,7 +45,7 @@ double		diffuse_light(t_rt *s, t_object *it)
   s->hit.cos_theta = (s->hit.nnorm.x * s->shade.nvct.x * -1)
     + (s->hit.nnorm.y * s->shade.nvct.y * -1)
     + (s->hit.nnorm.z * s->shade.nvct.z * -1);
-  if ((it->type == 4 || s->hit.limited == 1) && s->hit.cos_theta < 0.00001)
+  if ((it->type == 5 || s->hit.limited == 1) && s->hit.cos_theta < 0.00001)
     return (second_norm_brightness(s));
   if (s->hit.cos_theta < 0.0001)
     a = 0.0;

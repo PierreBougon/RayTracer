@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 02:44:00 2016 bougon_p
-** Last update Wed May  4 19:50:01 2016 bougon_p
+** Last update Wed May  4 20:04:37 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -42,10 +42,8 @@ void	delete_all_clipables(t_data *data)
       bunny_delete_clipable(&data->rt.opt.skybox_right->clipable);
       bunny_delete_clipable(&data->rt.opt.skybox_up->clipable);
       bunny_delete_clipable(&data->rt.opt.skybox_down->clipable);
-      /* bunny_delete_clipable(&data->rt.opt.skybox_left->clipable); */
+      bunny_delete_clipable(&data->rt.opt.skybox_left->clipable);
       bunny_delete_clipable(&data->rt.opt.skybox_forward->clipable);
       bunny_delete_clipable(&data->rt.opt.skybox_backward->clipable);
     }
-  if (data->rt.opt.texture != NULL)
-    bunny_delete_clipable(&data->rt.opt.texture->clipable);
 }

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Wed May  4 19:31:17 2016 bougon_p
+** Last update Wed May  4 23:39:06 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -100,6 +100,7 @@ typedef enum			e_buttons
   }				t_buttons;
 
 typedef struct	s_data		t_data;
+typedef struct	s_rt		t_rt;
 typedef struct	s_object	t_object;
 
 typedef	struct			s_move
@@ -142,18 +143,15 @@ typedef	struct			s_past
   t_bunny_picture		*img;
 }				t_past;
 
-/* typedef	struct			s_curs */
-/* { */
-/* }				t_curs; */
-
 typedef	struct			s_gen
 {
   t_bunny_position		pos_curs_aa;
   t_bunny_position		pos_curs_amb;
   t_bunny_accurate_position	acc_curs_aa;
   t_bunny_accurate_position	acc_curs_amb;
-  /* t_curs			curs_aa; */
-  /* t_curs			curs_amb; */
+  t_bunny_position		first_pos;
+  t_bunny_position		second_pos;
+  bool				needmoving;
 }				t_gen;
 
 typedef struct			s_itfc
@@ -190,7 +188,7 @@ typedef struct			s_itfc
 int	interface(t_data *data);
 int	nothing_selected(t_data *data);
 int	init_ftabs(t_itfc *);
-
+void	prerender(t_rt *, int, t_data *);
 /*
 ** Eye
 */
@@ -209,7 +207,7 @@ int	rotate_state(t_data *, t_bunny_event_state, t_bunny_mousebutton);
 ** Buttons
 */
 int	check_all_buttons(t_itfc *);
-void	check_button_activated(t_itfc *, t_data *);
+int	check_button_activated(t_itfc *, t_data *);
 void	form_button(t_itfc *, const t_bunny_position *);
 void	save_button(t_itfc *, const t_bunny_position *);
 void	file_button(t_itfc *, const t_bunny_position *);
@@ -236,7 +234,7 @@ int	save(t_data *);
 /*
 ** Rendering
 */
-void	start_rendering(t_data *);
+int	start_rendering(t_data *);
 
 /*
 ** Text

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:49:09 2016 romain samuel
-** Last update Sat Apr 23 18:19:58 2016 romain samuel
+** Last update Tue May  3 18:12:51 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -92,8 +92,8 @@ int			shadow(t_rt *s)
   s->shade.shadow.coef = 0;
   while (it != NULL)
     {
-      if (it->type < 5)
-	s->ftabs.shadow_ftab[it->type - 1](s, it);
+      if (it->type > 1)
+	s->ftabs.shadow_ftab[it->type - 2](s, it);
       if (s->shade.shadow.coef >= 1)
 	return (1);
       it = it->next;

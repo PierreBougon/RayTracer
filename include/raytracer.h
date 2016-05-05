@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Wed May  4 19:37:17 2016 bougon_p
+** Last update Wed May  4 23:15:24 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -68,11 +68,11 @@
 
 typedef enum	e_obj
   {
-    SPHERE	= 1,
-    CYLINDER	= 2,
-    CONE	= 3,
-    PLANE	= 4,
-    LIGHT	= 5
+    LIGHT	= 1,
+    SPHERE	= 2,
+    CYLINDER	= 3,
+    CONE	= 4,
+    PLANE	= 5
   }		t_obj;
 
 /*
@@ -227,6 +227,34 @@ typedef struct		s_cone
   double		n2;
 }			t_cone;
 
+typedef struct		s_box
+{
+  t_pos			pos;
+  t_pos			rot;
+  int			real;
+  int			tex_type;
+  t_pos			size;
+  double		ka;
+  double		kd;
+  double		ks;
+  double		brightness;
+  double		reflection;
+  double		opacity;
+  double		refraction;
+  t_color		color1;
+  t_color		color2;
+  t_bunny_pixelarray	*texture;
+  double		k1;
+  double		k2;
+  t_acc			simple_inter2;
+  t_acc			simple_inter1;
+  t_acc			norm;
+  int			limited;
+  t_fresnel		fresnel;
+  double		n1;
+  double		n2;
+}			t_box;
+
 typedef	struct		s_solv
 {
   double		a;
@@ -312,14 +340,16 @@ typedef struct		s_opt
   double		ambient;
   double		ambient_refraction;
   int			aa;
-  int			cubemap;
-  t_bunny_pixelarray	*texture;
+  int			skybox;
   t_bunny_pixelarray	*skybox_right;
   t_bunny_pixelarray	*skybox_left;
   t_bunny_pixelarray	*skybox_up;
   t_bunny_pixelarray	*skybox_down;
   t_bunny_pixelarray	*skybox_forward;
   t_bunny_pixelarray	*skybox_backward;
+  int			ss;
+  int			nb_rays_ss;
+  int			ray_ss;
 }			t_opt;
 
 typedef struct		s_ray
@@ -381,6 +411,7 @@ typedef struct		s_shade
   double		x_diff;
   double		y_diff;
   double		z_diff;
+  double		*itab;
 }			t_shade;
 
 typedef struct		s_ftab
@@ -403,6 +434,7 @@ typedef struct		s_rotation
 typedef struct		s_rt
 {
   t_bunny_pixelarray	*img;
+  t_bunny_position	r_pos;
   t_object		*obj;
   t_object		*obj_hit;
   t_color		*pixel_color;
@@ -537,6 +569,7 @@ int		display_sphere(t_rt *s, t_object *obj);
 int		display_cylinder(t_rt *s, t_object *obj);
 int		display_cone(t_rt *s, t_object *obj);
 int		display_plan(t_rt *s, t_object *obj);
+int		display_box(t_rt *s, t_object *obj);
 
 /*
 ** get_norm.c
@@ -557,15 +590,6 @@ t_fresnel	get_refracted_vec(t_rt *s, t_acc *norm, double n1, double n2);
 int		get_simple_inter(t_rt *s, t_acc *vct, t_acc *eye);
 
 /*
-** get_skybox_sides.c
-*/
-t_bunny_pixelarray	*get_skybox_side_0(t_bunny_pixelarray *img,
-					   t_bunny_position *start,
-					   t_bunny_position *end,
-					   t_bunny_position *size);
-int			get_skybox_sides(t_rt *s, t_bunny_pixelarray *img);
-
-/*
 ** get_texels.c
 */
 void		get_texels_plan(t_rt *s, t_plan *plan);
@@ -580,6 +604,11 @@ int		init_soft_shadow(t_rt *s);
 void		init_itab(double itab[1]);
 void		init_lum(t_rt *s, t_acc *vct, t_acc eye, t_light *light);
 
+/*
+** inter_box_sides.c
+*/
+int		init_vecs(t_rt *s, t_box *box, t_acc vec[6]);
+int		inter_box_sides(t_rt *s, t_box *box);
 
 /*
 ** inters.c
@@ -603,6 +632,15 @@ int		limited_cone(t_rt *s, t_cone *cone);
 ** limited_plan.c
 */
 int		limited_plan(t_rt *s, t_plan *plan);
+
+/*
+** load_box.c
+*/
+int		load_box_datas(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box_datas2(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box_datas3(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box_datas4(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
 ** load_cone.c

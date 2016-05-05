@@ -5,14 +5,14 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed May  4 18:01:50 2016 bougon_p
-** Last update Wed May  4 19:10:40 2016 bougon_p
+** Last update Wed May  4 22:25:54 2016 bougon_p
 */
 
 #include "raytracer.h"
 
 int				gen_opt(t_data *data)
 {
-  int				i;
+  /* int				i; */
   const	t_bunny_position	*mpos;
 
   mpos = data->itfc.mpos;

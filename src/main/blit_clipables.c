@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 00:25:51 2016 bougon_p
-** Last update Wed May  4 19:07:01 2016 bougon_p
+** Last update Thu May  5 14:53:15 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -23,10 +23,6 @@ void		blit_clipables(t_data *data)
 	     itfc->context[itfc->act_context], &itfc->context_pos);
   if (rt->img != NULL)
     bunny_blit(&data->win->buffer, &rt->img->clipable /*&rt->opt.skybox_backward->clipable*/, &rt->pos);
-  if (data->ld.loading != NULL && data->itfc.rendered
-      && !rt->live && !itfc->button[SAVE] && !itfc->button[OPEN])
-    bunny_blit(&data->win->buffer,
-	       &data->ld.loading->clipable, &data->ld.pos);
   if ((data->itfc.button[ADD_FORM] && data->itfc.past.pos.x != 0)
       || (data->itfc.button[GEN_OPT] && data->itfc.past.pos.x != 0))
     bunny_blit(&data->win->buffer, itfc->past.img, &itfc->past.pos);
@@ -35,4 +31,11 @@ void		blit_clipables(t_data *data)
       bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_aa);
       bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_amb);
     }
+  if ((data->ld.loading != NULL) &&
+    (data->itfc.rendered || data->itfc.rendering)
+      && !rt->live && !itfc->button[SAVE] && !itfc->button[OPEN]
+      && rt->r_pos.x != 0)
+    prerender(&data->rt, data->rt.r_pos.y, data);
+  /*   bunny_blit(&data->win->buffer, */
+  /* 	       &data->ld.loading->clipable, &data->ld.pos); */
 }

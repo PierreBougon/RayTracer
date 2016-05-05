@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:44:39 2016 romain samuel
-** Last update Mon May  2 18:07:15 2016 romain samuel
+** Last update Tue May  3 18:18:51 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -124,7 +124,7 @@ int		load_sphere(t_rt *rt, t_bunny_ini *ini, char *scope)
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
-  it->type = 1;
+  it->type = 2;
   if (load_sphere_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;
