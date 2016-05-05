@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Thu May  5 19:39:52 2016 romain samuel
+** Last update Thu May  5 20:15:43 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -79,33 +79,48 @@ int		load_eye(t_rt *s, t_bunny_ini *ini)
   return (0);
 }
 
-int		load_skybox_textures(t_rt *s, t_bunny_ini *ini, const char *field)
+int		load_skybox_textures2(t_rt *s,
+				      t_bunny_ini *ini,
+				      const char *field)
 {
-  if ((field = bunny_ini_get_field(ini, "RT", "sb_right", 0)) == NULL)
-    return (my_puterr("load_datas: missing skybox right texture"));
-  if ((s->opt.skybox_right = bunny_load_pixelarray((char *)field)) == NULL)
-    return (my_puterr("load_datas: invalid skybox right texture"));
-  if ((field = bunny_ini_get_field(ini, "RT", "sb_left", 0)) == NULL)
-    return (my_puterr("load_datas: missing skybox left texture"));
-  if ((s->opt.skybox_left = bunny_load_pixelarray((char *)field)) == NULL)
-    return (my_puterr("load_datas: invalid skybox left texture"));
-  if ((field = bunny_ini_get_field(ini, "RT", "sb_up", 0)) == NULL)
-    return (my_puterr("load_datas: missing skybox up texture"));
-  if ((s->opt.skybox_up = bunny_load_pixelarray((char *)field)) == NULL)
-    return (my_puterr("load_datas: invalid skybox up texture"));
   if ((field = bunny_ini_get_field(ini, "RT", "sb_down", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox down texture"));
+  s->opt.skybox_down_tex_name = my_strdup((char *)field);
   if ((s->opt.skybox_down = bunny_load_pixelarray((char *)field)) == NULL)
     return (my_puterr("load_datas: invalid skybox down texture"));
   if ((field = bunny_ini_get_field(ini, "RT", "sb_forward", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox forward texture"));
+  s->opt.skybox_front_tex_name = my_strdup((char *)field);
   if ((s->opt.skybox_forward = bunny_load_pixelarray((char *)field)) == NULL)
     return (my_puterr("load_datas: invalid skybox forward texture"));
   if ((field = bunny_ini_get_field(ini, "RT", "sb_backward", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox backward texture"));
+  s->opt.skybox_back_tex_name = my_strdup((char *)field);
   if ((s->opt.skybox_backward = bunny_load_pixelarray((char *)field)) == NULL)
     return (my_puterr("load_datas: invalid skybox backward texture"));
   return (0);
+}
+
+int		load_skybox_textures(t_rt *s,
+				     t_bunny_ini *ini,
+				     const char *field)
+{
+  if ((field = bunny_ini_get_field(ini, "RT", "sb_right", 0)) == NULL)
+    return (my_puterr("load_datas: missing skybox right texture"));
+  s->opt.skybox_right_tex_name = my_strdup((char *)field);
+  if ((s->opt.skybox_right = bunny_load_pixelarray((char *)field)) == NULL)
+    return (my_puterr("load_datas: invalid skybox right texture"));
+  if ((field = bunny_ini_get_field(ini, "RT", "sb_left", 0)) == NULL)
+    return (my_puterr("load_datas: missing skybox left texture"));
+  s->opt.skybox_left_tex_name = my_strdup((char *)field);
+  if ((s->opt.skybox_left = bunny_load_pixelarray((char *)field)) == NULL)
+    return (my_puterr("load_datas: invalid skybox left texture"));
+  if ((field = bunny_ini_get_field(ini, "RT", "sb_up", 0)) == NULL)
+    return (my_puterr("load_datas: missing skybox up texture"));
+  s->opt.skybox_up_tex_name = my_strdup((char *)field);
+  if ((s->opt.skybox_up = bunny_load_pixelarray((char *)field)) == NULL)
+    return (my_puterr("load_datas: invalid skybox up texture"));
+  return (load_skybox_textures2(s, ini, field));
 }
 
 int		load_shadow_params(t_rt *s, t_bunny_ini *ini)

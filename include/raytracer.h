@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Wed May  4 18:54:00 2016 romain samuel
+** Last update Thu May  5 20:03:14 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -32,6 +32,14 @@
 # define INIT_HEIGHT 720
 # define FULL_WIDTH 1450
 # define FULL_HEIGHT 920
+# define HIGH_WIDTH 1280
+# define HIGH_HEIGHT 800
+# define HD_WIDTH 1280
+# define HD_HEIGHT 720
+# define XGA_WIDTH 1024
+# define XGA_HEIGHT 768
+# define VGA_WIDTH 640
+# define VGA_HEIGHT 480
 
 /*
 ** COLOR DEFINES
@@ -128,6 +136,7 @@ typedef struct		s_plan
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
@@ -186,6 +195,7 @@ typedef struct		s_sphere
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
@@ -214,6 +224,8 @@ typedef struct		s_cone
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex1_name;
+  char			*tex2_name;
   t_bunny_pixelarray	*texture1;
   t_bunny_pixelarray	*texture2;
   double		k1;
@@ -243,6 +255,7 @@ typedef struct		s_box
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
@@ -289,6 +302,8 @@ typedef struct		s_cylinder
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex1_name;
+  char			*tex2_name;
   t_bunny_pixelarray	*texture1;
   t_bunny_pixelarray	*texture2;
   double		k1;
@@ -341,6 +356,12 @@ typedef struct		s_opt
   double		ambient_refraction;
   int			aa;
   int			skybox;
+  char			*skybox_right_tex_name;
+  char			*skybox_left_tex_name;
+  char			*skybox_up_tex_name;
+  char			*skybox_down_tex_name;
+  char			*skybox_front_tex_name;
+  char			*skybox_back_tex_name;
   t_bunny_pixelarray	*skybox_right;
   t_bunny_pixelarray	*skybox_left;
   t_bunny_pixelarray	*skybox_up;
@@ -434,6 +455,7 @@ typedef struct		s_rotation
 typedef struct		s_rt
 {
   t_bunny_pixelarray	*img;
+  t_bunny_position	r_pos;
   t_object		*obj;
   t_object		*obj_hit;
   t_color		*pixel_color;
@@ -481,7 +503,7 @@ typedef struct		s_data
 */
 int			init_main_data(t_data *);
 int			init_rt_data(t_rt *, int, char **);
-int			init_itfc_data(t_itfc *, int);
+int			init_itfc_data(t_itfc *, t_data *);
 int			init_engine_ftabs(t_ftab *ftabs);
 t_bunny_position	center_rt(t_rt *);
 char			*setnbr(int);

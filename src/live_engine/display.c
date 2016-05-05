@@ -5,13 +5,16 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 19:05:58 2016 romain samuel
-** Last update Thu May  5 19:36:28 2016 romain samuel
+** Last update Thu May  5 20:31:27 2016 romain samuel
 */
 
 #include "raytracer.h"
 #include "live_engine.h"
 
-t_color			live_display_objects(t_rt *s, t_acc *vct, t_acc eye, int rec)
+t_color			live_display_objects(t_rt *s,
+					     t_acc *vct,
+					     t_acc eye,
+					     int rec)
 {
   t_color		color;
 

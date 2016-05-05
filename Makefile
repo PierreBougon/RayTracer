@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Wed May  4 18:53:29 2016 romain samuel
+## Last update Thu May  5 19:55:28 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -19,6 +19,8 @@ WHITE	=	\033[0m
 ECHO	=	echo -e
 
 DEBUG	=	yes
+
+OPTI	=	no
 
 # RT VARIABLES
 
@@ -131,6 +133,10 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)create_scene.c \
 			$(ITFC)$(CONTEXT)basic_plane.c \
 			$(ITFC)$(CONTEXT)basic_wallpaper.c \
+			$(ITFC)$(CONTEXT)gen_opt.c \
+			$(ITFC)$(CONTEXT)slide_ambient.c \
+			$(ITFC)$(CONTEXT)slide_antialias.c \
+			$(ITFC)$(CONTEXT)set_size.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
@@ -190,7 +196,11 @@ IFLAG	=	-Iinclude/
 CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
 
 ifeq ($(DEBUG),yes)
-CFLAGS	+=	-g -pg
+CFLAGS	+=	-g
+endif
+
+ifeq ($(OPTI),yes)
+CFLAGS	+=	-O2
 endif
 
 CC      =	gcc $(CFLAGS) $(IFLAG)
@@ -235,4 +245,4 @@ re		:	fclean all
 			@$(CC) -c $< -o $@
 			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
 
-.PHONY		:	comp all clean fclean re
+.PHONY		:	compile all clean fclean re

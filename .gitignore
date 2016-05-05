@@ -1,7 +1,6 @@
 # Object
 *.o
 vgcore*
-log
 
 # Lib
 *.a
@@ -13,3 +12,4 @@ log
 .#*
 *~
 \#*#
+*log*

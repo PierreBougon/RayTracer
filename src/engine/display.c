@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Thu May  5 19:36:12 2016 romain samuel
+** Last update Thu May  5 20:24:45 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -60,27 +60,22 @@ t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye)
 
 void	prerender(t_rt *rt, int y, t_data *data)
 {
-  if (y % (int)rt->coef_load == 0)
+  if (y == 0)
+    data->ld.loading->clipable.clip_width = 1;
+  else if (y % (int)rt->coef_load == 0)
     {
-      data->ld.save_width = data->ld.loading->clipable.clip_width;
       data->ld.curr_line += LOADING_COEF;
       data->ld.loading->clipable.clip_width = data->ld.curr_line;
-      bunny_blit(&data->win->buffer,
-		 &data->ld.loading->clipable, &data->ld.pos);
-      data->ld.loading->clipable.clip_width = data->ld.save_width;
       data->ld.nb_coef++;
     }
   if (y > rt->coef_load * rt->nb_coef)
-    {
-      bunny_blit(&data->win->buffer, &rt->img->clipable, &rt->pos);
-      bunny_display(data->win);
-      rt->nb_coef++;
-    }
+    rt->nb_coef++;
+  bunny_blit(&data->win->buffer,
+	     &data->ld.loading->clipable, &data->ld.pos);
 }
 
 int			display(t_rt *s, t_data *data)
 {
-  t_bunny_position	pos;
   t_acc			vct;
   t_color		final_color;
 
@@ -90,19 +85,23 @@ int			display(t_rt *s, t_data *data)
   if ((s->shade.itab = bunny_malloc(sizeof(double) * s->opt.nb_rays_ss))
       == NULL)
     return (-1);
-  pos.y = 0;
-  while (pos.y < s->height)
+  if (s->r_pos.y < s->height)
     {
-      pos.x = 0;
-      while (pos.x < s->width)
+      s->r_pos.x = 0;
+      while (s->r_pos.x < s->width)
 	{
 	  s->rec = 0;
-	  final_color = antialiasing(s, &pos, &vct, s->pixel_color);
-	  tekpixel(s->img, &pos, &final_color);
-	  pos.x++;
+	  final_color = antialiasing(s, &s->r_pos, &vct, s->pixel_color);
+	  tekpixel(s->img, &s->r_pos, &final_color);
+	  s->r_pos.x++;
 	}
-      prerender(s, pos.y, data);
-      pos.y++;
+      s->r_pos.y++;
+    }
+  if (s->r_pos.y == s->height)
+    {
+      data->itfc.rendering = false;
+      data->itfc.rendered = true;
+      data->ld.loading->clipable.clip_width = data->ld.save_width;
     }
   bunny_free(s->shade.itab);
   return (0);

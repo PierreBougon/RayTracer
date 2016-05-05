@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May  4 15:28:11 2016 romain samuel
-** Last update Thu May  5 17:54:39 2016 romain samuel
+** Last update Thu May  5 20:14:11 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -98,6 +98,7 @@ int		load_box_datas4(t_box *s, t_bunny_ini *ini, char *scope)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
 	return (my_puterr("load_datas: missing box texture"));
+      s->tex_name = my_strdup((char *)field);
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid box texture"));
     }

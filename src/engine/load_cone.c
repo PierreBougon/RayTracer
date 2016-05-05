@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:56:19 2016 romain samuel
-** Last update Thu May  5 19:37:11 2016 romain samuel
+** Last update Thu May  5 20:16:25 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -102,13 +102,15 @@ int		load_cone_datas4(t_cone *s, t_bunny_ini *ini, char *scope)
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture1", 0)) == NULL)
-	return (my_puterr("load_datas: missing cone texture2"));
+	return (my_puterr("load_datas: missing cone texture1"));
+      s->tex1_name = my_strdup((char *)field);
       if ((s->texture2 = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid cone texture1"));
       if ((field = bunny_ini_get_field(ini, scope, "texture2", 0)) == NULL)
 	return (my_puterr("load_datas: missing cone texture2"));
+      s->tex2_name = my_strdup((char *)field);
       if ((s->texture1 = bunny_load_pixelarray((char *)field)) == NULL)
-	return (my_puterr("load_datas: invalid cone texture1"));
+	return (my_puterr("load_datas: invalid cone texture2"));
     }
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Thu Apr 28 15:46:49 2016 bougon_p
+** Last update Thu May  5 15:53:48 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -31,7 +31,8 @@ int	init_pix(t_itfc *itfc)
       (itfc->context[7] =
        bunny_load_picture("assets/img/context_genopt.png")) == NULL ||
       (itfc->context[8] =
-       bunny_load_picture("assets/img/context_save.png")) == NULL)
+       bunny_load_picture("assets/img/context_save.png")) == NULL ||
+      (itfc->curs = bunny_load_picture("assets/img/curs.png")) == NULL)
     return (my_puterr("Could not perform bunny_load_picture"));
   return (0);
 }
@@ -47,7 +48,41 @@ int	init_open(t_itfc *itfc)
   return (0);
 }
 
-int	init_itfc_data(t_itfc *itfc, UNUSED int ac)
+void	set_aa_curs(t_data *data, t_itfc *itfc)
+{
+  int	i;
+  int	add;
+
+  i = 4;
+  add = 20;
+  if (data->rt.opt.aa <= 1)
+    itfc->gen.pos_curs_aa.x = (int)itfc->gen.acc_curs_aa.x +
+      (0);
+  while (i <= 32)
+    {
+      if (data->rt.opt.aa == i)
+	itfc->gen.pos_curs_aa.x = (int)itfc->gen.acc_curs_aa.x +
+	  (add * 1.75);
+      i *= 2;
+      add += 20;
+    }
+}
+
+void	init_slide_pos(t_itfc *itfc, t_data *data)
+{
+  itfc->gen.acc_curs_amb.x = START_SLIDE_AMB_X +
+    data->rt.opt.ambient * 175;
+  itfc->gen.acc_curs_amb.y = START_SLIDE_AMB_Y + HALF_CURS_Y;
+  itfc->gen.pos_curs_amb.x = (int)itfc->gen.acc_curs_amb.x;
+  itfc->gen.pos_curs_amb.y = (int)itfc->gen.acc_curs_amb.y;
+  itfc->gen.acc_curs_aa.x = START_SLIDE_AA_X;
+  itfc->gen.acc_curs_aa.y = START_SLIDE_AA_Y + HALF_CURS_Y;
+  itfc->gen.pos_curs_aa.y = (int)itfc->gen.acc_curs_aa.y;
+  set_aa_curs(data, itfc);
+  itfc->gen.needmoving = false;
+}
+
+int	init_itfc_data(t_itfc *itfc, t_data *data)
 {
   itfc->layout = NULL;
   if (init_pix(itfc) == -1 || init_ftabs(itfc) == 1
@@ -68,5 +103,6 @@ int	init_itfc_data(t_itfc *itfc, UNUSED int ac)
     return (my_puterr("Could not perform bunny_load_picture"));
   itfc->past.pos.x = 0;
   itfc->past.pos.y = 0;
+  init_slide_pos(itfc, data);
   return (0);
 }

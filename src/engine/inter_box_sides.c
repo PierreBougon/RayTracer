@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May  4 15:44:38 2016 romain samuel
-** Last update Wed May  4 20:12:24 2016 romain samuel
+** Last update Thu May  5 20:27:01 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -39,7 +39,7 @@ int		init_vecs(t_rt *s, t_box *box, t_acc vec[6])
   return (0);
 }
 
-int		init_rot(t_rt *s, t_box *box, t_pos rot[6])
+int		init_rot(t_box *box, t_pos rot[6])
 {
   rot[0].x = box->rot.x + 90;
   rot[0].y = box->rot.y;
@@ -64,25 +64,27 @@ int		init_rot(t_rt *s, t_box *box, t_pos rot[6])
 
 int		inter_box_sides(t_rt *s, t_box *box)
 {
-  t_plan	plan;
-  t_acc		vec[6];
-  t_pos		rot[6];
-  int		i;
-  double	k1;
+  (void)s;
+  (void)box;
+  /* t_plan	plan; */
+  /* t_acc		vec[6]; */
+  /* t_pos		rot[6]; */
+  /* int		i; */
+  /* double	k1; */
 
-  i = 0;
-  (void)plan;
-  init_vecs(s, box, vec);
-  init_rot(s, box, rot);
-  while (i < 6)
-    {
-      plan.pos.x = box->pos.x + vec[i].x;
-      plan.pos.y = box->pos.y + vec[i].y;
-      plan.pos.z = box->pos.z + vec[i].z;
-      plan.rot = rot[i];
-      inter_plan(s, &plan);
+  /* i = 0; */
+  /* (void)plan; */
+  /* init_vecs(s, box, vec); */
+  /* init_rot(s, box, rot); */
+  /* while (i < 6) */
+  /*   { */
+  /*     plan.pos.x = box->pos.x + vec[i].x; */
+  /*     plan.pos.y = box->pos.y + vec[i].y; */
+  /*     plan.pos.z = box->pos.z + vec[i].z; */
+  /*     plan.rot = rot[i]; */
+  /*     inter_plan(s, &plan); */
 
-      i++;
-    }
+  /*     i++; */
+  /*   } */
   return (0);
 }

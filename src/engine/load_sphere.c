@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:44:39 2016 romain samuel
-** Last update Thu May  5 17:55:42 2016 romain samuel
+** Last update Thu May  5 20:15:42 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -98,6 +98,7 @@ int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini, char *scope)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
 	return (my_puterr("load_datas: missing sphere texture"));
+      s->tex_name = my_strdup((char *)field);
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid sphere texture"));
     }

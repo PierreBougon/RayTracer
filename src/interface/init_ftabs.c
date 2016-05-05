@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 28 15:43:21 2016 bougon_p
-** Last update Sat Apr 30 15:04:08 2016 bougon_p
+** Last update Thu May  5 16:57:03 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -69,6 +69,15 @@ int	init_ptr_save_ini(t_itfc *itfc)
   return (0);
 }
 
+void	init_ptr_set_size(t_itfc *itfc)
+{
+  itfc->fct_set_size[0] = set_full_size;
+  itfc->fct_set_size[1] = set_high_size;
+  itfc->fct_set_size[2] = set_hd_size;
+  itfc->fct_set_size[3] = set_xga_size;
+  itfc->fct_set_size[4] = set_vga_size;
+}
+
 int	init_ftabs(t_itfc *itfc)
 {
   int	i;
@@ -84,5 +93,6 @@ int	init_ftabs(t_itfc *itfc)
   if (init_ptr_save(itfc) == 1)
     return (1);
   init_ptr_save_ini(itfc);
+  init_ptr_set_size(itfc);
   return (0);
 }
