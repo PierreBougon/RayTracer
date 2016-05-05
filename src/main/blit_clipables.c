@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 00:25:51 2016 bougon_p
-** Last update Thu May  5 14:53:15 2016 bougon_p
+** Last update Thu May  5 15:29:37 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -36,6 +36,4 @@ void		blit_clipables(t_data *data)
       && !rt->live && !itfc->button[SAVE] && !itfc->button[OPEN]
       && rt->r_pos.x != 0)
     prerender(&data->rt, data->rt.r_pos.y, data);
-  /*   bunny_blit(&data->win->buffer, */
-  /* 	       &data->ld.loading->clipable, &data->ld.pos); */
 }
