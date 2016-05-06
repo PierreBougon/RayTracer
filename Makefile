@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Thu May  5 19:55:28 2016 romain samuel
+## Last update Fri May  6 11:33:30 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -196,7 +196,7 @@ IFLAG	=	-Iinclude/
 CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
 
 ifeq ($(DEBUG),yes)
-CFLAGS	+=	-g
+CFLAGS	+=	-g # -D LAPIN_ALLOCATOR_DEACTIVATED
 endif
 
 ifeq ($(OPTI),yes)

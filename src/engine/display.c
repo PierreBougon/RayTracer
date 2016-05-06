@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Thu May  5 20:24:45 2016 romain samuel
+** Last update Fri May  6 10:43:58 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -79,12 +79,6 @@ int			display(t_rt *s, t_data *data)
   t_acc			vct;
   t_color		final_color;
 
-  s->nb_coef = 1;
-  data->ld.nb_coef = 1;
-  data->ld.curr_line = 0;
-  if ((s->shade.itab = bunny_malloc(sizeof(double) * s->opt.nb_rays_ss))
-      == NULL)
-    return (-1);
   if (s->r_pos.y < s->height)
     {
       s->r_pos.x = 0;
@@ -102,7 +96,7 @@ int			display(t_rt *s, t_data *data)
       data->itfc.rendering = false;
       data->itfc.rendered = true;
       data->ld.loading->clipable.clip_width = data->ld.save_width;
+      bunny_free(s->shade.itab);
     }
-  bunny_free(s->shade.itab);
   return (0);
 }
