@@ -5,14 +5,14 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 16 18:34:35 2016 bougon_p
-** Last update Thu May  5 21:07:20 2016 romain samuel
+** Last update Fri May  6 12:35:14 2016 bougon_p
 */
 
 #include "raytracer.h"
 
 /*
-** Rendering function is actually a One Shot
-** PreRendering is displayed in the calculus
+** Rendering function start the render mod of the program
+** PreRendering is displayed in the calculus for each lines
 ** redered value is updated to the right state
 */
 int	start_rendering(t_data *data)

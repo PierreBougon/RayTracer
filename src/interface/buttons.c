@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 22:00:12 2016 bougon_p
-** Last update Thu May  5 00:04:11 2016 bougon_p
+** Last update Fri May  6 20:08:45 2016 bougon_p
 */
 
+#include <unistd.h>
 #include "raytracer.h"
 
 int	render(UNUSED t_data *data)
@@ -38,8 +39,24 @@ int	open_file(UNUSED t_data *data)
   return (0);
 }
 
-int	help(UNUSED t_data *data)
+int	help(t_data *data)
 {
-  printf("FCT => HELP\n");
+  pid_t	cpid;
+  char	*url[3];
+
+  url[0] = "firefox";
+  url[1] = "http://raytracer.strikingly.com/";
+  url[1] = "http://raytracer.strikingly.com/";
+  url[2] = NULL;
+  cpid = fork();
+  if (cpid == 0)
+    {
+      if (execve("/usr/bin/firefox", url, data->itfc.env) == -1)
+      	{
+	  url[0] = "chromium";
+	  if (execve("/usr/bin/chromium-browser", url, data->itfc.env) == -1)
+	    exit (1);
+	}
+    }
   return (0);
 }

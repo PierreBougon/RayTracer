@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Thu May  5 17:13:16 2016 bougon_p
+** Last update Fri May  6 18:58:50 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -181,6 +181,7 @@ typedef struct			s_itfc
 							t_bunny_mousebutton);
   int				(*fct_bt_context)(t_data *);
   int				(*fct_set_size[NB_SIZE_BT])(t_data *);
+  char				**env;
 }				t_itfc;
 
 /*

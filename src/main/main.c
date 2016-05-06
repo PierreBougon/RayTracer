@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Fri May  6 10:56:55 2016 bougon_p
+** Last update Fri May  6 20:17:04 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -90,6 +90,8 @@ int		main(int argc, char **argv, char **env)
 
   if (*env == NULL)
     return (my_puterr("Invalid environment"));
+  else
+    data.itfc.env = env;
   srand(time(NULL));
   /* bunny_set_memory_check(true); */
   bunny_set_maximum_ram(200000000);
