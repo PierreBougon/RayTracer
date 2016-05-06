@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon Apr 18 20:27:17 2016 bougon_p
-** Last update Thu May  5 17:53:35 2016 bougon_p
+** Last update Thu May  5 21:09:49 2016 bougon_p
 */
 
 #ifndef CONTEXT_H_
@@ -33,7 +33,7 @@
 
 # define START_SLIDE_AMB_X 169
 # define START_SLIDE_AMB_Y 572
-# define END_SLIDE_AMB_X 355
+# define END_SLIDE_AMB_X 344
 # define END_SLIDE_AMB_Y 600
 
 # define HALF_CURS_Y 10

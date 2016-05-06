@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed May  4 19:08:53 2016 bougon_p
-** Last update Wed May  4 22:45:43 2016 bougon_p
+** Last update Thu May  5 21:08:06 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -15,8 +15,8 @@ static	void	check_percentage(t_data *data)
   printf("AMBIENT = %f\n",
 	 (data->itfc.gen.pos_curs_amb.x -
 	  START_SLIDE_AMB_X) / 1.75);
-  data->rt.opt.ambient = (data->itfc.gen.pos_curs_amb.x  -
-			  START_SLIDE_AMB_X) / 1.75;
+  data->rt.opt.ambient = ((data->itfc.gen.pos_curs_amb.x  -
+			   START_SLIDE_AMB_X) / 1.75) / 100.0;
 }
 
 static	int	check_state(t_data *data)
