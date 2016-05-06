@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Thu Oct  8 11:23:34 2015 marc brout
-** Last update Thu Apr 28 21:58:07 2016 bougon_p
+** Last update Thu May  5 21:26:06 2016 romain samuel
 */
 
 #ifndef MY_H_
@@ -17,6 +17,7 @@
 # include <strings.h>
 # include <string.h>
 # include <stdbool.h>
+# include "lapin.h"
 
 #define UNUSED __attribute__((__unused__))
 

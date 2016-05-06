@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Thu May  5 15:53:48 2016 bougon_p
+** Last update Thu May  5 21:06:49 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -42,7 +42,7 @@ int	init_open(t_itfc *itfc)
   itfc->open.need_open = false;
   itfc->open.curs = 0;
   if ((itfc->open.file =
-       malloc(sizeof(char) * FILE_LEN + 4 + 1)) == NULL)
+       bunny_malloc(sizeof(char) * FILE_LEN + 4 + 1)) == NULL)
     return (1);
   my_bzero(itfc->open.file, FILE_LEN + 1);
   return (0);

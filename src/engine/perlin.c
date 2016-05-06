@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed Apr 27 18:35:44 2016 romain samuel
-** Last update Thu Apr 28 16:59:28 2016 romain samuel
+** Last update Thu May  5 19:30:49 2016 romain samuel
 */
 
 #include <stdlib.h>
@@ -156,7 +156,6 @@ double		noise_3d(double vec[3])
   return (noise_end(noise));
 }
 
-
 double		perlin_noise_3d(double p[3], double alpha, double beta, int n)
 {
    int		i;
@@ -176,5 +175,5 @@ double		perlin_noise_3d(double p[3], double alpha, double beta, int n)
        p[1] *= beta;
        p[2] *= beta;
      }
-   return(sum);
+   return (sum);
 }

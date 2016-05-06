@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Thu May  5 18:36:43 2016 bougon_p
+** Last update Thu May  5 20:24:45 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -44,16 +44,17 @@ t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye)
   s->ray.vct = vct;
   inter_objects(s);
   order_hit_list(s->obj_hit);
-  if (s->obj_hit != NULL && s->obj_hit != NULL)
+  if (s->obj_hit != NULL && s->obj_hit->next != NULL)
     {
       set_hit_values(s, s->obj_hit->next);
       shade(s, s->ray.vct, s->ray.eye);
       color = s->final_color;
+      clear_list(s->obj_hit);
+      s->obj_hit = NULL;
     }
   else
     skybox(s, vct);
   color = s->final_color;
-  s->obj_hit = NULL;
   return (color);
 }
 
@@ -78,6 +79,12 @@ int			display(t_rt *s, t_data *data)
   t_acc			vct;
   t_color		final_color;
 
+  s->nb_coef = 1;
+  data->ld.nb_coef = 1;
+  data->ld.curr_line = 0;
+  if ((s->shade.itab = bunny_malloc(sizeof(double) * s->opt.nb_rays_ss))
+      == NULL)
+    return (-1);
   if (s->r_pos.y < s->height)
     {
       s->r_pos.x = 0;
@@ -96,5 +103,6 @@ int			display(t_rt *s, t_data *data)
       data->itfc.rendered = true;
       data->ld.loading->clipable.clip_width = data->ld.save_width;
     }
+  bunny_free(s->shade.itab);
   return (0);
 }

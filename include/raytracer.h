@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu May  5 17:30:49 2016 bougon_p
+** Last update Thu May  5 20:03:14 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -136,6 +136,7 @@ typedef struct		s_plan
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
@@ -194,6 +195,7 @@ typedef struct		s_sphere
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
@@ -222,6 +224,8 @@ typedef struct		s_cone
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex1_name;
+  char			*tex2_name;
   t_bunny_pixelarray	*texture1;
   t_bunny_pixelarray	*texture2;
   double		k1;
@@ -251,6 +255,7 @@ typedef struct		s_box
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
@@ -297,6 +302,8 @@ typedef struct		s_cylinder
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex1_name;
+  char			*tex2_name;
   t_bunny_pixelarray	*texture1;
   t_bunny_pixelarray	*texture2;
   double		k1;
@@ -349,6 +356,12 @@ typedef struct		s_opt
   double		ambient_refraction;
   int			aa;
   int			skybox;
+  char			*skybox_right_tex_name;
+  char			*skybox_left_tex_name;
+  char			*skybox_up_tex_name;
+  char			*skybox_down_tex_name;
+  char			*skybox_front_tex_name;
+  char			*skybox_back_tex_name;
   t_bunny_pixelarray	*skybox_right;
   t_bunny_pixelarray	*skybox_left;
   t_bunny_pixelarray	*skybox_up;
@@ -580,6 +593,11 @@ int		display_plan(t_rt *s, t_object *obj);
 int		display_box(t_rt *s, t_object *obj);
 
 /*
+** exposure.c
+*/
+double		expose(double i);
+
+/*
 ** get_norm.c
 */
 void		get_norm_plan(t_rt *s, t_plan *plan);
@@ -804,6 +822,11 @@ void		skybox_x(t_rt *s, t_acc *vct);
 void		skybox_y(t_rt *s, t_acc *vct);
 void		skybox_z(t_rt *s, t_acc *vct);
 int		skybox(t_rt *s, t_acc *vct);
+
+/*
+** soft_shadows.c
+*/
+double		get_soft_intensity(t_rt *s, double *tab);
 
 /*
 ** specular_light.c

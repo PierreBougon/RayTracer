@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 16 18:34:35 2016 bougon_p
-** Last update Thu May  5 15:16:12 2016 bougon_p
+** Last update Thu May  5 21:07:20 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -27,7 +27,7 @@ int	start_rendering(t_data *data)
       data->ld.save_width = data->ld.loading->clipable.clip_width;
       data->ld.loading->clipable.clip_width = 1;
       if ((data->rt.shade.itab =
-	   malloc(sizeof(double) * data->rt.opt.nb_rays_ss)) == NULL)
+	   bunny_malloc(sizeof(double) * data->rt.opt.nb_rays_ss)) == NULL)
 	return (1);
       display(&data->rt, data);
     }

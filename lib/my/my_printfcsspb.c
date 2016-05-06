@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Nov  4 16:57:46 2015 marc brout
-** Last update Fri Mar 25 18:43:44 2016 marel_m
+** Last update Thu May  5 21:17:28 2016 romain samuel
 */
 
 #include "my.h"
@@ -75,7 +75,7 @@ int		my_print_p(va_list ap,
   void		**ptr;
   int		count;
 
-  if ((ptr = malloc(sizeof(void *))) == NULL)
+  if ((ptr = bunny_malloc(sizeof(void *))) == NULL)
     return (-1);
   ptr[0] = va_arg(ap, void *);
   if (ptr[0] == 0)
@@ -90,7 +90,7 @@ int		my_print_p(va_list ap,
       count += 2;
     }
   if (ptr != NULL)
-    free(ptr);
+    bunny_free(ptr);
   return (count);
 }
 

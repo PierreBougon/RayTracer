@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:49:09 2016 romain samuel
-** Last update Tue May  3 18:12:51 2016 romain samuel
+** Last update Thu May  5 19:25:55 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -35,7 +35,8 @@ int		shadow_cone(t_rt *s, t_object *obj)
   if (obj->datas == s->obj_hit->next->datas)
     return (0);
   shape = (t_cone *)obj->datas;
-  k = shadow_inter_cone(s, shape);
+  if ((k = shadow_inter_cone(s, shape)) <= 0)
+    return (0);
   k = shadow_limited_cone(s, shape, k);
   if (k > 0.000001 && k < 1)
     {
@@ -53,7 +54,8 @@ int		shadow_cylinder(t_rt *s, t_object *obj)
   if (obj->datas == s->obj_hit->next->datas)
     return (0);
   shape = (t_cylinder *)obj->datas;
-  k = shadow_inter_cylinder(s, shape);
+  if ((k = shadow_inter_cylinder(s, shape)) <= 0)
+    return (0);
   k = shadow_limited_cylinder(s, shape, k);
   if (k > 0.000001 && k < 1)
     {

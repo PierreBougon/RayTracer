@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:15:43 2016 romain samuel
-** Last update Tue May  3 18:12:06 2016 romain samuel
+** Last update Thu May  5 17:55:15 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -39,7 +39,7 @@ int		load_light(t_rt *rt, t_bunny_ini *ini, char *scope)
   t_object	*it;
   t_light	*s;
 
-  if ((s = malloc(sizeof(t_light))) == NULL)
+  if ((s = bunny_malloc(sizeof(t_light))) == NULL)
     return (-1);
   if (rt->obj == NULL)
     {
