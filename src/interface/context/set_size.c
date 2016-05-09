@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu May  5 16:58:56 2016 bougon_p
-** Last update Thu May  5 19:02:50 2016 bougon_p
+** Last update Sun May  8 00:21:29 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -14,6 +14,8 @@ int	set_full_size(t_data *data)
 {
   if (data->rt.img != NULL)
     bunny_delete_clipable(&data->rt.img->clipable);
+  else
+    return (0);
   data->rt.width = FULL_WIDTH;
   data->rt.height = FULL_HEIGHT;
   if ((data->rt.img = bunny_new_pixelarray
@@ -31,6 +33,8 @@ int	set_high_size(t_data *data)
 {
   if (data->rt.img != NULL)
     bunny_delete_clipable(&data->rt.img->clipable);
+  else
+    return (0);
   data->rt.width = HIGH_WIDTH;
   data->rt.height = HIGH_HEIGHT;
   if ((data->rt.img = bunny_new_pixelarray
@@ -48,6 +52,8 @@ int	set_hd_size(t_data *data)
 {
   if (data->rt.img != NULL)
     bunny_delete_clipable(&data->rt.img->clipable);
+  else
+    return (0);
   data->rt.width = HD_WIDTH;
   data->rt.height = HD_HEIGHT;
   if ((data->rt.img = bunny_new_pixelarray
@@ -65,6 +71,8 @@ int	set_xga_size(t_data *data)
 {
   if (data->rt.img != NULL)
     bunny_delete_clipable(&data->rt.img->clipable);
+  else
+    return (0);
   data->rt.width = XGA_WIDTH;
   data->rt.height = XGA_HEIGHT;
   if ((data->rt.img = bunny_new_pixelarray
@@ -82,6 +90,8 @@ int	set_vga_size(t_data *data)
 {
   if (data->rt.img != NULL)
     bunny_delete_clipable(&data->rt.img->clipable);
+  else
+    return (0);
   data->rt.width = VGA_WIDTH;
   data->rt.height = VGA_HEIGHT;
   if ((data->rt.img = bunny_new_pixelarray

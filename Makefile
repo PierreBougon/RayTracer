@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Fri May  6 12:49:21 2016 bougon_p
+## Last update Sat May  7 18:46:37 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -18,7 +18,7 @@ WHITE	=	\033[0m
 
 ECHO	=	echo -e
 
-DEBUG	=	yes
+DEBUG	=	no
 
 OPTI	=	no
 
