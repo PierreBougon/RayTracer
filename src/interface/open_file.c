@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 23 15:24:05 2016 bougon_p
-** Last update Thu May  5 21:18:37 2016 romain samuel
+** Last update Mon May  9 17:04:08 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -53,6 +53,7 @@ int     f_open_file(t_data *data)
 		my_puterr("Could not perform bunny_new_pixelarray"), 1);
       reset_var_open(data);
       bunny_free(name);
+      data->itfc.button[OPEN] = false;
     }
   else
     text(data->itfc.open.file, &data->itfc, TXT_X, TXT_Y);

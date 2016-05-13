@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 22:00:12 2016 bougon_p
-** Last update Fri May  6 20:08:45 2016 bougon_p
+** Last update Mon May  9 13:19:19 2016 bougon_p
 */
 
 #include <unistd.h>
@@ -55,7 +55,10 @@ int	help(t_data *data)
       	{
 	  url[0] = "chromium";
 	  if (execve("/usr/bin/chromium-browser", url, data->itfc.env) == -1)
-	    exit (1);
+	    {
+	      my_puterr("Could not open firefox nor chormium.");
+	      exit (1);
+	    }
 	}
     }
   return (0);
