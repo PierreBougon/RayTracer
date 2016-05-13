@@ -5,15 +5,15 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 22 22:48:42 2016 bougon_p
-** Last update Fri Apr 29 16:33:32 2016 bougon_p
+** Last update Thu May  5 21:18:05 2016 romain samuel
 */
 
 #include "raytracer.h"
 
 void	free_all(t_data *data)
 {
-  free(data->itfc.save.file);
-  free(data->itfc.open.file);
+  bunny_free(data->itfc.save.file);
+  bunny_free(data->itfc.open.file);
 }
 
 void	free_tab(char **tab)
@@ -23,7 +23,7 @@ void	free_tab(char **tab)
   j = -1;
   while (tab[++j] != NULL)
     {
-      free(tab[j]);
+      bunny_free(tab[j]);
     }
-  free(tab);
+  bunny_free(tab);
 }

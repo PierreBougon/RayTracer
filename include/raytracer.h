@@ -5,7 +5,8 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Fri May 13 13:04:01 2016 benjamin duhieu
+** Last update Fri May 13 14:58:12 2016 benjamin duhieu
+7
 */
 
 #ifndef RAYTRACER_H_
@@ -35,6 +36,14 @@
 # define INIT_HEIGHT 720
 # define FULL_WIDTH 1450
 # define FULL_HEIGHT 920
+# define HIGH_WIDTH 1280
+# define HIGH_HEIGHT 800
+# define HD_WIDTH 1280
+# define HD_HEIGHT 720
+# define XGA_WIDTH 1024
+# define XGA_HEIGHT 768
+# define VGA_WIDTH 640
+# define VGA_HEIGHT 480
 
 /*
 ** COLOR DEFINES
@@ -71,11 +80,11 @@
 
 typedef enum	e_obj
   {
-    SPHERE	= 1,
-    CYLINDER	= 2,
-    CONE	= 3,
-    PLANE	= 4,
-    LIGHT	= 5
+    LIGHT	= 1,
+    SPHERE	= 2,
+    CYLINDER	= 3,
+    CONE	= 4,
+    PLANE	= 5
   }		t_obj;
 
 /*
@@ -139,6 +148,7 @@ typedef struct		s_plan
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
@@ -277,6 +287,7 @@ typedef struct		s_sphere
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
@@ -305,6 +316,8 @@ typedef struct		s_cone
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex1_name;
+  char			*tex2_name;
   t_bunny_pixelarray	*texture1;
   t_bunny_pixelarray	*texture2;
   double		k1;
@@ -327,6 +340,52 @@ typedef struct		s_cone
 /*   double		e; */
 /* }			t_solv; */
 
+typedef struct		s_box
+{
+  t_pos			pos;
+  t_pos			rot;
+  int			real;
+  int			tex_type;
+  t_pos			size;
+  double		ka;
+  double		kd;
+  double		ks;
+  double		brightness;
+  double		reflection;
+  double		opacity;
+  double		refraction;
+  t_color		color1;
+  t_color		color2;
+  char			*tex_name;
+  t_bunny_pixelarray	*texture;
+  double		k1;
+  double		k2;
+  t_acc			simple_inter2;
+  t_acc			simple_inter1;
+  t_acc			norm;
+  int			limited;
+  t_fresnel		fresnel;
+  double		n1;
+  double		n2;
+}			t_box;
+
+typedef	struct		s_solv
+{
+  double		a;
+  double		b;
+  double		c;
+  double		d;
+  double		e;
+}			t_solv;
+
+typedef	struct		s_int_tore
+{
+  double		k1;
+  double		k2;
+  double		k3;
+  double		k4;
+}			t_int_tore;
+
 typedef struct		s_cylinder
 {
   t_pos			pos;
@@ -344,6 +403,8 @@ typedef struct		s_cylinder
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex1_name;
+  char			*tex2_name;
   t_bunny_pixelarray	*texture1;
   t_bunny_pixelarray	*texture2;
   double		k1;
@@ -410,14 +471,22 @@ typedef struct		s_opt
   double		ambient;
   double		ambient_refraction;
   int			aa;
-  int			cubemap;
-  t_bunny_pixelarray	*texture;
+  int			skybox;
+  char			*skybox_right_tex_name;
+  char			*skybox_left_tex_name;
+  char			*skybox_up_tex_name;
+  char			*skybox_down_tex_name;
+  char			*skybox_front_tex_name;
+  char			*skybox_back_tex_name;
   t_bunny_pixelarray	*skybox_right;
   t_bunny_pixelarray	*skybox_left;
   t_bunny_pixelarray	*skybox_up;
   t_bunny_pixelarray	*skybox_down;
   t_bunny_pixelarray	*skybox_forward;
   t_bunny_pixelarray	*skybox_backward;
+  int			ss;
+  int			nb_rays_ss;
+  int			ray_ss;
 }			t_opt;
 
 typedef struct		s_ray
@@ -483,6 +552,7 @@ typedef struct		s_shade
   double		x_diff;
   double		y_diff;
   double		z_diff;
+  double		*itab;
 }			t_shade;
 
 typedef struct		s_ftab
@@ -505,6 +575,7 @@ typedef struct		s_rotation
 typedef struct		s_rt
 {
   t_bunny_pixelarray	*img;
+  t_bunny_position	r_pos;
   t_object		*obj;
   t_object		*obj_hit;
   t_color		*pixel_color;
@@ -552,7 +623,7 @@ typedef struct		s_data
 */
 int			init_main_data(t_data *);
 int			init_rt_data(t_rt *, int, char **);
-int			init_itfc_data(t_itfc *, int);
+int			init_itfc_data(t_itfc *, t_data *);
 int			init_engine_ftabs(t_ftab *ftabs);
 t_bunny_position	center_rt(t_rt *);
 char			*setnbr(int);
@@ -649,6 +720,12 @@ int		display_sphere(t_rt *s, t_object *obj);
 int		display_cylinder(t_rt *s, t_object *obj);
 int		display_cone(t_rt *s, t_object *obj);
 int		display_plan(t_rt *s, t_object *obj);
+int		display_box(t_rt *s, t_object *obj);
+
+/*
+** exposure.c
+*/
+double		expose(double i);
 
 /*
 ** display_object_complex.c
@@ -690,6 +767,7 @@ int		get_simple_inter_complex(t_rt *s, t_acc *vct,
 					 t_acc *eye);
 
 /*
+<<<<<<< HEAD
 ** get_skybox_sides.c
 */
 t_bunny_pixelarray	*get_skybox_side_0(t_bunny_pixelarray *img,
@@ -700,6 +778,8 @@ int			get_skybox_sides(t_rt *s,
 					 t_bunny_pixelarray *img);
 
 /*
+=======
+>>>>>>> 0b1938b0d1b0336a03625fb93d27177a38328ef7
 ** get_texels.c
 */
 void		get_texels_plan(t_rt *s, t_plan *plan);
@@ -715,6 +795,11 @@ void		init_itab(double itab[1]);
 void		init_lum(t_rt *s, t_acc *vct, t_acc eye,
 			 t_light *light);
 
+/*
+** inter_box_sides.c
+*/
+int		init_vecs(t_rt *s, t_box *box, t_acc vec[6]);
+int		inter_box_sides(t_rt *s, t_box *box);
 
 /*
 ** inters.c
@@ -770,6 +855,15 @@ int		limited_cone(t_rt *s, t_cone *cone);
 ** limited_plan.c
 */
 int		limited_plan(t_rt *s, t_plan *plan);
+
+/*
+** load_box.c
+*/
+int		load_box_datas(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box_datas2(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box_datas3(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box_datas4(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
 ** load_cone.c
@@ -955,6 +1049,11 @@ void		skybox_x(t_rt *s, t_acc *vct);
 void		skybox_y(t_rt *s, t_acc *vct);
 void		skybox_z(t_rt *s, t_acc *vct);
 int		skybox(t_rt *s, t_acc *vct);
+
+/*
+** soft_shadows.c
+*/
+double		get_soft_intensity(t_rt *s, double *tab);
 
 /*
 ** specular_light.c

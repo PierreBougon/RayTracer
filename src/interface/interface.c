@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 15:51:45 2016 bougon_p
-** Last update Wed Apr 27 18:48:04 2016 bougon_p
+** Last update Thu May  5 18:41:58 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -50,9 +50,9 @@ int	interface(t_data *data)
   else if (data->itfc.button[OPEN])
     if (f_open_file(data) == 1)
       return (1);
-  if (data->itfc.button[NO_BUTTON])
+  if (data->itfc.button[NO_BUTTON] || data->itfc.rendered)
     data->itfc.fct_bt_context = nothing_selected;
-  if (data->itfc.fct_bt_context(data) == 1)
+  if (data->rt.live && data->itfc.fct_bt_context(data) == 1)
     return (1);
   /*
   ** DEBUG

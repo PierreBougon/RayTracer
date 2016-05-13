@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 17:59:29 2016 bougon_p
-** Last update Mon May  2 17:38:45 2016 romain samuel
+** Last update Thu May  5 21:08:38 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -33,7 +33,7 @@ static	int	add_sphere_obj(t_data *data)
   t_object	*new;
   t_sphere	*sph;
 
-  if ((sph = malloc(sizeof(t_sphere))) == NULL)
+  if ((sph = bunny_malloc(sizeof(t_sphere))) == NULL)
     return (1);
   if (data->rt.obj != NULL)
     new = add_obj_elem_ret(data->rt.obj);

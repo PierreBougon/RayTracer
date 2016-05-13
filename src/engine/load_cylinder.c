@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:47:06 2016 romain samuel
-** Last update Mon May  2 18:08:21 2016 romain samuel
+** Last update Thu May  5 20:16:14 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -101,10 +101,12 @@ int		load_cylinder_datas4(t_cylinder *s, t_bunny_ini *ini, char *scope)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture1", 0)) == NULL)
 	return (my_puterr("load_datas: missing cylinder texture1"));
+      s->tex1_name = my_strdup((char *)field);
       if ((s->texture2 = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid cylinder texture1"));
       if ((field = bunny_ini_get_field(ini, scope, "texture2", 0)) == NULL)
 	return (my_puterr("load_datas: missing cylinder texture2"));
+      s->tex2_name = my_strdup((char *)field);
       if ((s->texture1 = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid cylinder texture2"));
     }
@@ -116,7 +118,7 @@ int		load_cylinder(t_rt *rt, t_bunny_ini *ini, char *scope)
   t_object	*it;
   t_cylinder	*s;
 
-  if ((s = malloc(sizeof(t_cylinder))) == NULL)
+  if ((s = bunny_malloc(sizeof(t_cylinder))) == NULL)
     return (-1);
   if (rt->obj == NULL)
     {
@@ -131,7 +133,7 @@ int		load_cylinder(t_rt *rt, t_bunny_ini *ini, char *scope)
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
-  it->type = 2;
+  it->type = 3;
   if (load_cylinder_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:12:34 2016 romain samuel
-** Last update Fri Apr 22 16:35:02 2016 marc brout
+** Last update Thu May  5 19:27:55 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -68,8 +68,7 @@ double		shadow_inter_cone(t_rt *s, t_cone *cone)
   vct = set_pos(s->shade.vct.x, s->shade.vct.y, s->shade.vct.z);
   rotation(&s->rotation, &vct, &cone->rot);
   rotation(&s->rotation, &eye, &cone->rot);
-  a = CARRE(vct.x) + CARRE(vct.y) - CARRE(vct.z) /
-    CARRE(tan(angle));
+  a = CARRE(vct.x) + CARRE(vct.y) - CARRE(vct.z) / CARRE(tan(angle));
   b = 2 * (vct.y * eye.y + vct.x * eye.x - (vct.z * eye.z)
 	   / CARRE(tan(angle)));
   c = CARRE(eye.x) + CARRE(eye.y) - CARRE(eye.z) / CARRE(tan(angle));

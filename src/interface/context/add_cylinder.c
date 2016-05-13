@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:04:18 2016 bougon_p
-** Last update Mon May  2 17:39:22 2016 romain samuel
+** Last update Thu May  5 21:08:09 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -32,7 +32,7 @@ static	int	add_cylinder_obj(t_data *data)
   t_object	*new;
   t_cylinder	*cyl;
 
-  if ((cyl = malloc(sizeof(t_cylinder))) == NULL)
+  if ((cyl = bunny_malloc(sizeof(t_cylinder))) == NULL)
     return (1);
   if (data->rt.obj != NULL)
     new = add_obj_elem_ret(data->rt.obj);

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:02:53 2016 bougon_p
-** Last update Mon May  2 17:08:59 2016 marc brout
+** Last update Thu May  5 21:08:31 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -32,7 +32,7 @@ static	int	add_plane_obj(t_data *data)
   t_object	*new;
   t_plan	*pla;
 
-  if ((pla = malloc(sizeof(t_plan))) == NULL)
+  if ((pla = bunny_malloc(sizeof(t_plan))) == NULL)
     return (1);
   if (data->rt.obj != NULL)
     new = add_obj_elem_ret(data->rt.obj);

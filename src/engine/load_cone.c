@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:56:19 2016 romain samuel
-** Last update Mon May  2 18:09:54 2016 romain samuel
+** Last update Thu May  5 20:16:25 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -102,25 +102,25 @@ int		load_cone_datas4(t_cone *s, t_bunny_ini *ini, char *scope)
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture1", 0)) == NULL)
-	return (my_puterr("load_datas: missing cone texture2"));
+	return (my_puterr("load_datas: missing cone texture1"));
+      s->tex1_name = my_strdup((char *)field);
       if ((s->texture2 = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid cone texture1"));
       if ((field = bunny_ini_get_field(ini, scope, "texture2", 0)) == NULL)
 	return (my_puterr("load_datas: missing cone texture2"));
+      s->tex2_name = my_strdup((char *)field);
       if ((s->texture1 = bunny_load_pixelarray((char *)field)) == NULL)
-	return (my_puterr("load_datas: invalid cone texture1"));
+	return (my_puterr("load_datas: invalid cone texture2"));
     }
   return (0);
 }
-
-
 
 int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope)
 {
   t_object	*it;
   t_cone	*s;
 
-  if ((s = malloc(sizeof(t_cone))) == NULL)
+  if ((s = bunny_malloc(sizeof(t_cone))) == NULL)
     return (-1);
   if (rt->obj == NULL)
     {
@@ -135,7 +135,7 @@ int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope)
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
-  it->type = 3;
+  it->type = 4;
   if (load_cone_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;

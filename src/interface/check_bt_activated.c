@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon Apr 18 20:22:42 2016 bougon_p
-** Last update Wed Apr 27 17:45:28 2016 bougon_p
+** Last update Thu May  5 20:12:01 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -25,8 +25,11 @@ int	check_context_activated(t_itfc *itfc, t_data *data)
     {
       if (itfc->button[i])
 	{
+	  if (!data->rt.live && itfc->rendered && i != SAVE)
+	    return (0);
 	  printf("\n==Button : %d IS Activated==\n", i);
-	  itfc->fct_context[i - 1](data);
+	  if (itfc->fct_context[i - 1](data) == 1)
+	    return (1);
 	  return (-1);
 	}
       i++;
@@ -34,7 +37,7 @@ int	check_context_activated(t_itfc *itfc, t_data *data)
   return (i);
 }
 
-void	check_bt_activated(t_itfc *itfc, t_data *data)
+int	check_bt_activated(t_itfc *itfc, t_data *data)
 {
   int	i;
   int	n;
@@ -47,26 +50,34 @@ void	check_bt_activated(t_itfc *itfc, t_data *data)
 	i++;
       if (itfc->button[i])
 	{
-	  /* printf("\n==Button : %d IS Activated== FOR %d\n", i, n); */
-	  itfc->fct_button[n](data);
-	  return ;
+	  printf("\n==Button : %d IS Activated== FOR %d\n", i, n);
+	  if (itfc->rendering && (i != LIVE && i != HELP))
+	    return (0);
+	  if (itfc->fct_button[n](data) == 1)
+	    return (1);
+	  return (0);
 	}
       i++;
       n++;
     }
+  return (0);
 }
 
-void	check_button_activated(t_itfc *itfc, t_data *data)
+int	check_button_activated(t_itfc *itfc, t_data *data)
 {
   int	i;
 
+  i = 0;
   if (itfc->button[0])
     {
       /* printf("No Button is activated\n"); */
-      return ;
+      return (0);
     }
-  i = check_context_activated(itfc, data);
+  if ((i = check_context_activated(itfc, data)) == 1)
+    return (1);
   if (i == -1)
-    return ;
-  check_bt_activated(itfc, data);
+    return (0);
+  if (check_bt_activated(itfc, data) == 1)
+    return (1);
+  return (0);
 }

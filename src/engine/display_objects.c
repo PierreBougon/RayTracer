@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
-** Last update Mon May  2 19:05:00 2016 romain samuel
+** Last update Wed May  4 16:34:38 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -28,7 +28,7 @@ int		display_sphere(t_rt *s, t_object *obj)
       shape->k1 = s->hit.k1;
       shape->k2 = s->hit.k2;
       shape->norm = s->hit.norm;
-      update_hit_list(s, shape, 1, s->hit.k1);
+      update_hit_list(s, shape, 2, s->hit.k1);
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &shape->rot);
@@ -53,7 +53,7 @@ int		display_cylinder(t_rt *s, t_object *obj)
 	  shape->k2 = s->hit.k2;
 	  shape->norm = s->hit.norm;
 	  shape->limited = s->hit.limited;
-	  update_hit_list(s, shape, 2, s->hit.k1);
+	  update_hit_list(s, shape, 3, s->hit.k1);
 	}
     }
   else
@@ -79,7 +79,7 @@ int		display_cone(t_rt *s, t_object *obj)
 	  shape->k2 = s->hit.k2;
 	  shape->norm = s->hit.norm;
 	  shape->limited = s->hit.limited;
-	  update_hit_list(s, shape, 3, s->hit.k1);
+	  update_hit_list(s, shape, 4, s->hit.k1);
 	}
     }
   else
@@ -105,10 +105,20 @@ int		display_plan(t_rt *s, t_object *obj)
 	  shape->k1 = s->hit.k1;
 	  shape->k2 = s->hit.k2;
 	  shape->norm = s->hit.norm;
-	  update_hit_list(s, shape, 4, s->hit.k1);
+	  update_hit_list(s, shape, 5, s->hit.k1);
 	}
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+  return (0);
+}
+
+int		display_box(t_rt *s, t_object *obj)
+{
+  t_box		*shape;
+
+  s->hit.limited = 0;
+  shape = (t_box *)obj->datas;
+  inter_box_sides(s, shape);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:47:40 2016 romain samuel
-** Last update Thu Apr 28 19:14:24 2016 romain samuel
+** Last update Tue May  3 18:15:57 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -131,6 +131,6 @@ int	set_hit_values(t_rt *s, t_object *obj)
   s->ftabs.hit_ftab[1] = &set_hit_values_from_cylinder;
   s->ftabs.hit_ftab[2] = &set_hit_values_from_cone;
   s->ftabs.hit_ftab[3] = &set_hit_values_from_plan;
-  s->ftabs.hit_ftab[obj->type - 1](s, obj);
+  s->ftabs.hit_ftab[obj->type - 2](s, obj);
   return (0);
 }
