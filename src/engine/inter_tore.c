@@ -5,18 +5,13 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 26 13:36:09 2016 benjamin duhieu
-** Last update Mon May  2 13:57:25 2016 benjamin duhieu
+** Last update Thu May 12 21:27:45 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
 
-double		solv_tor_a(t_rt *s, t_tore *tore)
-{
-  return (CARRE(CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y) +
-		CARRE(s->ray.vct->z)));
-}
 
-double		solv_tor_b(t_rt *s, t_tore *tore)
+inline double		solv_tor_b(t_rt *s)
 {
   return (2 * ((CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y) +
 		CARRE(s->ray.vct->z)) *
@@ -25,7 +20,7 @@ double		solv_tor_b(t_rt *s, t_tore *tore)
 		     (s->ray.new_eye.z * s->ray.vct->z)))));
 }
 
-double		solv_tor_c(t_rt *s, t_tore *tore)
+inline double		solv_tor_c(t_rt *s, t_tore *tore)
 {
   return (4 * (((s->ray.new_eye.x * s->ray.vct->x) +
 		(s->ray.new_eye.y * s->ray.vct->y) +
@@ -38,7 +33,7 @@ double		solv_tor_c(t_rt *s, t_tore *tore)
 		 (2 * CARRE(tore->dist)) - (2 * CARRE(tore->rad))))));
 }
 
-double		solv_tor_d(t_rt *s, t_tore *tore)
+inline double		solv_tor_d(t_rt *s, t_tore *tore)
 {
   return ((-4 * CARRE(tore->dist)) *
 	  (CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y)) +
@@ -50,7 +45,7 @@ double		solv_tor_d(t_rt *s, t_tore *tore)
 	   (4 * CARRE(tore->rad))));
 }
 
-double		solv_tor_e(t_rt *s, t_tore *tore)
+inline double		solv_tor_e(t_rt *s, t_tore *tore)
 {
   return (CARRE((CARRE(s->ray.new_eye.x) + CARRE(s->ray.new_eye.y) +
 		 CARRE(s->ray.new_eye.z) + CARRE(tore->dist) +
@@ -62,19 +57,25 @@ double		solv_tor_e(t_rt *s, t_tore *tore)
 	    (2 * s->ray.new_eye.y * s->ray.vct->y))));
 }
 
-int		inter_tore(t_rt *s, t_tore *tore)
+void		inter_tore(t_rt *s, t_tore *tore)
 {
-  t_solv	solv;
+  t_4order	solv;
 
   s->ray.new_eye.x = s->ray.eye.x - tore->pos.x;
   s->ray.new_eye.y = s->ray.eye.y - tore->pos.y;
   s->ray.new_eye.z = s->ray.eye.z - tore->pos.z;
   rotation(&s->rotation, s->ray.vct, &tore->rot);
   rotation(&s->rotation, &s->ray.new_eye, &tore->rot);
-  solv.a = solv_tor_a(s, tore);
-  solv.b = solv_tor_b(s, tore);
+  solv.a = CARRE(CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y) +
+		 CARRE(s->ray.vct->z));
+  solv.b = solv_tor_b(s);
   solv.c = solv_tor_c(s, tore);
   solv.d = solv_tor_d(s, tore);
   solv.e = solv_tor_e(s, tore);
-  resolv_4_degres(s, tore, &solv);
+  solv.root1 = -1;
+  solv.root2 = -1;
+  solv.root3 = -1;
+  solv.root4 = -1;
+  resolv_4_degres(&solv);
+  attribute_root(s, &solv);
 }

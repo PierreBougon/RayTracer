@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Mon May  2 18:04:58 2016 bougon_p
+## Last update Fri May 13 12:47:50 2016 benjamin duhieu
 ##
 
 # USEFUL VARIABLES
@@ -27,6 +27,8 @@ MAIN		=	src/main/
 ENGINE		=	src/engine/
 
 LIVE_ENGINE	=	src/live_engine/
+
+SOLVER		=	src/solvers/
 
 ITFC		=	src/interface/
 
@@ -51,13 +53,19 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)diffuse_light.c \
 			$(ENGINE)display.c \
 			$(ENGINE)display_objects.c \
+			$(ENGINE)display_object_complex.c \
 			$(ENGINE)get_norm.c \
+			$(ENGINE)get_norm_complex.c \
 			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
 			$(ENGINE)get_skybox_sides.c \
 			$(ENGINE)get_texels.c \
 			$(ENGINE)init_shade.c \
 			$(ENGINE)inters.c \
+			$(ENGINE)inter_hole_cube.c \
+			$(ENGINE)inter_hyper.c \
+			$(ENGINE)inter_parab.c \
+			$(ENGINE)inter_tore.c \
 			$(ENGINE)limited_objects.c \
 			$(ENGINE)limited_plan.c \
 			$(ENGINE)load_cone.c \
@@ -82,8 +90,12 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)update_hit_list.c \
 			$(ENGINE)update_real_hit_list.c \
 			$(ENGINE)texturize_obj.c \
+			$(ENGINE)tri_root.c \
 			$(LIVE_ENGINE)display.c \
 			$(LIVE_ENGINE)live_shade.c \
+			$(SOLVER)cube_order_solver.c \
+			$(SOLVER)quartic_order_solver.c \
+			$(SOLVER)second_order_solver.c \
 			$(ITFC)init_itfc.c \
 			$(ITFC)init_ftabs.c \
 			$(ITFC)interface.c \
