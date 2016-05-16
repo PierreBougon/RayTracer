@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Fri May  6 18:58:50 2016 bougon_p
+** Last update Mon May 16 18:57:52 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -154,6 +154,14 @@ typedef	struct			s_gen
   bool				needmoving;
 }				t_gen;
 
+typedef	struct			s_key
+{
+  t_bunny_keysym		key_move[4];
+  t_bunny_keysym		key_rot[4];
+  int				(*f_key_move[4])(t_data *);
+  int				(*f_key_rot[4])(t_data *);
+}				t_key;
+
 typedef struct			s_itfc
 {
   t_move			move;
@@ -162,6 +170,7 @@ typedef struct			s_itfc
   t_open			open;
   t_past			past;
   t_gen				gen;
+  t_key				key;
   t_bunny_picture		*curs;
   t_bunny_picture		*layout;
   t_bunny_picture		*context[9];
@@ -191,6 +200,20 @@ int	interface(t_data *data);
 int	nothing_selected(t_data *data);
 int	init_ftabs(t_itfc *);
 void	prerender(t_rt *, int, t_data *);
+
+/*
+** Key actions
+*/
+int	move_up(t_data *);
+int	move_down(t_data *);
+int	move_left(t_data *);
+int	move_right(t_data *);
+int	rot_up(t_data *);
+int	rot_down(t_data *);
+int	rot_left(t_data *);
+int	rot_right(t_data *);
+int	check_key(t_data *, t_bunny_event_state, t_bunny_keysym);
+
 /*
 ** Eye
 */
@@ -198,6 +221,7 @@ void	move_eye(t_data *);
 void	rotate_eye(t_data *);
 void	zoom(t_data *, int, int);
 void	move_on_wheel(t_data *, int, int);
+
 /*
 ** State
 */

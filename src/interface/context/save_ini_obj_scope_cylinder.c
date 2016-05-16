@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:18:12 2016 bougon_p
-** Last update Wed May  4 15:00:44 2016 bougon_p
+** Last update Fri May 13 22:16:14 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -99,4 +99,8 @@ void		cylinder_obj(t_data *data, t_object *obj,
   value = put_base(cyl->color2.full, "0123456789ABCDEF");
   bunny_ini_set_field(ini, scope, "color2", 0, value);
   bunny_free(value);
+  if (cyl->tex1_name)
+    bunny_ini_set_field(ini, scope, "texture1", 0, cyl->tex1_name);
+  if (cyl->tex2_name)
+    bunny_ini_set_field(ini, scope, "texture2", 0, cyl->tex2_name);
 }

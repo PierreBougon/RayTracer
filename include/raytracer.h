@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu May  5 20:03:14 2016 romain samuel
+** Last update Mon May 16 13:54:29 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -60,7 +60,7 @@
 # define MARBLE_NOISE 7
 # define IMAGE 8
 
-# define NB_OBJ 5
+# define NB_OBJ 6
 
 /*
 ** includes
@@ -76,11 +76,12 @@
 
 typedef enum	e_obj
   {
-    LIGHT	= 1,
-    SPHERE	= 2,
-    CYLINDER	= 3,
-    CONE	= 4,
-    PLANE	= 5
+    LIGHT	= 0,
+    SPHERE	= 1,
+    CYLINDER	= 2,
+    CONE	= 3,
+    PLANE	= 4,
+    BOX		= 6
   }		t_obj;
 
 /*

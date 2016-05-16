@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:17:52 2016 bougon_p
-** Last update Wed May  4 15:00:20 2016 bougon_p
+** Last update Fri May 13 22:16:37 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -100,4 +100,8 @@ void		cone_obj(t_data *data, t_object *obj,
   value = put_base(con->color2.full, "0123456789ABCDEF");
   bunny_ini_set_field(ini, scope, "color2", 0, value);
   bunny_free(value);
+  if (con->tex1_name)
+    bunny_ini_set_field(ini, scope, "texture1", 0, con->tex1_name);
+  if (con->tex2_name)
+    bunny_ini_set_field(ini, scope, "texture2", 0, con->tex2_name);
 }

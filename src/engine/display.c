@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Sat May  7 18:51:15 2016 bougon_p
+** Last update Mon May 16 14:01:56 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -18,14 +18,14 @@ int			inter_objects(t_rt *s)
   s->ftabs.inters_ftab[1] = &display_cylinder;
   s->ftabs.inters_ftab[2] = &display_cone;
   s->ftabs.inters_ftab[3] = &display_plan;
-  s->ftabs.inters_ftab[4] = &display_box;
+  s->ftabs.inters_ftab[5] = &display_box;
   it = s->obj;
   while (it != NULL)
     {
       s->hit.k1 = 0.0;
       s->hit.k2 = 0.0;
-      if (it->type > 1)
-	s->ftabs.inters_ftab[it->type - 2](s, it);
+      if (it->type != LIGHT)
+	s->ftabs.inters_ftab[it->type - 1](s, it);
       it = it->next;
     }
   return (0);

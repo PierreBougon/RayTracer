@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:15:43 2016 romain samuel
-** Last update Thu May  5 17:55:15 2016 romain samuel
+** Last update Mon May 16 14:06:30 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -54,7 +54,7 @@ int		load_light(t_rt *rt, t_bunny_ini *ini, char *scope)
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
-  it->type = 1;
+  it->type = 0;
   if (load_light_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;

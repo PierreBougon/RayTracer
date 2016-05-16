@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Fri May  6 20:22:46 2016 bougon_p
+** Last update Fri May 13 18:55:48 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -21,11 +21,11 @@ int		load_type(t_rt *s,
   const char	*field;
 
   i = -1;
-  tab[0] = my_strdup("light");
-  tab[1] = my_strdup("sphere");
-  tab[2] = my_strdup("cylinder");
-  tab[3] = my_strdup("cone");
-  tab[4] = my_strdup("plan");
+  tab[0] = my_strdup("sphere");
+  tab[1] = my_strdup("cylinder");
+  tab[2] = my_strdup("cone");
+  tab[3] = my_strdup("plan");
+  tab[4] = my_strdup("light");
   tab[5] = my_strdup("box");
   while (++i < 6)
     {
@@ -43,11 +43,11 @@ int		load_object(t_rt *s, t_bunny_ini *ini, char *scope)
 
   if ((ftab = bunny_malloc(sizeof(ftab) * 6)) == NULL)
     return (my_puterr("load_object: malloc failed"));
-  ftab[0] = &load_light;
-  ftab[1] = &load_sphere;
-  ftab[2] = &load_cylinder;
-  ftab[3] = &load_cone;
-  ftab[4] = &load_plan;
+  ftab[0] = &load_sphere;
+  ftab[1] = &load_cylinder;
+  ftab[2] = &load_cone;
+  ftab[3] = &load_plan;
+  ftab[4] = &load_light;
   ftab[5] = &load_box;
   if (load_type(s, ini, ftab, scope) == -1)
     return (-1);
