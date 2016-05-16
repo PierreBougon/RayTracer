@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Nov  3 14:56:06 2015 marc brout
-** Last update Mon Mar 14 18:24:34 2016 marc brout
+** Last update Wed May  4 16:49:14 2016 marc brout
 */
 
 #include "my.h"
@@ -19,7 +19,8 @@ int		my_printf(const char *f, ...)
 
   len = 0;
   i = 0;
-  ftab = init_myprintf_ftab();
+  if (!(ftab = init_myprintf_ftab()))
+    return (-1);
   va_start(ap, f);
   while (f[i])
     {
@@ -44,13 +45,11 @@ int		get_flag(char c)
   int		i;
 
   i = 0;
-  tab = my_strdup("diouxXcsSpb%");
+  tab = "diouxXcsSpb%";
   while (c != tab[i] && tab[i])
     i++;
   if (tab[i] == 0)
     return (12);
-  if (tab != NULL)
-    free(tab);
   return (i);
 }
 
