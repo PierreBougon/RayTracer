@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 19 11:35:43 2016 romain samuel
-** Last update Thu May  5 19:14:30 2016 romain samuel
+** Last update Fri May 13 19:07:55 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -36,7 +36,7 @@ int		live_shade(t_rt *s, t_acc *vct, t_acc eye)
   i = 0;
   while (it != NULL)
     {
-      if (it->type == 1)
+      if (it->type == LIGHT)
 	{
 	  light = (t_light *)it->datas;
 

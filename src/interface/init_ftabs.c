@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 28 15:43:21 2016 bougon_p
-** Last update Thu May  5 21:07:02 2016 romain samuel
+** Last update Mon May 16 19:00:34 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -78,6 +78,26 @@ void	init_ptr_set_size(t_itfc *itfc)
   itfc->fct_set_size[4] = set_vga_size;
 }
 
+void	init_ptr_key(t_itfc *itfc)
+{
+  itfc->key.key_move[0] = BKS_Z;
+  itfc->key.key_move[1] = BKS_S;
+  itfc->key.key_move[2] = BKS_Q;
+  itfc->key.key_move[3] = BKS_D;
+  itfc->key.f_key_move[0] = move_up;
+  itfc->key.f_key_move[1] = move_down;
+  itfc->key.f_key_move[2] = move_left;
+  itfc->key.f_key_move[3] = move_right;
+  itfc->key.key_rot[0] = BKS_UP;
+  itfc->key.key_rot[1] = BKS_DOWN;
+  itfc->key.key_rot[2] = BKS_LEFT;
+  itfc->key.key_rot[3] = BKS_RIGHT;
+  itfc->key.f_key_rot[0] = rot_up;
+  itfc->key.f_key_rot[1] = rot_down;
+  itfc->key.f_key_rot[2] = rot_left;
+  itfc->key.f_key_rot[3] = rot_right;
+}
+
 int	init_ftabs(t_itfc *itfc)
 {
   int	i;
@@ -90,6 +110,7 @@ int	init_ftabs(t_itfc *itfc)
   init_ptr_context(itfc);
   init_ptr_button(itfc);
   init_ptr_state(itfc);
+  init_ptr_key(itfc);
   if (init_ptr_save(itfc) == 1)
     return (1);
   init_ptr_save_ini(itfc);

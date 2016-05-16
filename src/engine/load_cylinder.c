@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:47:06 2016 romain samuel
-** Last update Thu May  5 20:16:14 2016 romain samuel
+** Last update Fri May 13 22:28:12 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -97,6 +97,8 @@ int		load_cylinder_datas4(t_cylinder *s, t_bunny_ini *ini, char *scope)
   if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
     return (my_puterr("load_datas: missing cylinder color2"));
   s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+  s->tex1_name = NULL;
+  s->tex2_name = NULL;
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture1", 0)) == NULL)
@@ -133,7 +135,7 @@ int		load_cylinder(t_rt *rt, t_bunny_ini *ini, char *scope)
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
-  it->type = 3;
+  it->type = 2;
   if (load_cylinder_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;

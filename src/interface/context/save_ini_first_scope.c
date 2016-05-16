@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 16:39:20 2016 bougon_p
-** Last update Thu May  5 21:09:27 2016 romain samuel
+** Last update Fri May 13 21:32:30 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -64,6 +64,30 @@ static	int	set_first_scope_obj(t_data *data, t_bunny_ini *ini)
   return (0);
 }
 
+static	void	set_skybox(t_data *data, t_bunny_ini *ini)
+{
+  char		*value;
+
+  value = setnbr(data->rt.opt.skybox);
+  bunny_ini_set_field(ini, "RT", "skybox", 0, value);
+  bunny_free(value);
+  if (data->rt.opt.skybox != 0)
+    {
+      bunny_ini_set_field(ini, "RT", "sb_right", 0,
+			  data->rt.opt.skybox_right_tex_name);
+      bunny_ini_set_field(ini, "RT", "sb_left", 0,
+			  data->rt.opt.skybox_left_tex_name);
+      bunny_ini_set_field(ini, "RT", "sb_up", 0,
+			  data->rt.opt.skybox_up_tex_name);
+      bunny_ini_set_field(ini, "RT", "sb_down", 0,
+			  data->rt.opt.skybox_down_tex_name);
+      bunny_ini_set_field(ini, "RT", "sb_forward", 0,
+			  data->rt.opt.skybox_front_tex_name);
+      bunny_ini_set_field(ini, "RT", "sb_backward", 0,
+			  data->rt.opt.skybox_back_tex_name);
+    }
+}
+
 void		set_first_scope(t_data *data, t_bunny_ini *ini)
 {
   char		*value;
@@ -82,4 +106,17 @@ void		set_first_scope(t_data *data, t_bunny_ini *ini)
   value = setnbr(data->rt.opt.aa);
   bunny_ini_set_field(ini, "RT", "supersampling", 0, value);
   bunny_free(value);
+  value = setnbr(data->rt.opt.ss);
+  bunny_ini_set_field(ini, "RT", "soft_shadows", 0, value);
+  bunny_free(value);
+  if (data->rt.opt.ss == 1)
+    {
+      value = setnbr(data->rt.opt.nb_rays_ss);
+      bunny_ini_set_field(ini, "RT", "nb_rays_ss", 0, value);
+      bunny_free(value);
+      value = setnbr(data->rt.opt.ray_ss);
+      bunny_ini_set_field(ini, "RT", "ray_ss", 0, value);
+      bunny_free(value);
+    }
+  set_skybox(data, ini);
 }

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:18:29 2016 bougon_p
-** Last update Wed May  4 14:49:24 2016 bougon_p
+** Last update Fri May 13 22:16:50 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -99,4 +99,6 @@ void		plane_obj(t_data *data, t_object *obj,
   bunny_ini_set_field(ini, scope, "refraction", 0, value);
   bunny_free(value);
   bunny_ini_set_field(ini, scope, "case_size", 0, "2000");
+  if (pla->tex_name)
+    bunny_ini_set_field(ini, scope, "texture", 0, pla->tex_name);
 }

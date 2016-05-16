@@ -5,8 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Fri May 13 14:58:12 2016 benjamin duhieu
-7
+** Last update Mon May 16 19:07:56 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -64,7 +63,7 @@
 # define MARBLE_NOISE 7
 # define IMAGE 8
 
-# define NB_OBJ 5
+# define NB_OBJ 6
 
 /*
 ** includes
@@ -80,11 +79,12 @@
 
 typedef enum	e_obj
   {
-    LIGHT	= 1,
-    SPHERE	= 2,
-    CYLINDER	= 3,
-    CONE	= 4,
-    PLANE	= 5
+    LIGHT	= 0,
+    SPHERE	= 1,
+    CYLINDER	= 2,
+    CONE	= 3,
+    PLANE	= 4,
+    BOX		= 6
   }		t_obj;
 
 /*
@@ -767,7 +767,6 @@ int		get_simple_inter_complex(t_rt *s, t_acc *vct,
 					 t_acc *eye);
 
 /*
-<<<<<<< HEAD
 ** get_skybox_sides.c
 */
 t_bunny_pixelarray	*get_skybox_side_0(t_bunny_pixelarray *img,
@@ -778,8 +777,6 @@ int			get_skybox_sides(t_rt *s,
 					 t_bunny_pixelarray *img);
 
 /*
-=======
->>>>>>> 0b1938b0d1b0336a03625fb93d27177a38328ef7
 ** get_texels.c
 */
 void		get_texels_plan(t_rt *s, t_plan *plan);
