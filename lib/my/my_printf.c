@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Nov  3 14:56:06 2015 marc brout
-** Last update Wed May  4 16:49:14 2016 marc brout
+** Last update Mon May 16 17:22:31 2016 marc brout
 */
 
 #include "my.h"
@@ -34,7 +34,7 @@ int		my_printf(const char *f, ...)
       else if (len++)
 	my_putchar(f[i++]);
     }
-  free(ftab);
+  bunny_free(ftab);
   va_end(ap);
   return (len);
 }
@@ -57,7 +57,7 @@ t_ptrftab	init_myprintf_ftab()
 {
   t_ptrftab	ftab;
 
-  if ((ftab = malloc(sizeof(int *) * 13)) == NULL)
+  if ((ftab = bunny_malloc(sizeof(int *) * 13)) == NULL)
     return (NULL);
   ftab[0] = &my_print_d;
   ftab[1] = &my_print_d;

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 12 15:55:24 2016 romain samuel
-** Last update Thu Apr 21 13:25:59 2016 romain samuel
+** Last update Thu May  5 19:28:32 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -31,9 +31,5 @@ double		specular_light(t_rt *s, t_acc *vision)
   a = pow(a, 100);
   if (a < 0.001)
     a = 0.0;
-  /*coef = (nvision.x * s->hit.nnorm.x)
-    + (nvision.y * s->hit.nnorm.y)
-    + (nvision.z * s->hit.nnorm.z);
-    get_reflect_vec(s, nvision, coef);*/
   return (a);
 }

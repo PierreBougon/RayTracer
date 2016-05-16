@@ -5,7 +5,8 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Mon May  2 17:31:02 2016 romain samuel
+** Last update Fri May 13 14:58:12 2016 benjamin duhieu
+7
 */
 
 #ifndef RAYTRACER_H_
@@ -19,9 +20,12 @@
 /*
 ** MACROES
 */
+# define QUARTIC(val) ((val) * (val) * (val) * (val))
+# define CUBE(val) ((val) * (val) * (val))
 # define CARRE(val) ((val) * (val))
 # define RAD(val) (((val) * M_PI) / 180)
 # define DEG(val) (((val) * 180) / M_PI)
+# define ABS(Value) ((Value < 0) ? -Value : Value)
 
 /*
 ** WINDOW DEFINES
@@ -32,6 +36,14 @@
 # define INIT_HEIGHT 720
 # define FULL_WIDTH 1450
 # define FULL_HEIGHT 920
+# define HIGH_WIDTH 1280
+# define HIGH_HEIGHT 800
+# define HD_WIDTH 1280
+# define HD_HEIGHT 720
+# define XGA_WIDTH 1024
+# define XGA_HEIGHT 768
+# define VGA_WIDTH 640
+# define VGA_HEIGHT 480
 
 /*
 ** COLOR DEFINES
@@ -68,11 +80,11 @@
 
 typedef enum	e_obj
   {
-    SPHERE	= 1,
-    CYLINDER	= 2,
-    CONE	= 3,
-    PLANE	= 4,
-    LIGHT	= 5
+    LIGHT	= 1,
+    SPHERE	= 2,
+    CYLINDER	= 3,
+    CONE	= 4,
+    PLANE	= 5
   }		t_obj;
 
 /*
@@ -93,6 +105,14 @@ typedef struct		s_acc
   float			y;
   float			z;
 }			t_acc;
+
+typedef struct		s_quad_inter
+{
+  double		k1;
+  double		k2;
+  double		k3;
+  double		k4;
+}			t_quad_inter;
 
 typedef struct		s_fresnel
 {
@@ -128,6 +148,7 @@ typedef struct		s_plan
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
@@ -138,6 +159,117 @@ typedef struct		s_plan
   double		n1;
   double		n2;
 }			t_plan;
+
+typedef struct		s_2order
+{
+  double		a;
+  double		b;
+  double		c;
+  double		delta;
+  double		root1;
+  double		root2;
+}			t_2order;
+
+typedef struct		s_3order
+{
+  double		a;
+  double		b;
+  double		c;
+  double		d;
+  double		delta;
+  double		root1;
+  double		root2;
+  double		root3;
+}			t_3order;
+
+typedef struct		s_4order
+{
+  double		a;
+  double		b;
+  double		c;
+  double		d;
+  double		e;
+  double		delta;
+  double		root1;
+  double		root2;
+  double		root3;
+  double		root4;
+}			t_4order;
+
+typedef struct		s_hyper
+{
+  t_pos			pos;
+  t_pos			rot;
+  int			a;
+  int			b;
+  int			c;
+  int			tex_type;
+  char			nappe;
+  double		k1;
+  double		k2;
+  double		ka;
+  double		kd;
+  double		ks;
+  double		brightness;
+  double		reflection;
+  double		opacity;
+  double		refraction;
+  t_acc			simple_inter2;
+  t_acc			simple_inter1;
+  t_acc			norm;
+  t_color		color1;
+  t_color		color2;
+  t_bunny_pixelarray	*texture;
+}			t_hyper;
+
+typedef struct		s_parab
+{
+  t_pos			pos;
+  t_pos			rot;
+  int			a;
+  int			b;
+  int			tex_type;
+  double		k1;
+  double		k2;
+  char			form;
+  double		ka;
+  double		kd;
+  double		ks;
+  double		brightness;
+  double		reflection;
+  double		opacity;
+  double		refraction;
+  t_acc			simple_inter2;
+  t_acc			simple_inter1;
+  t_acc			norm;
+  t_color		color1;
+  t_color		color2;
+  t_bunny_pixelarray	*texture;
+}			t_parab;
+
+typedef struct		s_hole_cube
+{
+  t_pos			pos;
+  t_pos			rot;
+  int			rad;
+  int			tex_type;
+  double		ka;
+  double		kd;
+  double		ks;
+  double		brightness;
+  double		reflection;
+  double		opacity;
+  double		refraction;
+  t_quad_inter		inter;
+  t_acc			simple_inter2;
+  t_acc			simple_inter1;
+  t_acc			simple_inter3;
+  t_acc			simple_inter4;
+  t_acc			norm;
+  t_color		color1;
+  t_color		color2;
+  t_bunny_pixelarray	*texture;
+}			t_hole_cube;
 
 typedef struct		s_sphere
 {
@@ -155,6 +287,7 @@ typedef struct		s_sphere
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
   double		k1;
   double		k2;
@@ -183,6 +316,8 @@ typedef struct		s_cone
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex1_name;
+  char			*tex2_name;
   t_bunny_pixelarray	*texture1;
   t_bunny_pixelarray	*texture2;
   double		k1;
@@ -195,6 +330,61 @@ typedef struct		s_cone
   double		n1;
   double		n2;
 }			t_cone;
+
+/* typedef	struct		s_solv */
+/* { */
+/*   double		a; */
+/*   double		b; */
+/*   double		c; */
+/*   double		d; */
+/*   double		e; */
+/* }			t_solv; */
+
+typedef struct		s_box
+{
+  t_pos			pos;
+  t_pos			rot;
+  int			real;
+  int			tex_type;
+  t_pos			size;
+  double		ka;
+  double		kd;
+  double		ks;
+  double		brightness;
+  double		reflection;
+  double		opacity;
+  double		refraction;
+  t_color		color1;
+  t_color		color2;
+  char			*tex_name;
+  t_bunny_pixelarray	*texture;
+  double		k1;
+  double		k2;
+  t_acc			simple_inter2;
+  t_acc			simple_inter1;
+  t_acc			norm;
+  int			limited;
+  t_fresnel		fresnel;
+  double		n1;
+  double		n2;
+}			t_box;
+
+typedef	struct		s_solv
+{
+  double		a;
+  double		b;
+  double		c;
+  double		d;
+  double		e;
+}			t_solv;
+
+typedef	struct		s_int_tore
+{
+  double		k1;
+  double		k2;
+  double		k3;
+  double		k4;
+}			t_int_tore;
 
 typedef struct		s_cylinder
 {
@@ -213,6 +403,8 @@ typedef struct		s_cylinder
   double		refraction;
   t_color		color1;
   t_color		color2;
+  char			*tex1_name;
+  char			*tex2_name;
   t_bunny_pixelarray	*texture1;
   t_bunny_pixelarray	*texture2;
   double		k1;
@@ -225,6 +417,31 @@ typedef struct		s_cylinder
   double		n1;
   double		n2;
 }			t_cylinder;
+
+typedef struct		s_tore
+{
+  t_pos			pos;
+  t_pos			rot;
+  int			rad;
+  int			dist;
+  t_quad_inter		inter;
+  int			tex_type;
+  double		ka;
+  double		kd;
+  double		ks;
+  double		brightness;
+  double		reflection;
+  double		opacity;
+  double		refraction;
+  t_acc			simple_inter2;
+  t_acc			simple_inter1;
+  t_acc			simple_inter3;
+  t_acc			simple_inter4;
+  t_acc			norm;
+  t_color		color1;
+  t_color		color2;
+  t_bunny_pixelarray	*texture;
+}			t_tore;
 
 typedef struct		s_light
 {
@@ -254,14 +471,22 @@ typedef struct		s_opt
   double		ambient;
   double		ambient_refraction;
   int			aa;
-  int			cubemap;
-  t_bunny_pixelarray	*texture;
+  int			skybox;
+  char			*skybox_right_tex_name;
+  char			*skybox_left_tex_name;
+  char			*skybox_up_tex_name;
+  char			*skybox_down_tex_name;
+  char			*skybox_front_tex_name;
+  char			*skybox_back_tex_name;
   t_bunny_pixelarray	*skybox_right;
   t_bunny_pixelarray	*skybox_left;
   t_bunny_pixelarray	*skybox_up;
   t_bunny_pixelarray	*skybox_down;
   t_bunny_pixelarray	*skybox_forward;
   t_bunny_pixelarray	*skybox_backward;
+  int			ss;
+  int			nb_rays_ss;
+  int			ray_ss;
 }			t_opt;
 
 typedef struct		s_ray
@@ -275,11 +500,15 @@ typedef struct		s_hit
 {
   double		k1;
   double		k2;
+  double		k3;
+  double		k4;
   double		cos_theta;
   t_acc			norm;
   t_acc			nnorm;
   t_acc			simple_inter1;
   t_acc			simple_inter2;
+  t_acc			simple_inter3;
+  t_acc			simple_inter4;
   t_acc			inter;
   t_acc			r;
   double		brightness;
@@ -323,6 +552,7 @@ typedef struct		s_shade
   double		x_diff;
   double		y_diff;
   double		z_diff;
+  double		*itab;
 }			t_shade;
 
 typedef struct		s_ftab
@@ -345,6 +575,7 @@ typedef struct		s_rotation
 typedef struct		s_rt
 {
   t_bunny_pixelarray	*img;
+  t_bunny_position	r_pos;
   t_object		*obj;
   t_object		*obj_hit;
   t_color		*pixel_color;
@@ -392,7 +623,7 @@ typedef struct		s_data
 */
 int			init_main_data(t_data *);
 int			init_rt_data(t_rt *, int, char **);
-int			init_itfc_data(t_itfc *, int);
+int			init_itfc_data(t_itfc *, t_data *);
 int			init_engine_ftabs(t_ftab *ftabs);
 t_bunny_position	center_rt(t_rt *);
 char			*setnbr(int);
@@ -425,6 +656,16 @@ t_color		antialiasing(t_rt *s,
 			     t_bunny_position *pos,
 			     t_acc *vct,
 			     t_color *color);
+
+/*
+** cube_order_solver.c
+*/
+
+int		cube_order_solver(t_3order *solv);
+void		one_root(double delta, double r, double q,
+			 t_3order *solv);
+void		three_root(double r, double q, t_3order *solv);
+
 
 /*
 ** checkerboards.c
@@ -479,6 +720,20 @@ int		display_sphere(t_rt *s, t_object *obj);
 int		display_cylinder(t_rt *s, t_object *obj);
 int		display_cone(t_rt *s, t_object *obj);
 int		display_plan(t_rt *s, t_object *obj);
+int		display_box(t_rt *s, t_object *obj);
+
+/*
+** exposure.c
+*/
+double		expose(double i);
+
+/*
+** display_object_complex.c
+*/
+int		display_hole_cube(t_rt *s, t_object *obj);
+int		display_hyper(t_rt *s, t_object *obj);
+int		display_parab(t_rt *s, t_object *obj);
+int		display_tore(t_rt *s, t_object *obj);
 
 /*
 ** get_norm.c
@@ -489,25 +744,42 @@ void		get_norm_cylinder(t_rt *s, t_cylinder *cylinder);
 void		get_norm_cone(t_rt *s, t_cone *cone);
 
 /*
+** get_norm_complex.c
+*/
+void		get_norm_hole_cube(t_rt *s, t_hole_cube *hole_cube);
+void		get_norm_hyper(t_rt *s, t_hyper *hyper);
+void		get_norm_parab(t_rt *s, t_parab *parab);
+void		get_norm_tore(t_rt *s, t_tore *tore);
+
+
+
+/*
 ** get_refracted_vec.c
 */
-t_fresnel	get_refracted_vec(t_rt *s, t_acc *norm, double n1, double n2);
+t_fresnel	get_refracted_vec(t_rt *s, t_acc *norm, double n1,
+				  double n2);
 
 /*
-** get_simple_inters.c
+** get_simple_coords.c
 */
 int		get_simple_inter(t_rt *s, t_acc *vct, t_acc *eye);
+int		get_simple_inter_complex(t_rt *s, t_acc *vct,
+					 t_acc *eye);
 
 /*
+<<<<<<< HEAD
 ** get_skybox_sides.c
 */
 t_bunny_pixelarray	*get_skybox_side_0(t_bunny_pixelarray *img,
 					   t_bunny_position *start,
 					   t_bunny_position *end,
 					   t_bunny_position *size);
-int			get_skybox_sides(t_rt *s, t_bunny_pixelarray *img);
+int			get_skybox_sides(t_rt *s,
+					 t_bunny_pixelarray *img);
 
 /*
+=======
+>>>>>>> 0b1938b0d1b0336a03625fb93d27177a38328ef7
 ** get_texels.c
 */
 void		get_texels_plan(t_rt *s, t_plan *plan);
@@ -520,8 +792,14 @@ void		get_texels_cylinder(t_rt *s, t_cylinder *cylinder);
 */
 int		init_soft_shadow(t_rt *s);
 void		init_itab(double itab[1]);
-void		init_lum(t_rt *s, t_acc *vct, t_acc eye, t_light *light);
+void		init_lum(t_rt *s, t_acc *vct, t_acc eye,
+			 t_light *light);
 
+/*
+** inter_box_sides.c
+*/
+int		init_vecs(t_rt *s, t_box *box, t_acc vec[6]);
+int		inter_box_sides(t_rt *s, t_box *box);
 
 /*
 ** inters.c
@@ -531,6 +809,38 @@ int		inter_plan(t_rt *s, t_plan *plan);
 int		inter_sphere(t_rt *s, t_sphere *sphere);
 int		inter_cone(t_rt *s, t_cone *cone);
 int		inter_cylinder(t_rt *s, t_cylinder *cylinder);
+
+/*
+** inter_hole_cube.c
+*/
+double		resolv_hole_b(t_rt *s);
+double		resolv_hole_c(t_rt *s);
+double		resolv_hole_d(t_rt *s);
+double		resolv_hole_e(t_rt *s, t_hole_cube *cube);
+void		inter_hole_cube(t_rt *s, t_hole_cube *cube);
+
+/*
+** inter_hyper.c
+*/
+void		one_nappe(t_rt *s, t_hyper *hyper);
+void		two_nappe(t_rt *s, t_hyper *hyper);
+void		inter_hyper(t_rt *s, t_hyper *hyper);
+
+/*
+** inter_parab.c
+*/
+void		inter_parab(t_rt *s, t_parab *parab);
+void		parab_ellip(t_rt *s, t_parab *parab);
+void		parab_hyper(t_rt *s, t_parab *parab);
+
+/*
+** inter_tore.c
+*/
+double		solv_tor_b(t_rt *s);
+double		solv_tor_c(t_rt *s, t_tore *tore);
+double		solv_tor_d(t_rt *s, t_tore *tore);
+double		solv_tor_e(t_rt *s, t_tore *tore);
+void		inter_tore(t_rt *s, t_tore *tore);
 
 /*
 ** limited_objects.c
@@ -547,14 +857,26 @@ int		limited_cone(t_rt *s, t_cone *cone);
 int		limited_plan(t_rt *s, t_plan *plan);
 
 /*
+** load_box.c
+*/
+int		load_box_datas(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box_datas2(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box_datas3(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box_datas4(t_box *s, t_bunny_ini *ini, char *scope);
+int		load_box(t_rt *rt, t_bunny_ini *ini, char *scope);
+
+/*
 ** load_cone.c
 */
 int		load_cone_datas(t_cone *s,
 				t_bunny_ini *ini,
 				char *scope);
-int		load_cone_datas2(t_cone *s, t_bunny_ini *ini, char *scope);
-int		load_cone_datas3(t_cone *s, t_bunny_ini *ini, char *scope);
-int		load_cone_datas4(t_cone *s, t_bunny_ini *ini, char *scope);
+int		load_cone_datas2(t_cone *s, t_bunny_ini *ini,
+				 char *scope);
+int		load_cone_datas3(t_cone *s, t_bunny_ini *ini,
+				 char *scope);
+int		load_cone_datas4(t_cone *s, t_bunny_ini *ini,
+				 char *scope);
 int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
@@ -563,9 +885,12 @@ int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope);
 int		load_cylinder_datas(t_cylinder *s,
 				    t_bunny_ini *ini,
 				    char *scope);
-int		load_cylinder_datas2(t_cylinder *s, t_bunny_ini *ini, char *scope);
-int		load_cylinder_datas3(t_cylinder *s, t_bunny_ini *ini, char *scope);
-int		load_cylinder_datas4(t_cylinder *s, t_bunny_ini *ini, char *scope);
+int		load_cylinder_datas2(t_cylinder *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_cylinder_datas3(t_cylinder *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_cylinder_datas4(t_cylinder *s, t_bunny_ini *ini,
+				     char *scope);
 int		load_cylinder(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
@@ -595,9 +920,12 @@ int		load_light(t_rt *rt, t_bunny_ini *ini, char *scope);
 int		load_plan_datas(t_plan *s,
 				t_bunny_ini *ini,
 				char *scope);
-int		load_plan_datas2(t_plan *s, t_bunny_ini *ini, char *scope);
-int		load_plan_datas3(t_plan *s, t_bunny_ini *ini, char *scope);
-int		load_plan_datas4(t_plan *s, t_bunny_ini *ini, char *scope);
+int		load_plan_datas2(t_plan *s, t_bunny_ini *ini,
+				 char *scope);
+int		load_plan_datas3(t_plan *s, t_bunny_ini *ini,
+				 char *scope);
+int		load_plan_datas4(t_plan *s, t_bunny_ini *ini,
+				 char *scope);
 int		load_plan(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
@@ -606,9 +934,12 @@ int		load_plan(t_rt *rt, t_bunny_ini *ini, char *scope);
 int		load_sphere_datas(t_sphere *s,
 				  t_bunny_ini *ini,
 				  char *scope);
-int		load_sphere_datas2(t_sphere *s, t_bunny_ini *ini, char *scope);
-int		load_sphere_datas3(t_sphere *s, t_bunny_ini *ini, char *scope);
-int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini, char *scope);
+int		load_sphere_datas2(t_sphere *s, t_bunny_ini *ini,
+				   char *scope);
+int		load_sphere_datas3(t_sphere *s, t_bunny_ini *ini,
+				   char *scope);
+int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini,
+				   char *scope);
 int		load_sphere(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
@@ -634,6 +965,14 @@ int		order_list(t_object *root);
 int		order_hit_list(t_object *root);
 
 /*
+** quartic_order_solver.c
+*/
+
+double		minus_resolv3(double a, double b, double c, double d);
+void		resolv_4_degres(t_4order *solv);
+void		select4(double *step, t_4order *solv);
+
+/*
 ** rotations.c
 */
 t_acc		*rotate_x(t_rotation *r, t_acc *vct, int angle);
@@ -641,6 +980,12 @@ t_acc		*rotate_y(t_rotation *r, t_acc *vct, int angle);
 t_acc		*rotate_z(t_rotation *r, t_acc *vct, int angle);
 t_acc		*rotation(t_rotation *r, t_acc *vct, t_pos *rot);
 t_acc		*end_rotation(t_rotation *r, t_acc *vct, t_pos *rot);
+
+/*
+** second_order_solver.c
+*/
+
+int		second_order_solver(t_2order *res);
 
 /*
 ** set_hit_values.c
@@ -654,14 +999,16 @@ int		set_hit_values(t_rt *s, t_object *obj);
 /*
 ** shade.c
 */
-void		init_lum(t_rt *s, t_acc *vct, t_acc eye, t_light *light);
+void		init_lum(t_rt *s, t_acc *vct, t_acc eye,
+			 t_light *light);
 t_color		add_light_color(t_color color,
 				t_color second_color);
 t_color		apply_b(t_color color,
 			t_color light_color,
 			double brightness,
 			double i);
-double		apply_light(t_rt *s, t_light *light, t_color *light_color);
+double		apply_light(t_rt *s, t_light *light,
+			    t_color *light_color);
 int		shade(t_rt *s, t_acc *vct, t_acc eye);
 
 /*
@@ -685,13 +1032,15 @@ double		shadow_inter_plan(t_rt *s, t_plan *plan);
 /*
 ** shadow_limited_objects.c
 */
-double		shadow_limited_cylinder(t_rt *s, t_cylinder *cylinder, double k);
+double		shadow_limited_cylinder(t_rt *s, t_cylinder *cylinder,
+					double k);
 double		shadow_limited_cone(t_rt *s, t_cone *cone, double k);
 
 /*
 ** shadow_simple_inters.c
 */
-double		shadow_simple_inters(t_rt *s, t_acc *vct, t_acc *eye, double k[2]);
+double		shadow_simple_inters(t_rt *s, t_acc *vct, t_acc *eye,
+				     double k[2]);
 
 /*
 ** skybox.c
@@ -700,6 +1049,11 @@ void		skybox_x(t_rt *s, t_acc *vct);
 void		skybox_y(t_rt *s, t_acc *vct);
 void		skybox_z(t_rt *s, t_acc *vct);
 int		skybox(t_rt *s, t_acc *vct);
+
+/*
+** soft_shadows.c
+*/
+double		get_soft_intensity(t_rt *s, double *tab);
 
 /*
 ** specular_light.c
@@ -729,9 +1083,19 @@ int		fill_next_lines(t_bunny_pixelarray *pxar,
 				int line, int nb_line);
 
 /*
+** tri_root.c
+*/
+void		attribute_root(t_rt *s, t_4order *solv);
+void		swap_value(double *first, double *second);
+void		tri_inter(t_hit *inter);
+
+/*
 ** update_hit_list.c
 */
-int		update_hit_list(t_rt *s, void *shape, int type, double k);
+int		update_hit_list(t_rt *s, void *shape, int type,
+				double k);
+int		update_hit_list_complex(t_rt *s, void *shape, int type,
+					double k);
 
 /*
 ** update_real_hit_list.c

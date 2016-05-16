@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 28 17:07:33 2016 bougon_p
-** Last update Sun May  1 19:45:51 2016 bougon_p
+** Last update Thu May  5 21:20:47 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -47,6 +47,6 @@ void		save_new_ini(t_data *data)
   act_obj = data->rt.obj;
   set_objs_scopes(act_obj, data, ini);
   bunny_save_ini(ini, name);
-  free(name);
+  bunny_free(name);
   free_tab(data->itfc.save.obj_names);
 }

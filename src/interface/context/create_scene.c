@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun May  1 02:25:51 2016 bougon_p
-** Last update Mon May  2 01:57:05 2016 bougon_p
+** Last update Thu May  5 20:06:39 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -27,11 +27,14 @@ int	create_scene(t_data *data)
       data->rt.eye.rot.y = 0;
       data->rt.eye.rot.z = 0;
       data->rt.opt.ambient = 10.0 / 100.0;
+      data->rt.opt.ambient_refraction = 1.0;
       data->rt.opt.aa = 1;
       data->rt.obj_hit = NULL;
       data->rt.obj = NULL;
       data->click_action = false;
       data->rt.pos = center_rt(&data->rt);
+      live_display(&data->rt);
+      bunny_blit(&data->win->buffer, &data->rt.img->clipable, &data->rt.pos);
     }
   else
     data->click_action = false;

@@ -5,11 +5,24 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 19 11:35:43 2016 romain samuel
-** Last update Tue Apr 19 15:57:27 2016 bougon_p
+** Last update Thu May  5 19:14:30 2016 romain samuel
 */
 
 #include "raytracer.h"
 #include "live_engine.h"
+
+void		live_init_lum(t_rt *s, t_acc *vct, t_acc eye, t_light *light)
+{
+  s->shade.inter.x = eye.x + s->hit.k1 * vct->x;
+  s->shade.inter.y = eye.y + s->hit.k1 * vct->y;
+  s->shade.inter.z = eye.z + s->hit.k1 * vct->z;
+  s->shade.light_pos.x = light->pos.x;
+  s->shade.light_pos.y = light->pos.y;
+  s->shade.light_pos.z = light->pos.z;
+  s->shade.vct.x = s->shade.inter.x - (double)s->shade.light_pos.x;
+  s->shade.vct.y = s->shade.inter.y - (double)s->shade.light_pos.y;
+  s->shade.vct.z = s->shade.inter.z - (double)s->shade.light_pos.z;
+}
 
 int		live_shade(t_rt *s, t_acc *vct, t_acc eye)
 {
@@ -23,12 +36,12 @@ int		live_shade(t_rt *s, t_acc *vct, t_acc eye)
   i = 0;
   while (it != NULL)
     {
-      if (it->type == 5)
+      if (it->type == 1)
 	{
 	  light = (t_light *)it->datas;
-	  init_lum(s, vct, eye, light);
+
+	  live_init_lum(s, vct, eye, light);
 	  i += diffuse_light(s, s->obj_hit->next) * light->intensity * s->hit.kd;
-	  /* i = 1; */
 	}
       it = it->next;
     }

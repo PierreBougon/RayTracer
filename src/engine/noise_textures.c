@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 28 12:31:13 2016 romain samuel
-** Last update Thu Apr 28 17:00:59 2016 romain samuel
+** Last update Thu May  5 19:31:15 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -40,7 +40,8 @@ void		marble_noise(t_rt *s)
 			  2,
 			  2,
 			  4);
-  noise = 0.5 * sin((s->hit.simple_inter1.x + s->hit.simple_inter1.y) * 0.001 + noise) + 0.5;
+  noise = 0.5 * sin((s->hit.simple_inter1.x + s->hit.simple_inter1.y)
+		    * 0.001 + noise) + 0.5;
   if (noise < 0)
     noise *= -1;
   s->final_color = compute_colors(s->hit.color1, s->hit.color2, noise);

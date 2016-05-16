@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 00:46:59 2016 bougon_p
-** Last update Fri Apr 29 01:19:48 2016 bougon_p
+** Last update Thu May  5 21:10:48 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -16,8 +16,8 @@ char	*sphere_name(UNUSED t_data *data, int nbr)
   char	*name;
 
   num = setnbr(nbr);
-  if ((name = malloc(sizeof(char) *
-		     my_strlen("sphere") + my_strlen(num) + 1)) == NULL)
+  if ((name = bunny_malloc(sizeof(char) *
+			   my_strlen("sphere") + my_strlen(num) + 1)) == NULL)
     return (NULL);
   my_bzero(name, my_strlen("sphere") + my_strlen(num) + 1);
   my_strcpy(name, "sphere");
@@ -32,8 +32,8 @@ char	*cylinder_name(UNUSED t_data *data, int nbr)
   char	*name;
 
   num = setnbr(nbr);
-  if ((name = malloc(sizeof(char) *
-		     my_strlen("cylinder") + my_strlen(num) + 1)) == NULL)
+  if ((name = bunny_malloc(sizeof(char) *
+			   my_strlen("cylinder") + my_strlen(num) + 1)) == NULL)
     return (NULL);
   my_bzero(name, my_strlen("cylinder") + my_strlen(num) + 1);
   my_strcpy(name, "cylinder");
@@ -48,8 +48,8 @@ char	*cone_name(UNUSED t_data *data, int nbr)
   char	*name;
 
   num = setnbr(nbr);
-  if ((name = malloc(sizeof(char) *
-		     my_strlen("cone") + my_strlen(num) + 1)) == NULL)
+  if ((name = bunny_malloc(sizeof(char) *
+			   my_strlen("cone") + my_strlen(num) + 1)) == NULL)
     return (NULL);
   my_bzero(name, my_strlen("cone") + my_strlen(num) + 1);
   my_strcpy(name, "cone");
@@ -64,8 +64,8 @@ char	*plane_name(UNUSED t_data *data, int nbr)
   char	*name;
 
   num = setnbr(nbr);
-  if ((name = malloc(sizeof(char) *
-		     my_strlen("plane") + my_strlen(num) + 1)) == NULL)
+  if ((name = bunny_malloc(sizeof(char) *
+			   my_strlen("plane") + my_strlen(num) + 1)) == NULL)
     return (NULL);
   my_bzero(name, my_strlen("plane") + my_strlen(num) + 1);
   my_strcpy(name, "plane");
@@ -80,8 +80,8 @@ char	*light_name(UNUSED t_data *data, int nbr)
   char	*name;
 
   num = setnbr(nbr);
-  if ((name = malloc(sizeof(char) *
-		     my_strlen("light") + my_strlen(num) + 1)) == NULL)
+  if ((name = bunny_malloc(sizeof(char) *
+			   my_strlen("light") + my_strlen(num) + 1)) == NULL)
     return (NULL);
   my_bzero(name, my_strlen("light") + my_strlen(num) + 1);
   my_strcpy(name, "light");

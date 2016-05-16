@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 22 19:09:00 2016 bougon_p
-** Last update Thu Apr 28 17:12:03 2016 bougon_p
+** Last update Thu May  5 19:58:06 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -23,6 +23,7 @@ int	save_png(t_data *data)
 	}
       data->itfc.save.need_save = false;
       my_bzero(data->itfc.save.file, FILE_LEN);
+      data->itfc.save.curs = 0;
     }
   else
     text(data->itfc.save.file, &data->itfc, TXT_X, TXT_Y);
@@ -42,6 +43,7 @@ int	save_jpg(t_data *data)
 	}
       data->itfc.save.need_save = false;
       my_bzero(data->itfc.save.file, FILE_LEN);
+      data->itfc.save.curs = 0;
     }
   else
     text(data->itfc.save.file, &data->itfc, TXT_X, TXT_Y);
@@ -61,6 +63,7 @@ int	save_bmp(t_data *data)
 	}
       data->itfc.save.need_save = false;
       my_bzero(data->itfc.save.file, FILE_LEN);
+      data->itfc.save.curs = 0;
     }
   else
     text(data->itfc.save.file, &data->itfc, TXT_X, TXT_Y);
@@ -80,6 +83,7 @@ int	save_ini(t_data *data)
 	}
       data->itfc.save.need_save = false;
       my_bzero(data->itfc.save.file, FILE_LEN);
+      data->itfc.save.curs = 0;
     }
   else
     text(data->itfc.save.file, &data->itfc, TXT_X, TXT_Y);
