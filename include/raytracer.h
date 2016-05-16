@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Fri May 13 14:58:12 2016 benjamin duhieu
+** Last update Mon May 16 18:35:01 2016 benjamin duhieu
 7
 */
 
@@ -331,15 +331,6 @@ typedef struct		s_cone
   double		n2;
 }			t_cone;
 
-/* typedef	struct		s_solv */
-/* { */
-/*   double		a; */
-/*   double		b; */
-/*   double		c; */
-/*   double		d; */
-/*   double		e; */
-/* }			t_solv; */
-
 typedef struct		s_box
 {
   t_pos			pos;
@@ -440,6 +431,7 @@ typedef struct		s_tore
   t_acc			norm;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
 }			t_tore;
 
@@ -767,7 +759,6 @@ int		get_simple_inter_complex(t_rt *s, t_acc *vct,
 					 t_acc *eye);
 
 /*
-<<<<<<< HEAD
 ** get_skybox_sides.c
 */
 t_bunny_pixelarray	*get_skybox_side_0(t_bunny_pixelarray *img,
@@ -778,8 +769,6 @@ int			get_skybox_sides(t_rt *s,
 					 t_bunny_pixelarray *img);
 
 /*
-=======
->>>>>>> 0b1938b0d1b0336a03625fb93d27177a38328ef7
 ** get_texels.c
 */
 void		get_texels_plan(t_rt *s, t_plan *plan);
@@ -941,6 +930,16 @@ int		load_sphere_datas3(t_sphere *s, t_bunny_ini *ini,
 int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini,
 				   char *scope);
 int		load_sphere(t_rt *rt, t_bunny_ini *ini, char *scope);
+
+/*
+** load_tore.c
+*/
+int		load_tore_datas1(t_tore *s, t_bunny_ini *ini,
+				 char *scope);
+int		load_tore_datas2(t_tore *s, t_bunny_ini *ini,
+				 char *scope);
+int		load_tore_datas3(t_tore *s, t_bunny_ini *ini, char *scope);
+int		load_tore(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
 ** noise_textures.c
