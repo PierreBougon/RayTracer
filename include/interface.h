@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Mon May 16 18:57:52 2016 bougon_p
+** Last update Mon May 16 22:58:42 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -171,6 +171,7 @@ typedef struct			s_itfc
   t_past			past;
   t_gen				gen;
   t_key				key;
+  t_object			*obj_selected;
   t_bunny_picture		*curs;
   t_bunny_picture		*layout;
   t_bunny_picture		*context[9];
@@ -327,5 +328,10 @@ int	set_high_size(t_data *);
 int	set_hd_size(t_data *);
 int	set_xga_size(t_data *);
 int	set_vga_size(t_data *);
+
+/*
+** Delete
+*/
+int	delete_form(t_data *);
 
 #endif /* !INTERFACE  */
