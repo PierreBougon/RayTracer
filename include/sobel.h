@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon May 16 19:07:40 2016 marc brout
-** Last update Mon May 16 22:27:54 2016 marc brout
+** Last update Tue May 17 14:19:29 2016 marc brout
 */
 
 #ifndef SOBEL_H_
@@ -14,7 +14,7 @@
 # include "lapin.h"
 
 # define CARRE(value) ((value) * (value))
-# define CUT 100
+# define CUT 25
 # define BORDER 0xFF000000
 # define BACK 0xFFFFFFFF
 

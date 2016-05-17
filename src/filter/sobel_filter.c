@@ -1,3 +1,4 @@
+
 /*
 ** sobel_filter.c for ~/RENDU/INFOGRAPHIE/gfx_raytracer2/src/filter
 **
@@ -5,7 +6,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon May 16 17:57:01 2016 marc brout
-** Last update Mon May 16 23:06:10 2016 marc brout
+** Last update Tue May 17 14:19:03 2016 marc brout
 */
 
 #include <stdio.h>
@@ -207,16 +208,16 @@ void			apply_borderland(t_bunny_pixelarray *src,
     }
 }
 
-int			borderland(t_bunny_pixelarray *pix)
+int			borderland(t_bunny_pixelarray **pix)
 {
   t_bunny_pixelarray	*sob;
 
-  if (!(sob = get_sobel(pix)))
+  if (!(sob = get_sobel(*pix)))
     return (1);
-  edge_cutter(sob, pix->clipable.clip_width,
-	      pix->clipable.clip_height, CUT);
-  apply_borderland(sob, pix, pix->clipable.clip_width,
-		   pix->clipable.clip_height);
+  edge_cutter(sob, (*pix)->clipable.clip_width,
+	      (*pix)->clipable.clip_height, CUT);
+  apply_borderland(sob, *pix, (*pix)->clipable.clip_width,
+		   (*pix)->clipable.clip_height);
   bunny_delete_clipable(&sob->clipable);
   return (0);
 }
@@ -230,7 +231,7 @@ int	main(int ac, char **av)
   data.pix = bunny_load_pixelarray(av[1]);
   data.win = bunny_start(data.pix->clipable.clip_width,
 			 data.pix->clipable.clip_height, 0, "test");
-  borderland(data.pix);
+  borderland(&data.pix);
   bunny_set_loop_main_function(my_bunny_loop);
   bunny_loop(data.win, 25, &data);
   return (0);
