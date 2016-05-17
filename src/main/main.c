@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Sun May  8 00:44:02 2016 bougon_p
+** Last update Mon May 16 18:18:56 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -53,10 +53,15 @@ t_bunny_response        my_wheel(int wheelid,
 
 t_bunny_response	my_key(t_bunny_event_state state,
 			       t_bunny_keysym keysym,
-			       UNUSED void *_data)
+			       void *_data)
 {
+  t_data		*data;
+
+  data = _data;
   if (state == GO_DOWN && keysym == BKS_ESCAPE)
     return (EXIT_ON_SUCCESS);
+  if (state == GO_DOWN)
+    check_key(data, state, keysym);
   return (GO_ON);
 }
 

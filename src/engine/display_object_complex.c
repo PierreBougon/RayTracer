@@ -6,9 +6,10 @@
 *
 *
 ** Started on  Thu May 12 19:23:53 2016 benjamin duhieu
-** Last update Fri May 13 12:56:37 2016 benjamin duhieu
+** Last update Mon May 16 19:43:12 2016 benjamin duhieu
 */
 
+#include <stdio.h>
 #include "raytracer.h"
 
 int		display_tore(t_rt *s, t_object *obj)
@@ -33,7 +34,7 @@ int		display_tore(t_rt *s, t_object *obj)
       tore->inter.k3 = s->hit.k3;
       tore->inter.k4 = s->hit.k4;
       tore->norm = s->hit.norm;
-      update_hit_list_complex(s, tore, 7, s->hit.k1);
+      update_hit_list_complex(s, tore, TORE, s->hit.k1);
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &tore->rot);

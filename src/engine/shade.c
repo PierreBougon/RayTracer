@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:22:45 2016 romain samuel
-** Last update Wed May  4 18:53:00 2016 romain samuel
+** Last update Fri May 13 19:31:47 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -61,7 +61,7 @@ int		shade(t_rt *s, t_acc *vct, t_acc eye)
   init_itab(s->shade.itab);
   while (it != NULL)
     {
-      if (it->type == 1)
+      if (it->type == LIGHT)
 	{
 	  s->shade.diff = 0;
 	  light = (t_light *)it->datas;

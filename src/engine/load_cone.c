@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:56:19 2016 romain samuel
-** Last update Mon May 16 17:17:36 2016 benjamin duhieu
+** Last update Mon May 16 19:19:12 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -99,6 +99,8 @@ int		load_cone_datas4(t_cone *s, t_bunny_ini *ini, char *scope)
   if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
     return (my_puterr("load_datas: missing cone color2"));
   s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+  s->tex1_name = NULL;
+  s->tex2_name = NULL;
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture1", 0)) == NULL)
@@ -135,7 +137,7 @@ int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope)
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
-  it->type = 4;
+  it->type = 3;
   if (load_cone_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;

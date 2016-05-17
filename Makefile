@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Mon May 16 18:37:22 2016 benjamin duhieu
+## Last update Mon May 16 19:16:59 2016 benjamin duhieu
 ##
 
 # USEFUL VARIABLES
@@ -120,6 +120,9 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)rotate_state.c \
 			$(ITFC)move_eye.c \
 			$(ITFC)rotate_eye.c \
+			$(ITFC)check_key.c \
+			$(ITFC)key_move.c \
+			$(ITFC)key_rot.c \
 			$(ITFC)$(CONTEXT)add_plane.c \
 			$(ITFC)$(CONTEXT)add_sphere.c \
 			$(ITFC)$(CONTEXT)add_cone.c \
@@ -209,7 +212,7 @@ IFLAG	=	-Iinclude/
 CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
 
 ifeq ($(DEBUG),yes)
-CFLAGS	+=	-g  -D LAPIN_ALLOCATOR_DEACTIVATED
+CFLAGS	+=	-g  #-D LAPIN_ALLOCATOR_DEACTIVATED
 endif
 
 ifeq ($(OPTI),yes)

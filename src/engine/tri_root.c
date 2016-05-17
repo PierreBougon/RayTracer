@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Wed May  4 13:40:57 2016 benjamin duhieu
-** Last update Fri May 13 13:03:26 2016 benjamin duhieu
+** Last update Tue May 17 16:34:52 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -39,7 +39,7 @@ void		tri_inter(t_hit *inter)
 	}
       if ((inter->k3 >= 0 && inter->k4 >= 0 &&
 	   inter->k3 > inter->k4) ||
-	  (inter->k4 < 0 && inter->k4 >= 0))
+	  (inter->k3 < 0 && inter->k4 >= 0))
 	{
 	  swap_value(&inter->k3, &inter->k4);
 	  continue;
@@ -50,9 +50,21 @@ void		tri_inter(t_hit *inter)
 
 void		attribute_root(t_rt *s, t_4order *solv)
 {
-  s->hit.k1 = solv->root1;
-  s->hit.k2 = solv->root2;
-  s->hit.k3 = solv->root3;
-  s->hit.k4 = solv->root4;
+  if (solv->root1 >= 0)
+    s->hit.k1 = solv->root1;
+  else
+    s->hit.k1 = -1;
+  if (solv->root2 >= 0)
+    s->hit.k2 = solv->root2;
+  else
+    s->hit.k2 = -1;
+  if (solv->root3 >= 0)
+    s->hit.k3 = solv->root3;
+  else
+    s->hit.k3 = -1;
+  if (solv->root4 >= 0)
+    s->hit.k4 = solv->root4;
+  else
+    s->hit.k4 = -1;
   tri_inter(&s->hit);
 }

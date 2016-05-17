@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Mon May 16 17:00:53 2016 benjamin duhieu
+** Last update Mon May 16 19:25:29 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -21,13 +21,13 @@ int		load_type(t_rt *s,
   const char	*field;
 
   i = -1;
-  tab[0] = my_strdup("light");
-  tab[1] = my_strdup("sphere");
-  tab[2] = my_strdup("cylinder");
-  tab[3] = my_strdup("cone");
-  tab[4] = my_strdup("plan");
-  tab[5] = my_strdup("box");
-  tab[6] = my_strdup("tore");
+  tab[0] = "sphere";
+  tab[1] = "cylinder";
+  tab[2] = "cone";
+  tab[3] = "plan";
+  tab[4] = "light";
+  tab[5] = "box";
+  tab[6] = "tore";
   while (++i < 7)
     {
       if ((field = bunny_ini_get_field(ini, scope, "type", 0)) == NULL)
@@ -44,11 +44,11 @@ int		load_object(t_rt *s, t_bunny_ini *ini, char *scope)
 
   if ((ftab = bunny_malloc(sizeof(ftab) * 7)) == NULL)
     return (my_puterr("load_object: malloc failed"));
-  ftab[0] = &load_light;
-  ftab[1] = &load_sphere;
-  ftab[2] = &load_cylinder;
-  ftab[3] = &load_cone;
-  ftab[4] = &load_plan;
+  ftab[0] = &load_sphere;
+  ftab[1] = &load_cylinder;
+  ftab[2] = &load_cone;
+  ftab[3] = &load_plan;
+  ftab[4] = &load_light;
   ftab[5] = &load_box;
   ftab[6] = &load_tore;
   if (load_type(s, ini, ftab, scope) == -1)
