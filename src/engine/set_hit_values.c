@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:47:40 2016 romain samuel
-** Last update Tue May  3 18:15:57 2016 romain samuel
+** Last update Tue May 17 16:20:53 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -125,12 +125,41 @@ void		set_hit_values_from_plan(t_rt *s, t_object *obj)
   get_texels_plan(s, plan);
 }
 
+void		set_hit_values_from_tore(t_rt *s, t_object *obj)
+{
+  t_tore	*tore;
+
+  tore = obj->datas;
+  s->hit.k1 = tore->inter.k1;
+  s->hit.k2 = tore->inter.k2;
+  s->hit.k3 = tore->inter.k3;
+  s->hit.k4 = tore->inter.k4;
+  s->hit.simple_inter1 = tore->simple_inter1;
+  s->hit.simple_inter2 = tore->simple_inter2;
+  s->hit.simple_inter1 = tore->simple_inter3;
+  s->hit.simple_inter2 = tore->simple_inter4;
+  s->hit.norm = tore->norm;
+  s->hit.brightness = tore->brightness;
+  s->hit.ka = tore->ka;
+  s->hit.kd = tore->kd;
+  s->hit.ks = tore->ks;
+  s->hit.reflection = tore->reflection;
+  s->hit.opacity = tore->opacity;
+  s->hit.n2 = tore->refraction;
+  s->hit.color1 = tore->color1;
+  s->hit.color2 = tore->color2;
+  s->final_color = tore->color1;
+  s->hit.tex_type = tore->tex_type;
+  s->hit.texture1 = tore->texture;
+}
+
 int	set_hit_values(t_rt *s, t_object *obj)
 {
   s->ftabs.hit_ftab[0] = &set_hit_values_from_sphere;
   s->ftabs.hit_ftab[1] = &set_hit_values_from_cylinder;
   s->ftabs.hit_ftab[2] = &set_hit_values_from_cone;
   s->ftabs.hit_ftab[3] = &set_hit_values_from_plan;
+  s->ftabs.hit_ftab[4] = &set_hit_values_from_tore;
   s->ftabs.hit_ftab[obj->type - 2](s, obj);
   return (0);
 }

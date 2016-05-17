@@ -5,22 +5,22 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Mon May 16 19:08:13 2016 bougon_p
+## Last update Mon May 16 19:16:59 2016 benjamin duhieu
 ##
 
 # USEFUL VARIABLES
 
-RM      =	rm -rf
+RM		=	rm -rf
 
-GREEN	=	\033[1;32m
+GREEN		=	\033[1;32m
 
-WHITE	=	\033[0m
+WHITE		=	\033[0m
 
-ECHO	=	echo -e
+ECHO		=	echo -e
 
-DEBUG	=	no
+DEBUG		=	no
 
-OPTI	=	no
+OPTI		=	no
 
 # RT VARIABLES
 
@@ -78,6 +78,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)load_light.c \
 			$(ENGINE)load_plan.c \
 			$(ENGINE)load_sphere.c \
+			$(ENGINE)load_tore.c \
 			$(ENGINE)noise_textures.c \
 			$(ENGINE)matrices.c \
 			$(ENGINE)order_hit_list.c \
