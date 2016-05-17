@@ -12,3 +12,10 @@ Faire effet BT
 # EXTRA FCT
 save bmp
 
+
+
+
+/!\ SEGFAULT
+
+Taille obj -> aplly texture = segv
+Delete clipable on deleting skybox on create wallpaper

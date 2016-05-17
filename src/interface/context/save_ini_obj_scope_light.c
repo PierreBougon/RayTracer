@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:35:33 2016 bougon_p
-** Last update Fri Apr 29 22:47:20 2016 bougon_p
+** Last update Tue May 17 18:16:31 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -17,6 +17,7 @@ void		light_obj(t_data *data, t_object *obj,
   char		*scope;
   t_light	*light;
 
+  printf("LIGHT");
   light = obj->datas;
   scope = data->itfc.save.obj_names[i];
   bunny_ini_set_field(ini, scope, "type", 0, "light");

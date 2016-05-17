@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Mon May 16 21:14:50 2016 bougon_p
+** Last update Tue May 17 15:57:22 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -99,7 +99,7 @@ int		main(int argc, char **argv, char **env)
     data.itfc.env = env;
   srand(time(NULL));
   /* bunny_set_memory_check(true); */
-  bunny_set_maximum_ram(1000000000);
+  bunny_set_maximum_ram(2000000000);
   if (init_main_data(&data) == -1 ||
       init_engine_ftabs(&data.rt.ftabs) == -1 ||
       init_rt_data(&data.rt, argc, argv) == -1 ||

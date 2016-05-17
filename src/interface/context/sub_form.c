@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:55:09 2016 bougon_p
-** Last update Mon May 16 21:22:36 2016 bougon_p
+** Last update Tue May 17 14:29:10 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -33,6 +33,7 @@ int				sub_form(UNUSED t_data *data)
 	    }
   	  else if (i == 1)
 	    {
+	      printf("DELETE\n");
 	      data->itfc.fct_bt_context = delete_form;
 	      data->click_action = true;
 	    }

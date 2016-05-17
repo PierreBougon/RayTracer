@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Mon May 16 21:14:17 2016 bougon_p
+## Last update Tue May 17 15:24:32 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -153,6 +153,10 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)slide_antialias.c \
 			$(ITFC)$(CONTEXT)set_size.c \
 			$(ITFC)$(CONTEXT)delete.c \
+			$(ITFC)$(CONTEXT)add_spot.c \
+			$(ITFC)$(CONTEXT)move_spot.c \
+			$(ITFC)$(CONTEXT)delete_spot.c \
+			$(ITFC)$(CONTEXT)select_spot.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)

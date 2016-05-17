@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 23 15:24:05 2016 bougon_p
-** Last update Mon May 16 14:20:59 2016 bougon_p
+** Last update Tue May 17 18:12:09 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -42,9 +42,7 @@ int     f_open_file(t_data *data)
       printf("%s\n", name);
       my_strcat(name, data->itfc.open.file);
       printf("%s\n", name);
-      if (load_file(&data->rt, name) == -1
-	  || !(data->rt.pixel_color =
-	       bunny_malloc(sizeof(t_color) * data->rt.opt.aa)))
+      if (load_file(&data->rt, name) == -1)
         return (reset_text_open(data),
 		my_puterr("Load : Could not load the scene"));
       if (data->rt.img != NULL)

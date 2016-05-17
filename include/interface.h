@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Mon May 16 22:58:42 2016 bougon_p
+** Last update Tue May 17 15:27:03 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -333,5 +333,13 @@ int	set_vga_size(t_data *);
 ** Delete
 */
 int	delete_form(t_data *);
+
+/*
+** SpotLight
+*/
+int	move_spot(t_data *);
+int	add_spot(t_data *);
+int	delete_spot(t_data *);
+int	select_spot(t_data *);
 
 #endif /* !INTERFACE  */

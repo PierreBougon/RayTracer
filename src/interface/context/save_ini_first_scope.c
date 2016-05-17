@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 16:39:20 2016 bougon_p
-** Last update Fri May 13 21:32:30 2016 bougon_p
+** Last update Tue May 17 18:21:32 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -55,7 +55,7 @@ static	int	set_first_scope_obj(t_data *data, t_bunny_ini *ini)
   while (obj != NULL)
     {
       name = data->itfc.save.fct_save_ini_name
-	[obj->type - 1 % NB_OBJ](data, i);
+	[obj->type](data, i);
       bunny_ini_set_field(ini, "RT", "objs", i, name);
       save_name(data, name, i);
       obj = obj->next;
