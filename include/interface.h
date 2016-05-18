@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Tue May 17 15:27:03 2016 bougon_p
+** Last update Wed May 18 14:58:24 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -172,6 +172,7 @@ typedef struct			s_itfc
   t_gen				gen;
   t_key				key;
   t_object			*obj_selected;
+  t_object			*light_selected;
   t_bunny_picture		*curs;
   t_bunny_picture		*layout;
   t_bunny_picture		*context[9];

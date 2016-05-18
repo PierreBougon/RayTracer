@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Fri May  6 18:58:00 2016 bougon_p
+** Last update Wed May 18 15:01:00 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -104,5 +104,6 @@ int	init_itfc_data(t_itfc *itfc, t_data *data)
   itfc->past.pos.x = 0;
   itfc->past.pos.y = 0;
   init_slide_pos(itfc, data);
+  itfc->light_selected = NULL;
   return (0);
 }

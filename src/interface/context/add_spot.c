@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue May 17 14:53:45 2016 bougon_p
-** Last update Tue May 17 17:24:10 2016 bougon_p
+** Last update Wed May 18 15:24:38 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -49,6 +49,7 @@ int	add_spot(t_data *data)
       new->type = LIGHT;
       new->real = 1;
       new->datas = fill_light(data, light);
+      data->itfc.light_selected = new;
     }
   data->click_action = false;
   return (0);
