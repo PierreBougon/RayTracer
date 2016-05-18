@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue May 17 15:30:36 2016 bougon_p
-** Last update Wed May 18 19:34:42 2016 bougon_p
+** Last update Wed May 18 21:50:08 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -18,14 +18,14 @@ static	void	del_first(t_data *data, t_object *light)
   bunny_free(light);
 }
 
-static	void	del_last(t_data *data, t_object *light)
+static	void	del_last(t_object *light)
 {
   printf("DEL LAST\n");
   light->prev->next = NULL;
   bunny_free(light);
 }
 
-static	void	del_mid(t_data *data, t_object *light)
+static	void	del_mid(t_object *light)
 {
   printf("DEL MID\n");
   light->prev->next = light->next;
@@ -54,9 +54,9 @@ int		delete_spot(t_data *data)
 	  if (!light->prev && light->next)
 	    del_first(data, light);
 	  else if (light->prev && !light->next)
-	    del_last(data, light);
+	    del_last(light);
 	  else if (light->prev && light->next)
-	    del_mid(data, light);
+	    del_mid(light);
 	  else if (!data->rt.obj)
 	    del_alone(data, light);
 	  while (save && save->type != LIGHT)

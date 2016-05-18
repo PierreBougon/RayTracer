@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Mon May 16 19:07:56 2016 bougon_p
+** Last update Tue May 17 17:44:04 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -84,6 +84,7 @@ typedef enum	e_obj
     CYLINDER	= 2,
     CONE	= 3,
     PLANE	= 4,
+    TORE	= 5,
     BOX		= 6
   }		t_obj;
 
@@ -331,15 +332,6 @@ typedef struct		s_cone
   double		n2;
 }			t_cone;
 
-/* typedef	struct		s_solv */
-/* { */
-/*   double		a; */
-/*   double		b; */
-/*   double		c; */
-/*   double		d; */
-/*   double		e; */
-/* }			t_solv; */
-
 typedef struct		s_box
 {
   t_pos			pos;
@@ -422,9 +414,9 @@ typedef struct		s_tore
 {
   t_pos			pos;
   t_pos			rot;
-  int			rad;
-  int			dist;
-  t_quad_inter		inter;
+  double		rad;
+  double		dist;
+  t_int_tore		inter;
   int			tex_type;
   double		ka;
   double		kd;
@@ -440,6 +432,7 @@ typedef struct		s_tore
   t_acc			norm;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
 }			t_tore;
 
@@ -940,6 +933,16 @@ int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini,
 int		load_sphere(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
+** load_tore.c
+*/
+int		load_tore_datas1(t_tore *s, t_bunny_ini *ini,
+				 char *scope);
+int		load_tore_datas2(t_tore *s, t_bunny_ini *ini,
+				 char *scope);
+int		load_tore_datas3(t_tore *s, t_bunny_ini *ini, char *scope);
+int		load_tore(t_rt *rt, t_bunny_ini *ini, char *scope);
+
+/*
 ** noise_textures.c
 */
 void		smooth_noise(t_rt *s);
@@ -964,10 +967,7 @@ int		order_hit_list(t_object *root);
 /*
 ** quartic_order_solver.c
 */
-
-double		minus_resolv3(double a, double b, double c, double d);
-void		resolv_4_degres(t_4order *solv);
-void		select4(double *step, t_4order *solv);
+int		resolv_4_degres(t_4order *solv);
 
 /*
 ** rotations.c
@@ -991,6 +991,7 @@ void		set_hit_values_from_sphere(t_rt *s, t_object *obj);
 void		set_hit_values_from_cylinder(t_rt *s, t_object *obj);
 void		set_hit_values_from_cone(t_rt *s, t_object *obj);
 void		set_hit_values_from_plan(t_rt *s, t_object *obj);
+void		set_hit_values_from_tore(t_rt *s, t_object *obj);
 int		set_hit_values(t_rt *s, t_object *obj);
 
 /*
