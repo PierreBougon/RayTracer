@@ -5,29 +5,12 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon May 16 17:57:01 2016 marc brout
-** Last update Tue May 17 16:44:29 2016 marc brout
+** Last update Wed May 18 15:02:51 2016 marc brout
 */
 
-#include <stdio.h>
-#include <math.h>
 #include "oil_effect.h"
 
-void			init_oil(t_oil *oil, const unsigned int size)
-{
-  unsigned int		i;
-
-  i = 0;
-  while (i < size)
-    {
-      oil->intensity_count[i] = 0;
-      oil->r_avg[i] = 0;
-      oil->b_avg[i] = 0;
-      oil->g_avg[i] = 0;
-      ++i;
-    }
-}
-
-void			get_color(t_bunny_pixelarray *pix,
+static void		get_color(t_bunny_pixelarray *pix,
 				  const int x, const int y,
 				  t_oil *oil)
 {
@@ -41,7 +24,7 @@ void			get_color(t_bunny_pixelarray *pix,
   oil->green = color[pos].argb[GREEN_CMP];
 }
 
-void			apply_normalize_oil(t_bunny_pixelarray *save,
+static void		apply_normalize_oil(t_bunny_pixelarray *save,
 					    t_oil *oil, int size)
 {
   t_color		*pixels;
@@ -69,7 +52,7 @@ void			apply_normalize_oil(t_bunny_pixelarray *save,
   pixels[pos].argb[GREEN_CMP] = oil->g_avg[max_i] / max_count;
 }
 
-void			calculate_avg(t_bunny_pixelarray *pix,
+static void		calculate_avg(t_bunny_pixelarray *pix,
 				      t_oil *oil, const int x,
 				      const int y)
 {
@@ -96,7 +79,7 @@ void			calculate_avg(t_bunny_pixelarray *pix,
     }
 }
 
-void			calculate_oil(t_bunny_pixelarray *pix,
+static void		calculate_oil(t_bunny_pixelarray *pix,
 				      t_bunny_pixelarray *save,
 				      t_oil *oil)
 {
@@ -133,30 +116,5 @@ int			oil(t_bunny_pixelarray **pix)
   calculate_oil(*pix, save, &oil);
   bunny_delete_clipable(&(*pix)->clipable);
   *pix = save;
-  return (0);
-}
-
-t_bunny_response	my_bunny_loop(void *_data)
-{
-  t_data		*data;
-
-  data = _data;
-  bunny_blit(&data->win->buffer, &data->pix->clipable, NULL);
-  bunny_display(data->win);
-  return (GO_ON);
-}
-
-int	main(int ac, char **av)
-{
-  t_data data;
-
-  if (ac < 2)
-    return (1);
-  data.pix = bunny_load_pixelarray(av[1]);
-  data.win = bunny_start(data.pix->clipable.clip_width,
-			 data.pix->clipable.clip_height, 0, "test");
-  oil(&data.pix);
-  bunny_set_loop_main_function(my_bunny_loop);
-  bunny_loop(data.win, 25, &data);
   return (0);
 }

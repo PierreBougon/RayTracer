@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 26 13:36:09 2016 benjamin duhieu
-** Last update Tue May 17 17:45:09 2016 benjamin duhieu
+** Last update Tue May 17 18:29:40 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -37,7 +37,7 @@ inline double		solv_tor_c(t_rt *s, t_tore *tore)
 	    (3.0 * CARRE(s->ray.new_eye.y)) + CARRE(s->ray.new_eye.z))) +
 	  (2.0 * CARRE(s->ray.vct->z) *
 	   (-CARRE(tore->rad) + CARRE(s->ray.new_eye.x) +
-	    CARRE(s->ray.new_eye.y) + (3.0 *CARRE(s->ray.new_eye.z)))) +
+	    CARRE(s->ray.new_eye.y) + (3.0 * CARRE(s->ray.new_eye.z)))) +
 	  (8.0 * ((s->ray.vct->x * s->ray.vct->y * s->ray.new_eye.x *
 		 s->ray.new_eye.y) +
 		(s->ray.vct->x * s->ray.vct->z * s->ray.new_eye.x *
