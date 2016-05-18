@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue May 17 14:53:45 2016 bougon_p
-** Last update Wed May 18 15:24:38 2016 bougon_p
+** Last update Wed May 18 21:41:42 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -24,28 +24,28 @@ static t_light	*fill_light(t_data *data, t_light *light)
   light->pos.z = data->rt.eye.pos.z;
   translation_obj(&data->rt.rotation, &vec, &data->rt.eye.rot,
 		  &light->pos);
+  data->itfc.gen.acc_curs_li.x = START_SLIDE_LI_X +
+    light->intensity * 171;
+  data->itfc.gen.pos_curs_li.x = (int)data->itfc.gen.acc_curs_li.x;
   return (light);
 }
 
 int	add_spot(t_data *data)
 {
-  t_object	*obj;
   t_object	*new;
   t_light	*light;
 
   if (data->click_action)
     {
-      obj = data->rt.obj;
       if (!(light = malloc(sizeof(t_light))))
 	return (1);
-      if (!data->rt.obj)
+      if (data->rt.obj)
 	new = add_obj_elem_ret(data->rt.obj);
       else
 	{
 	  data->rt.obj = create_obj_list();
 	  new = data->rt.obj;
 	}
-      new->next = obj;
       new->type = LIGHT;
       new->real = 1;
       new->datas = fill_light(data, light);

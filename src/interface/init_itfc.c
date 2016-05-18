@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Wed May 18 15:01:00 2016 bougon_p
+** Last update Wed May 18 21:33:52 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -70,11 +70,17 @@ void	set_aa_curs(t_data *data, t_itfc *itfc)
 
 void	init_slide_pos(t_itfc *itfc, t_data *data)
 {
+  itfc->gen.acc_curs_li.x = START_SLIDE_LI_X;
+  itfc->gen.acc_curs_li.y = START_SLIDE_LI_Y;
+  itfc->gen.pos_curs_li.x = (int)itfc->gen.acc_curs_li.x;
+  itfc->gen.pos_curs_li.y = (int)itfc->gen.acc_curs_li.y + 3;
+
   itfc->gen.acc_curs_amb.x = START_SLIDE_AMB_X +
     data->rt.opt.ambient * 175;
   itfc->gen.acc_curs_amb.y = START_SLIDE_AMB_Y + HALF_CURS_Y;
   itfc->gen.pos_curs_amb.x = (int)itfc->gen.acc_curs_amb.x;
   itfc->gen.pos_curs_amb.y = (int)itfc->gen.acc_curs_amb.y;
+
   itfc->gen.acc_curs_aa.x = START_SLIDE_AA_X;
   itfc->gen.acc_curs_aa.y = START_SLIDE_AA_Y + HALF_CURS_Y;
   itfc->gen.pos_curs_aa.y = (int)itfc->gen.acc_curs_aa.y;
@@ -105,5 +111,7 @@ int	init_itfc_data(t_itfc *itfc, t_data *data)
   itfc->past.pos.y = 0;
   init_slide_pos(itfc, data);
   itfc->light_selected = NULL;
+  itfc->light_click = false;
+  itfc->asklight_click = false;
   return (0);
 }

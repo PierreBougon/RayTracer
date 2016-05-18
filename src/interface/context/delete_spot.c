@@ -5,13 +5,14 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue May 17 15:30:36 2016 bougon_p
-** Last update Wed May 18 15:54:59 2016 bougon_p
+** Last update Wed May 18 19:34:42 2016 bougon_p
 */
 
 #include "raytracer.h"
 
 static	void	del_first(t_data *data, t_object *light)
 {
+  printf("DEL FIRST\n");
   data->rt.obj = light->next;
   light->next->prev = NULL;
   bunny_free(light);
@@ -19,12 +20,14 @@ static	void	del_first(t_data *data, t_object *light)
 
 static	void	del_last(t_data *data, t_object *light)
 {
+  printf("DEL LAST\n");
   light->prev->next = NULL;
   bunny_free(light);
 }
 
 static	void	del_mid(t_data *data, t_object *light)
 {
+  printf("DEL MID\n");
   light->prev->next = light->next;
   light->next->prev = light->prev;
   bunny_free(light);
@@ -32,6 +35,7 @@ static	void	del_mid(t_data *data, t_object *light)
 
 static	void	del_alone(t_data *data, t_object *light)
 {
+  printf("DEL ALONE\n");
   bunny_free(light);
   data->rt.obj = NULL;
 }
@@ -57,7 +61,8 @@ int		delete_spot(t_data *data)
 	    del_alone(data, light);
 	  while (save && save->type != LIGHT)
 	    save = save->next;
-	  data->itfc.light_selected = save;
+	  if (save && save->type == LIGHT)
+	    data->itfc.light_selected = save;
 	}
     }
   data->click_action = false;
