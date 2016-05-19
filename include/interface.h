@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Mon May 16 18:57:52 2016 bougon_p
+** Last update Wed May 18 21:37:04 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -145,6 +145,8 @@ typedef	struct			s_past
 
 typedef	struct			s_gen
 {
+  t_bunny_position		pos_curs_li;
+  t_bunny_accurate_position	acc_curs_li;
   t_bunny_position		pos_curs_aa;
   t_bunny_position		pos_curs_amb;
   t_bunny_accurate_position	acc_curs_aa;
@@ -171,6 +173,8 @@ typedef struct			s_itfc
   t_past			past;
   t_gen				gen;
   t_key				key;
+  t_object			*obj_selected;
+  t_object			*light_selected;
   t_bunny_picture		*curs;
   t_bunny_picture		*layout;
   t_bunny_picture		*context[9];
@@ -181,6 +185,8 @@ typedef struct			s_itfc
   bool				rendering;
   bool				rendered;
   bool				left_click;
+  bool				light_click;
+  bool				asklight_click;
   bool				live;
   const	t_bunny_position	*mpos;
   int				(*fct_context[NB_CONTEXT])(t_data *);
@@ -327,5 +333,26 @@ int	set_high_size(t_data *);
 int	set_hd_size(t_data *);
 int	set_xga_size(t_data *);
 int	set_vga_size(t_data *);
+
+/*
+** Delete
+*/
+int	delete_form(t_data *);
+
+/*
+** SpotLight
+*/
+int	move_spot(t_data *);
+int	add_spot(t_data *);
+int	delete_spot(t_data *);
+int	select_spot(t_data *);
+int	move_obj(t_data *, t_bunny_event_state,
+		 t_bunny_mousebutton);
+int	slide_light(t_data *);
+
+/*
+** Check workspace
+*/
+bool	check_workspace(const t_bunny_position *, t_rt *);
 
 #endif /* !INTERFACE  */

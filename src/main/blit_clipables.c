@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 00:25:51 2016 bougon_p
-** Last update Thu May  5 16:07:23 2016 bougon_p
+** Last update Wed May 18 21:31:49 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -31,6 +31,8 @@ void		blit_clipables(t_data *data)
       bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_aa);
       bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_amb);
     }
+  if (data->itfc.button[SPOTLIGHT])
+    bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_li);
   if ((data->ld.loading != NULL) &&
     (data->itfc.rendered || data->itfc.rendering)
       && !rt->live && !itfc->button[SAVE] && !itfc->button[OPEN]

@@ -5,13 +5,64 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:55:44 2016 bougon_p
-** Last update Sun Apr 17 01:56:01 2016 bougon_p
+** Last update Wed May 18 21:09:25 2016 bougon_p
 */
 
 #include "raytracer.h"
 
-int     spotlight(UNUSED t_data *data)
+static void	check_sec_button_spot(t_data *data, int i)
 {
-  printf("FCT => SPOTLIGHT\n");
+  if (i == 3)
+    {
+      printf("Move spot\n");
+      data->itfc.fct_bt_context = move_spot;
+      data->itfc.asklight_click = true;
+    }
+}
+
+static void	check_button_spot(t_data *data, int i)
+{
+  if (i == 0)
+    data->itfc.fct_bt_context = select_spot;
+  else if (i == 1)
+    {
+      printf("Add spot\n");
+      data->itfc.fct_bt_context = add_spot;
+      data->click_action = true;
+    }
+  else if (i == 2)
+    {
+      printf("Delete spot\n");
+      data->itfc.fct_bt_context = delete_spot;
+      data->click_action = true;
+    }
+  check_sec_button_spot(data, i);
+}
+
+int     spotlight(t_data *data)
+{
+  int				i;
+  const t_bunny_position	*mpos;
+
+  mpos = data->itfc.mpos;
+  i = 0;
+  if (mpos->x > START_SLIDE_LI_X && mpos->x < END_SLIDE_LI_X
+      && mpos->y > START_SLIDE_LI_Y && mpos->y < END_SLIDE_LI_Y)
+    data->itfc.fct_bt_context = slide_light;
+  while (i < NB_SPOT_BT)
+    {
+      if (mpos->x > SPOT_BT_X_FIRST
+          && mpos->x < SPOT_BT_X_FIRST + SPOT_BT_WDT
+          && mpos->y > SPOT_BT_Y_FIRST + (SPOT_BT_HGT * i)
+	  + (SPOT_DECAL_Y * i)
+          && mpos->y < SPOT_BT_Y_FIRST + (SPOT_BT_HGT * i)
+          + SPOT_BT_HGT + (SPOT_DECAL_Y * i))
+        {
+	  data->itfc.asklight_click = false;
+	  check_button_spot(data, i);
+	  break ;
+	}
+      i++;
+    }
   return (0);
 }
