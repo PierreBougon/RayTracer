@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Wed May 18 21:37:04 2016 bougon_p
+** Last update Fri May 20 13:38:31 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -98,6 +98,13 @@ typedef enum			e_buttons
     NEXT,
     EXIT
   }				t_buttons;
+
+typedef	enum			e_tex_state
+  {
+    FLAT,
+    PERLIN,
+    IMG
+  }				t_tex_state;
 
 typedef struct	s_data		t_data;
 typedef struct	s_rt		t_rt;

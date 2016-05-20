@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 20 16:14:28 2016 bougon_p
-** Last update Wed Apr 20 18:21:47 2016 bougon_p
+** Last update Fri May 20 13:42:03 2016 bougon_p
 */
 
 #include "lapin.h"
@@ -63,10 +63,8 @@ void			fill_pxlarray_alpha(t_data *data)
           pxpos.y = j;
 	  col1.full = get_color(data->px1, pxpos);
 	  col2.full = get_color(data->px2, pxpos);
-
 	  alpha = col1.argb[3] + 1;
 	  inv_alpha = 255 - col1.argb[3];
-
 	  colres.argb[0] = (unsigned char)
 	    ((alpha * col1.argb[0] + inv_alpha * col2.argb[0]) >> 8);
 	  colres.argb[1] = (unsigned char)
