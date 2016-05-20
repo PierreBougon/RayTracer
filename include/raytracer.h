@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Fri May 20 14:09:24 2016 benjamin duhieu
+** Last update Fri May 20 21:20:17 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -63,7 +63,7 @@
 # define MARBLE_NOISE 7
 # define IMAGE 8
 
-# define NB_OBJ 9
+# define NB_OBJ 10
 
 /*
 ** includes
@@ -87,7 +87,8 @@ typedef enum	e_obj
     TORE	= 5,
     BOX		= 6,
     HOLE_CUBE   = 7,
-    HYPER	= 8
+    HYPER	= 8,
+    PARAB	= 9
   }		t_obj;
 
 /*
@@ -235,7 +236,7 @@ typedef struct		s_parab
   int			tex_type;
   double		k1;
   double		k2;
-  char			form;
+  int			form;
   double		ka;
   double		kd;
   double		ks;
@@ -248,6 +249,7 @@ typedef struct		s_parab
   t_acc			norm;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
 }			t_parab;
 
@@ -816,8 +818,8 @@ void		inter_hyper(t_rt *s, t_hyper *hyper);
 ** inter_parab.c
 */
 void		inter_parab(t_rt *s, t_parab *parab);
-void		parab_ellip(t_rt *s, t_parab *parab);
-void		parab_hyper(t_rt *s, t_parab *parab);
+int		parab_ellip(t_rt *s, t_parab *parab);
+int		parab_hyper(t_rt *s, t_parab *parab);
 
 /*
 ** inter_tore.c
@@ -926,6 +928,20 @@ int		load_hyper_datas4(t_hyper *s, t_bunny_ini *ini,
 int		load_hyper(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
+** load_parab.c
+*/
+int		load_parab_datas(t_parab *s,
+				    t_bunny_ini *ini,
+				    char *scope);
+int		load_parab_datas2(t_parab *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_parab_datas3(t_parab *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_parab_datas4(t_parab *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_parab(t_rt *rt, t_bunny_ini *ini, char *scope);
+
+/*
 ** load_plan.c
 */
 int		load_plan_datas(t_plan *s,
@@ -1015,6 +1031,7 @@ void		set_hit_values_from_plan(t_rt *s, t_object *obj);
 void		set_hit_values_from_tore(t_rt *s, t_object *obj);
 void		set_hit_values_from_hole_cube(t_rt *s, t_object *obj);
 void		set_hit_values_from_hyper(t_rt *s, t_object *obj);
+void		set_hit_values_from_parab(t_rt *s, t_object *obj);
 int		set_hit_values(t_rt *s, t_object *obj);
 
 /*

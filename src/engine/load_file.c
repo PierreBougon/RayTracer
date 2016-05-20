@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Fri May 20 14:38:51 2016 benjamin duhieu
+** Last update Fri May 20 21:12:10 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -30,6 +30,7 @@ int		load_type(t_rt *s,
   tab[6] = "tore";
   tab[7] = "hole_cube";
   tab[8] = "hyper";
+  tab[9] = "parab";
   while (++i < NB_OBJ)
     {
       if ((field = bunny_ini_get_field(ini, scope, "type", 0)) == NULL)
@@ -56,6 +57,7 @@ int		load_object(t_rt *s, t_bunny_ini *ini, char *scope)
   ftab[6] = &load_tore;
   ftab[7] = &load_hole_cube;
   ftab[8] = &load_hyper;
+  ftab[9] = &load_parab;
   if (load_type(s, ini, ftab, scope) == -1)
     return (-1);
   return (0);

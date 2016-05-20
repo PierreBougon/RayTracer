@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:47:40 2016 romain samuel
-** Last update Fri May 20 14:50:29 2016 benjamin duhieu
+** Last update Fri May 20 20:32:19 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -205,6 +205,30 @@ void		set_hit_values_from_hyper(t_rt *s, t_object *obj)
   s->hit.texture1 = hyper->texture;
 }
 
+void		set_hit_values_from_parab(t_rt *s, t_object *obj)
+{
+  t_parab	*parab;
+
+  parab = obj->datas;
+  s->hit.k1 = parab->k1;
+  s->hit.k2 = parab->k2;
+  s->hit.simple_inter1 = parab->simple_inter1;
+  s->hit.simple_inter2 = parab->simple_inter2;
+  s->hit.norm = parab->norm;
+  s->hit.brightness = parab->brightness;
+  s->hit.ka = parab->ka;
+  s->hit.kd = parab->kd;
+  s->hit.ks = parab->ks;
+  s->hit.reflection = parab->reflection;
+  s->hit.opacity = parab->opacity;
+  s->hit.n2 = parab->refraction;
+  s->hit.color1 = parab->color1;
+  s->hit.color2 = parab->color2;
+  s->final_color = parab->color1;
+  s->hit.tex_type = parab->tex_type;
+  s->hit.texture1 = parab->texture;
+}
+
 int	set_hit_values(t_rt *s, t_object *obj)
 {
   s->ftabs.hit_ftab[0] = &set_hit_values_from_sphere;
@@ -214,6 +238,7 @@ int	set_hit_values(t_rt *s, t_object *obj)
   s->ftabs.hit_ftab[4] = &set_hit_values_from_tore;
   s->ftabs.hit_ftab[5] = &set_hit_values_from_hole_cube;
   s->ftabs.hit_ftab[6] = &set_hit_values_from_hyper;
+  s->ftabs.hit_ftab[7] = &set_hit_values_from_parab;
   s->ftabs.hit_ftab[obj->type - 2](s, obj);
   return (0);
 }

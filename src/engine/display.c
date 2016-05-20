@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Fri May 20 12:03:04 2016 benjamin duhieu
+** Last update Fri May 20 21:15:42 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -22,6 +22,7 @@ int			inter_objects(t_rt *s)
   s->ftabs.inters_ftab[5] = &display_box;
   s->ftabs.inters_ftab[6] = &display_hole_cube;
   s->ftabs.inters_ftab[7] = &display_hyper;
+  s->ftabs.inters_ftab[8] = &display_parab;
   it = s->obj;
   while (it != NULL)
     {

@@ -6,7 +6,7 @@
 *
 *
 ** Started on  Thu May 12 19:23:53 2016 benjamin duhieu
-** Last update Fri May 20 14:43:59 2016 benjamin duhieu
+** Last update Fri May 20 21:17:18 2016 benjamin duhieu
 */
 
 #include <stdio.h>
@@ -89,7 +89,7 @@ int		display_parab(t_rt *s, t_object *obj)
       parab->k1 = s->hit.k1;
       parab->k2 = s->hit.k2;
       parab->norm = s->hit.norm;
-      update_hit_list(s, parab, 9, s->hit.k1);
+      update_hit_list(s, parab, PARAB, s->hit.k1);
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &parab->rot);
