@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon May  2 13:53:17 2016 benjamin duhieu
-** Last update Thu May 19 10:05:41 2016 benjamin duhieu
+** Last update Fri May 20 00:02:53 2016 benjamin duhieu
 */
 
 #include <stdio.h>
@@ -117,8 +117,9 @@ void		delta_pos(t_4order *solv, double delta0, double delta1)
   q = ((CUBE(solv->b)) - (4.0 * solv->a * solv->b * solv->c) +
        (8.0 * CARRE(solv->a) * solv->d)) / (8.0 * CUBE(solv->a));
   teta = acos((delta1) / (2.0 * sqrt(CUBE(delta0))));
-  S = 0.5 * sqrt(((-2.0 / 3.0) * p) +
-		 ((2.0 / (3.0 * solv->a)) * sqrt(delta0) * cos(teta / 3.0)));
+  S = 0.5 * sqrt((-2.0 / 3.0) * p +
+		 ((2.0 / (3.0 * solv->a)) *
+		  sqrt(delta0) * cos(teta / 3.0)));
   root(solv, S, q, p);
 }
 

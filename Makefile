@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Fri May 20 21:11:17 2016 marc brout
+## Last update Fri May 20 23:13:41 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -79,8 +79,11 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)load_file.c \
 			$(ENGINE)load_light.c \
 			$(ENGINE)load_plan.c \
+			$(ENGINE)load_parab.c \
 			$(ENGINE)load_sphere.c \
 			$(ENGINE)load_tore.c \
+			$(ENGINE)load_hyper.c \
+			$(ENGINE)load_hole_cube.c \
 			$(ENGINE)noise_textures.c \
 			$(ENGINE)matrices.c \
 			$(ENGINE)order_hit_list.c \
