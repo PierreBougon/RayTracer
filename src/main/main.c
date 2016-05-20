@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Mon May 16 18:18:56 2016 bougon_p
+** Last update Wed May 18 21:09:18 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -26,6 +26,8 @@ t_bunny_response        my_click(t_bunny_event_state state,
     }
   if (data->rt.live)
     data->itfc.fct_state[data->itfc.status](data, state, mbutton);
+  if (data->itfc.asklight_click)
+    move_obj(data, state, mbutton);
   if (mbutton == BMB_LEFT && state == GO_DOWN)
     {
       if (check_all_buttons(&data->itfc) == 1)
@@ -99,7 +101,7 @@ int		main(int argc, char **argv, char **env)
     data.itfc.env = env;
   srand(time(NULL));
   /* bunny_set_memory_check(true); */
-  bunny_set_maximum_ram(1000000000);
+  bunny_set_maximum_ram(2000000000);
   if (init_main_data(&data) == -1 ||
       init_engine_ftabs(&data.rt.ftabs) == -1 ||
       init_rt_data(&data.rt, argc, argv) == -1 ||

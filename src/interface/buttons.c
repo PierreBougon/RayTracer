@@ -5,15 +5,15 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 22:00:12 2016 bougon_p
-** Last update Mon May  9 13:19:19 2016 bougon_p
+** Last update Tue May 17 17:53:46 2016 bougon_p
 */
 
 #include <unistd.h>
 #include "raytracer.h"
 
-int	render(UNUSED t_data *data)
+int	render(t_data *data)
 {
-  if (!data->itfc.rendering && !data->itfc.rendered)
+  if (!data->itfc.rendering && !data->itfc.rendered && data->rt.img)
     {
       data->itfc.rendering = true;
       data->rt.live = false;

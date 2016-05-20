@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Tue May 17 17:44:04 2016 benjamin duhieu
+** Last update Thu May 19 10:03:45 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -102,9 +102,9 @@ typedef struct		s_pos
 
 typedef struct		s_acc
 {
-  float			x;
-  float			y;
-  float			z;
+  double		x;
+  double		y;
+  double		z;
 }			t_acc;
 
 typedef struct		s_quad_inter

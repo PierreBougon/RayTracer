@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 21:09:55 2016 bougon_p
-** Last update Sun May  1 19:13:58 2016 bougon_p
+** Last update Wed May 18 21:45:57 2016 bougon_p
 */
 
 #ifndef BUTTON_H_
@@ -52,5 +52,23 @@
 # define NEW_BT_DECAL 60
 # define NB_NEW_BT 3
 
+# define SUB_BT_X_FIRST 145
+# define SUB_BT_Y_FIRST 210
+# define SUB_BT_WDT 80
+# define SUB_BT_HGT 80
+# define SUB_DECAL_Y 85
+# define NB_SUB_BT 2
+
+# define SPOT_BT_X_FIRST 155
+# define SPOT_BT_Y_FIRST 185
+# define SPOT_BT_WDT 80
+# define SPOT_BT_HGT 80
+# define SPOT_DECAL_Y 43
+# define NB_SPOT_BT 4
+# define START_SLIDE_LI_X 180
+# define END_SLIDE_LI_X 351
+# define START_SLIDE_LI_Y 805
+# define END_SLIDE_LI_Y 830
+# define SLIDE_LI_WDT END_SLIDE_LI_X - START_SLIDE_LI_X
 
 #endif /* !BUTTON_H_ */

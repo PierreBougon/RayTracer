@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Mon May 16 19:23:56 2016 benjamin duhieu
+** Last update Wed May 18 18:02:05 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -25,6 +25,8 @@ int			inter_objects(t_rt *s)
     {
       s->hit.k1 = 0.0;
       s->hit.k2 = 0.0;
+      s->hit.k3 = 0.0;
+      s->hit.k4 = 0.0;
       if (it->type != LIGHT)
 	s->ftabs.inters_ftab[it->type - 1](s, it);
       it = it->next;
