@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Wed May 11 12:34:10 2016 benjamin duhieu
-** Last update Fri May 20 23:01:18 2016 benjamin duhieu
+** Last update Fri May 20 23:12:01 2016 benjamin duhieu
 */
 
 #include <math.h>
@@ -85,19 +85,19 @@ void		get_norm_hyper(t_rt *s, t_hyper *hyper)
 		    + pow(hyper->simple_inter1.x, 2)));
   if (hyper->nappe == 1)
     {
-      s->hit.norm.x = -(hyper->b * hyper->c) *
-	CARRE(cosh(phi)) * cos(teta);
-      s->hit.norm.y = -(hyper->a * hyper->c) * CARRE(cosh(phi))
+      s->hit.norm.x = -(/* hyper->b * */ hyper->c) *
+	/* CARRE( */cosh(phi)/* ) */ *  cos(teta);
+      s->hit.norm.y = -(/* hyper->a * */ hyper->c) * /* CARRE( */cosh(phi)/* ) */
 	* sin(teta);
-      s->hit.norm.z = (hyper->a * hyper->b) * sinh(phi) * cosh(teta);
+      s->hit.norm.z = (hyper->a /* * hyper->b */) * sinh(phi) /* * cosh(teta) */;
     }
   else if (hyper->nappe == 2)
     {
-      s->hit.norm.x = -(hyper->b * hyper->c) *
+      s->hit.norm.x = -(/* hyper->b *  */hyper->c) *
 	sqrt(CARRE(phi) - 1) * cos(teta);
-      s->hit.norm.y = -(hyper->a * hyper->c) * sqrt(CARRE(phi) - 1) *
+      s->hit.norm.y = -(/* hyper->a *  */hyper->c) * sqrt(CARRE(phi) - 1) *
 	sin(teta);
-      s->hit.norm.z = hyper->a * hyper->b * phi;
+      s->hit.norm.z = hyper->a /* * hyper->b  */ * phi;
     }
   end_rotation(&s->rotation, &s->hit.norm, &hyper->rot);
 }
