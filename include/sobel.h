@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon May 16 19:07:40 2016 marc brout
-** Last update Wed May 18 17:49:30 2016 marc brout
+** Last update Fri May 20 21:32:20 2016 marc brout
 */
 
 #ifndef SOBEL_H_
@@ -13,7 +13,9 @@
 
 # include "lapin.h"
 
-# define CARRE(value) ((value) * (value))
+# ifndef CARRE
+#  define CARRE(value) ((value) * (value))
+# endif
 # define CUT 25
 # define BORDER 0xFF000000
 # define BACK 0xFFFFFFFF
@@ -42,13 +44,15 @@ void			init_sobel(t_sobel *sobel);
 ** borderland_filter.c
 */
 
-int			borderland(t_bunny_pixelarray **pix);
+int			borderland(t_bunny_pixelarray **pix,
+				   const int value);
 
 /*
 ** sobel_filter.c
 */
 
 t_bunny_pixelarray	*get_sobel(t_bunny_pixelarray *pix);
-int			sobel(t_bunny_pixelarray **pix);
+int			sobel(t_bunny_pixelarray **pix,
+			      const int value);
 
 #endif /* !SOBEL_H_ */

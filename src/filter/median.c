@@ -5,15 +5,17 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed May 18 20:59:39 2016 marc brout
-** Last update Wed May 18 21:01:48 2016 marc brout
+** Last update Fri May 20 21:19:29 2016 marc brout
 */
 
 #include "glass.h"
 
-int			median_filter(t_bunny_pixelarray **pix)
+int			median_filter(t_bunny_pixelarray **pix,
+				      const int value)
 {
   t_bunny_pixelarray	*save;
 
+  (void)value;
   if (!(save = bunny_new_pixelarray((*pix)->clipable.clip_width,
 				    (*pix)->clipable.clip_height)))
     return (1);
@@ -24,10 +26,12 @@ int			median_filter(t_bunny_pixelarray **pix)
   return (0);
 }
 
-int			glass(t_bunny_pixelarray **pix)
+int			glass(t_bunny_pixelarray **pix,
+			      const int value)
 {
   t_bunny_pixelarray	*save;
 
+  (void)value;
   if (!(save = bunny_new_pixelarray((*pix)->clipable.clip_width,
 				    (*pix)->clipable.clip_height)))
     return (1);
@@ -35,7 +39,8 @@ int			glass(t_bunny_pixelarray **pix)
 		(*pix)->clipable.clip_height);
   bunny_delete_clipable(&(*pix)->clipable);
   *pix = save;
-  if (median_filter(pix) || median_filter(pix) || median_filter(pix))
+  if (median_filter(pix, value) || median_filter(pix, value) ||
+      median_filter(pix, value))
     return (1);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri May 20 12:35:12 2016 marc brout
-** Last update Fri May 20 12:39:56 2016 marc brout
+** Last update Fri May 20 21:17:07 2016 marc brout
 */
 
 #include "box_filtering.h"
@@ -39,7 +39,7 @@ static void		init_kernel_normal(int kernel[9])
   kernel[4] = 1;
 }
 
-void			init_kernel_functab(t_box *box)
+void			init_kernel_functab(t_boxe *box)
 {
   box->init_kernel[NORMAL] = &init_kernel_normal;
   box->init_kernel[RAISED] = &init_kernel_raised;

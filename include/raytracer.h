@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu May 19 10:03:45 2016 benjamin duhieu
+** Last update Fri May 20 21:25:06 2016 marc brout
 */
 
 #ifndef RAYTRACER_H_
@@ -554,6 +554,8 @@ typedef struct		s_ftab
   int			(**shadow_ftab)(t_rt *, t_object *);
   void			(**hit_ftab)(t_rt *, t_object *);
   void			(**tex_ftab)(t_rt *);
+  int			(*filter_effect[9])(t_bunny_pixelarray **,
+					    const int);
 }			t_ftab;
 
 typedef struct		s_rotation
@@ -568,6 +570,7 @@ typedef struct		s_rotation
 typedef struct		s_rt
 {
   t_bunny_pixelarray	*img;
+  t_bunny_pixelarray	*save;
   t_bunny_position	r_pos;
   t_object		*obj;
   t_object		*obj_hit;
@@ -1100,5 +1103,10 @@ int		update_hit_list_complex(t_rt *s, void *shape, int type,
 */
 int		update_real_hit_list(t_rt *s);
 int		delete_false_hit_objects(t_rt *s);
+
+/*
+** filter.c
+*/
+int		keys_filter(t_bunny_keysym keysym, void *_data);
 
 #endif /* !RAYTRACER_H_ */

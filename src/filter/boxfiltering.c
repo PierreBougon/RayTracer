@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Thu May 19 22:34:51 2016 marc brout
-** Last update Fri May 20 12:42:32 2016 marc brout
+** Last update Fri May 20 21:15:54 2016 marc brout
 */
 
 #include "box_filtering.h"
@@ -30,7 +30,7 @@ static double		box_divisor(int kernel[9])
 	  kernel[6] + kernel[7] + kernel[8]);
 }
 
-static void		calculate_box(t_box *box,
+static void		calculate_box(t_boxe *box,
 				      const int pos,
 				      t_bunny_pixelarray *pix)
 {
@@ -60,7 +60,7 @@ static void		calculate_box(t_box *box,
 
 static void		apply_box_filter(t_bunny_pixelarray *pix,
 					 t_bunny_pixelarray *save,
-					 t_box *box)
+					 t_boxe *box)
 {
   int			x;
   int			y;
@@ -92,7 +92,7 @@ static void		apply_box_filter(t_bunny_pixelarray *pix,
 int			box_filtering(t_bunny_pixelarray **pix,
 				      const int effect)
 {
-  t_box			box;
+  t_boxe		box;
   t_bunny_pixelarray	*save;
 
   if (!(save = bunny_new_pixelarray((*pix)->CW,

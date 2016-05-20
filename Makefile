@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Wed May 18 21:48:34 2016 bougon_p
+## Last update Fri May 20 21:11:17 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -33,6 +33,8 @@ LIVE_ENGINE	=	src/live_engine/
 SOLVER		=	src/solvers/
 
 ITFC		=	src/interface/
+
+FILTER		=	src/filter/
 
 CONTEXT		=	context/
 
@@ -160,6 +162,18 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)delete_spot.c \
 			$(ITFC)$(CONTEXT)select_spot.c \
 			$(ITFC)$(CONTEXT)slide_light.c \
+			$(FILTER)borderland_filter.c \
+			$(FILTER)boxfiltering.c \
+			$(FILTER)boxfiltering_init_kernels.c \
+			$(FILTER)boxfiltering_other_kernels.c \
+			$(FILTER)color_filter.c \
+			$(FILTER)filter.c \
+			$(FILTER)glass_effect.c \
+			$(FILTER)median.c \
+			$(FILTER)oil_effect.c \
+			$(FILTER)oil_init.c \
+			$(FILTER)sobel_filter.c \
+			$(FILTER)sobel_init.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)

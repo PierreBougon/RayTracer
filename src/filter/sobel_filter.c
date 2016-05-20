@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon May 16 17:57:01 2016 marc brout
-** Last update Fri May 20 12:03:23 2016 marc brout
+** Last update Fri May 20 20:18:21 2016 marc brout
 */
 
 #include <stdio.h>
@@ -106,10 +106,12 @@ t_bunny_pixelarray	*get_sobel(t_bunny_pixelarray *pix)
   return (save);
 }
 
-int			sobel(t_bunny_pixelarray **pix)
+int			sobel(t_bunny_pixelarray **pix,
+			      const int value)
 {
   t_bunny_pixelarray	*save;
 
+  (void)value;
   if (!(save = get_sobel(*pix)))
     return (1);
   bunny_delete_clipable(&(*pix)->clipable);

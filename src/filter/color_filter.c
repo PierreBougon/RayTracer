@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Thu May 19 20:42:27 2016 marc brout
-** Last update Thu May 19 22:13:23 2016 marc brout
+** Last update Fri May 20 21:13:09 2016 marc brout
 */
 
 #include "lapin.h"
@@ -34,24 +34,24 @@ static void	apply_color(t_bunny_pixelarray *pix,
   pixels[pos].argb[GREEN_CMP] = (value > 255) ? 255 : value;
 }
 
-void		color(t_bunny_pixelarray *pix,
-		      const unsigned int color,
-		      const double opacity)
+int		color(t_bunny_pixelarray **pix,
+		      const int color)
 {
   int		x;
   int		y;
   int		pos;
 
   y = 0;
-  while (y < pix->clipable.clip_height)
+  while (y < (*pix)->clipable.clip_height)
     {
       x = 0;
-      while (x < pix->clipable.clip_width)
+      while (x < (*pix)->clipable.clip_width)
 	{
-	  pos = x + y * pix->clipable.clip_width;
-	  apply_color(pix, color, pos, opacity);
+	  pos = x + y * (*pix)->clipable.clip_width;
+	  apply_color(*pix, (unsigned int)color, pos, 0.2);
 	  ++x;
 	}
       ++y;
     }
+  return (0);
 }
