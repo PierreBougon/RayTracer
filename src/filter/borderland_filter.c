@@ -5,10 +5,10 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed May 18 14:47:32 2016 marc brout
-** Last update Wed May 18 14:49:19 2016 marc brout
+** Last update Wed May 18 15:32:40 2016 marc brout
 */
 
-#include
+#include "sobel.h"
 
 static void		edge_cutter(t_bunny_pixelarray *pix,
 				    const int width,

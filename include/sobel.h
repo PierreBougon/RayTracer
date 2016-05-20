@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon May 16 19:07:40 2016 marc brout
-** Last update Wed May 18 14:57:31 2016 marc brout
+** Last update Wed May 18 17:49:30 2016 marc brout
 */
 
 #ifndef SOBEL_H_
@@ -30,13 +30,6 @@ typedef struct		s_sobel
   int			width;
   int			height;
 }			t_sobel;
-
-typedef struct		s_data
-{
-  t_bunny_pixelarray	*pix;
-  t_bunny_pixelarray	*sobel;
-  t_bunny_window	*win;
-}			t_data;
 
 /*
 ** sobel_init.c

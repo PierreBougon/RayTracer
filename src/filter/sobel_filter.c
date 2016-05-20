@@ -5,11 +5,12 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon May 16 17:57:01 2016 marc brout
-** Last update Wed May 18 14:56:03 2016 marc brout
+** Last update Fri May 20 12:03:23 2016 marc brout
 */
 
 #include <stdio.h>
 #include <math.h>
+#include "my.h"
 #include "lapin.h"
 #include "sobel.h"
 
