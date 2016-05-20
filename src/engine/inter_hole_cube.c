@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue May  3 13:42:58 2016 benjamin duhieu
-** Last update Thu May 12 21:28:00 2016 benjamin duhieu
+** Last update Thu May 19 23:32:25 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -53,16 +53,20 @@ void		inter_hole_cube(t_rt *s, t_hole_cube *cube)
   s->ray.new_eye.z = s->ray.eye.z - cube->pos.z;
   rotation(&s->rotation, s->ray.vct, &cube->rot);
   rotation(&s->rotation, &s->ray.new_eye, &cube->rot);
+  /* printf("VECTOR : \nVCTX: %f && -POSx : %f \nVCTy : %f && -POSy : %f\nVCTz : %f && -POSz: %f\n\n", s->ray.vct->x, s->ray.new_eye.x, s->ray.vct->y, s->ray.new_eye.y, s->ray.vct->z, s->ray.new_eye.z); */
   solv.a = QUARTIC(s->ray.vct->x) + QUARTIC(s->ray.vct->y) +
     QUARTIC(s->ray.vct->z);
   solv.b = resolv_hole_b(s);
   solv.c = resolv_hole_c(s);
   solv.d = resolv_hole_d(s);
   solv.e = resolv_hole_e(s, cube);
+  /* printf("TORE : \n-A : %f\n-B : %f\n-C : %f\n-D : %f\n-E : %f\n\n", */
+  /* 	 solv.a, solv.b, solv.c, solv.d, solv.e); */
   solv.root1 = -1;
   solv.root2 = -1;
   solv.root3 = -1;
   solv.root4 = -1;
   resolv_4_degres(&solv);
   attribute_root(s, &solv);
+  /* printf("RES: -R1 : %f\n    -R2 : %f\n     R3 : %f\n     -R4 : %f\n\n", s->hit.k1, s->hit.k2, s->hit.k3, s->hit.k4); */
 }

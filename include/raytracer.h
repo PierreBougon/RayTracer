@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu May 19 10:03:45 2016 benjamin duhieu
+** Last update Fri May 20 14:09:24 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -63,7 +63,7 @@
 # define MARBLE_NOISE 7
 # define IMAGE 8
 
-# define NB_OBJ 6
+# define NB_OBJ 9
 
 /*
 ** includes
@@ -85,7 +85,9 @@ typedef enum	e_obj
     CONE	= 3,
     PLANE	= 4,
     TORE	= 5,
-    BOX		= 6
+    BOX		= 6,
+    HOLE_CUBE   = 7,
+    HYPER	= 8
   }		t_obj;
 
 /*
@@ -201,9 +203,9 @@ typedef struct		s_hyper
 {
   t_pos			pos;
   t_pos			rot;
-  int			a;
-  int			b;
-  int			c;
+  double		a;
+  double		b;
+  double		c;
   int			tex_type;
   char			nappe;
   double		k1;
@@ -220,6 +222,7 @@ typedef struct		s_hyper
   t_acc			norm;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
 }			t_hyper;
 
@@ -269,6 +272,7 @@ typedef struct		s_hole_cube
   t_acc			norm;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
 }			t_hole_cube;
 
@@ -370,14 +374,6 @@ typedef	struct		s_solv
   double		e;
 }			t_solv;
 
-typedef	struct		s_int_tore
-{
-  double		k1;
-  double		k2;
-  double		k3;
-  double		k4;
-}			t_int_tore;
-
 typedef struct		s_cylinder
 {
   t_pos			pos;
@@ -416,7 +412,7 @@ typedef struct		s_tore
   t_pos			rot;
   double		rad;
   double		dist;
-  t_int_tore		inter;
+  t_quad_inter		inter;
   int			tex_type;
   double		ka;
   double		kd;
@@ -812,8 +808,8 @@ void		inter_hole_cube(t_rt *s, t_hole_cube *cube);
 /*
 ** inter_hyper.c
 */
-void		one_nappe(t_rt *s, t_hyper *hyper);
-void		two_nappe(t_rt *s, t_hyper *hyper);
+int		one_nappe(t_rt *s, t_hyper *hyper);
+int		two_nappe(t_rt *s, t_hyper *hyper);
 void		inter_hyper(t_rt *s, t_hyper *hyper);
 
 /*
@@ -904,6 +900,31 @@ int		load_light_datas(t_light *s,
 				 char *scope);
 int		load_light(t_rt *rt, t_bunny_ini *ini, char *scope);
 
+
+/*
+** load_hole_cube.c
+*/
+int		load_hole_cube_datas1(t_hole_cube *s, t_bunny_ini *ini,
+				      char *scope);
+int		load_hole_cube_datas2(t_hole_cube *s, t_bunny_ini *ini,
+				 char *scope);
+int		load_hole_cube_datas3(t_hole_cube *s, t_bunny_ini *ini, char *scope);
+int		load_hole_cube(t_rt *rt, t_bunny_ini *ini, char *scope);
+
+/*
+** load_hyper.c
+*/
+int		load_hyper_datas(t_hyper *s,
+				    t_bunny_ini *ini,
+				    char *scope);
+int		load_hyper_datas2(t_hyper *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_hyper_datas3(t_hyper *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_hyper_datas4(t_hyper *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_hyper(t_rt *rt, t_bunny_ini *ini, char *scope);
+
 /*
 ** load_plan.c
 */
@@ -992,6 +1013,8 @@ void		set_hit_values_from_cylinder(t_rt *s, t_object *obj);
 void		set_hit_values_from_cone(t_rt *s, t_object *obj);
 void		set_hit_values_from_plan(t_rt *s, t_object *obj);
 void		set_hit_values_from_tore(t_rt *s, t_object *obj);
+void		set_hit_values_from_hole_cube(t_rt *s, t_object *obj);
+void		set_hit_values_from_hyper(t_rt *s, t_object *obj);
 int		set_hit_values(t_rt *s, t_object *obj);
 
 /*
