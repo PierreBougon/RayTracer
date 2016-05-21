@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Apr 13 13:46:56 2016 marc brout
-** Last update Wed Apr 13 13:56:23 2016 marc brout
+** Last update Sat May 21 20:48:47 2016 marc brout
 */
 
 #ifndef SOLVER_H_

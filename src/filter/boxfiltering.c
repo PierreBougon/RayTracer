@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Thu May 19 22:34:51 2016 marc brout
-** Last update Fri May 20 21:15:54 2016 marc brout
+** Last update Sat May 21 15:42:35 2016 marc brout
 */
 
 #include "box_filtering.h"
@@ -18,7 +18,7 @@ static void		init_box(int box[9], const int width)
   box[3] = -1;
   box[4] = 0;
   box[5] = 1;
-  box[6] = width - 1 ;
+  box[6] = width - 1;
   box[7] = width;
   box[8] = width + 1;
 }
