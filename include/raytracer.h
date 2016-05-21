@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Fri May 20 23:13:15 2016 marc brout
+** Last update Sat May 21 10:40:15 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -233,6 +233,7 @@ typedef struct		s_parab
   t_pos			rot;
   int			a;
   int			b;
+  int			c;
   int			tex_type;
   double		k1;
   double		k2;

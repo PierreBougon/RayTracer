@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri May 20 20:33:05 2016 benjamin duhieu
-** Last update Fri May 20 20:50:32 2016 benjamin duhieu
+** Last update Sat May 21 10:41:07 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -49,6 +49,9 @@ int		load_parab_datas2(t_parab *s,
   if ((field = bunny_ini_get_field(ini, scope, "b", 0)) == NULL)
     return (my_puterr("load_datas: missing parab b parameter"));
   s->b = (double)my_getnbr((char *)field);
+  if ((field = bunny_ini_get_field(ini, scope, "c", 0)) == NULL)
+    return (my_puterr("load_datas: missing parab c parameter"));
+  s->c = (double)my_getnbr((char *)field);
   if ((field = bunny_ini_get_field(ini, scope, "form", 0)) == NULL)
     return (my_puterr("load_datas: missing parab form"));
   if ((s->form = my_getnbr((char *)field)) != 1 && s->form!= 2)

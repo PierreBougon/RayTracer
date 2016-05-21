@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 26 13:36:09 2016 benjamin duhieu
-** Last update Thu May 19 23:02:14 2016 benjamin duhieu
+** Last update Sat May 21 20:06:13 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -153,6 +153,7 @@ void		inter_tore(t_rt *s, t_tore *tore)
   s->ray.new_eye.z = s->ray.eye.z - tore->pos.z;
   rotation(&s->rotation, s->ray.vct, &tore->rot);
   rotation(&s->rotation, &s->ray.new_eye, &tore->rot);
+  /* printf("VECT X : %f && EYE X : %f\nVECT Y : %f && EYE Y : %f\n VECT Z : %f&& EYE Z: %f\n", s->ray.vct->x, s->ray.new_eye.x, s->ray.vct->y, s->ray.new_eye.y, s->ray.vct->z, s->ray.new_eye.z); */
   solv.a =
     (s->ray.vct->x * s->ray.vct->x +
      s->ray.vct->y * s->ray.vct->y +
@@ -164,10 +165,12 @@ void		inter_tore(t_rt *s, t_tore *tore)
   solv.c = solv_tor_c(s, tore);
   solv.d = solv_tor_d(s, tore);
   solv.e = solv_tor_e(s, tore);
+  /* printf("SOLVA : %f\nSOLV B : %f\nSOLV C : %f\n SOLV D : %f\n SOLV E : %f\n", solv.a, solv.b, solv.c, solv.d, solv.e); */
   solv.root1 = -1;
   solv.root2 = -1;
   solv.root3 = -1;
   solv.root4 = -1;
   resolv_4_degres(&solv);
   attribute_root(s, &solv);
+  /* printf("ROOT1 : %f\nROOT2 : %f\n ROOT3 : %f\n ROOT4 : %f\n", s->hit.k1, s->hit.k2, s->hit.k3, s->hit.k4); */
 }

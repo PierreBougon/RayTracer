@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Wed May  4 13:40:57 2016 benjamin duhieu
-** Last update Thu May 19 23:29:11 2016 benjamin duhieu
+** Last update Sat May 21 14:41:46 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -59,7 +59,7 @@ void		attribute_root(t_rt *s, t_4order *solv)
   /* else */
   /*   s->hit.k2 = -1; */
   /* if (solv->root3 >= 0) */
-   s->hit.k3 = solv->root3;
+    s->hit.k3 = solv->root3;
   /* else */
   /*   s->hit.k3 = -1; */
   /* if (solv->root4 >= 0) */
