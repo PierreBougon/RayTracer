@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:47:40 2016 romain samuel
-** Last update Fri May 20 20:32:19 2016 benjamin duhieu
+** Last update Sat May 21 23:36:41 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -19,7 +19,8 @@ void		set_hit_values_from_sphere(t_rt *s, t_object *obj)
   s->hit.k2 = sphere->k2;
   s->hit.simple_inter1 = sphere->simple_inter1;
   s->hit.simple_inter2 = sphere->simple_inter2;
-  s->hit.norm = sphere->norm;
+  s->hit.norm1 = sphere->norm1;
+  s->hit.norm2 = sphere->norm2;
   s->hit.brightness = sphere->brightness;
   s->hit.ka = sphere->ka;
   s->hit.kd = sphere->kd;
@@ -45,7 +46,8 @@ void		set_hit_values_from_cylinder(t_rt *s, t_object *obj)
   s->hit.k2 = cylinder->k2;
   s->hit.simple_inter1 = cylinder->simple_inter1;
   s->hit.simple_inter2 = cylinder->simple_inter2;
-  s->hit.norm = cylinder->norm;
+  s->hit.norm1 = cylinder->norm1;
+  s->hit.norm2 = cylinder->norm2;
   s->hit.brightness = cylinder->brightness;
   s->hit.ka = cylinder->ka;
   s->hit.kd = cylinder->kd;
@@ -83,7 +85,8 @@ void		set_hit_values_from_cone(t_rt *s, t_object *obj)
   s->hit.k2 = cone->k2;
   s->hit.simple_inter1 = cone->simple_inter1;
   s->hit.simple_inter2 = cone->simple_inter2;
-  s->hit.norm = cone->norm;
+  s->hit.norm1 = cone->norm1;
+  s->hit.norm2 = cone->norm2;
   s->hit.brightness = cone->brightness;
   s->hit.ka = cone->ka;
   s->hit.kd = cone->kd;
@@ -109,7 +112,7 @@ void		set_hit_values_from_plan(t_rt *s, t_object *obj)
   s->hit.k2 = plan->k2;
   s->hit.simple_inter1 = plan->simple_inter1;
   s->hit.simple_inter2 = plan->simple_inter2;
-  s->hit.norm = plan->norm;
+  s->hit.norm1 = plan->norm;
   s->hit.brightness = plan->brightness;
   s->hit.ka = plan->ka;
   s->hit.kd = plan->kd;
@@ -125,6 +128,32 @@ void		set_hit_values_from_plan(t_rt *s, t_object *obj)
   get_texels_plan(s, plan);
 }
 
+void		set_hit_values_from_box(t_rt *s, t_object *obj)
+{
+  t_box		*box;
+
+  box = obj->datas;
+  s->hit.k1 = box->k1;
+  s->hit.k2 = box->k2;
+  s->hit.simple_inter1 = box->simple_inter1;
+  s->hit.simple_inter2 = box->simple_inter2;
+  s->hit.norm1 = box->norm1;
+  s->hit.norm2 = box->norm2;
+  s->hit.brightness = box->brightness;
+  s->hit.ka = box->ka;
+  s->hit.kd = box->kd;
+  s->hit.ks = box->ks;
+  s->hit.reflection = box->reflection;
+  s->hit.opacity = box->opacity;
+  s->hit.n2 = box->refraction;
+  s->hit.color1 = box->color1;
+  s->hit.color2 = box->color2;
+  s->final_color = box->color1;
+  s->hit.tex_type = box->tex_type;
+  s->hit.texture1 = box->texture;
+  /* get_texels_plan(s, plan); */
+}
+
 void		set_hit_values_from_tore(t_rt *s, t_object *obj)
 {
   t_tore	*tore;
@@ -138,7 +167,7 @@ void		set_hit_values_from_tore(t_rt *s, t_object *obj)
   s->hit.simple_inter2 = tore->simple_inter2;
   s->hit.simple_inter3 = tore->simple_inter3;
   s->hit.simple_inter4 = tore->simple_inter4;
-  s->hit.norm = tore->norm;
+  s->hit.norm1 = tore->norm;
   s->hit.brightness = tore->brightness;
   s->hit.ka = tore->ka;
   s->hit.kd = tore->kd;
@@ -166,7 +195,7 @@ void		set_hit_values_from_hole_cube(t_rt *s, t_object *obj)
   s->hit.simple_inter2 = hole_cube->simple_inter2;
   s->hit.simple_inter3 = hole_cube->simple_inter3;
   s->hit.simple_inter4 = hole_cube->simple_inter4;
-  s->hit.norm = hole_cube->norm;
+  s->hit.norm1 = hole_cube->norm;
   s->hit.brightness = hole_cube->brightness;
   s->hit.ka = hole_cube->ka;
   s->hit.kd = hole_cube->kd;
@@ -190,7 +219,7 @@ void		set_hit_values_from_hyper(t_rt *s, t_object *obj)
   s->hit.k2 = hyper->k2;
   s->hit.simple_inter1 = hyper->simple_inter1;
   s->hit.simple_inter2 = hyper->simple_inter2;
-  s->hit.norm = hyper->norm;
+  s->hit.norm1 = hyper->norm;
   s->hit.brightness = hyper->brightness;
   s->hit.ka = hyper->ka;
   s->hit.kd = hyper->kd;
@@ -214,7 +243,7 @@ void		set_hit_values_from_parab(t_rt *s, t_object *obj)
   s->hit.k2 = parab->k2;
   s->hit.simple_inter1 = parab->simple_inter1;
   s->hit.simple_inter2 = parab->simple_inter2;
-  s->hit.norm = parab->norm;
+  s->hit.norm1 = parab->norm;
   s->hit.brightness = parab->brightness;
   s->hit.ka = parab->ka;
   s->hit.kd = parab->kd;
@@ -236,9 +265,10 @@ int	set_hit_values(t_rt *s, t_object *obj)
   s->ftabs.hit_ftab[2] = &set_hit_values_from_cone;
   s->ftabs.hit_ftab[3] = &set_hit_values_from_plan;
   s->ftabs.hit_ftab[4] = &set_hit_values_from_tore;
-  s->ftabs.hit_ftab[5] = &set_hit_values_from_hole_cube;
-  s->ftabs.hit_ftab[6] = &set_hit_values_from_hyper;
-  s->ftabs.hit_ftab[7] = &set_hit_values_from_parab;
-  s->ftabs.hit_ftab[obj->type - 2](s, obj);
+  s->ftabs.hit_ftab[5] = &set_hit_values_from_box;
+  s->ftabs.hit_ftab[6] = &set_hit_values_from_hole_cube;
+  s->ftabs.hit_ftab[7] = &set_hit_values_from_hyper;
+  s->ftabs.hit_ftab[8] = &set_hit_values_from_parab;
+  s->ftabs.hit_ftab[obj->type - 1](s, obj);
   return (0);
 }

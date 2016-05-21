@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:56:19 2016 romain samuel
-** Last update Mon May 16 19:19:12 2016 benjamin duhieu
+** Last update Sat May 21 22:19:49 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -141,5 +141,7 @@ int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope)
   if (load_cone_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;
+  if ((it->name = my_strdup(scope)) == NULL)
+    return (my_puterr("Could not perform malloc"));
   return (0);
 }

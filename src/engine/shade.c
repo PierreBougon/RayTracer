@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:22:45 2016 romain samuel
-** Last update Fri May 13 19:31:47 2016 bougon_p
+** Last update Sat May 21 22:12:02 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -15,7 +15,7 @@ double		apply_light(t_rt *s, t_light *light, t_color *light_color)
   double	add;
 
   add = 0;
-  add = diffuse_light(s, s->obj_hit->next);
+  add = diffuse_light(s);
   if (add > 0.000000001)
     {
       add = add * light->intensity * s->hit.kd;

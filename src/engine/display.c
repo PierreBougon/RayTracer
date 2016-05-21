@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Sat May 21 21:48:40 2016 bougon_p
+** Last update Sat May 21 22:39:16 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -23,6 +23,7 @@ int			inter_objects(t_rt *s)
   s->ftabs.inters_ftab[6] = &display_hole_cube;
   s->ftabs.inters_ftab[7] = &display_hyper;
   s->ftabs.inters_ftab[8] = &display_parab;
+  s->ftabs.inters_ftab[9] = &display_csg;
   it = s->obj;
   while (it != NULL)
     {
@@ -31,7 +32,8 @@ int			inter_objects(t_rt *s)
       s->hit.k3 = 0.0;
       s->hit.k4 = 0.0;
       if (it->type != LIGHT)
-	s->ftabs.inters_ftab[it->type - 1](s, it);
+	if (s->ftabs.inters_ftab[it->type - 1](s, it) == -1)
+	  return (-1);
       it = it->next;
     }
   return (0);

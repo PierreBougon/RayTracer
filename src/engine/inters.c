@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:31:08 2016 romain samuel
-** Last update Fri May 20 19:44:13 2016 benjamin duhieu
+** Last update Sat May 21 22:20:16 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -104,7 +104,9 @@ int		inter_cylinder(t_rt *s, t_cylinder *cylinder)
 	   * s->ray.new_eye.y);
   c = CARRE(s->ray.new_eye.x) + CARRE(s->ray.new_eye.y)
     - CARRE(cylinder->size);
-  if ((delta = CARRE(b) - 4 * a * c) < 0)
+  if (a < 0.000001 && a > -0.000001)
+    return (1);
+  if ((delta = CARRE(b) - 4 * a * c) < 0.000001)
     return (0);
   s->hit.k1 = (- b + sqrt(delta)) / (2 * a);
   s->hit.k2 = (- b - sqrt(delta)) / (2 * a);

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Fri May 20 21:12:10 2016 benjamin duhieu
+** Last update Sun May 22 00:13:17 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -16,7 +16,7 @@ int		load_type(t_rt *s,
 				       char *scope),
 			  char *scope)
 {
-  char		*tab[NB_OBJ];
+  char		*tab[NB_OBJ + 1];
   int		i;
   const char	*field;
 
@@ -27,11 +27,12 @@ int		load_type(t_rt *s,
   tab[3] = "plan";
   tab[4] = "light";
   tab[5] = "box";
-  tab[6] = "tore";
-  tab[7] = "hole_cube";
-  tab[8] = "hyper";
-  tab[9] = "parab";
-  while (++i < NB_OBJ)
+  tab[6] = "csg";
+  tab[7] = "tore";
+  tab[8] = "hole_cube";
+  tab[9] = "hyper";
+  tab[10] = "parab";
+  while (++i < NB_OBJ + 1)
     {
       if ((field = bunny_ini_get_field(ini, scope, "type", 0)) == NULL)
 	return (my_puterr("Could not perform bunny_ini_get_field"));
@@ -46,7 +47,7 @@ int		load_object(t_rt *s, t_bunny_ini *ini, char *scope)
 {
   int		(**ftab)(t_rt *s, t_bunny_ini *ini, char *scope);
 
-  if ((ftab = bunny_malloc(sizeof(ftab) * NB_OBJ)) == NULL)
+  if ((ftab = bunny_malloc(sizeof(ftab) * (NB_OBJ + 1))) == NULL)
     return (my_puterr("load_object: malloc failed"));
   ftab[0] = &load_sphere;
   ftab[1] = &load_cylinder;
@@ -54,10 +55,11 @@ int		load_object(t_rt *s, t_bunny_ini *ini, char *scope)
   ftab[3] = &load_plan;
   ftab[4] = &load_light;
   ftab[5] = &load_box;
-  ftab[6] = &load_tore;
-  ftab[7] = &load_hole_cube;
-  ftab[8] = &load_hyper;
-  ftab[9] = &load_parab;
+  ftab[6] = &load_csg;
+  ftab[7] = &load_tore;
+  ftab[8] = &load_hole_cube;
+  ftab[9] = &load_hyper;
+  ftab[10] = &load_parab;
   if (load_type(s, ini, ftab, scope) == -1)
     return (-1);
   return (0);

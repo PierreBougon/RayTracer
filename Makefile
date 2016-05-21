@@ -5,22 +5,22 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sat May 21 22:11:14 2016 bougon_p
+## Last update Sat May 21 23:49:51 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
 
-RM		=	rm -rf
+RM      =	rm -rf
 
-GREEN		=	\033[1;32m
+GREEN	=	\033[1;32m
 
-WHITE		=	\033[0m
+WHITE	=	\033[0m
 
-ECHO		=	echo -e
+ECHO	=	echo -e
 
-DEBUG		=	no
+DEBUG	=	no
 
-OPTI		=	no
+OPTI	=	no
 
 # RT VARIABLES
 
@@ -30,13 +30,13 @@ ENGINE		=	src/engine/
 
 LIVE_ENGINE	=	src/live_engine/
 
-SOLVER		=	src/solvers/
-
 ITFC		=	src/interface/
+
+CONTEXT		=	context/
 
 FILTER		=	src/filter/
 
-CONTEXT		=	context/
+SOLVERS		=	src/solvers/
 
 SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
@@ -53,42 +53,61 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)translation.c \
 			$(ENGINE)clear_list.c \
 			$(ENGINE)color_operations.c \
+			$(ENGINE)create_csg_tree.c \
+			$(ENGINE)create_inter_list.c \
 			$(ENGINE)create_obj_list.c \
+			$(ENGINE)csg_merge_lists.c \
+			$(ENGINE)csg_operations.c \
+			$(ENGINE)csg_intersection.c \
+			$(ENGINE)csg_substraction.c \
+			$(ENGINE)csg_clean_second_list.c \
+			$(ENGINE)csg_union.c \
 			$(ENGINE)diffuse_light.c \
 			$(ENGINE)display.c \
+			$(ENGINE)display_csg_objects.c \
 			$(ENGINE)display_objects.c \
 			$(ENGINE)display_object_complex.c \
+			$(ENGINE)delete_inter_list.c \
 			$(ENGINE)exposure.c \
 			$(ENGINE)get_norm.c \
 			$(ENGINE)get_norm_complex.c \
+			$(ENGINE)get_obj.c \
 			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
 			$(ENGINE)get_texels.c \
 			$(ENGINE)inter_box_sides.c \
 			$(ENGINE)init_shade.c \
-			$(ENGINE)inters.c \
 			$(ENGINE)inter_hole_cube.c \
 			$(ENGINE)inter_hyper.c \
+			$(ENGINE)inter_list.c \
 			$(ENGINE)inter_parab.c \
+			$(ENGINE)inters.c \
 			$(ENGINE)inter_tore.c \
 			$(ENGINE)limited_objects.c \
 			$(ENGINE)limited_plan.c \
 			$(ENGINE)load_box.c \
 			$(ENGINE)load_cone.c \
+			$(ENGINE)load_csg.c \
+			$(ENGINE)load_csg_objects.c \
 			$(ENGINE)load_cylinder.c \
 			$(ENGINE)load_file.c \
+			$(ENGINE)load_hole_cube.c \
+			$(ENGINE)load_hyper.c \
 			$(ENGINE)load_light.c \
-			$(ENGINE)load_plan.c \
 			$(ENGINE)load_parab.c \
+			$(ENGINE)load_plan_sides.c \
+			$(ENGINE)load_plan.c \
 			$(ENGINE)load_sphere.c \
 			$(ENGINE)load_tore.c \
-			$(ENGINE)load_hyper.c \
-			$(ENGINE)load_hole_cube.c \
 			$(ENGINE)noise_textures.c \
 			$(ENGINE)matrices.c \
 			$(ENGINE)order_hit_list.c \
+			$(ENGINE)order_inter_list.c \
+			$(ENGINE)order_solutions.c \
 			$(ENGINE)perlin.c \
+			$(ENGINE)real_cylinder_plan_inter.c \
 			$(ENGINE)rotations.c \
+			$(ENGINE)second_inter_limited_objects.c \
 			$(ENGINE)set_hit_values.c \
 			$(ENGINE)shade.c \
 			$(ENGINE)shadow.c \
@@ -100,22 +119,20 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)specular_light.c \
 			$(ENGINE)update_hit_list.c \
 			$(ENGINE)update_real_hit_list.c \
-			$(ENGINE)texturize_obj.c \
 			$(ENGINE)tri_root.c \
+			$(ENGINE)texturize_obj.c \
 			$(LIVE_ENGINE)display.c \
 			$(LIVE_ENGINE)live_shade.c \
-			$(SOLVER)cube_order_solver.c \
-			$(SOLVER)quartic_order_solver.c \
-			$(SOLVER)new_method.c \
-			$(SOLVER)second_order_solver.c \
-			$(ITFC)init_itfc.c \
 			$(ITFC)init_curs.c \
+			$(ITFC)init_itfc.c \
 			$(ITFC)init_ftabs.c \
 			$(ITFC)init_ftabss.c \
 			$(ITFC)interface.c \
 			$(ITFC)zoom.c \
 			$(ITFC)text.c \
 			$(ITFC)open_file.c \
+			$(ITFC)check_workspace.c \
+			$(ITFC)check_key.c \
 			$(ITFC)check_buttons.c \
 			$(ITFC)check_menu_buttons.c \
 			$(ITFC)check_file_buttons.c \
@@ -128,13 +145,24 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)rotate_state.c \
 			$(ITFC)move_eye.c \
 			$(ITFC)rotate_eye.c \
-			$(ITFC)check_key.c \
 			$(ITFC)key_move.c \
 			$(ITFC)key_rot.c \
-			$(ITFC)check_workspace.c \
-			$(ITFC)get_obj.c \
 			$(ITFC)$(CONTEXT)add_plane.c \
+			$(ITFC)$(CONTEXT)move_obj.c \
+			$(ITFC)$(CONTEXT)delete_spot.c \
+			$(ITFC)$(CONTEXT)modif_form_rad.c \
+			$(ITFC)$(CONTEXT)delete.c \
+			$(ITFC)$(CONTEXT)slide_light.c \
+			$(ITFC)$(CONTEXT)add_spot.c \
+			$(ITFC)$(CONTEXT)select_spot.c \
+			$(ITFC)$(CONTEXT)resize_fct.c \
+			$(ITFC)$(CONTEXT)move_spot.c \
+			$(ITFC)$(CONTEXT)apply_texture.c \
+			$(ITFC)$(CONTEXT)resize_obj.c \
+			$(ITFC)$(CONTEXT)select_obj.c \
+			$(ITFC)$(CONTEXT)apply_image_obj.c \
 			$(ITFC)$(CONTEXT)add_sphere.c \
+			$(ITFC)$(CONTEXT)reset_obj.c \
 			$(ITFC)$(CONTEXT)add_cone.c \
 			$(ITFC)$(CONTEXT)add_cylinder.c \
 			$(ITFC)$(CONTEXT)add_cube.c \
@@ -151,7 +179,6 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)save_ini_obj_scope_cylinder.c \
 			$(ITFC)$(CONTEXT)save_ini_obj_scope_plane.c \
 			$(ITFC)$(CONTEXT)modif_form.c \
-			$(ITFC)$(CONTEXT)modif_form_rad.c \
 			$(ITFC)$(CONTEXT)add_form.c \
 			$(ITFC)$(CONTEXT)sub_form.c \
 			$(ITFC)$(CONTEXT)spotlight.c \
@@ -164,20 +191,6 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)slide_ambient.c \
 			$(ITFC)$(CONTEXT)slide_antialias.c \
 			$(ITFC)$(CONTEXT)set_size.c \
-			$(ITFC)$(CONTEXT)delete.c \
-			$(ITFC)$(CONTEXT)add_spot.c \
-			$(ITFC)$(CONTEXT)move_spot.c \
-			$(ITFC)$(CONTEXT)delete_spot.c \
-			$(ITFC)$(CONTEXT)select_spot.c \
-			$(ITFC)$(CONTEXT)slide_light.c \
-			$(ITFC)$(CONTEXT)text_obj.c \
-			$(ITFC)$(CONTEXT)move_obj.c \
-			$(ITFC)$(CONTEXT)resize_obj.c \
-			$(ITFC)$(CONTEXT)resize_fct.c \
-			$(ITFC)$(CONTEXT)select_obj.c \
-			$(ITFC)$(CONTEXT)apply_image_obj.c \
-			$(ITFC)$(CONTEXT)apply_texture.c \
-			$(ITFC)$(CONTEXT)reset_obj.c \
 			$(FILTER)borderland_filter.c \
 			$(FILTER)boxfiltering.c \
 			$(FILTER)boxfiltering_init_kernels.c \
@@ -190,6 +203,10 @@ SRC		=	$(MAIN)main.c \
 			$(FILTER)oil_init.c \
 			$(FILTER)sobel_filter.c \
 			$(FILTER)sobel_init.c \
+			$(SOLVERS)cube_order_solver.c \
+			$(SOLVERS)new_method.c \
+			$(SOLVERS)quartic_order_solver.c \
+			$(SOLVERS)second_order_solver.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
@@ -249,7 +266,7 @@ IFLAG	=	-Iinclude/
 CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
 
 ifeq ($(DEBUG),yes)
-CFLAGS	+=	-g  -D LAPIN_ALLOCATOR_DEACTIVATED
+CFLAGS	+=	-g
 endif
 
 ifeq ($(OPTI),yes)
@@ -278,9 +295,6 @@ $(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIB) $(LIBBUNNY)
 
 all		:	$(LIB)
-ifeq ($(DEBUG), yes)
-		find . -type f -iname "*.[chS]" | xargs etags -a
-endif
 			@make -j 4 -s compile
 
 clean		:

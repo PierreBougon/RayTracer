@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Sat May 21 20:47:34 2016 marc brout
-** Last update Sat May 21 21:40:40 2016 benjamin duhieu
+** Last update Sat May 21 22:22:16 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -24,9 +24,9 @@ static inline double		calc_q(t_4order *c)
 
 static inline double		calc_r(t_4order *c)
 {
-  return ((-3.0 * QUARTIC(c->b / (4.0 * c->a))) +
-	  ((CARRE(c->b) * c->c) / (16.0 * CUBE(c->a))) +
-	  ((c->b * c->d) / (4.0 * CARRE(c->a))) +
+  return ((-3.0 * QUARTIC((c->b / 4.0) / c->a)) +
+	  (c->c * (CARRE(c->b / 4.0) / CUBE(c->a))) -
+	  (((c->b * c->d) * (1.0 / 4.0)) / CARRE(c->a)) +
 	  (c->e / c->a));
 }
 
