@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Fri May 20 22:36:11 2016 bougon_p
+** Last update Sat May 21 07:01:56 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -106,6 +106,12 @@ typedef	enum			e_tex_state
     IMG
   }				t_tex_state;
 
+typedef	enum			e_bt_state
+  {
+    YES,
+    NO
+  }				t_bt_state;
+
 typedef struct	s_data		t_data;
 typedef struct	s_rt		t_rt;
 typedef struct	s_object	t_object;
@@ -147,6 +153,8 @@ typedef	struct			s_open
 
 typedef	struct			s_past
 {
+  int				rad_state;
+  int				refl_state;
   t_bunny_position		pos;
   t_bunny_picture		*img;
 }				t_past;
@@ -198,6 +206,7 @@ typedef struct			s_itfc
   bool				live;
   const	t_bunny_position	*mpos;
   int				(*fct_resize[NB_OBJ])(t_data *, t_acc *);
+  int				(*fct_apply_image[NB_OBJ])(t_data *);
   int				(*fct_context[NB_CONTEXT])(t_data *);
   int				(*fct_button[4])(t_data *);
   int				(*fct_state[NB_STATUS])(t_data *,
@@ -375,5 +384,12 @@ int	resize_sphere(t_data *, t_acc *);
 int	resize_cylinder(t_data *, t_acc *);
 int	resize_cone(t_data *, t_acc *);
 int	resize_plan(t_data *, t_acc *);
+int	apply_sphere(t_data *);
+int	apply_cone(t_data *);
+int	apply_cylinder(t_data *);
+int	apply_plan(t_data *);
+int	apply_flat_texture(t_data *);
+int	apply_perlin_texture(t_data *);
+int	apply_image_texture(t_data *);
 
 #endif /* !INTERFACE  */

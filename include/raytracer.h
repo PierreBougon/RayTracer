@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu May 19 10:03:45 2016 benjamin duhieu
+** Last update Sat May 21 06:58:22 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -134,6 +134,7 @@ typedef struct		s_fresnel
 typedef struct		s_plan
 {
   t_pos			pos;
+  double		reflection;
   t_pos			rot;
   int			real;
   int			tex_type;
@@ -144,7 +145,6 @@ typedef struct		s_plan
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_color		color1;
@@ -200,11 +200,12 @@ typedef struct		s_4order
 typedef struct		s_hyper
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			a;
   int			b;
   int			c;
-  int			tex_type;
   char			nappe;
   double		k1;
   double		k2;
@@ -212,7 +213,6 @@ typedef struct		s_hyper
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_acc			simple_inter2;
@@ -226,10 +226,11 @@ typedef struct		s_hyper
 typedef struct		s_parab
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			a;
   int			b;
-  int			tex_type;
   double		k1;
   double		k2;
   char			form;
@@ -237,7 +238,6 @@ typedef struct		s_parab
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_acc			simple_inter2;
@@ -251,6 +251,7 @@ typedef struct		s_parab
 typedef struct		s_hole_cube
 {
   t_pos			pos;
+  double		reflection;
   t_pos			rot;
   int			rad;
   int			tex_type;
@@ -258,7 +259,6 @@ typedef struct		s_hole_cube
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_quad_inter		inter;
@@ -275,15 +275,15 @@ typedef struct		s_hole_cube
 typedef struct		s_sphere
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			real;
-  int			tex_type;
   int			size;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_color		color1;
@@ -303,16 +303,16 @@ typedef struct		s_sphere
 typedef struct		s_cone
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			real;
-  int			tex_type;
   int			angle;
   int			height;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_color		color1;
@@ -335,15 +335,15 @@ typedef struct		s_cone
 typedef struct		s_box
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			real;
-  int			tex_type;
   t_pos			size;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_color		color1;
@@ -381,16 +381,16 @@ typedef	struct		s_int_tore
 typedef struct		s_cylinder
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			real;
-  int			tex_type;
   int			size;
   int			height;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_color		color1;
@@ -413,16 +413,16 @@ typedef struct		s_cylinder
 typedef struct		s_tore
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   double		rad;
   double		dist;
   t_int_tore		inter;
-  int			tex_type;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_acc			simple_inter2;

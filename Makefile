@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Fri May 20 22:39:42 2016 bougon_p
+## Last update Sat May 21 04:40:21 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -165,6 +165,8 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)resize_obj.c \
 			$(ITFC)$(CONTEXT)resize_fct.c \
 			$(ITFC)$(CONTEXT)select_obj.c \
+			$(ITFC)$(CONTEXT)apply_image_obj.c \
+			$(ITFC)$(CONTEXT)apply_texture.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
@@ -253,6 +255,9 @@ $(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIB) $(LIBBUNNY)
 
 all		:	$(LIB)
+ifeq ($(DEBUG), yes)
+		find . -type f -iname "*.[chS]" | xargs etags -a
+endif
 			@make -j 4 -s compile
 
 clean		:

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 28 15:43:21 2016 bougon_p
-** Last update Fri May 20 22:37:30 2016 bougon_p
+** Last update Sat May 21 03:50:33 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -106,6 +106,14 @@ void	init_ptr_resize(t_itfc *itfc)
   itfc->fct_resize[3] = resize_plan;
 }
 
+void	init_ptr_apply(t_itfc *itfc)
+{
+  itfc->fct_apply_image[0] = apply_sphere;
+  itfc->fct_apply_image[1] = apply_cylinder;
+  itfc->fct_apply_image[2] = apply_cone;
+  itfc->fct_apply_image[3] = apply_plan;
+}
+
 int	init_ftabs(t_itfc *itfc)
 {
   int	i;
@@ -120,6 +128,7 @@ int	init_ftabs(t_itfc *itfc)
   init_ptr_state(itfc);
   init_ptr_key(itfc);
   init_ptr_resize(itfc);
+  init_ptr_apply(itfc);
   if (init_ptr_save(itfc) == 1)
     return (1);
   init_ptr_save_ini(itfc);
