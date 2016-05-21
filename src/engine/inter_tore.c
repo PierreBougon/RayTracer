@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 26 13:36:09 2016 benjamin duhieu
-** Last update Sat May 21 20:06:13 2016 benjamin duhieu
+** Last update Sat May 21 21:41:42 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -170,7 +170,7 @@ void		inter_tore(t_rt *s, t_tore *tore)
   solv.root2 = -1;
   solv.root3 = -1;
   solv.root4 = -1;
-  resolv_4_degres(&solv);
+  solver_pqr(&solv);
   attribute_root(s, &solv);
   /* printf("ROOT1 : %f\nROOT2 : %f\n ROOT3 : %f\n ROOT4 : %f\n", s->hit.k1, s->hit.k2, s->hit.k3, s->hit.k4); */
 }

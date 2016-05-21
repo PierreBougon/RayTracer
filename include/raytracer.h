@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat May 21 21:39:10 2016 benjamin duhieu
+** Last update Sat May 21 21:42:58 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -1159,7 +1159,7 @@ void		solver_pqr(t_4order *c);
 /*
 ** lol
 */
-void		q_is_no_null(t_4order *solv,
+void		q_is_not_nul(t_4order *solv,
 			     double p, double q,
 			     double r);
 
