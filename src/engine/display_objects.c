@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
-** Last update Sat May 21 21:30:29 2016 romain samuel
+** Last update Sat May 21 21:57:59 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -143,19 +143,7 @@ t_csg		*display_tree(t_rt *s, t_csg *it)
 {
   if (it->type == 0)
     {
-      printf("it->id = %d\n", it->id);
       display_csg_objects(s, it->obj);
-      if (it->obj->inter)
-      	{
-      	  t_inter *it_left;
-      	  it_left = it->obj->inter->next;
-      	  while (it_left)
-      	    {
-      	      printf("obj: k = %f, name = %s\n", it_left->k, it_left->obj->name);
-      	      it_left = it_left->next;
-      	    }
-      	}
-      printf("\n--------------\n");
       it->inter = it->obj->inter;
     }
   if (it->left != NULL && it->right != NULL)
@@ -164,9 +152,7 @@ t_csg		*display_tree(t_rt *s, t_csg *it)
 	return (NULL);
       if ((it->right = display_tree(s, it->right)) == NULL)
 	return (NULL);
-      printf("it->id = %d\n", it->id);
       it->inter = csg_operations(it, it->left->inter, it->right->inter);
-      printf("\n--------------\n");
     }
   return (it);
 }
@@ -181,39 +167,20 @@ int		display_csg(t_rt *s, t_object *obj)
   free_tree_inters(shape);
   if (display_tree(s, shape) == NULL)
     return (-1);
-  printf("END:\n");
   if (shape->inter && shape->inter->next)
     {
       s->hit.k2 = 0.0;
-      t_inter *it_left = shape->inter->next;
-      while (it_left)
+      it = shape->inter->next;
+      while (it)
   	{
-  	  printf("end: k = %f, name = %s\n", it_left->k, it_left->obj->name);
-	  if (it_left->k > 0.00001)
+	  if (it->k > 0.00001)
 	    {
-	      s->hit.k1 = it_left->k;
-	      if (update_hit_list(s,
-				  it_left->obj->datas,
-				  it_left->obj->type,
-				  it_left->k) == -1)
-		return (-1);
-	      printf("name = %s\n", s->obj_hit->name);
-	      printf("a\n");
-	      return (0);
+	      s->hit.k1 = it->k;
+	      return (update_hit_list(s, it->obj->datas,
+				      it->obj->type,  it->k));
 	    }
-
-	  it_left = it_left->next;
-  	}
+	  it = it->next;
+	}
     }
-  /* if (shape->inter && shape->inter->next) */
-  /*   { */
-  /*     it = shape->inter; */
-  /*     while (it != NULL && it->k < 0.00001) */
-  /* 	it = it->next; */
-  /*     if (it == NULL) */
-  /* 	return (0); */
-  /*     s->hit.k2 = 0.0; */
-  /*     update_hit_list(s, it->obj->datas, it->obj->type, it->k); */
-  /*   } */
   return (0);
 }
