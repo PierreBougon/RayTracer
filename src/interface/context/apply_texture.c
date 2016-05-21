@@ -5,17 +5,34 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat May 21 02:49:03 2016 bougon_p
-** Last update Sat May 21 06:32:01 2016 bougon_p
+** Last update Sat May 21 15:58:53 2016 bougon_p
 */
 
 #include "raytracer.h"
+
+void		apply_flat_texture2(t_data *data)
+{
+  t_cylinder	*cyl;
+  t_plan	*pla;
+
+  if (data->itfc.obj_selected->type == CYLINDER)
+    {
+      cyl = data->itfc.obj_selected->datas;
+      cyl->tex_type = FULL;
+      data->itfc.past.rad_state = FLAT;
+    }
+  else if (data->itfc.obj_selected->type == PLANE)
+    {
+      pla = data->itfc.obj_selected->datas;
+      pla->tex_type = FULL;
+      data->itfc.past.rad_state = FLAT;
+    }
+}
 
 int		apply_flat_texture(t_data *data)
 {
   t_sphere	*sph;
   t_cone	*con;
-  t_cylinder	*cyl;
-  t_plan	*pla;
 
   if (data->itfc.obj_selected->type == CONE)
     {
@@ -29,27 +46,33 @@ int		apply_flat_texture(t_data *data)
       sph->tex_type = FULL;
       data->itfc.past.rad_state = FLAT;
     }
-  else if (data->itfc.obj_selected->type == CYLINDER)
+  apply_flat_texture2(data);
+  return (0);
+}
+
+void	apply_perlin_texture2(t_data *data)
+{
+  t_cylinder	*cyl;
+  t_plan	*pla;
+
+  if (data->itfc.obj_selected->type == CYLINDER)
     {
       cyl = data->itfc.obj_selected->datas;
-      cyl->tex_type = FULL;
-      data->itfc.past.rad_state = FLAT;
+      cyl->tex_type = PERLIN_NOISE;
+      data->itfc.past.rad_state = PERLIN;
     }
   else if (data->itfc.obj_selected->type == PLANE)
     {
       pla = data->itfc.obj_selected->datas;
-      pla->tex_type = FULL;
-      data->itfc.past.rad_state = FLAT;
+      pla->tex_type = PERLIN_NOISE;
+      data->itfc.past.rad_state = PERLIN;
     }
-  return (0);
 }
 
 int	apply_perlin_texture(t_data *data)
 {
   t_sphere	*sph;
   t_cone	*con;
-  t_cylinder	*cyl;
-  t_plan	*pla;
 
   if (data->itfc.obj_selected->type == CONE)
     {
@@ -63,18 +86,7 @@ int	apply_perlin_texture(t_data *data)
       sph->tex_type = PERLIN_NOISE;
       data->itfc.past.rad_state = PERLIN;
     }
-  else if (data->itfc.obj_selected->type == CYLINDER)
-    {
-      cyl = data->itfc.obj_selected->datas;
-      cyl->tex_type = PERLIN_NOISE;
-      data->itfc.past.rad_state = PERLIN;
-    }
-  else if (data->itfc.obj_selected->type == PLANE)
-    {
-      pla = data->itfc.obj_selected->datas;
-      pla->tex_type = PERLIN_NOISE;
-      data->itfc.past.rad_state = PERLIN;
-    }
+  apply_perlin_texture2(data);
   return (0);
 }
 

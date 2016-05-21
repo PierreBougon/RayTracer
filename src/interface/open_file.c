@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 23 15:24:05 2016 bougon_p
-** Last update Tue May 17 18:12:09 2016 bougon_p
+** Last update Sat May 21 14:09:03 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -37,19 +37,15 @@ int     f_open_file(t_data *data)
       my_strcat(data->itfc.open.file, ".ini");
       if (!(name = my_strdup("assets/scenes/")))
 	return (1);
-      printf("%s\n", name);
       name = myrealloc(name, my_strlen(data->itfc.open.file));
-      printf("%s\n", name);
       my_strcat(name, data->itfc.open.file);
-      printf("%s\n", name);
       if (load_file(&data->rt, name) == -1)
         return (reset_text_open(data),
 		my_puterr("Load : Could not load the scene"));
       if (data->rt.img != NULL)
 	bunny_delete_clipable(&data->rt.img->clipable);
       if ((data->rt.img =
-	   bunny_new_pixelarray(data->rt.width,
-				data->rt.height)) == NULL)
+	   bunny_new_pixelarray(data->rt.width,	data->rt.height)) == NULL)
         return (reset_text_open(data),
 		my_puterr("Could not perform bunny_new_pixelarray"), 1);
       reset_var_open(data);

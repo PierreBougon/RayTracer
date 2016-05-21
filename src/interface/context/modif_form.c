@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:53:20 2016 bougon_p
-** Last update Sat May 21 10:22:02 2016 bougon_p
+** Last update Sat May 21 17:17:25 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -34,43 +34,6 @@ static	void		check_f_bt2(int n, t_data *data)
     }
 }
 
-static	int	check_rad_bt(const t_bunny_position *mpos, t_data *data)
-{
-  int		i;
-
-  i = 0;
-  while (i < NB_MOD_RAD)
-    {
-      if ((mpos->x > MOD_RAD_X
-	   && mpos->x < MOD_RAD_X + MOD_RAD_WDT
-	   && mpos->y > MOD_RAD_Y + (MOD_RAD_HGT * i)
-	   + (MOD_RAD_DECAL * i)
-	   && mpos->y < MOD_RAD_Y + (MOD_RAD_HGT * i)
-	   + MOD_RAD_HGT + (MOD_RAD_DECAL * i)))
-	{
-	  if (data->itfc.obj_selected && i == 0)
-	    {
-	      data->itfc.past.rad_state = FLAT;
-	      apply_flat_texture(data);
-	    }
-	  if (data->itfc.obj_selected && i == 1)
-	    {
-	      data->itfc.past.rad_state = PERLIN;
-	      apply_perlin_texture(data);
-	    }
-	  if (data->itfc.obj_selected && i == 2)
-	    {
-	      data->itfc.past.rad_state = IMAGE;
-	      if (apply_image_texture(data))
-		return (1);
-	    }
-	  break ;
-	}
-      i++;
-    }
-  return (0);
-}
-
 static	void	check_refl_bt(const t_bunny_position *mpos, t_data *data)
 {
   double		*reflect;
@@ -81,7 +44,6 @@ static	void	check_refl_bt(const t_bunny_position *mpos, t_data *data)
        && mpos->y > MOD_REFL_Y
        && mpos->y < MOD_REFL_Y + (MOD_REFL_HGT)))
     {
-      printf("YES\n");
       *reflect = 0.30;
       data->itfc.past.refl_state = YES;
     }
@@ -90,10 +52,35 @@ static	void	check_refl_bt(const t_bunny_position *mpos, t_data *data)
 	    && mpos->y > MOD_REFL_Y
 	    && mpos->y < MOD_REFL_Y + (MOD_REFL_HGT)))
     {
-      printf("NO\n");
       *reflect = 0.00;
       data->itfc.past.refl_state = NO;
     }
+}
+
+static bool	check_bt(const t_bunny_position *mpos, t_data *data,
+			 int i, int n)
+{
+  if ((mpos->x > MOD_BT_X
+       && mpos->x < MOD_BT_X + MOD_BT_WDT
+       && mpos->y > MOD_BT_Y + (MOD_BT_HGT * i)
+       + (MOD_DECAL * i)
+       && mpos->y < MOD_BT_Y + (MOD_BT_HGT * i)
+       + MOD_BT_HGT + (MOD_DECAL * i)))
+    {
+      check_f_bt(i, data);
+      return (true);
+    }
+  else if ((mpos->x > MOD_BT_X
+	    && mpos->x < MOD_BT_X + MOD_BT_WDT
+	    && mpos->y > MOD_SBT_Y + (MOD_BT_HGT * n)
+	    + (MOD_DECAL * n)
+	    && mpos->y < MOD_SBT_Y + (MOD_BT_HGT * n)
+	    + MOD_BT_HGT + (MOD_DECAL * n)))
+    {
+      check_f_bt2(i, data);
+      return (true);
+    }
+  return (false);
 }
 
 int				modif_form(t_data *data)
@@ -110,26 +97,8 @@ int				modif_form(t_data *data)
   check_refl_bt(mpos, data);
   while (i < NB_MOD_BT / 2)
     {
-      if ((mpos->x > MOD_BT_X
-	   && mpos->x < MOD_BT_X + MOD_BT_WDT
-	   && mpos->y > MOD_BT_Y + (MOD_BT_HGT * i)
-	   + (MOD_DECAL * i)
-	   && mpos->y < MOD_BT_Y + (MOD_BT_HGT * i)
-	   + MOD_BT_HGT + (MOD_DECAL * i)))
-        {
-	  check_f_bt(i, data);
-	  break ;
-	}
-      else if ((mpos->x > MOD_BT_X
-		&& mpos->x < MOD_BT_X + MOD_BT_WDT
-		&& mpos->y > MOD_SBT_Y + (MOD_BT_HGT * n)
-		+ (MOD_DECAL * n)
-		&& mpos->y < MOD_SBT_Y + (MOD_BT_HGT * n)
-		+ MOD_BT_HGT + (MOD_DECAL * n)))
-	{
-	  check_f_bt2(i, data);
-	  break ;
-	}
+      if (check_bt(mpos, data, i, n))
+	return (0);
       i++;
       n++;
     }

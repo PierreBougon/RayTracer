@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri May 20 15:32:40 2016 bougon_p
-** Last update Sat May 21 01:24:10 2016 bougon_p
+** Last update Sat May 21 16:00:06 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -16,8 +16,6 @@ static int			calc_coef(t_data *data)
   t_bunny_position	mpos;
 
   mpos = *data->itfc.mpos;
-
-
   vec.z = 0;
   if (!data->itfc.move.needmoving)
     {
@@ -36,8 +34,6 @@ static int			calc_coef(t_data *data)
 	fct_resize[data->itfc.obj_selected->type - 1](data, &vec);
       data->itfc.move.first_pos = data->itfc.move.second_pos;
     }
-
-
   return (0);
 }
 

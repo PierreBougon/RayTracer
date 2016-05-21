@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sat May 21 10:28:59 2016 bougon_p
+** Last update Sat May 21 17:49:56 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -227,6 +227,17 @@ int	init_ftabs(t_itfc *);
 void	prerender(t_rt *, int, t_data *);
 
 /*
+** Init
+*/
+void	set_aa_curs(t_data *, t_itfc *);
+void	init_slide_pos(t_itfc *, t_data *);
+void	init_ptr_context(t_itfc *);
+void	init_ptr_button(t_itfc *);
+void	init_ptr_state(t_itfc *);
+int	init_ptr_save(t_itfc *);
+int	init_ptr_save_ini(t_itfc *);
+
+/*
 ** Key actions
 */
 int	move_up(t_data *);
@@ -377,6 +388,7 @@ bool	check_workspace(const t_bunny_position *, t_rt *);
 /*
 ** Modif obj
 */
+int	check_rad_bt(const t_bunny_position *, t_data *);
 int	select_obj(t_data *);
 int	move_obj(t_data *);
 int	resize_obj(t_data *);
@@ -392,5 +404,6 @@ int	apply_plan(t_data *);
 int	apply_flat_texture(t_data *);
 int	apply_perlin_texture(t_data *);
 int	apply_image_texture(t_data *);
+void	reset_select(t_object *, t_data *);
 
 #endif /* !INTERFACE  */

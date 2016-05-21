@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat May 21 06:58:22 2016 bougon_p
+** Last update Sat May 21 14:27:40 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -135,9 +135,9 @@ typedef struct		s_plan
 {
   t_pos			pos;
   double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			real;
-  int			tex_type;
   int			height;
   int			width;
   int			case_size;
@@ -252,9 +252,9 @@ typedef struct		s_hole_cube
 {
   t_pos			pos;
   double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			rad;
-  int			tex_type;
   double		ka;
   double		kd;
   double		ks;

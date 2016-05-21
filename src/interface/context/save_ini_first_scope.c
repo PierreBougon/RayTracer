@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 16:39:20 2016 bougon_p
-** Last update Tue May 17 18:21:32 2016 bougon_p
+** Last update Sat May 21 17:31:16 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -34,13 +34,6 @@ static	void	set_first_scope_eye(t_data *data, t_bunny_ini *ini)
   bunny_free(value);
 }
 
-static	void	save_name(t_data *data, char *name, int i)
-{
-  data->itfc.save.obj_names =
-    my_realloc_tab(data->itfc.save.obj_names, 1);
-  data->itfc.save.obj_names[i] = name;
-}
-
 static	int	set_first_scope_obj(t_data *data, t_bunny_ini *ini)
 {
   int		i;
@@ -57,7 +50,9 @@ static	int	set_first_scope_obj(t_data *data, t_bunny_ini *ini)
       name = data->itfc.save.fct_save_ini_name
 	[obj->type](data, i);
       bunny_ini_set_field(ini, "RT", "objs", i, name);
-      save_name(data, name, i);
+      data->itfc.save.obj_names =
+	my_realloc_tab(data->itfc.save.obj_names, 1);
+      data->itfc.save.obj_names[i] = name;
       obj = obj->next;
       i++;
     }
@@ -88,6 +83,21 @@ static	void	set_skybox(t_data *data, t_bunny_ini *ini)
     }
 }
 
+static	void	set_ss_value(t_data *data, t_bunny_ini *ini)
+{
+  char		*value;
+
+  if (data->rt.opt.ss == 1)
+    {
+      value = setnbr(data->rt.opt.nb_rays_ss);
+      bunny_ini_set_field(ini, "RT", "nb_rays_ss", 0, value);
+      bunny_free(value);
+      value = setnbr(data->rt.opt.ray_ss);
+      bunny_ini_set_field(ini, "RT", "ray_ss", 0, value);
+      bunny_free(value);
+    }
+}
+
 void		set_first_scope(t_data *data, t_bunny_ini *ini)
 {
   char		*value;
@@ -109,14 +119,6 @@ void		set_first_scope(t_data *data, t_bunny_ini *ini)
   value = setnbr(data->rt.opt.ss);
   bunny_ini_set_field(ini, "RT", "soft_shadows", 0, value);
   bunny_free(value);
-  if (data->rt.opt.ss == 1)
-    {
-      value = setnbr(data->rt.opt.nb_rays_ss);
-      bunny_ini_set_field(ini, "RT", "nb_rays_ss", 0, value);
-      bunny_free(value);
-      value = setnbr(data->rt.opt.ray_ss);
-      bunny_ini_set_field(ini, "RT", "ray_ss", 0, value);
-      bunny_free(value);
-    }
+  set_ss_value(data, ini);
   set_skybox(data, ini);
 }

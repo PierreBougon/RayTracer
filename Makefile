@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sat May 21 04:40:21 2016 bougon_p
+## Last update Sat May 21 17:50:18 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -103,7 +103,9 @@ SRC		=	$(MAIN)main.c \
 			$(SOLVER)quartic_order_solver.c \
 			$(SOLVER)second_order_solver.c \
 			$(ITFC)init_itfc.c \
+			$(ITFC)init_curs.c \
 			$(ITFC)init_ftabs.c \
+			$(ITFC)init_ftabss.c \
 			$(ITFC)interface.c \
 			$(ITFC)zoom.c \
 			$(ITFC)text.c \
@@ -142,6 +144,7 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)save_ini_obj_scope_cylinder.c \
 			$(ITFC)$(CONTEXT)save_ini_obj_scope_plane.c \
 			$(ITFC)$(CONTEXT)modif_form.c \
+			$(ITFC)$(CONTEXT)modif_form_rad.c \
 			$(ITFC)$(CONTEXT)add_form.c \
 			$(ITFC)$(CONTEXT)sub_form.c \
 			$(ITFC)$(CONTEXT)spotlight.c \
@@ -167,6 +170,7 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)select_obj.c \
 			$(ITFC)$(CONTEXT)apply_image_obj.c \
 			$(ITFC)$(CONTEXT)apply_texture.c \
+			$(ITFC)$(CONTEXT)reset_obj.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)

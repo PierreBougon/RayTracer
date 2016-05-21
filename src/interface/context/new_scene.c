@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun May  1 01:17:22 2016 bougon_p
-** Last update Mon May 16 19:52:13 2016 bougon_p
+** Last update Sat May 21 16:02:01 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -32,11 +32,9 @@ int				new_scene(t_data *data)
 {
   int				i;
   const	t_bunny_position	*mpos;
-  int				save;
 
   mpos = data->itfc.mpos;
   i = 0;
-  save = NB_ADD_BT + 1;
   while (i < NB_NEW_BT)
     {
       if ((i == 0 && mpos->x > NEW_BT_X_FIRST
@@ -51,10 +49,10 @@ int				new_scene(t_data *data)
 	   + (NEW_BT_DECAL * (i - 1)) + NEW_BT_HGT))
         {
           check_hit(data, i);
-          save = i;
+	  break ;
         }
       i++;
     }
-  set_value_for_hit(data, save);
+  set_value_for_hit(data, i);
   return (0);
 }
