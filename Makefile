@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sat May 21 21:55:41 2016 bougon_p
+## Last update Sat May 21 22:11:14 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -132,6 +132,7 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)key_move.c \
 			$(ITFC)key_rot.c \
 			$(ITFC)check_workspace.c \
+			$(ITFC)get_obj.c \
 			$(ITFC)$(CONTEXT)add_plane.c \
 			$(ITFC)$(CONTEXT)add_sphere.c \
 			$(ITFC)$(CONTEXT)add_cone.c \
