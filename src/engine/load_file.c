@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Thu May  5 20:15:43 2016 romain samuel
+** Last update Mon May 16 17:42:55 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -21,13 +21,15 @@ int		load_type(t_rt *s,
   const char	*field;
 
   i = -1;
-  tab[0] = my_strdup("light");
-  tab[1] = my_strdup("sphere");
-  tab[2] = my_strdup("cylinder");
-  tab[3] = my_strdup("cone");
-  tab[4] = my_strdup("plan");
-  tab[5] = my_strdup("box");
-  while (++i < 6)
+  if (((tab[0] = my_strdup("light")) == NULL) ||
+      ((tab[1] = my_strdup("sphere")) == NULL) ||
+      ((tab[2] = my_strdup("cylinder")) == NULL) ||
+      ((tab[3] = my_strdup("cone")) == NULL) ||
+      ((tab[4] = my_strdup("plan")) == NULL) ||
+      ((tab[5] = my_strdup("box")) == NULL) ||
+      ((tab[6] = my_strdup("csg")) == NULL))
+    return (-1);
+  while (++i < 7)
     {
       if ((field = bunny_ini_get_field(ini, scope, "type", 0)) == NULL)
 	return (my_puterr("Could not perform bunny_ini_get_field"));
@@ -41,7 +43,7 @@ int		load_object(t_rt *s, t_bunny_ini *ini, char *scope)
 {
   int		(**ftab)(t_rt *s, t_bunny_ini *ini, char *scope);
 
-  if ((ftab = bunny_malloc(sizeof(ftab) * 6)) == NULL)
+  if ((ftab = bunny_malloc(sizeof(ftab) * 7)) == NULL)
     return (my_puterr("load_object: malloc failed"));
   ftab[0] = &load_light;
   ftab[1] = &load_sphere;
@@ -49,6 +51,7 @@ int		load_object(t_rt *s, t_bunny_ini *ini, char *scope)
   ftab[3] = &load_cone;
   ftab[4] = &load_plan;
   ftab[5] = &load_box;
+  ftab[6] = &load_csg;
   if (load_type(s, ini, ftab, scope) == -1)
     return (-1);
   return (0);

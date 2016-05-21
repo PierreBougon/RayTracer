@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Thu May  5 19:55:28 2016 romain samuel
+## Last update Sat May 21 06:35:30 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -49,32 +49,51 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)translation.c \
 			$(ENGINE)clear_list.c \
 			$(ENGINE)color_operations.c \
+			$(ENGINE)create_csg_tree.c \
+			$(ENGINE)create_inter_list.c \
 			$(ENGINE)create_obj_list.c \
+			$(ENGINE)csg_merge_lists.c \
+			$(ENGINE)csg_operations.c \
+			$(ENGINE)csg_intersection.c \
+			$(ENGINE)csg_substraction.c \
+			$(ENGINE)csg_clean_second_list.c \
+			$(ENGINE)csg_union.c \
+			$(ENGINE)delete_inter_list.c \
 			$(ENGINE)diffuse_light.c \
 			$(ENGINE)display.c \
+			$(ENGINE)display_csg_objects.c \
 			$(ENGINE)display_objects.c \
 			$(ENGINE)exposure.c \
 			$(ENGINE)get_norm.c \
+			$(ENGINE)get_obj.c \
 			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
 			$(ENGINE)get_texels.c \
 			$(ENGINE)inter_box_sides.c \
 			$(ENGINE)init_shade.c \
+			$(ENGINE)inter_list.c \
 			$(ENGINE)inters.c \
 			$(ENGINE)limited_objects.c \
 			$(ENGINE)limited_plan.c \
 			$(ENGINE)load_box.c \
 			$(ENGINE)load_cone.c \
+			$(ENGINE)load_csg.c \
+			$(ENGINE)load_csg_objects.c \
 			$(ENGINE)load_cylinder.c \
 			$(ENGINE)load_file.c \
 			$(ENGINE)load_light.c \
+			$(ENGINE)load_plan_sides.c \
 			$(ENGINE)load_plan.c \
 			$(ENGINE)load_sphere.c \
 			$(ENGINE)noise_textures.c \
 			$(ENGINE)matrices.c \
 			$(ENGINE)order_hit_list.c \
+			$(ENGINE)order_inter_list.c \
+			$(ENGINE)order_solutions.c \
 			$(ENGINE)perlin.c \
+			$(ENGINE)real_cylinder_plan_inter.c \
 			$(ENGINE)rotations.c \
+			$(ENGINE)second_inter_limited_objects.c \
 			$(ENGINE)set_hit_values.c \
 			$(ENGINE)shade.c \
 			$(ENGINE)shadow.c \

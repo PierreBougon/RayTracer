@@ -1,0 +1,1392 @@
+src/engine/antialiasing.c:  while (i < s->opt.aa)
+src/engine/antialiasing.c:  r = r / s->opt.aa;
+src/engine/antialiasing.c:  g = g / s->opt.aa;
+src/engine/antialiasing.c:  b = b / s->opt.aa;
+src/engine/antialiasing.c:  i = -1;
+src/engine/antialiasing.c:  x = sqrt(s->opt.aa);
+src/engine/antialiasing.c:      j = -1;
+src/engine/antialiasing.c:	  vct->x = ((double)s->width / 2.0)
+src/engine/antialiasing.c:	    - ((double)pos->x + (1.0 / (double)x) * j);
+src/engine/antialiasing.c:	  vct->y = ((double)s->height / 2.0)
+src/engine/antialiasing.c:	    - ((double)pos->y + (1.0 / (double)x) * i);
+src/engine/antialiasing.c:	  vct->z = 1000;
+src/engine/antialiasing.c:	  rotation(&s->rotation, vct, &s->eye.rot);
+src/engine/antialiasing.c:	  s->rec = 0;
+src/engine/antialiasing.c:	  color[k++] = display_objects(s, vct, s->eye.pos);
+src/engine/checkerboards.c:  if (sin(M_PI / 1000) * sin((M_PI / 1000) * s->hit.simple_inter1.x) >= 0)
+src/engine/checkerboards.c:    s->final_color = s->hit.color1;
+src/engine/checkerboards.c:    s->final_color = s->hit.color2;
+src/engine/checkerboards.c:  jump = ((int)(5000 + s->hit.simple_inter1.x / 1000)
+src/engine/checkerboards.c:	  + (int)(5000 + s->hit.simple_inter1.y / 1000)) % 2;
+src/engine/checkerboards.c:    s->final_color = s->hit.color1;
+src/engine/checkerboards.c:    s->final_color = s->hit.color2;
+src/engine/checkerboards.c:  jump = ((int)(5000 + (s->hit.texels.x * 20000) / 1000)
+src/engine/checkerboards.c:	  + (int)(5000 + (s->hit.texels.y * 20000) / 1000)) % 2;
+src/engine/checkerboards.c:    s->final_color = s->hit.color1;
+src/engine/checkerboards.c:    s->final_color = s->hit.color2;
+src/engine/checkerboards.c:  jump = ((int)(5000 + s->hit.simple_inter1.x / 1000)
+src/engine/checkerboards.c:	  + (int)(5000 + s->hit.simple_inter1.y / 1000)
+src/engine/checkerboards.c:	  + (int)(5000 + s->hit.simple_inter1.z / 1000)) % 2;
+src/engine/checkerboards.c:    s->final_color = s->hit.color1;
+src/engine/checkerboards.c:    s->final_color = s->hit.color2;
+src/engine/clear_list.c:  it = root->next;
+src/engine/clear_list.c:  while (it->next != NULL)
+src/engine/clear_list.c:      it = it->next;
+src/engine/clear_list.c:      bunny_free(it->prev);
+src/engine/color_operations.c:  r = ((color1.full & 0xFF) * (1 - coef))
+src/engine/color_operations.c:  g = (((color1.full >> 8) & 0xFF) * (1 - coef))
+src/engine/color_operations.c:  b = (((color1.full >> 16) & 0xFF) * (1 - coef))
+src/engine/color_operations.c:  r = (((color.full & 0xFF) * i) * (1 - brightness))
+src/engine/color_operations.c:  g = ((((color.full >> 8) & 0xFF) * i) * (1 - brightness))
+src/engine/color_operations.c:  b = ((((color.full >> 16) & 0xFF) * i) * (1 - brightness))
+src/engine/create_csg_tree.c:  printf("root->id = %d\n", root->id);
+src/engine/create_csg_tree.c:  if (tab[i]->connections[0] < 1 || tab[i]->connections[0] > nb ||
+src/engine/create_csg_tree.c:      tab[i]->connections[1] < 1 || tab[i]->connections[1] > nb)
+src/engine/create_csg_tree.c:  if (tab[i]->left != NULL || tab[i]->right != NULL ||
+src/engine/create_csg_tree.c:      tab[tab[i]->connections[0] - 1]->up != NULL ||
+src/engine/create_csg_tree.c:      tab[tab[i]->connections[1] - 1]->up != NULL)
+src/engine/create_csg_tree.c:  tab[i]->left = tab[tab[i]->connections[0] - 1];
+src/engine/create_csg_tree.c:  tab[i]->right = tab[tab[i]->connections[1] - 1];
+src/engine/create_csg_tree.c:  tab[tab[i]->connections[0] - 1]->up = tab[i];
+src/engine/create_csg_tree.c:  tab[tab[i]->connections[1] - 1]->up = tab[i];
+src/engine/create_csg_tree.c:      if (tab[i]->type != 0)
+src/engine/create_csg_tree.c:	if (link_nodes(tab, i, nb) == -1)
+src/engine/create_csg_tree.c:	  return (-1);
+src/engine/create_inter_list.c:  root->prev = NULL;
+src/engine/create_inter_list.c:  root->next = NULL;
+src/engine/create_inter_list.c:  new->prev = elem;
+src/engine/create_inter_list.c:  new->next = elem->next;
+src/engine/create_inter_list.c:  elem->next = new;
+src/engine/create_inter_list.c:  if (elem->prev == NULL)
+src/engine/create_inter_list.c:  previous = elem->prev;
+src/engine/create_inter_list.c:  next = elem->next;
+src/engine/create_inter_list.c:  previous->next = next;
+src/engine/create_inter_list.c:  next->prev = previous;
+src/engine/create_obj_list.c:  root->next = NULL;
+src/engine/create_obj_list.c:  root->prev = NULL;
+src/engine/create_obj_list.c:  while (it->next != NULL)
+src/engine/create_obj_list.c:    it = it->next;
+src/engine/create_obj_list.c:  it->next = new;
+src/engine/create_obj_list.c:  new->prev = it;
+src/engine/create_obj_list.c:  new->next = NULL;
+src/engine/create_obj_list.c:  while (it->next != NULL)
+src/engine/create_obj_list.c:    it = it->next;
+src/engine/create_obj_list.c:  it->next = new;
+src/engine/create_obj_list.c:  new->prev = it;
+src/engine/create_obj_list.c:  new->next = NULL;
+src/engine/diffuse_light.c:  s->hit.nnorm.x = - s->hit.nnorm.x;
+src/engine/diffuse_light.c:  s->hit.nnorm.y = - s->hit.nnorm.y;
+src/engine/diffuse_light.c:  s->hit.nnorm.z = - s->hit.nnorm.z;
+src/engine/diffuse_light.c:  s->hit.cos_theta = (s->hit.nnorm.x * s->shade.nvct.x * -1)
+src/engine/diffuse_light.c:    + (s->hit.nnorm.y * s->shade.nvct.y * -1)
+src/engine/diffuse_light.c:    + (s->hit.nnorm.z * s->shade.nvct.z * -1);
+src/engine/diffuse_light.c:  if (s->hit.cos_theta < 0.0001)
+src/engine/diffuse_light.c:    a = s->hit.cos_theta;
+src/engine/diffuse_light.c:  len = sqrt(pow(s->shade.vct.x, 2) + pow(s->shade.vct.y, 2)
+src/engine/diffuse_light.c:	     + pow(s->shade.vct.z, 2));
+src/engine/diffuse_light.c:  s->shade.nvct.x = s->shade.vct.x / len;
+src/engine/diffuse_light.c:  s->shade.nvct.y = s->shade.vct.y / len;
+src/engine/diffuse_light.c:  s->shade.nvct.z = s->shade.vct.z / len;
+src/engine/diffuse_light.c:  len = sqrt(pow(s->hit.norm.x, 2) + pow(s->hit.norm.y, 2)
+src/engine/diffuse_light.c:	     + pow(s->hit.norm.z, 2));
+src/engine/diffuse_light.c:  s->hit.nnorm.x = s->hit.norm.x / len;
+src/engine/diffuse_light.c:  s->hit.nnorm.y = s->hit.norm.y / len;
+src/engine/diffuse_light.c:  s->hit.nnorm.z = s->hit.norm.z / len;
+src/engine/diffuse_light.c:  s->hit.cos_theta = (s->hit.nnorm.x * s->shade.nvct.x * -1)
+src/engine/diffuse_light.c:    + (s->hit.nnorm.y * s->shade.nvct.y * -1)
+src/engine/diffuse_light.c:    + (s->hit.nnorm.z * s->shade.nvct.z * -1);
+src/engine/diffuse_light.c:  if ((it->type > 4 || s->hit.limited == 1) && s->hit.cos_theta < 0.00001)
+src/engine/diffuse_light.c:  if (s->hit.cos_theta < 0.0001)
+src/engine/diffuse_light.c:    a = s->hit.cos_theta;
+src/engine/display.c:  s->ftabs.inters_ftab[0] = &display_sphere;
+src/engine/display.c:  s->ftabs.inters_ftab[1] = &display_cylinder;
+src/engine/display.c:  s->ftabs.inters_ftab[2] = &display_cone;
+src/engine/display.c:  s->ftabs.inters_ftab[3] = &display_plan;
+src/engine/display.c:  s->ftabs.inters_ftab[4] = &display_box;
+src/engine/display.c:  it = s->obj;
+src/engine/display.c:	  s->hit.k1 = 0.0;
+src/engine/display.c:	  s->hit.k2 = 0.0;
+src/engine/display.c:	  if (it->type > 1)
+src/engine/display.c:	    s->ftabs.inters_ftab[it->type - 2](s, it);
+src/engine/display.c:      it = it->next;
+src/engine/display.c:  if (s->rec == 2)
+src/engine/display.c:      s->rec = 0;
+src/engine/display.c:      return (s->final_color);
+src/engine/display.c:  s->ray.eye = eye;
+src/engine/display.c:  s->ray.vct = vct;
+src/engine/display.c:  order_hit_list(s->obj_hit);
+src/engine/display.c:  if (s->obj_hit != NULL && s->obj_hit->next != NULL)
+src/engine/display.c:      set_hit_values(s, s->obj_hit->next);
+src/engine/display.c:      shade(s, s->ray.vct, s->ray.eye);
+src/engine/display.c:      color = s->final_color;
+src/engine/display.c:      clear_list(s->obj_hit);
+src/engine/display.c:      s->obj_hit = NULL;
+src/engine/display.c:  color = s->final_color;
+src/engine/display.c:    data->ld.loading->clipable.clip_width = 1;
+src/engine/display.c:  else if (y % (int)rt->coef_load == 0)
+src/engine/display.c:      data->ld.curr_line += LOADING_COEF;
+src/engine/display.c:      data->ld.loading->clipable.clip_width = data->ld.curr_line;
+src/engine/display.c:      data->ld.nb_coef++;
+src/engine/display.c:  if (y > rt->coef_load * rt->nb_coef)
+src/engine/display.c:    rt->nb_coef++;
+src/engine/display.c:  bunny_blit(&data->win->buffer,
+src/engine/display.c:	     &data->ld.loading->clipable, &data->ld.pos);
+src/engine/display.c:  s->nb_coef = 1;
+src/engine/display.c:  data->ld.nb_coef = 1;
+src/engine/display.c:  data->ld.curr_line = 0;
+src/engine/display.c:  if ((s->shade.itab = bunny_malloc(sizeof(double) * s->opt.nb_rays_ss))
+src/engine/display.c:    return (-1);
+src/engine/display.c:  if (s->r_pos.y < 461)
+src/engine/display.c:      s->r_pos.x = 0;
+src/engine/display.c:      while (s->r_pos.x < 726)
+src/engine/display.c:	  s->rec = 0;
+src/engine/display.c:	  final_color = antialiasing(s, &s->r_pos, &vct, s->pixel_color);
+src/engine/display.c:	  tekpixel(s->img, &s->r_pos, &final_color);
+src/engine/display.c:	  s->r_pos.x++;
+src/engine/display.c:      s->r_pos.y++;
+src/engine/display.c:  if (s->r_pos.y == s->height)
+src/engine/display.c:      data->itfc.rendering = false;
+src/engine/display.c:      data->itfc.rendered = true;
+src/engine/display.c:      data->ld.loading->clipable.clip_width = data->ld.save_width;
+src/engine/display.c:  bunny_free(s->shade.itab);
+src/engine/display_objects.c:  s->hit.limited = 0;
+src/engine/display_objects.c:  shape = (t_sphere *)obj->datas;
+src/engine/display_objects.c:  if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
+src/engine/display_objects.c:      end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+src/engine/display_objects.c:      end_rotation(&s->rotation, &s->hit.simple_inter1, &shape->rot);
+src/engine/display_objects.c:      rotation(&s->rotation, &s->hit.simple_inter1, &shape->rot);
+src/engine/display_objects.c:      shape->simple_inter1 = s->hit.simple_inter1;
+src/engine/display_objects.c:      shape->simple_inter2 = s->hit.simple_inter2;
+src/engine/display_objects.c:      shape->k1 = s->hit.k1;
+src/engine/display_objects.c:      shape->k2 = s->hit.k2;
+src/engine/display_objects.c:      shape->norm = s->hit.norm;
+src/engine/display_objects.c:      s->hit.name = obj->name;
+src/engine/display_objects.c:      update_hit_list(s, shape, 2, s->hit.k1);
+src/engine/display_objects.c:    end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+src/engine/display_objects.c:  s->hit.limited = 0;
+src/engine/display_objects.c:  shape = (t_cylinder *)obj->datas;
+src/engine/display_objects.c:  if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
+src/engine/display_objects.c:      end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+src/engine/display_objects.c:	  shape->simple_inter1 = s->hit.simple_inter1;
+src/engine/display_objects.c:	  shape->simple_inter2 = s->hit.simple_inter2;
+src/engine/display_objects.c:	  shape->k1 = s->hit.k1;
+src/engine/display_objects.c:	  shape->k2 = s->hit.k2;
+src/engine/display_objects.c:	  shape->norm = s->hit.norm;
+src/engine/display_objects.c:	  shape->limited = s->hit.limited;
+src/engine/display_objects.c:	  s->hit.name = obj->name;
+src/engine/display_objects.c:	  update_hit_list(s, shape, 3, s->hit.k1);
+src/engine/display_objects.c:    end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+src/engine/display_objects.c:  s->hit.limited = 0;
+src/engine/display_objects.c:  shape = (t_cone *)obj->datas;
+src/engine/display_objects.c:  if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
+src/engine/display_objects.c:      end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+src/engine/display_objects.c:	  shape->simple_inter1 = s->hit.simple_inter1;
+src/engine/display_objects.c:	  shape->simple_inter2 = s->hit.simple_inter2;
+src/engine/display_objects.c:	  shape->k1 = s->hit.k1;
+src/engine/display_objects.c:	  shape->k2 = s->hit.k2;
+src/engine/display_objects.c:	  shape->norm = s->hit.norm;
+src/engine/display_objects.c:	  shape->limited = s->hit.limited;
+src/engine/display_objects.c:	  s->hit.name = obj->name;
+src/engine/display_objects.c:	  update_hit_list(s, shape, 4, s->hit.k1);
+src/engine/display_objects.c:    end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+src/engine/display_objects.c:  s->hit.limited = 0;
+src/engine/display_objects.c:  shape = (t_plan *)obj->datas;
+src/engine/display_objects.c:  if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
+src/engine/display_objects.c:      end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+src/engine/display_objects.c:	  shape->simple_inter1 = s->hit.simple_inter1;
+src/engine/display_objects.c:	  shape->simple_inter2 = s->hit.simple_inter2;
+src/engine/display_objects.c:	  shape->k1 = s->hit.k1;
+src/engine/display_objects.c:	  shape->k2 = s->hit.k2;
+src/engine/display_objects.c:	  shape->norm = s->hit.norm;
+src/engine/display_objects.c:	  s->hit.name = obj->name;
+src/engine/display_objects.c:	  update_hit_list(s, shape, 5, s->hit.k1);
+src/engine/display_objects.c:    end_rotation(&s->rotation, s->ray.vct, &shape->rot);
+src/engine/display_objects.c:  s->hit.limited = 0;
+src/engine/display_objects.c:  shape = (t_box *)obj->datas;
+src/engine/display_objects.c:      shape->simple_inter1 = s->hit.simple_inter1;
+src/engine/display_objects.c:      shape->simple_inter2 = s->hit.simple_inter2;
+src/engine/display_objects.c:      shape->k1 = s->hit.k1;
+src/engine/display_objects.c:      shape->k2 = s->hit.k2;
+src/engine/display_objects.c:      shape->norm = s->hit.norm;
+src/engine/display_objects.c:      s->hit.name = obj->name;
+src/engine/display_objects.c:      /* printf("\n-----------------------------------------------\n"); */
+src/engine/display_objects.c:      /* printf("k1 = %f\n", shape->k1); */
+src/engine/display_objects.c:      /* printf("k2 = %f\n", shape->k2); */
+src/engine/display_objects.c:      /* printf("simple_inter1.x = %f, simple_inter1.y = %f, simple_inter1.z = %f\n", shape->simple_inter1.x, shape->simple_inter1.y, shape->simple_inter1.z); */
+src/engine/display_objects.c:      /* printf("simple_inter2.x = %f, simple_inter2.y = %f, simple_inter2.z = %f\n", shape->simple_inter2.x, shape->simple_inter2.y, shape->simple_inter2.z); */
+src/engine/display_objects.c:      /* printf("norm.x = %f, norm.y = %f, norm.z = %f\n", shape->norm.x, shape->norm.y, shape->norm.z); */
+src/engine/display_objects.c:      /* update_hit_list(s, shape, 6, s->hit.k1); */
+src/engine/exposure.c:  exposure = -1.0;
+src/engine/exposure.c:  i = 1.0 - expf(i * exposure);
+src/engine/fresnel.c:  if (s->hit.k1 > 0.00001 && s->hit.k2 > 0.00001)
+src/engine/fresnel.c:      s->hit.k1 = 0.0;
+src/engine/fresnel.c:      s->hit.k2 = 0.0;
+src/engine/fresnel.c:      s->ray.eye = eye;
+src/engine/fresnel.c:      s->ray.vct = vct;
+src/engine/fresnel.c:      s->ftabs.inters_ftab[s->obj_hit->next->type - 2](s, s->obj_hit->next);
+src/engine/fresnel.c:      new_eye.x = eye.x + s->hit.k1 * vct->x;
+src/engine/fresnel.c:      new_eye.y = eye.y + s->hit.k1 * vct->y;
+src/engine/fresnel.c:      new_eye.z = eye.z + s->hit.k1 * vct->z;
+src/engine/fresnel.c:      s->hit.norm.x = - s->hit.norm.x;
+src/engine/fresnel.c:      s->hit.norm.y = - s->hit.norm.y;
+src/engine/fresnel.c:      s->hit.norm.z = - s->hit.norm.z;
+src/engine/fresnel.c:      f = get_refracted_vec(s, &s->hit.norm, s->hit.n2, 1);
+src/engine/fresnel.c:  s->obj_hit = NULL;
+src/engine/fresnel.c:  diffuse_color = s->final_color;
+src/engine/fresnel.c:  reflection = s->hit.reflection;
+src/engine/fresnel.c:  opacity = s->hit.opacity;
+src/engine/fresnel.c:  inter = s->shade.inter;
+src/engine/fresnel.c:  f = get_refracted_vec(s, &s->hit.norm, 1, s->hit.n2);
+src/engine/fresnel.c:  s->rec++;
+src/engine/fresnel.c:  refraction_color = init_refraction(s, &refraction_vct, s->shade.inter);
+src/engine/fresnel.c:  s->obj_hit = NULL;
+src/engine/fresnel.c:  color = compute_colors(diffuse_color, refraction_color, 1.0 - opacity);
+src/engine/fresnel.c:  s->final_color = color;
+src/engine/get_norm.c:  s->hit.norm.x = 0;
+src/engine/get_norm.c:  s->hit.norm.y = 0;
+src/engine/get_norm.c:  s->hit.norm.z = -100;
+src/engine/get_norm.c:  end_rotation(&s->rotation, &s->hit.norm, &plan->rot);
+src/engine/get_norm.c:  s->hit.norm.x = s->hit.simple_inter1.x;
+src/engine/get_norm.c:  s->hit.norm.y = s->hit.simple_inter1.y;
+src/engine/get_norm.c:  s->hit.norm.z = s->hit.simple_inter1.z;
+src/engine/get_norm.c:  s->hit.norm.x = s->hit.simple_inter1.x;
+src/engine/get_norm.c:  s->hit.norm.y = s->hit.simple_inter1.y;
+src/engine/get_norm.c:  s->hit.norm.z = 0;
+src/engine/get_norm.c:  end_rotation(&s->rotation, &s->hit.norm, &cylinder->rot);
+src/engine/get_norm.c:  s->hit.norm.x = s->hit.simple_inter1.x;
+src/engine/get_norm.c:  s->hit.norm.y = s->hit.simple_inter1.y;
+src/engine/get_norm.c:  s->hit.norm.z = - 0.1 * s->hit.simple_inter1.z;
+src/engine/get_norm.c:  end_rotation(&s->rotation, &s->hit.norm, &cone->rot);
+src/engine/get_obj.c:  vct.x = ((double)s->width / 2.0) - (double)x;
+src/engine/get_obj.c:  vct.y = ((double)s->height / 2.0) - (double)y;
+src/engine/get_obj.c:  s->ray.vct = &vct;
+src/engine/get_obj.c:  s->ray.eye = s->eye.pos;
+src/engine/get_obj.c:  rotation(&s->rotation, s->ray.vct, &s->eye.rot);
+src/engine/get_obj.c:  order_hit_list(s->obj_hit);
+src/engine/get_obj.c:  if (s->obj_hit == NULL || s->obj_hit->next == NULL)
+src/engine/get_obj.c:  it = s->obj;
+src/engine/get_obj.c:  while (my_strcmp(s->obj_hit->next->name, it->name) != 0)
+src/engine/get_obj.c:    it = it->next;
+src/engine/get_refracted_vec.c:  if (f->sin_theta2 > 0.99999)
+src/engine/get_refracted_vec.c:      f->reflectance = 1;
+src/engine/get_refracted_vec.c:      f->cos_theta2 = 0;
+src/engine/get_refracted_vec.c:      r = pow((f->n2 - 1.0), 2) / pow((f->n2 + 1.0), 2);
+src/engine/get_refracted_vec.c:      f->reflectance = r + (1.0 - r) * pow((1.0 - f->cos_theta1), 5);
+src/engine/get_refracted_vec.c:      f->transmittance = 1.0 - f->reflectance;
+src/engine/get_refracted_vec.c:  f->cos_theta2 = sqrt(1 - f->sin_theta2 * f->sin_theta2);
+src/engine/get_refracted_vec.c:  f->refraction_vct.x = ((f->n1 / f->n2) * nvct->x)
+src/engine/get_refracted_vec.c:    + ((f->n1 / f->n2) * f->cos_theta1 - f->cos_theta2) * nnorm->x;
+src/engine/get_refracted_vec.c:  f->refraction_vct.y = ((f->n1 / f->n2) * nvct->y)
+src/engine/get_refracted_vec.c:    + ((f->n1 / f->n2) * f->cos_theta1 - f->cos_theta2) * nnorm->y;
+src/engine/get_refracted_vec.c:  f->refraction_vct.z = ((f->n1 / f->n2) * nvct->z)
+src/engine/get_refracted_vec.c:    + ((f->n1 / f->n2) * f->cos_theta1 - f->cos_theta2) * nnorm->z;
+src/engine/get_refracted_vec.c:  f->reflection_vct.x = 2 * f->cos_theta1 * nnorm->x + nvct->x;
+src/engine/get_refracted_vec.c:  f->reflection_vct.y = 2 * f->cos_theta1 * nnorm->y + nvct->y;
+src/engine/get_refracted_vec.c:  f->reflection_vct.z = 2 * f->cos_theta1 * nnorm->z + nvct->z;
+src/engine/get_refracted_vec.c:  len = sqrt(pow(s->ray.vct->x, 2) + pow(s->ray.vct->y, 2)
+src/engine/get_refracted_vec.c:	     + pow(s->ray.vct->z, 2));
+src/engine/get_refracted_vec.c:  nvct.x = s->ray.vct->x / len;
+src/engine/get_refracted_vec.c:  nvct.y = s->ray.vct->y / len;
+src/engine/get_refracted_vec.c:  nvct.z = s->ray.vct->z / len;
+src/engine/get_refracted_vec.c:  len = sqrt(pow(norm->x, 2) + pow(norm->y, 2) + pow(norm->z, 2));
+src/engine/get_refracted_vec.c:  nnorm.x = norm->x / len;
+src/engine/get_refracted_vec.c:  nnorm.y = norm->y / len;
+src/engine/get_refracted_vec.c:  nnorm.z = norm->z / len;
+src/engine/get_refracted_vec.c:  f.cos_theta1 = - ((nnorm.x * nvct.x) + (nnorm.y * nvct.y)
+src/engine/get_refracted_vec.c:  f.sin_theta1 = sqrt(1 - f.cos_theta1 * f.cos_theta1);
+src/engine/get_simple_coords.c:  if (s->hit.k1 < 0.000001 && s->hit.k2 < 0.000001)
+src/engine/get_simple_coords.c:    return (-1);
+src/engine/get_simple_coords.c:  if (s->hit.k2 < s->hit.k1 && s->hit.k2 > 0.000001)
+src/engine/get_simple_coords.c:      tmp = s->hit.k2;
+src/engine/get_simple_coords.c:      s->hit.k2 = s->hit.k1;
+src/engine/get_simple_coords.c:      s->hit.k1 = tmp;
+src/engine/get_simple_coords.c:  if (s->hit.k1 < 0.000001 && s->hit.k2 > 0.000001)
+src/engine/get_simple_coords.c:      tmp = s->hit.k2;
+src/engine/get_simple_coords.c:      s->hit.k2 = s->hit.k1;
+src/engine/get_simple_coords.c:      s->hit.k1 = tmp;
+src/engine/get_simple_coords.c:  s->hit.simple_inter1.x = eye->x + s->hit.k1 * vct->x;
+src/engine/get_simple_coords.c:  s->hit.simple_inter1.y = eye->y + s->hit.k1 * vct->y;
+src/engine/get_simple_coords.c:  s->hit.simple_inter1.z = eye->z + s->hit.k1 * vct->z;
+src/engine/get_simple_coords.c:  s->hit.simple_inter2.x = eye->x + s->hit.k2 * vct->x;
+src/engine/get_simple_coords.c:  s->hit.simple_inter2.y = eye->y + s->hit.k2 * vct->y;
+src/engine/get_simple_coords.c:  s->hit.simple_inter2.z = eye->z + s->hit.k2 * vct->z;
+src/engine/get_texels.c:  s->hit.texels.x = (plan->simple_inter1.x + (plan->width / 2))
+src/engine/get_texels.c:    / plan->width;
+src/engine/get_texels.c:  s->hit.texels.y = (plan->simple_inter1.y + (plan->height / 2))
+src/engine/get_texels.c:    / plan->height;
+src/engine/get_texels.c:  r = sqrt((sphere->simple_inter1.x * sphere->simple_inter1.x)
+src/engine/get_texels.c:	   + (sphere->simple_inter1.y * sphere->simple_inter1.y)
+src/engine/get_texels.c:	   + (sphere->simple_inter1.z * sphere->simple_inter1.z));
+src/engine/get_texels.c:  col = acos(sphere->simple_inter1.y / r);
+src/engine/get_texels.c:  if (sphere->simple_inter1.x >= 0)
+src/engine/get_texels.c:    theta = acos(sphere->simple_inter1.z
+src/engine/get_texels.c:		 / sqrt(pow(sphere->simple_inter1.z, 2)
+src/engine/get_texels.c:			+ pow(sphere->simple_inter1.x, 2)));
+src/engine/get_texels.c:      - acos(sphere->simple_inter1.z
+src/engine/get_texels.c:	     / sqrt(pow(sphere->simple_inter1.z, 2)
+src/engine/get_texels.c:		    + pow(sphere->simple_inter1.x, 2)));
+src/engine/get_texels.c:  s->hit.texels.x = theta / (2 * M_PI);
+src/engine/get_texels.c:  s->hit.texels.y = col / M_PI;
+src/engine/get_texels.c:  s->hit.texels.x = ((cylinder->simple_inter1.x / cylinder->size) + 1.0)
+src/engine/get_texels.c:  s->hit.texels.y = ((cylinder->simple_inter1.y / cylinder->size) + 1.0)
+src/engine/get_texels.c:  if (s->hit.simple_inter1.x >= 0)
+src/engine/get_texels.c:    theta = acos(cylinder->simple_inter1.y
+src/engine/get_texels.c:		 / sqrt(pow(cylinder->simple_inter1.y, 2)
+src/engine/get_texels.c:			+ pow(cylinder->simple_inter1.x, 2)));
+src/engine/get_texels.c:    theta = (2 * M_PI) - acos(cylinder->simple_inter1.y
+src/engine/get_texels.c:			      / sqrt(pow(cylinder->simple_inter1.y, 2)
+src/engine/get_texels.c:				     + pow(cylinder->simple_inter1.x, 2)));
+src/engine/get_texels.c:  y = (cylinder->simple_inter1.z + cylinder->height) / (2 * cylinder->height);
+src/engine/get_texels.c:  s->hit.texels.x = theta / (2 * M_PI);
+src/engine/get_texels.c:  s->hit.texels.y = y;
+src/engine/init_noise.c:  while (--i)
+src/engine/init_noise.c:  i = -1;
+src/engine/init_noise.c:      j = -1;
+src/engine/init_noise.c:      j = -1;
+src/engine/init_noise.c:  i  = -1;
+src/engine/init_noise.c:      g1[i] = (double)((random() % (B + B)) - B) / B;
+src/engine/init_noise.c:      j = -1;
+src/engine/init_noise.c:	g2[i][j] = (double)((random() % (B + B)) - B) / B;
+src/engine/init_noise.c:      j = -1;
+src/engine/init_noise.c:	g3[i][j] = (double)((random() % (B + B)) - B) / B;
+src/engine/init_shade.c:  if (s->opt.ss == 1)
+src/engine/init_shade.c:      rd = rand() % s->opt.ray_ss;
+src/engine/init_shade.c:      s->shade.x_diff = rd - (s->opt.ray_ss / 2);
+src/engine/init_shade.c:      rd = rand() % s->opt.ray_ss;
+src/engine/init_shade.c:      s->shade.y_diff = rd - (s->opt.ray_ss / 2);
+src/engine/init_shade.c:      rd = rand() % s->opt.ray_ss;
+src/engine/init_shade.c:      s->shade.z_diff = rd - (s->opt.ray_ss / 2);
+src/engine/init_shade.c:      s->shade.x_diff = 0;
+src/engine/init_shade.c:      s->shade.y_diff = 0;
+src/engine/init_shade.c:      s->shade.z_diff = 0;
+src/engine/init_shade.c:  s->shade.inter.x = eye.x + s->hit.k1 * vct->x;
+src/engine/init_shade.c:  s->shade.inter.y = eye.y + s->hit.k1 * vct->y;
+src/engine/init_shade.c:  s->shade.inter.z = eye.z + s->hit.k1 * vct->z;
+src/engine/init_shade.c:  s->shade.light_pos.x = light->pos.x + s->shade.x_diff;
+src/engine/init_shade.c:  s->shade.light_pos.y = light->pos.y + s->shade.y_diff;
+src/engine/init_shade.c:  s->shade.light_pos.z = light->pos.z + s->shade.z_diff;
+src/engine/init_shade.c:  s->shade.vct.x = s->shade.inter.x - (double)s->shade.light_pos.x;
+src/engine/init_shade.c:  s->shade.vct.y = s->shade.inter.y - (double)s->shade.light_pos.y;
+src/engine/init_shade.c:  s->shade.vct.z = s->shade.inter.z - (double)s->shade.light_pos.z;
+src/engine/inter_box_sides.c:  vec[0].y = box->size.y;
+src/engine/inter_box_sides.c:  rotation(&s->rotation, &vec[0], &box->rot);
+src/engine/inter_box_sides.c:  vec[1].y = - box->size.y;
+src/engine/inter_box_sides.c:  rotation(&s->rotation, &vec[1], &box->rot);
+src/engine/inter_box_sides.c:  vec[2].x = box->size.x;
+src/engine/inter_box_sides.c:  rotation(&s->rotation, &vec[2], &box->rot);
+src/engine/inter_box_sides.c:  vec[3].x = - box->size.x;
+src/engine/inter_box_sides.c:  rotation(&s->rotation, &vec[3], &box->rot);
+src/engine/inter_box_sides.c:  vec[4].z = box->size.z;
+src/engine/inter_box_sides.c:  rotation(&s->rotation, &vec[4], &box->rot);
+src/engine/inter_box_sides.c:  vec[5].z = - box->size.z;
+src/engine/inter_box_sides.c:  rotation(&s->rotation, &vec[5], &box->rot);
+src/engine/inter_box_sides.c:  rot[0].x = box->rot.x + 90;
+src/engine/inter_box_sides.c:  rot[0].y = box->rot.y;
+src/engine/inter_box_sides.c:  rot[0].z = box->rot.z;
+src/engine/inter_box_sides.c:  rot[1].x = box->rot.x + 90;
+src/engine/inter_box_sides.c:  rot[1].y = box->rot.y;
+src/engine/inter_box_sides.c:  rot[1].z = box->rot.z;
+src/engine/inter_box_sides.c:  rot[2].x = box->rot.x;
+src/engine/inter_box_sides.c:  rot[2].y = box->rot.y + 90;
+src/engine/inter_box_sides.c:  rot[2].z = box->rot.z;
+src/engine/inter_box_sides.c:  rot[3].x = box->rot.x;
+src/engine/inter_box_sides.c:  rot[3].y = box->rot.y + 90;
+src/engine/inter_box_sides.c:  rot[3].z = box->rot.z;
+src/engine/inter_box_sides.c:  rot[4].x = box->rot.x;
+src/engine/inter_box_sides.c:  rot[4].y = box->rot.y;
+src/engine/inter_box_sides.c:  rot[4].z = box->rot.z;
+src/engine/inter_box_sides.c:  rot[5].x = box->rot.x;
+src/engine/inter_box_sides.c:  rot[5].y = box->rot.y;
+src/engine/inter_box_sides.c:  rot[5].z = box->rot.z;
+src/engine/inter_box_sides.c:  width[0] = box->size.x;
+src/engine/inter_box_sides.c:  height[0] = box->size.z;
+src/engine/inter_box_sides.c:  width[1] = box->size.x;
+src/engine/inter_box_sides.c:  height[1] = box->size.z;
+src/engine/inter_box_sides.c:  width[2] = box->size.y;
+src/engine/inter_box_sides.c:  height[2] = box->size.z;
+src/engine/inter_box_sides.c:  width[3] = box->size.y;
+src/engine/inter_box_sides.c:  height[3] = box->size.z;
+src/engine/inter_box_sides.c:  width[4] = box->size.x;
+src/engine/inter_box_sides.c:  height[4] = box->size.y;
+src/engine/inter_box_sides.c:  width[5] = box->size.x;
+src/engine/inter_box_sides.c:  height[5] = box->size.y;
+src/engine/inter_box_sides.c:  /* printf("\n---------------------------------------------------------\n"); */
+src/engine/inter_box_sides.c:      s->hit.k1 = -1;
+src/engine/inter_box_sides.c:      plan.pos.x = box->pos.x + vec[i].x;
+src/engine/inter_box_sides.c:      plan.pos.y = box->pos.y + vec[i].y;
+src/engine/inter_box_sides.c:      plan.pos.z = box->pos.z + vec[i].z;
+src/engine/inter_box_sides.c:      simple_inter.x = s->ray.new_eye.x + s->hit.k1 * s->ray.vct->x;
+src/engine/inter_box_sides.c:      simple_inter.y = s->ray.new_eye.y + s->hit.k1 * s->ray.vct->y;
+src/engine/inter_box_sides.c:      simple_inter.z = s->ray.new_eye.z + s->hit.k1 * s->ray.vct->z;
+src/engine/inter_box_sides.c:      end_rotation(&s->rotation, s->ray.vct, &plan.rot);
+src/engine/inter_box_sides.c:      /* 	     i, s->hit.k1, simple_inter.x, simple_inter.y, simple_inter.z); */
+src/engine/inter_box_sides.c:      if (s->hit.k1 > 0.00001
+src/engine/inter_box_sides.c:	  && s->hit.k1 < k1
+src/engine/inter_box_sides.c:	  && simple_inter.y > - plan.height
+src/engine/inter_box_sides.c:	  && simple_inter.x > - plan.width)
+src/engine/inter_box_sides.c:	      s->hit.simple_inter2.x = s->hit.simple_inter1.x;
+src/engine/inter_box_sides.c:	      s->hit.simple_inter2.y = s->hit.simple_inter1.y;
+src/engine/inter_box_sides.c:	      s->hit.simple_inter2.z = s->hit.simple_inter1.z;
+src/engine/inter_box_sides.c:	  k1 = s->hit.k1;
+src/engine/inter_box_sides.c:	  s->hit.simple_inter1.x = simple_inter.x;
+src/engine/inter_box_sides.c:	  s->hit.simple_inter1.y = simple_inter.y;
+src/engine/inter_box_sides.c:	  s->hit.simple_inter1.z = simple_inter.z;
+src/engine/inter_box_sides.c:      else if (s->hit.k1 > 0.00001
+src/engine/inter_box_sides.c:	       && s->hit.k1 < k2
+src/engine/inter_box_sides.c:	       && simple_inter.y > - plan.height
+src/engine/inter_box_sides.c:	       && simple_inter.x > - plan.width)
+src/engine/inter_box_sides.c:	  k2 = s->hit.k1;
+src/engine/inter_box_sides.c:	  s->hit.simple_inter2.x = simple_inter.x;
+src/engine/inter_box_sides.c:	  s->hit.simple_inter2.y = simple_inter.y;
+src/engine/inter_box_sides.c:	  s->hit.simple_inter2.z = simple_inter.z;
+src/engine/inter_box_sides.c:    return (-1);
+src/engine/inter_box_sides.c:  s->hit.k1 = k1;
+src/engine/inter_box_sides.c:  s->hit.k2 = k2;
+src/engine/inter_hyper.c:  res->a = (CARRE(s->ray.vct->x) / CARRE(hyper->a)) +
+src/engine/inter_hyper.c:    (CARRE(s->ray.vct->y) / CARRE(hyper->b)) -
+src/engine/inter_hyper.c:    (CARRE(s->ray.vct->z) / CARRE(hyper->c));
+src/engine/inter_hyper.c:  res->b = ((2 * s->ray.new_eye.x * s->ray.vct->x) / CARRE(hyper->a)) +
+src/engine/inter_hyper.c:    ((2 * s->ray.new_eye.y * s->ray.vct->y) / CARRE(hyper->b)) -
+src/engine/inter_hyper.c:    ((2 * s->ray.new_eye.z * s->ray.vct->z) / CARRE(hyper->b));
+src/engine/inter_hyper.c:  res->c = (CARRE(s->ray.new_eye.x) / CARRE(hyper->a)) +
+src/engine/inter_hyper.c:    (CARRE(s->ray.new_eye.y) / CARRE(hyper->b)) -
+src/engine/inter_hyper.c:    (CARRE(s->ray.new_eye.z) / CARRE(hyper->c)) - 1;
+src/engine/inter_hyper.c:  res->a = (CARRE(s->ray.vct->x) / CARRE(hyper->a)) +
+src/engine/inter_hyper.c:    (CARRE(s->ray.vct->y) / CARRE(hyper->b)) -
+src/engine/inter_hyper.c:    (CARRE(s->ray.vct->z) / CARRE(hyper->c));
+src/engine/inter_hyper.c:  res->b = ((2 * s->ray.new_eye.x * s->ray.vct->x) / CARRE(hyper->a)) +
+src/engine/inter_hyper.c:    ((2 * s->ray.new_eye.y * s->ray.vct->y) / CARRE(hyper->b)) -
+src/engine/inter_hyper.c:    ((2 * s->ray.new_eye.z * s->ray.vct->z) / CARRE(hyper->b));
+src/engine/inter_hyper.c:  res->c = (CARRE(s->ray.new_eye.x) / CARRE(hyper->a)) +
+src/engine/inter_hyper.c:    (CARRE(s->ray.new_eye.y) / CARRE(hyper->b)) -
+src/engine/inter_hyper.c:    (CARRE(s->ray.new_eye.z) / CARRE(hyper->c)) + 1;
+src/engine/inter_hyper.c:  if (hyper->nappe == 1)
+src/engine/inter_hyper.c:      s->ray.new_eye.x = s->ray.eye.x - hyper->pos.x;
+src/engine/inter_hyper.c:      s->ray.new_eye.y = s->ray.eye.y - hyper->pos.y;
+src/engine/inter_hyper.c:      s->ray.new_eye.z = s->ray.eye.z - hyper->pos.z;
+src/engine/inter_hyper.c:      rotation(&s->rotation, s->ray.vct, &hyper->rot);
+src/engine/inter_hyper.c:      rotation(&s->rotation, &s->ray.new_eye, &hyper->rot);
+src/engine/inter_hyper.c:  else if (hyper->nappe == 2)
+src/engine/inter_hyper.c:      s->ray.new_eye.x = s->ray.eye.x - hyper->pos.x;
+src/engine/inter_hyper.c:      s->ray.new_eye.y = s->ray.eye.y - hyper->pos.y;
+src/engine/inter_hyper.c:      s->ray.new_eye.z = s->ray.eye.z - hyper->pos.z;
+src/engine/inter_hyper.c:      rotation(&s->rotation, s->ray.vct, &hyper->rot);
+src/engine/inter_hyper.c:      rotation(&s->rotation, &s->ray.new_eye, &hyper->rot);
+src/engine/inter_list.c:  if ((obj->inter = create_inter_list()) == NULL)
+src/engine/inter_list.c:    return (-1);
+src/engine/inter_list.c:  if ((obj->inter->next = add_inter_elem(obj->inter)) == NULL)
+src/engine/inter_list.c:    return (-1);
+src/engine/inter_list.c:  obj->inter->next->k = s->hit.k1;
+src/engine/inter_list.c:  obj->inter->next->simple_inter = s->hit.simple_inter1;
+src/engine/inter_list.c:  obj->inter->next->norm = s->hit.norm;
+src/engine/inter_list.c:  if (s->hit.k2 < 0)
+src/engine/inter_list.c:    obj->inter->next->exterior = 0;
+src/engine/inter_list.c:      obj->inter->next->exterior = 1;
+src/engine/inter_list.c:      if ((obj->inter->next->next = add_inter_elem(obj->inter->next)) == NULL)
+src/engine/inter_list.c:	return (-1);
+src/engine/inter_list.c:      obj->inter->next->next->k = s->hit.k2;
+src/engine/inter_list.c:      obj->inter->next->next->simple_inter = s->hit.simple_inter2;
+src/engine/inter_list.c:  obj->inter->next->obj = object;
+src/engine/inter_list.c:  if ((obj->inter = create_inter_list()) == NULL)
+src/engine/inter_list.c:    return (-1);
+src/engine/inter_list.c:  if ((obj->inter->next = add_inter_elem(obj->inter)) == NULL)
+src/engine/inter_list.c:    return (-1);
+src/engine/inter_list.c:  obj->inter->next->k = s->hit.k1;
+src/engine/inter_list.c:  obj->inter->next->simple_inter = s->hit.simple_inter1;
+src/engine/inter_list.c:  obj->inter->next->norm = s->hit.norm;
+src/engine/inter_list.c:  if (s->hit.k2 < 0)
+src/engine/inter_list.c:    obj->inter->next->exterior = 0;
+src/engine/inter_list.c:      obj->inter->next->exterior = 1;
+src/engine/inter_list.c:      if ((obj->inter->next->next = add_inter_elem(obj->inter->next)) == NULL)
+src/engine/inter_list.c:	return (-1);
+src/engine/inter_list.c:      obj->inter->next->next->k = s->hit.k2;
+src/engine/inter_list.c:      obj->inter->next->next->simple_inter = s->hit.simple_inter2;
+src/engine/inter_list.c:  obj->inter->next->obj = object;
+src/engine/inter_list.c:  if ((obj->inter = create_inter_list()) == NULL)
+src/engine/inter_list.c:    return (-1);
+src/engine/inter_list.c:  if ((obj->inter->next = add_inter_elem(obj->inter)) == NULL)
+src/engine/inter_list.c:    return (-1);
+src/engine/inter_list.c:  obj->inter->next->k = s->hit.k1;
+src/engine/inter_list.c:  obj->inter->next->simple_inter = s->hit.simple_inter1;
+src/engine/inter_list.c:  obj->inter->next->norm = s->hit.norm;
+src/engine/inter_list.c:  if (s->hit.k2 < 0)
+src/engine/inter_list.c:    obj->inter->next->exterior = 0;
+src/engine/inter_list.c:      obj->inter->next->exterior = 1;
+src/engine/inter_list.c:      if ((obj->inter->next->next = add_inter_elem(obj->inter->next)) == NULL)
+src/engine/inter_list.c:	return (-1);
+src/engine/inter_list.c:      obj->inter->next->next->k = s->hit.k2;
+src/engine/inter_list.c:      obj->inter->next->next->simple_inter = s->hit.simple_inter2;
+src/engine/inter_list.c:  obj->inter->next->obj = object;
+src/engine/inter_list.c:  if ((obj->inter = create_inter_list()) == NULL)
+src/engine/inter_list.c:    return (-1);
+src/engine/inter_list.c:  if ((obj->inter->next = add_inter_elem(obj->inter)) == NULL)
+src/engine/inter_list.c:    return (-1);
+src/engine/inter_list.c:  obj->inter->next->k = s->hit.k1;
+src/engine/inter_list.c:  obj->inter->next->simple_inter = s->hit.simple_inter1;
+src/engine/inter_list.c:  obj->inter->next->norm = s->hit.norm;
+src/engine/inter_list.c:  obj->inter->next->obj = object;
+src/engine/inter_list.c:  obj->inter->next->exterior = 0;
+src/engine/inter_parab.c:  res->a = (CARRE(s->ray.vct->x) / CARRE(parab->a)) +
+src/engine/inter_parab.c:    (CARRE(s->ray.vct->y) / CARRE(parab->b));
+src/engine/inter_parab.c:  res->b = ((2 * s->ray.vct->x) / CARRE(parab->a)) +
+src/engine/inter_parab.c:    ((2 * s->ray.vct->y) / CARRE(parab->b)) + s->ray.vct->z;
+src/engine/inter_parab.c:  res->c = (CARRE(s->ray.new_eye.x) / CARRE(parab->a)) +
+src/engine/inter_parab.c:    (CARRE(s->ray.new_eye.y) / CARRE(parab->b)) - s->ray.new_eye.z;
+src/engine/inter_parab.c:  res->a = (CARRE(s->ray.vct->x) / CARRE(parab->a)) -
+src/engine/inter_parab.c:    (CARRE(s->ray.vct->y) / CARRE(parab->b));
+src/engine/inter_parab.c:  res->b = ((2 * s->ray.vct->x) / CARRE(parab->a)) -
+src/engine/inter_parab.c:    ((2 * s->ray.vct->y) / CARRE(parab->b)) + s->ray.vct->z;
+src/engine/inter_parab.c:  res->c = (CARRE(s->ray.new_eye.x) / CARRE(parab->a)) -
+src/engine/inter_parab.c:    (CARRE(s->ray.new_eye.y) / CARRE(parab->b)) - s->ray.new_eye.z;
+src/engine/inter_parab.c:  if (parab->form == 1)
+src/engine/inter_parab.c:      s->ray.new_eye.x = s->ray.eye.x - parab->pos.x;
+src/engine/inter_parab.c:      s->ray.new_eye.y = s->ray.eye.y - parab->pos.y;
+src/engine/inter_parab.c:      s->ray.new_eye.z = s->ray.eye.z - parab->pos.z;
+src/engine/inter_parab.c:      rotation(&s->rotation, s->ray.vct, &parab->rot);
+src/engine/inter_parab.c:      rotation(&s->rotation, &s->ray.new_eye, &parab->rot);
+src/engine/inter_parab.c:  else if (parab->form == 2)
+src/engine/inter_parab.c:      s->ray.new_eye.x = s->ray.eye.x - parab->pos.x;
+src/engine/inter_parab.c:      s->ray.new_eye.y = s->ray.eye.y - parab->pos.y;
+src/engine/inter_parab.c:      s->ray.new_eye.z = s->ray.eye.z - parab->pos.z;
+src/engine/inter_parab.c:      rotation(&s->rotation, s->ray.vct, &parab->rot);
+src/engine/inter_parab.c:      rotation(&s->rotation, &s->ray.new_eye, &parab->rot);
+src/engine/inters.c:  s->ray.new_eye.x = (double)(s->ray.eye.x - plan->pos.x);
+src/engine/inters.c:  s->ray.new_eye.y = (double)(s->ray.eye.y - plan->pos.y);
+src/engine/inters.c:  s->ray.new_eye.z = (double)(s->ray.eye.z - plan->pos.z);
+src/engine/inters.c:  rotation(&s->rotation, s->ray.vct, &plan->rot);
+src/engine/inters.c:  rotation(&s->rotation, &s->ray.new_eye, &plan->rot);
+src/engine/inters.c:  if (s->ray.vct->z == 0.0)
+src/engine/inters.c:  s->hit.k1 = -1.0 * ((double)s->ray.new_eye.z / s->ray.vct->z);
+src/engine/inters.c:  s->ray.new_eye.x = (double)(s->ray.eye.x - sphere->pos.x);
+src/engine/inters.c:  s->ray.new_eye.y = (double)(s->ray.eye.y - sphere->pos.y);
+src/engine/inters.c:  s->ray.new_eye.z = (double)(s->ray.eye.z - sphere->pos.z);
+src/engine/inters.c:  rotation(&s->rotation, s->ray.vct, &sphere->rot);
+src/engine/inters.c:  rotation(&s->rotation, &s->ray.new_eye, &sphere->rot);
+src/engine/inters.c:  a = CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y) +
+src/engine/inters.c:    CARRE(s->ray.vct->z);
+src/engine/inters.c:  b = 2 * (s->ray.new_eye.x * s->ray.vct->x + s->ray.new_eye.y
+src/engine/inters.c:	   * s->ray.vct->y + s->ray.new_eye.z * s->ray.vct->z);
+src/engine/inters.c:  c = CARRE(s->ray.new_eye.x) + CARRE(s->ray.new_eye.y)
+src/engine/inters.c:    + CARRE(s->ray.new_eye.z)
+src/engine/inters.c:    - CARRE(sphere->size);
+src/engine/inters.c:  if ((delta = CARRE(b) - 4 * a * c) < 0.0001)
+src/engine/inters.c:  s->hit.k1 = (- b + sqrt(delta)) / (2 * a);
+src/engine/inters.c:  s->hit.k2 = (- b - sqrt(delta)) / (2 * a);
+src/engine/inters.c:  angle = cone->angle * M_PI / 180.0;
+src/engine/inters.c:  s->ray.new_eye.x = (double)(s->ray.eye.x - cone->pos.x);
+src/engine/inters.c:  s->ray.new_eye.y = (double)(s->ray.eye.y - cone->pos.y);
+src/engine/inters.c:  s->ray.new_eye.z = (double)(s->ray.eye.z - cone->pos.z);
+src/engine/inters.c:  rotation(&s->rotation, s->ray.vct, &cone->rot);
+src/engine/inters.c:  rotation(&s->rotation, &s->ray.new_eye, &cone->rot);
+src/engine/inters.c:  a = CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y)
+src/engine/inters.c:    - CARRE(s->ray.vct->z) / CARRE(tan(angle));
+src/engine/inters.c:  b = 2 * (s->ray.vct->y * s->ray.new_eye.y + s->ray.vct->x *
+src/engine/inters.c:	   s->ray.new_eye.x
+src/engine/inters.c:	   - (s->ray.vct->z * s->ray.new_eye.z) / CARRE(tan(angle)));
+src/engine/inters.c:  c = CARRE(s->ray.new_eye.x) + CARRE(s->ray.new_eye.y)
+src/engine/inters.c:    - CARRE(s->ray.new_eye.z) / CARRE(tan(angle));
+src/engine/inters.c:  if ((delta = CARRE(b) - 4 * a * c) < 0)
+src/engine/inters.c:  s->hit.k1 = (- b + sqrt(delta)) / (2 * a);
+src/engine/inters.c:  s->hit.k2 = (- b - sqrt(delta)) / (2 * a);
+src/engine/inters.c:  s->ray.new_eye.x = (double)(s->ray.eye.x - cylinder->pos.x);
+src/engine/inters.c:  s->ray.new_eye.y = (double)(s->ray.eye.y - cylinder->pos.y);
+src/engine/inters.c:  s->ray.new_eye.z = (double)(s->ray.eye.z - cylinder->pos.z);
+src/engine/inters.c:  rotation(&s->rotation, s->ray.vct, &cylinder->rot);
+src/engine/inters.c:  rotation(&s->rotation, &s->ray.new_eye, &cylinder->rot);
+src/engine/inters.c:  a = CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y);
+src/engine/inters.c:  b = 2 * (s->ray.vct->x * s->ray.new_eye.x + s->ray.vct->y
+src/engine/inters.c:	   * s->ray.new_eye.y);
+src/engine/inters.c:  c = CARRE(s->ray.new_eye.x) + CARRE(s->ray.new_eye.y)
+src/engine/inters.c:    - CARRE(cylinder->size);
+src/engine/inters.c:  if ((delta = CARRE(b) - 4 * a * c) < 0)
+src/engine/inters.c:  s->hit.k1 = (- b + sqrt(delta)) / (2 * a);
+src/engine/inters.c:  s->hit.k2 = (- b - sqrt(delta)) / (2 * a);
+src/engine/inter_tore.c:  return (CARRE(CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y) +
+src/engine/inter_tore.c:		CARRE(s->ray.vct->z)));
+src/engine/inter_tore.c:  return (2 * ((CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y) +
+src/engine/inter_tore.c:		CARRE(s->ray.vct->z)) *
+src/engine/inter_tore.c:	       (1 + ((s->ray.new_eye.x * s->ray.vct->x) +
+src/engine/inter_tore.c:		     (s->ray.new_eye.y * s->ray.vct->y) +
+src/engine/inter_tore.c:		     (s->ray.new_eye.z * s->ray.vct->z)))));
+src/engine/inter_tore.c:  return (4 * (((s->ray.new_eye.x * s->ray.vct->x) +
+src/engine/inter_tore.c:		(s->ray.new_eye.y * s->ray.vct->y) +
+src/engine/inter_tore.c:		(s->ray.new_eye.z * s->ray.vct->z)) +
+src/engine/inter_tore.c:	       ((CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y) +
+src/engine/inter_tore.c:		 CARRE(s->ray.vct->z)) *
+src/engine/inter_tore.c:		((2 * CARRE(s->ray.new_eye.x)) +
+src/engine/inter_tore.c:		 (2 * CARRE(s->ray.new_eye.y)) +
+src/engine/inter_tore.c:		 (2 * CARRE(s->ray.new_eye.z)) +
+src/engine/inter_tore.c:		 (2 * CARRE(tore->dist)) - (2 * CARRE(tore->rad))))));
+src/engine/inter_tore.c:  return ((-4 * CARRE(tore->dist)) *
+src/engine/inter_tore.c:	  (CARRE(s->ray.vct->x) + CARRE(s->ray.vct->y)) +
+src/engine/inter_tore.c:	  ((s->ray.new_eye.x * s->ray.vct->x) +
+src/engine/inter_tore.c:	   (s->ray.new_eye.y * s->ray.vct->y) +
+src/engine/inter_tore.c:	   (s->ray.new_eye.z * s->ray.vct->z)) *
+src/engine/inter_tore.c:	  ((4 * CARRE(s->ray.new_eye.x)) + (4 * CARRE(s->ray.new_eye.y)) +
+src/engine/inter_tore.c:	   (4 * CARRE(s->ray.new_eye.z)) + (4 * CARRE(tore->dist)) -
+src/engine/inter_tore.c:	   (4 * CARRE(tore->rad))));
+src/engine/inter_tore.c:  return (CARRE((CARRE(s->ray.new_eye.x) + CARRE(s->ray.new_eye.y) +
+src/engine/inter_tore.c:		 CARRE(s->ray.new_eye.z) + CARRE(tore->dist) +
+src/engine/inter_tore.c:		 CARRE(tore->rad))) -
+src/engine/inter_tore.c:	  ((4 * CARRE(tore->dist)) *
+src/engine/inter_tore.c:	   (CARRE(s->ray.new_eye.x) +
+src/engine/inter_tore.c:	    CARRE(s->ray.new_eye.y) +
+src/engine/inter_tore.c:	    (2 * s->ray.new_eye.x * s->ray.vct->x) +
+src/engine/inter_tore.c:	    (2 * s->ray.new_eye.y * s->ray.vct->y))));
+src/engine/inter_tore.c:  s->ray.new_eye.x = s->ray.eye.x - tore->pos.x;
+src/engine/inter_tore.c:  s->ray.new_eye.y = s->ray.eye.y - tore->pos.y;
+src/engine/inter_tore.c:  s->ray.new_eye.z = s->ray.eye.z - tore->pos.z;
+src/engine/inter_tore.c:  rotation(&s->rotation, s->ray.vct, &tore->rot);
+src/engine/inter_tore.c:  rotation(&s->rotation, &s->ray.new_eye, &tore->rot);
+src/engine/limited_objects.c:  pos.z = cylinder->height;
+src/engine/limited_objects.c:  end_rotation(&s->rotation, &pos, &cylinder->rot);
+src/engine/limited_objects.c:  plan.pos.x = cylinder->pos.x + pos.x;
+src/engine/limited_objects.c:  plan.pos.y = cylinder->pos.y + pos.y;
+src/engine/limited_objects.c:  plan.pos.z = cylinder->pos.z + pos.y;
+src/engine/limited_objects.c:  plan.rot.x = cylinder->rot.x;
+src/engine/limited_objects.c:  plan.rot.y = cylinder->rot.y;
+src/engine/limited_objects.c:  plan.rot.z = cylinder->rot.z;
+src/engine/limited_objects.c:  get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
+src/engine/limited_objects.c:  end_rotation(&s->rotation, s->ray.vct, &plan.rot);
+src/engine/limited_objects.c:  s->hit.limited = 1;
+src/engine/limited_objects.c:  pos.z = - cylinder->height;
+src/engine/limited_objects.c:  end_rotation(&s->rotation, &pos, &cylinder->rot);
+src/engine/limited_objects.c:  plan.pos.x = cylinder->pos.x + pos.x;
+src/engine/limited_objects.c:  plan.pos.y = cylinder->pos.y + pos.y;
+src/engine/limited_objects.c:  plan.pos.z = cylinder->pos.z + pos.y;
+src/engine/limited_objects.c:  plan.rot.x = cylinder->rot.x;
+src/engine/limited_objects.c:  plan.rot.y = cylinder->rot.y;
+src/engine/limited_objects.c:  plan.rot.z = cylinder->rot.z;
+src/engine/limited_objects.c:  get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
+src/engine/limited_objects.c:  end_rotation(&s->rotation, s->ray.vct, &plan.rot);
+src/engine/limited_objects.c:  s->hit.limited = 1;
+src/engine/limited_objects.c:  if ((s->hit.simple_inter1.z < - cylinder->height &&
+src/engine/limited_objects.c:       s->hit.simple_inter2.z < - cylinder->height) ||
+src/engine/limited_objects.c:      (s->hit.simple_inter1.z > cylinder->height &&
+src/engine/limited_objects.c:       s->hit.simple_inter2.z > cylinder->height))
+src/engine/limited_objects.c:    return (-1);
+src/engine/limited_objects.c:  else if (s->hit.simple_inter1.z < - cylinder->height)
+src/engine/limited_objects.c:  else if (s->hit.simple_inter1.z > cylinder->height)
+src/engine/limited_objects.c:  pos.z = - cone->height;
+src/engine/limited_objects.c:  end_rotation(&s->rotation, &pos, &cone->rot);
+src/engine/limited_objects.c:  plan.pos.x = cone->pos.x + pos.x;
+src/engine/limited_objects.c:  plan.pos.y = cone->pos.y + pos.y;
+src/engine/limited_objects.c:  plan.pos.z = cone->pos.z + pos.y;
+src/engine/limited_objects.c:  plan.rot.x = cone->rot.x;
+src/engine/limited_objects.c:  plan.rot.y = cone->rot.y;
+src/engine/limited_objects.c:  plan.rot.z = cone->rot.z;
+src/engine/limited_objects.c:  get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
+src/engine/limited_objects.c:  end_rotation(&s->rotation, s->ray.vct, &plan.rot);
+src/engine/limited_objects.c:  s->hit.limited = 1;
+src/engine/limited_objects.c:  if (s->hit.simple_inter1.z < 0)
+src/engine/limited_objects.c:    return (-1);
+src/engine/limited_objects.c:  else if (s->hit.simple_inter1.z > cone->height)
+src/engine/limited_objects.c:      if (s->hit.simple_inter2.z > 0.0 &&
+src/engine/limited_objects.c:	  s->hit.simple_inter2.z < cone->height)
+src/engine/limited_objects.c:	return (-1);
+src/engine/limited_plan.c:  if (s->hit.simple_inter1.y < - plan->height / 2 ||
+src/engine/limited_plan.c:      s->hit.simple_inter1.y > plan->height / 2 ||
+src/engine/limited_plan.c:      s->hit.simple_inter1.x < - plan->width / 2 ||
+src/engine/limited_plan.c:      s->hit.simple_inter1.x > plan->width / 2)
+src/engine/limited_plan.c:    return (-1);
+src/engine/load_box.c:  s->pos.x = my_getnbr((char *)field);
+src/engine/load_box.c:  s->pos.y = my_getnbr((char *)field);
+src/engine/load_box.c:  s->pos.z = my_getnbr((char *)field);
+src/engine/load_box.c:  s->rot.x = my_getnbr((char *)field);
+src/engine/load_box.c:  s->rot.y = my_getnbr((char *)field);
+src/engine/load_box.c:  s->rot.z = my_getnbr((char *)field);
+src/engine/load_box.c:  s->reflection = (double)my_getnbr((char *)field) / 100;
+src/engine/load_box.c:  s->size.x = my_getnbr((char *)field) / 2;
+src/engine/load_box.c:  s->size.y = my_getnbr((char *)field) / 2;
+src/engine/load_box.c:  s->size.z = my_getnbr((char *)field) / 2;
+src/engine/load_box.c:  s->ka = (double)my_getnbr((char *)field) / 100;
+src/engine/load_box.c:  s->kd = (double)my_getnbr((char *)field) / 100;
+src/engine/load_box.c:  s->ks = (double)my_getnbr((char *)field) / 100;
+src/engine/load_box.c:  s->brightness = (double)my_getnbr((char *)field) / 100;
+src/engine/load_box.c:  s->opacity = (double)my_getnbr((char *)field) / 100;
+src/engine/load_box.c:  s->refraction = atof((char *)field);
+src/engine/load_box.c:  s->tex_type = my_getnbr((char *)field);
+src/engine/load_box.c:  s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_box.c:  s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_box.c:  if (s->tex_type == IMAGE)
+src/engine/load_box.c:      s->tex_name = my_strdup((char *)field);
+src/engine/load_box.c:      if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_box.c:    return (-1);
+src/engine/load_box.c:  if (rt->obj == NULL)
+src/engine/load_box.c:      if ((rt->obj = create_obj_list()) == NULL)
+src/engine/load_box.c:	return (-1);
+src/engine/load_box.c:      if (add_obj_elem(rt->obj) == -1)
+src/engine/load_box.c:	return (-1);
+src/engine/load_box.c:  it = rt->obj;
+src/engine/load_box.c:  while (it->next != NULL)
+src/engine/load_box.c:    it = it->next;
+src/engine/load_box.c:  it->type = 6;
+src/engine/load_box.c:  if (load_box_datas(s, ini, scope) == -1)
+src/engine/load_box.c:    return (-1);
+src/engine/load_box.c:  it->datas = s;
+src/engine/load_box.c:  if ((it->name = my_strdup(scope)) == NULL)
+src/engine/load_cone.c:  s->pos.x = my_getnbr((char *)field);
+src/engine/load_cone.c:  s->pos.y = my_getnbr((char *)field);
+src/engine/load_cone.c:  s->pos.z = my_getnbr((char *)field);
+src/engine/load_cone.c:  s->rot.x = my_getnbr((char *)field);
+src/engine/load_cone.c:  s->rot.y = my_getnbr((char *)field);
+src/engine/load_cone.c:  s->rot.z = my_getnbr((char *)field);
+src/engine/load_cone.c:  s->height = my_getnbr((char *)field);
+src/engine/load_cone.c:  s->angle = 90 - my_getnbr((char *)field);
+src/engine/load_cone.c:  if (s->angle >= 90 || s->angle <= 0)
+src/engine/load_cone.c:  s->real = my_getnbr((char *)field);
+src/engine/load_cone.c:  s->refraction = atof((char *)field);
+src/engine/load_cone.c:  if (s->real == 1)
+src/engine/load_cone.c:  s->ka = (double)my_getnbr((char *)field) / 100;
+src/engine/load_cone.c:  s->kd = (double)my_getnbr((char *)field) / 100;
+src/engine/load_cone.c:  s->ks = (double)my_getnbr((char *)field) / 100;
+src/engine/load_cone.c:  s->brightness = (double)my_getnbr((char *)field) / 100;
+src/engine/load_cone.c:  s->reflection = (double)my_getnbr((char *)field) / 100;
+src/engine/load_cone.c:  s->tex_type = my_getnbr((char *)field);
+src/engine/load_cone.c:  s->opacity = my_getnbr((char *)field);
+src/engine/load_cone.c:  s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_cone.c:  s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_cone.c:  if (s->tex_type == IMAGE)
+src/engine/load_cone.c:      s->tex1_name = my_strdup((char *)field);
+src/engine/load_cone.c:      if ((s->texture2 = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_cone.c:      s->tex2_name = my_strdup((char *)field);
+src/engine/load_cone.c:      if ((s->texture1 = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_cone.c:    return (-1);
+src/engine/load_cone.c:  if (rt->obj == NULL)
+src/engine/load_cone.c:      if ((rt->obj = create_obj_list()) == NULL)
+src/engine/load_cone.c:	return (-1);
+src/engine/load_cone.c:      if (add_obj_elem(rt->obj) == -1)
+src/engine/load_cone.c:	return (-1);
+src/engine/load_cone.c:  it = rt->obj;
+src/engine/load_cone.c:  while (it->next != NULL)
+src/engine/load_cone.c:    it = it->next;
+src/engine/load_cone.c:  it->type = 4;
+src/engine/load_cone.c:  if (load_cone_datas(s, ini, scope) == -1)
+src/engine/load_cone.c:    return (-1);
+src/engine/load_cone.c:  it->datas = s;
+src/engine/load_cone.c:  if ((it->name = my_strdup(scope)) == NULL)
+src/engine/load_csg.c:      tab[i]->id = i + 1;
+src/engine/load_csg.c:      tab[i]->type = -1;
+src/engine/load_csg.c:      tab[i]->up = NULL;
+src/engine/load_csg.c:      tab[i]->right = NULL;
+src/engine/load_csg.c:      tab[i]->left = NULL;
+src/engine/load_csg.c:      tab[i]->obj = NULL;
+src/engine/load_csg.c:  i = -1;
+src/engine/load_csg.c:    return (-1);
+src/engine/load_csg.c:    return (-1);
+src/engine/load_csg.c:    return (-1);
+src/engine/load_csg.c:    return (-1);
+src/engine/load_csg.c:  if (load_csg_type(node, ini, ftab, scope) == -1)
+src/engine/load_csg.c:    return (-1);
+src/engine/load_csg.c:  node->type = my_getnbr((char *)field);
+src/engine/load_csg.c:  if (node->type > 0 && node->type < 4)
+src/engine/load_csg.c:      node->connections[0] = my_getnbr((char *)field);
+src/engine/load_csg.c:      node->connections[1] = my_getnbr((char *)field);
+src/engine/load_csg.c:  else if (node->type == 0)
+src/engine/load_csg.c:      if (load_csg_object(node, ini, (char *)field) == -1)
+src/engine/load_csg.c:	return (-1);
+src/engine/load_csg.c:    return (-1);
+src/engine/load_csg.c:      if (load_leaf(tab[i], tab, (char *)field, ini) == -1)
+src/engine/load_csg.c:	return (-1);
+src/engine/load_csg.c:      /* tab[i]->id = i; */
+src/engine/load_csg.c:    return (-1);
+src/engine/load_csg.c:  if (rt->obj == NULL)
+src/engine/load_csg.c:      if ((rt->obj = create_obj_list()) == NULL)
+src/engine/load_csg.c:	return (-1);
+src/engine/load_csg.c:      if (add_obj_elem(rt->obj) == -1)
+src/engine/load_csg.c:	return (-1);
+src/engine/load_csg.c:  it = rt->obj;
+src/engine/load_csg.c:  while (it->next != NULL)
+src/engine/load_csg.c:    it = it->next;
+src/engine/load_csg.c:  it->type = 7;
+src/engine/load_csg.c:  if (load_csg_datas(s, ini, scope) == -1)
+src/engine/load_csg.c:    return (-1);
+src/engine/load_csg.c:  it->datas = s;
+src/engine/load_csg.c:  if ((it->name = my_strdup(scope)) == NULL)
+src/engine/load_csg_objects.c:  if ((node->obj = bunny_malloc(sizeof(t_object))) == NULL)
+src/engine/load_csg_objects.c:  node->obj->type = 2;
+src/engine/load_csg_objects.c:  if (load_sphere_datas(s, ini, scope) == -1)
+src/engine/load_csg_objects.c:    return (-1);
+src/engine/load_csg_objects.c:  node->obj->datas = s;
+src/engine/load_csg_objects.c:  if ((node->obj->name = my_strdup(scope)) == NULL)
+src/engine/load_csg_objects.c:  if ((node->obj = bunny_malloc(sizeof(t_object))) == NULL)
+src/engine/load_csg_objects.c:  node->obj->type = 3;
+src/engine/load_csg_objects.c:  if (load_cylinder_datas(s, ini, scope) == -1)
+src/engine/load_csg_objects.c:    return (-1);
+src/engine/load_csg_objects.c:  node->obj->datas = s;
+src/engine/load_csg_objects.c:  if ((node->obj->name = my_strdup(scope)) == NULL)
+src/engine/load_csg_objects.c:  if ((node->obj = bunny_malloc(sizeof(t_object))) == NULL)
+src/engine/load_csg_objects.c:  node->obj->type = 4;
+src/engine/load_csg_objects.c:  if (load_cone_datas(s, ini, scope) == -1)
+src/engine/load_csg_objects.c:    return (-1);
+src/engine/load_csg_objects.c:  node->obj->datas = s;
+src/engine/load_csg_objects.c:  if ((node->obj->name = my_strdup(scope)) == NULL)
+src/engine/load_csg_objects.c:  if ((node->obj = bunny_malloc(sizeof(t_object))) == NULL)
+src/engine/load_csg_objects.c:  node->obj->type = 6;
+src/engine/load_csg_objects.c:  if (load_box_datas(s, ini, scope) == -1)
+src/engine/load_csg_objects.c:    return (-1);
+src/engine/load_csg_objects.c:  node->obj->datas = s;
+src/engine/load_csg_objects.c:  if ((node->obj->name = my_strdup(scope)) == NULL)
+src/engine/load_cylinder.c:  s->pos.x = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->pos.y = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->pos.z = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->rot.x = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->rot.y = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->rot.z = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->height = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->size = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->real = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->refraction = atof((char *)field);
+src/engine/load_cylinder.c:  if (s->real == 1)
+src/engine/load_cylinder.c:  s->ka = (double)my_getnbr((char *)field) / 100;
+src/engine/load_cylinder.c:  s->kd = (double)my_getnbr((char *)field) / 100;
+src/engine/load_cylinder.c:  s->ks = (double)my_getnbr((char *)field) / 100;
+src/engine/load_cylinder.c:  s->brightness = (double)my_getnbr((char *)field) / 100;
+src/engine/load_cylinder.c:  s->reflection = (double)my_getnbr((char *)field) / 100;
+src/engine/load_cylinder.c:  s->tex_type = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->opacity = my_getnbr((char *)field);
+src/engine/load_cylinder.c:  s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_cylinder.c:  s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_cylinder.c:  if (s->tex_type == IMAGE)
+src/engine/load_cylinder.c:      s->tex1_name = my_strdup((char *)field);
+src/engine/load_cylinder.c:      if ((s->texture2 = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_cylinder.c:      s->tex2_name = my_strdup((char *)field);
+src/engine/load_cylinder.c:      if ((s->texture1 = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_cylinder.c:    return (-1);
+src/engine/load_cylinder.c:  if (rt->obj == NULL)
+src/engine/load_cylinder.c:      if ((rt->obj = create_obj_list()) == NULL)
+src/engine/load_cylinder.c:	return (-1);
+src/engine/load_cylinder.c:      if (add_obj_elem(rt->obj) == -1)
+src/engine/load_cylinder.c:	return (-1);
+src/engine/load_cylinder.c:  it = rt->obj;
+src/engine/load_cylinder.c:  while (it->next != NULL)
+src/engine/load_cylinder.c:    it = it->next;
+src/engine/load_cylinder.c:  it->type = 3;
+src/engine/load_cylinder.c:  if (load_cylinder_datas(s, ini, scope) == -1)
+src/engine/load_cylinder.c:    return (-1);
+src/engine/load_cylinder.c:  it->datas = s;
+src/engine/load_cylinder.c:  if ((it->name = my_strdup(scope)) == NULL)
+src/engine/load_file.c:  i = -1;
+src/engine/load_file.c:  if (load_type(s, ini, ftab, scope) == -1)
+src/engine/load_file.c:    return (-1);
+src/engine/load_file.c:  s->eye.pos.x = (double)my_getnbr((char *)field);
+src/engine/load_file.c:  s->eye.pos.y = (double)my_getnbr((char *)field);
+src/engine/load_file.c:  s->eye.pos.z = (double)my_getnbr((char *)field);
+src/engine/load_file.c:  s->eye.rot.x = my_getnbr((char *)field);
+src/engine/load_file.c:  s->eye.rot.y = my_getnbr((char *)field);
+src/engine/load_file.c:  s->eye.rot.z = my_getnbr((char *)field);
+src/engine/load_file.c:  s->opt.skybox_down_tex_name = my_strdup((char *)field);
+src/engine/load_file.c:  if ((s->opt.skybox_down = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_file.c:  s->opt.skybox_front_tex_name = my_strdup((char *)field);
+src/engine/load_file.c:  if ((s->opt.skybox_forward = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_file.c:  s->opt.skybox_back_tex_name = my_strdup((char *)field);
+src/engine/load_file.c:  if ((s->opt.skybox_backward = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_file.c:  s->opt.skybox_right_tex_name = my_strdup((char *)field);
+src/engine/load_file.c:  if ((s->opt.skybox_right = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_file.c:  s->opt.skybox_left_tex_name = my_strdup((char *)field);
+src/engine/load_file.c:  if ((s->opt.skybox_left = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_file.c:  s->opt.skybox_up_tex_name = my_strdup((char *)field);
+src/engine/load_file.c:  if ((s->opt.skybox_up = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_file.c:  s->opt.ss = my_getnbr((char *)field);
+src/engine/load_file.c:  if (s->opt.ss == 1)
+src/engine/load_file.c:      s->opt.nb_rays_ss = my_getnbr((char *)field);
+src/engine/load_file.c:      s->opt.ray_ss = my_getnbr((char *)field);
+src/engine/load_file.c:      s->opt.nb_rays_ss = 1;
+src/engine/load_file.c:      s->opt.ray_ss = 0;
+src/engine/load_file.c:  if (load_shadow_params(s, ini) == -1)
+src/engine/load_file.c:    return (-1);
+src/engine/load_file.c:  s->opt.ambient = (double)my_getnbr((char *)field) / 100.0;
+src/engine/load_file.c:  s->opt.aa = my_getnbr((char *)field);
+src/engine/load_file.c:  s->opt.ambient_refraction = atof((char *)field);
+src/engine/load_file.c:  aa = sqrt(s->opt.aa);
+src/engine/load_file.c:      s->opt.skybox = 0;
+src/engine/load_file.c:  s->opt.skybox = my_getnbr((char *)field);
+src/engine/load_file.c:  s->obj = NULL;
+src/engine/load_file.c:  if (load_eye(s, ini) == -1)
+src/engine/load_file.c:    return (-1);
+src/engine/load_file.c:  if (load_scene_parameters(s, ini) == -1)
+src/engine/load_file.c:    return (-1);
+src/engine/load_file.c:      if (load_object(s, ini, (char *)field) == -1)
+src/engine/load_file.c:	return (-1);
+src/engine/load_file.c:  s->obj_hit = NULL;
+src/engine/load_light.c:  s->pos.x = my_getnbr((char *)field);
+src/engine/load_light.c:  s->pos.y = my_getnbr((char *)field);
+src/engine/load_light.c:  s->pos.z = my_getnbr((char *)field);
+src/engine/load_light.c:  s->intensity = (double)my_getnbr((char *)field) / 100.0;
+src/engine/load_light.c:  s->color.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_light.c:    return (-1);
+src/engine/load_light.c:  if (rt->obj == NULL)
+src/engine/load_light.c:      if ((rt->obj = create_obj_list()) == NULL)
+src/engine/load_light.c:	return (-1);
+src/engine/load_light.c:      if (add_obj_elem(rt->obj) == -1)
+src/engine/load_light.c:	return (-1);
+src/engine/load_light.c:  it = rt->obj;
+src/engine/load_light.c:  while (it->next != NULL)
+src/engine/load_light.c:    it = it->next;
+src/engine/load_light.c:  it->type = 1;
+src/engine/load_light.c:  if (load_light_datas(s, ini, scope) == -1)
+src/engine/load_light.c:    return (-1);
+src/engine/load_light.c:  it->datas = s;
+src/engine/load_light.c:  if ((it->name = my_strdup(scope)) == NULL)
+src/engine/load_plan.c:  s->pos.x = my_getnbr((char *)field);
+src/engine/load_plan.c:  s->pos.y = my_getnbr((char *)field);
+src/engine/load_plan.c:  s->pos.z = my_getnbr((char *)field);
+src/engine/load_plan.c:  s->rot.x = my_getnbr((char *)field);
+src/engine/load_plan.c:  s->rot.y = my_getnbr((char *)field);
+src/engine/load_plan.c:  s->rot.z = my_getnbr((char *)field);
+src/engine/load_plan.c:  s->reflection = (double)my_getnbr((char *)field) / 100;
+src/engine/load_plan.c:  s->height = my_getnbr((char *)field) / 2;
+src/engine/load_plan.c:  s->width = my_getnbr((char *)field) / 2;
+src/engine/load_plan.c:  s->ka = (double)my_getnbr((char *)field) / 100;
+src/engine/load_plan.c:  s->kd = (double)my_getnbr((char *)field) / 100;
+src/engine/load_plan.c:  s->ks = (double)my_getnbr((char *)field) / 100;
+src/engine/load_plan.c:  s->brightness = (double)my_getnbr((char *)field) / 100;
+src/engine/load_plan.c:  s->opacity = (double)my_getnbr((char *)field) / 100;
+src/engine/load_plan.c:  s->refraction = atof((char *)field);
+src/engine/load_plan.c:  s->tex_type = my_getnbr((char *)field);
+src/engine/load_plan.c:  s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_plan.c:  s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_plan.c:  s->case_size = my_getnbr((char *)field);
+src/engine/load_plan.c:  if (s->tex_type == IMAGE)
+src/engine/load_plan.c:      s->tex_name = my_strdup((char *)field);
+src/engine/load_plan.c:      if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_plan.c:    return (-1);
+src/engine/load_plan.c:  if (rt->obj == NULL)
+src/engine/load_plan.c:      if ((rt->obj = create_obj_list()) == NULL)
+src/engine/load_plan.c:	return (-1);
+src/engine/load_plan.c:      if (add_obj_elem(rt->obj) == -1)
+src/engine/load_plan.c:	return (-1);
+src/engine/load_plan.c:  it = rt->obj;
+src/engine/load_plan.c:  while (it->next != NULL)
+src/engine/load_plan.c:    it = it->next;
+src/engine/load_plan.c:  it->type = 5;
+src/engine/load_plan.c:  if (load_plan_datas(s, ini, scope) == -1)
+src/engine/load_plan.c:    return (-1);
+src/engine/load_plan.c:  it->datas = s;
+src/engine/load_plan.c:  if ((it->name = my_strdup(scope)) == NULL)
+src/engine/load_sphere.c:  s->pos.x = my_getnbr((char *)field);
+src/engine/load_sphere.c:  s->pos.y = my_getnbr((char *)field);
+src/engine/load_sphere.c:  s->pos.z = my_getnbr((char *)field);
+src/engine/load_sphere.c:  s->rot.x = my_getnbr((char *)field);
+src/engine/load_sphere.c:  s->rot.y = my_getnbr((char *)field);
+src/engine/load_sphere.c:  s->rot.z = my_getnbr((char *)field);
+src/engine/load_sphere.c:  s->size = my_getnbr((char *)field);
+src/engine/load_sphere.c:  s->real = my_getnbr((char *)field);
+src/engine/load_sphere.c:  if (s->real == 1)
+src/engine/load_sphere.c:  s->ka = (double)my_getnbr((char *)field) / 100;
+src/engine/load_sphere.c:  s->kd = (double)my_getnbr((char *)field) / 100;
+src/engine/load_sphere.c:  s->ks = (double)my_getnbr((char *)field) / 100;
+src/engine/load_sphere.c:  s->brightness = (double)my_getnbr((char *)field) / 100;
+src/engine/load_sphere.c:  s->reflection = (double)my_getnbr((char *)field) / 100;
+src/engine/load_sphere.c:  s->tex_type = my_getnbr((char *)field);
+src/engine/load_sphere.c:  s->opacity = my_getnbr((char *)field);
+src/engine/load_sphere.c:  s->refraction = atof((char *)field);
+src/engine/load_sphere.c:  s->color1.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_sphere.c:  s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+src/engine/load_sphere.c:  if (s->tex_type == IMAGE)
+src/engine/load_sphere.c:      s->tex_name = my_strdup((char *)field);
+src/engine/load_sphere.c:      if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
+src/engine/load_sphere.c:    return (-1);
+src/engine/load_sphere.c:  if (rt->obj == NULL)
+src/engine/load_sphere.c:      if ((rt->obj = create_obj_list()) == NULL)
+src/engine/load_sphere.c:	return (-1);
+src/engine/load_sphere.c:      if (add_obj_elem(rt->obj) == -1)
+src/engine/load_sphere.c:	return (-1);
+src/engine/load_sphere.c:  it = rt->obj;
+src/engine/load_sphere.c:  while (it->next != NULL)
+src/engine/load_sphere.c:    it = it->next;
+src/engine/load_sphere.c:  it->type = 2;
+src/engine/load_sphere.c:  if (load_sphere_datas(s, ini, scope) == -1)
+src/engine/load_sphere.c:    return (-1);
+src/engine/load_sphere.c:  it->datas = s;
+src/engine/load_sphere.c:  if ((it->name = my_strdup(scope)) == NULL)
+src/engine/matrices.c:      rot->cos[i] = cos(RAD((double)i));
+src/engine/matrices.c:      rot->sin[i] = sin(RAD((double)i));
+src/engine/matrices.c:	  rot->rotx[j][i] = 0;
+src/engine/matrices.c:	  rot->roty[j][i] = 0;
+src/engine/matrices.c:	  rot->rotz[j][i] = 0;
+src/engine/matrices.c:  rot->rotx[1][1] = 1;
+src/engine/matrices.c:  rot->roty[2][2] = 1;
+src/engine/matrices.c:  rot->rotz[0][0] = 1;
+src/engine/matrices.c:  rot->rotx[0][0] = rot->cos[teta];
+src/engine/matrices.c:  rot->rotx[0][2] = rot->sin[teta];
+src/engine/matrices.c:  rot->rotx[2][0] = -rot->sin[teta];
+src/engine/matrices.c:  rot->rotx[2][2] = rot->cos[teta];
+src/engine/matrices.c:  rot->roty[0][0] = rot->cos[teta];
+src/engine/matrices.c:  rot->roty[0][1] = -rot->sin[teta];
+src/engine/matrices.c:  rot->roty[1][0] = rot->sin[teta];
+src/engine/matrices.c:  rot->roty[1][1] = rot->cos[teta];
+src/engine/matrices.c:  rot->rotz[1][1] = rot->cos[teta];
+src/engine/matrices.c:  rot->rotz[1][2] = -rot->sin[teta];
+src/engine/matrices.c:  rot->rotz[2][1] = rot->sin[teta];
+src/engine/matrices.c:  rot->rotz[2][2] = rot->cos[teta];
+src/engine/noise_textures.c:  vec[0] = s->hit.simple_inter1.x * 0.0005;
+src/engine/noise_textures.c:  vec[1] = s->hit.simple_inter1.y * 0.0005;
+src/engine/noise_textures.c:  vec[2] = s->hit.simple_inter1.z * 0.0005;
+src/engine/noise_textures.c:    noise *= -1;
+src/engine/noise_textures.c:  s->final_color = compute_colors(s->hit.color1, s->hit.color2, noise);
+src/engine/noise_textures.c:  vec[0] = s->hit.simple_inter1.x * 0.0005;
+src/engine/noise_textures.c:  vec[1] = s->hit.simple_inter1.y * 0.0005;
+src/engine/noise_textures.c:  vec[2] = s->hit.simple_inter1.z * 0.0005;
+src/engine/noise_textures.c:  noise = 0.5 * sin((s->hit.simple_inter1.x + s->hit.simple_inter1.y)
+src/engine/noise_textures.c:    noise *= -1;
+src/engine/noise_textures.c:  s->final_color = compute_colors(s->hit.color1, s->hit.color2, noise);
+src/engine/order_hit_list.c:  it_prev->prev->next = it;
+src/engine/order_hit_list.c:  if (it->next != NULL)
+src/engine/order_hit_list.c:    it->next->prev = it_prev;
+src/engine/order_hit_list.c:  it_prev->next = it->next;
+src/engine/order_hit_list.c:  it->prev = it_prev->prev;
+src/engine/order_hit_list.c:  it->next = it_prev;
+src/engine/order_hit_list.c:  it_prev->prev = it;
+src/engine/order_hit_list.c:  if (root == NULL || root->next == NULL || root->next->next == NULL)
+src/engine/order_hit_list.c:  it = root->next->next;
+src/engine/order_hit_list.c:  it_prev = root->next;
+src/engine/order_hit_list.c:      if (it->k < it_prev->k)
+src/engine/order_hit_list.c:	  return (-1);
+src/engine/order_hit_list.c:      it = it->next;
+src/engine/order_hit_list.c:      it_prev = it_prev->next;
+src/engine/order_hit_list.c:  while (order_list(root) == -1);
+src/engine/perlin.c:  *r0 = t - (int)t;
+src/engine/perlin.c:  *r1 = *r0 - 1.0;
+src/engine/perlin.c:  while (--i)
+src/engine/perlin.c:  i = -1;
+src/engine/perlin.c:      j = -1;
+src/engine/perlin.c:      j = -1;
+src/engine/perlin.c:  i  = -1;
+src/engine/perlin.c:      g1[i] = (double)((random() % (B + B)) - B) / B;
+src/engine/perlin.c:      j = -1;
+src/engine/perlin.c:	g2[i][j] = (double)((random() % (B + B)) - B) / B;
+src/engine/perlin.c:      j = -1;
+src/engine/perlin.c:	g3[i][j] = (double)((random() % (B + B)) - B) / B;
+src/engine/perlin.c:   i = -1;
+src/engine/rotations.c:  save_x = vct->x;
+src/engine/rotations.c:  save_y = vct->y;
+src/engine/rotations.c:  vct->x = r->rotx[0][0] * save_x
+src/engine/rotations.c:    + r->rotx[0][1] * save_y + r->rotx[0][2] * vct->z;
+src/engine/rotations.c:  vct->y = r->rotx[1][0] * save_x
+src/engine/rotations.c:    + r->rotx[1][1] * save_y + r->rotx[1][2] * vct->z;
+src/engine/rotations.c:  vct->z = r->rotx[2][0] * save_x
+src/engine/rotations.c:    + r->rotx[2][1] * save_y + r->rotx[2][2] * vct->z;
+src/engine/rotations.c:  save_x = vct->x;
+src/engine/rotations.c:  save_y = vct->y;
+src/engine/rotations.c:  vct->x = r->roty[0][0] * save_x
+src/engine/rotations.c:    + r->roty[0][1] * save_y + r->roty[0][2] * vct->z;
+src/engine/rotations.c:  vct->y = r->roty[1][0] * save_x
+src/engine/rotations.c:    + r->roty[1][1] * save_y + r->roty[1][2] * vct->z;
+src/engine/rotations.c:  vct->z = r->roty[2][0] * save_x
+src/engine/rotations.c:    + r->roty[2][1] * save_y + r->roty[2][2] * vct->z;
+src/engine/rotations.c:  save_x = vct->x;
+src/engine/rotations.c:  save_y = vct->y;
+src/engine/rotations.c:  vct->x = r->rotz[0][0] * save_x + r->rotz[0][1] * save_y
+src/engine/rotations.c:    + r->rotz[0][2] * vct->z;
+src/engine/rotations.c:  vct->y = r->rotz[1][0] * save_x + r->rotz[1][1] * save_y
+src/engine/rotations.c:    + r->rotz[1][2] * vct->z;
+src/engine/rotations.c:  vct->z = r->rotz[2][0] * save_x + r->rotz[2][1] * save_y
+src/engine/rotations.c:    + r->rotz[2][2] * vct->z;
+src/engine/rotations.c:  vct = rotate_x(r, vct, (360 - rot->x) % 360);
+src/engine/rotations.c:  vct = rotate_y(r, vct, (360 - rot->y) % 360);
+src/engine/rotations.c:  vct = rotate_z(r, vct, (360 - rot->z) % 360);
+src/engine/rotations.c:  vct = rotate_z(r, vct, (360 - (-rot->z)) % 360);
+src/engine/rotations.c:  vct = rotate_y(r, vct, (360 - (-rot->y)) % 360);
+src/engine/rotations.c:  vct = rotate_x(r, vct, (360 - (-rot->x)) % 360);
+src/engine/set_hit_values.c:  sphere = obj->datas;
+src/engine/set_hit_values.c:  s->hit.k1 = sphere->k1;
+src/engine/set_hit_values.c:  s->hit.k2 = sphere->k2;
+src/engine/set_hit_values.c:  s->hit.simple_inter1 = sphere->simple_inter1;
+src/engine/set_hit_values.c:  s->hit.simple_inter2 = sphere->simple_inter2;
+src/engine/set_hit_values.c:  s->hit.norm = sphere->norm;
+src/engine/set_hit_values.c:  s->hit.brightness = sphere->brightness;
+src/engine/set_hit_values.c:  s->hit.ka = sphere->ka;
+src/engine/set_hit_values.c:  s->hit.kd = sphere->kd;
+src/engine/set_hit_values.c:  s->hit.ks = sphere->ks;
+src/engine/set_hit_values.c:  s->hit.reflection = sphere->reflection;
+src/engine/set_hit_values.c:  s->hit.opacity = sphere->opacity;
+src/engine/set_hit_values.c:  s->hit.n2 = sphere->refraction;
+src/engine/set_hit_values.c:  s->hit.limited = 0;
+src/engine/set_hit_values.c:  s->final_color = sphere->color1;
+src/engine/set_hit_values.c:  s->hit.color1 = sphere->color1;
+src/engine/set_hit_values.c:  s->hit.color2 = sphere->color2;
+src/engine/set_hit_values.c:  s->hit.tex_type = sphere->tex_type;
+src/engine/set_hit_values.c:  s->hit.texture1 = sphere->texture;
+src/engine/set_hit_values.c:  cylinder = obj->datas;
+src/engine/set_hit_values.c:  s->hit.k1 = cylinder->k1;
+src/engine/set_hit_values.c:  s->hit.k2 = cylinder->k2;
+src/engine/set_hit_values.c:  s->hit.simple_inter1 = cylinder->simple_inter1;
+src/engine/set_hit_values.c:  s->hit.simple_inter2 = cylinder->simple_inter2;
+src/engine/set_hit_values.c:  s->hit.norm = cylinder->norm;
+src/engine/set_hit_values.c:  s->hit.brightness = cylinder->brightness;
+src/engine/set_hit_values.c:  s->hit.ka = cylinder->ka;
+src/engine/set_hit_values.c:  s->hit.kd = cylinder->kd;
+src/engine/set_hit_values.c:  s->hit.ks = cylinder->ks;
+src/engine/set_hit_values.c:  s->hit.opacity = cylinder->opacity;
+src/engine/set_hit_values.c:  s->hit.reflection = cylinder->reflection;
+src/engine/set_hit_values.c:  s->hit.n2 = cylinder->refraction;
+src/engine/set_hit_values.c:  s->hit.limited = cylinder->limited;
+src/engine/set_hit_values.c:  s->final_color = cylinder->color1;
+src/engine/set_hit_values.c:  if (s->hit.limited == 0)
+src/engine/set_hit_values.c:      s->hit.color1 = cylinder->color1;
+src/engine/set_hit_values.c:      s->hit.color2 = cylinder->color2;
+src/engine/set_hit_values.c:  if (s->hit.limited == 1)
+src/engine/set_hit_values.c:      s->hit.color1 = cylinder->color2;
+src/engine/set_hit_values.c:      s->hit.color2 = cylinder->color1;
+src/engine/set_hit_values.c:  s->hit.tex_type = cylinder->tex_type;
+src/engine/set_hit_values.c:  s->hit.texture1 = cylinder->texture1;
+src/engine/set_hit_values.c:  s->hit.texture2 = cylinder->texture2;
+src/engine/set_hit_values.c:  if (s->hit.limited == 0)
+src/engine/set_hit_values.c:  cone = obj->datas;
+src/engine/set_hit_values.c:  s->hit.k1 = cone->k1;
+src/engine/set_hit_values.c:  s->hit.k2 = cone->k2;
+src/engine/set_hit_values.c:  s->hit.simple_inter1 = cone->simple_inter1;
+src/engine/set_hit_values.c:  s->hit.simple_inter2 = cone->simple_inter2;
+src/engine/set_hit_values.c:  s->hit.norm = cone->norm;
+src/engine/set_hit_values.c:  s->hit.brightness = cone->brightness;
+src/engine/set_hit_values.c:  s->hit.ka = cone->ka;
+src/engine/set_hit_values.c:  s->hit.kd = cone->kd;
+src/engine/set_hit_values.c:  s->hit.ks = cone->ks;
+src/engine/set_hit_values.c:  s->hit.reflection = cone->reflection;
+src/engine/set_hit_values.c:  s->hit.opacity = cone->opacity;
+src/engine/set_hit_values.c:  s->hit.n2 = cone->refraction;
+src/engine/set_hit_values.c:  s->hit.limited = cone->limited;
+src/engine/set_hit_values.c:  s->final_color = cone->color1;
+src/engine/set_hit_values.c:  s->hit.color1 = cone->color1;
+src/engine/set_hit_values.c:  s->hit.color2 = cone->color2;
+src/engine/set_hit_values.c:  s->hit.tex_type = cone->tex_type;
+src/engine/set_hit_values.c:  s->hit.texture1 = cone->texture1;
+src/engine/set_hit_values.c:  s->hit.texture2 = cone->texture2;
+src/engine/set_hit_values.c:  plan = obj->datas;
+src/engine/set_hit_values.c:  s->hit.k1 = plan->k1;
+src/engine/set_hit_values.c:  s->hit.k2 = plan->k2;
+src/engine/set_hit_values.c:  s->hit.simple_inter1 = plan->simple_inter1;
+src/engine/set_hit_values.c:  s->hit.simple_inter2 = plan->simple_inter2;
+src/engine/set_hit_values.c:  s->hit.norm = plan->norm;
+src/engine/set_hit_values.c:  s->hit.brightness = plan->brightness;
+src/engine/set_hit_values.c:  s->hit.ka = plan->ka;
+src/engine/set_hit_values.c:  s->hit.kd = plan->kd;
+src/engine/set_hit_values.c:  s->hit.ks = plan->ks;
+src/engine/set_hit_values.c:  s->hit.reflection = plan->reflection;
+src/engine/set_hit_values.c:  s->hit.opacity = plan->opacity;
+src/engine/set_hit_values.c:  s->hit.n2 = plan->refraction;
+src/engine/set_hit_values.c:  s->hit.color1 = plan->color1;
+src/engine/set_hit_values.c:  s->hit.color2 = plan->color2;
+src/engine/set_hit_values.c:  s->final_color = plan->color1;
+src/engine/set_hit_values.c:  s->hit.tex_type = plan->tex_type;
+src/engine/set_hit_values.c:  s->hit.texture1 = plan->texture;
+src/engine/set_hit_values.c:  box = obj->datas;
+src/engine/set_hit_values.c:  s->hit.k1 = box->k1;
+src/engine/set_hit_values.c:  s->hit.k2 = box->k2;
+src/engine/set_hit_values.c:  s->hit.simple_inter1 = plan->simple_inter1;
+src/engine/set_hit_values.c:  s->hit.simple_inter2 = plan->simple_inter2;
+src/engine/set_hit_values.c:  s->hit.norm = plan->norm;
+src/engine/set_hit_values.c:  s->hit.brightness = plan->brightness;
+src/engine/set_hit_values.c:  s->hit.ka = plan->ka;
+src/engine/set_hit_values.c:  s->hit.kd = plan->kd;
+src/engine/set_hit_values.c:  s->hit.ks = plan->ks;
+src/engine/set_hit_values.c:  s->hit.reflection = plan->reflection;
+src/engine/set_hit_values.c:  s->hit.opacity = plan->opacity;
+src/engine/set_hit_values.c:  s->hit.n2 = plan->refraction;
+src/engine/set_hit_values.c:  s->hit.color1 = plan->color1;
+src/engine/set_hit_values.c:  s->hit.color2 = plan->color2;
+src/engine/set_hit_values.c:  s->final_color = plan->color1;
+src/engine/set_hit_values.c:  s->hit.tex_type = plan->tex_type;
+src/engine/set_hit_values.c:  s->hit.texture1 = plan->texture;
+src/engine/set_hit_values.c:  s->ftabs.hit_ftab[0] = &set_hit_values_from_sphere;
+src/engine/set_hit_values.c:  s->ftabs.hit_ftab[1] = &set_hit_values_from_cylinder;
+src/engine/set_hit_values.c:  s->ftabs.hit_ftab[2] = &set_hit_values_from_cone;
+src/engine/set_hit_values.c:  s->ftabs.hit_ftab[3] = &set_hit_values_from_plan;
+src/engine/set_hit_values.c:  /* s->ftabs.hit_ftab[4] = &set_hit_values_from_box; */
+src/engine/set_hit_values.c:  s->ftabs.hit_ftab[obj->type - 2](s, obj);
+src/engine/setup_noise.c:  *r0 = t - (int)t;
+src/engine/setup_noise.c:  *r1 = *r0 - 1.0;
+src/engine/shade.c:  add = diffuse_light(s, s->obj_hit->next);
+src/engine/shade.c:      add = add * light->intensity * s->hit.kd;
+src/engine/shade.c:      add += (specular_light(s, s->ray.vct) * light->intensity * s->hit.ks);
+src/engine/shade.c:      *light_color = add_light_color(*light_color, light->color);
+src/engine/shade.c:  i = get_soft_intensity(s, itab) + s->opt.ambient * s->hit.ka;
+src/engine/shade.c:  s->final_color = apply_b(s->final_color, light_color, s->hit.brightness, i);
+src/engine/shade.c:  if (s->shade.shadow.coef > 1.0)
+src/engine/shade.c:    coef = s->shade.shadow.coef;
+src/engine/shade.c:  itab[s->shade.diff] = (apply_light(s, light, light_color) * (1.0 - coef));
+src/engine/shade.c:  s->shade.diff++;
+src/engine/shade.c:  it = s->obj;
+src/engine/shade.c:  init_itab(s->shade.itab);
+src/engine/shade.c:      if (it->type == 1)
+src/engine/shade.c:	  s->shade.diff = 0;
+src/engine/shade.c:	  light = (t_light *)it->datas;
+src/engine/shade.c:	  while (s->shade.diff < s->opt.nb_rays_ss)
+src/engine/shade.c:	      fill_itab(s, light, &light_color, s->shade.itab);
+src/engine/shade.c:      it = it->next;
+src/engine/shade.c:  get_final_color(s, light_color, s->shade.itab);
+src/engine/shadow.c:  if (obj->datas == s->obj_hit->next->datas)
+src/engine/shadow.c:  shape = (t_sphere *)obj->datas;
+src/engine/shadow.c:      s->shade.shadow.coef += shape->opacity;
+src/engine/shadow.c:  if (obj->datas == s->obj_hit->next->datas)
+src/engine/shadow.c:  shape = (t_cone *)obj->datas;
+src/engine/shadow.c:      s->shade.shadow.coef += shape->opacity;
+src/engine/shadow.c:  if (obj->datas == s->obj_hit->next->datas)
+src/engine/shadow.c:  shape = (t_cylinder *)obj->datas;
+src/engine/shadow.c:      s->shade.shadow.coef += shape->opacity;
+src/engine/shadow.c:  if (obj->datas == s->obj_hit->next->datas)
+src/engine/shadow.c:  shape = (t_plan *)obj->datas;
+src/engine/shadow.c:      s->shade.shadow.coef += shape->opacity;
+src/engine/shadow.c:  s->ftabs.shadow_ftab[0] = &shadow_sphere;
+src/engine/shadow.c:  s->ftabs.shadow_ftab[1] = &shadow_cylinder;
+src/engine/shadow.c:  s->ftabs.shadow_ftab[2] = &shadow_cone;
+src/engine/shadow.c:  s->ftabs.shadow_ftab[3] = &shadow_plan;
+src/engine/shadow.c:  it = s->obj;
+src/engine/shadow.c:  s->shade.shadow.coef = 0;
+src/engine/shadow.c:      if (it->type > 1)
+src/engine/shadow.c:	s->ftabs.shadow_ftab[it->type - 2](s, it);
+src/engine/shadow.c:      if (s->shade.shadow.coef >= 1)
+src/engine/shadow.c:      it = it->next;
+src/engine/shadow_inters.c:    return (-1);
+src/engine/shadow_inters.c:  eye.x = (double)(s->shade.light_pos.x - sphere->pos.x);
+src/engine/shadow_inters.c:  eye.y = (double)(s->shade.light_pos.y - sphere->pos.y);
+src/engine/shadow_inters.c:  eye.z = (double)(s->shade.light_pos.z - sphere->pos.z);
+src/engine/shadow_inters.c:  vct = set_pos(s->shade.vct.x, s->shade.vct.y, s->shade.vct.z);
+src/engine/shadow_inters.c:  c = CARRE(eye.x) + CARRE(eye.y) + CARRE(eye.z) -
+src/engine/shadow_inters.c:    CARRE(sphere->size);
+src/engine/shadow_inters.c:  if ((delta = CARRE(b) - 4 * a * c) < 0.000001)
+src/engine/shadow_inters.c:  k[0] = (- b + sqrt(delta)) / (2 * a);
+src/engine/shadow_inters.c:  k[1] = (- b - sqrt(delta)) / (2 * a);
+src/engine/shadow_inters.c:  angle = cone->angle * M_PI / 180.0;
+src/engine/shadow_inters.c:  eye.x = (double)(s->shade.light_pos.x - cone->pos.x);
+src/engine/shadow_inters.c:  eye.y = (double)(s->shade.light_pos.y - cone->pos.y);
+src/engine/shadow_inters.c:  eye.z = (double)(s->shade.light_pos.z - cone->pos.z);
+src/engine/shadow_inters.c:  vct = set_pos(s->shade.vct.x, s->shade.vct.y, s->shade.vct.z);
+src/engine/shadow_inters.c:  rotation(&s->rotation, &vct, &cone->rot);
+src/engine/shadow_inters.c:  rotation(&s->rotation, &eye, &cone->rot);
+src/engine/shadow_inters.c:  a = CARRE(vct.x) + CARRE(vct.y) - CARRE(vct.z) / CARRE(tan(angle));
+src/engine/shadow_inters.c:  b = 2 * (vct.y * eye.y + vct.x * eye.x - (vct.z * eye.z)
+src/engine/shadow_inters.c:  c = CARRE(eye.x) + CARRE(eye.y) - CARRE(eye.z) / CARRE(tan(angle));
+src/engine/shadow_inters.c:  if ((delta = CARRE(b) - 4 * a * c) < 0)
+src/engine/shadow_inters.c:  k[0] = (- b + sqrt(delta)) / (2 * a);
+src/engine/shadow_inters.c:  k[1] = (- b - sqrt(delta)) / (2 * a);
+src/engine/shadow_inters.c:  eye.x = (double)(s->shade.light_pos.x - cylinder->pos.x);
+src/engine/shadow_inters.c:  eye.y = (double)(s->shade.light_pos.y - cylinder->pos.y);
+src/engine/shadow_inters.c:  eye.z = (double)(s->shade.light_pos.z - cylinder->pos.z);
+src/engine/shadow_inters.c:  vct = set_pos(s->shade.vct.x, s->shade.vct.y, s->shade.vct.z);
+src/engine/shadow_inters.c:  rotation(&s->rotation, &vct, &cylinder->rot);
+src/engine/shadow_inters.c:  rotation(&s->rotation, &eye, &cylinder->rot);
+src/engine/shadow_inters.c:  c = CARRE(eye.x) + CARRE(eye.y) - CARRE(cylinder->size);
+src/engine/shadow_inters.c:  if ((delta = CARRE(b) - 4 * a * c) < 0)
+src/engine/shadow_inters.c:  k[0] = (- b + sqrt(delta)) / (2 * a);
+src/engine/shadow_inters.c:  k[1] = (- b - sqrt(delta)) / (2 * a);
+src/engine/shadow_inters.c:  eye.x = (double)(s->shade.light_pos.x - plan->pos.x);
+src/engine/shadow_inters.c:  eye.y = (double)(s->shade.light_pos.y - plan->pos.y);
+src/engine/shadow_inters.c:  eye.z = (double)(s->shade.light_pos.z - plan->pos.z);
+src/engine/shadow_inters.c:  vct = set_pos(s->shade.vct.x, s->shade.vct.y, s->shade.vct.z);
+src/engine/shadow_inters.c:  rotation(&s->rotation, &vct, &plan->rot);
+src/engine/shadow_inters.c:  rotation(&s->rotation, &eye, &plan->rot);
+src/engine/shadow_inters.c:  k = -1.0 * ((double)eye.z / vct.z);
+src/engine/shadow_limited_objects.c:    return (-1);
+src/engine/shadow_limited_objects.c:  if ((s->shade.shadow.simple_inter1.z <
+src/engine/shadow_limited_objects.c:       - cylinder->height &&
+src/engine/shadow_limited_objects.c:       s->shade.shadow.simple_inter2.z < - cylinder->height) ||
+src/engine/shadow_limited_objects.c:      (s->shade.shadow.simple_inter1.z > cylinder->height &&
+src/engine/shadow_limited_objects.c:       s->shade.shadow.simple_inter2.z > cylinder->height))
+src/engine/shadow_limited_objects.c:  if (s->shade.shadow.simple_inter1.z < 0 ||
+src/engine/shadow_limited_objects.c:      (s->shade.shadow.simple_inter1.z > cone->height &&
+src/engine/shadow_limited_objects.c:       s->shade.shadow.simple_inter2.z > cone->height))
+src/engine/shadow_simple_inters.c:    return (-1);
+src/engine/shadow_simple_inters.c:  if (k[0] < s->hit.k1 && k[1] > 0.000001)
+src/engine/shadow_simple_inters.c:  s->shade.shadow.simple_inter1.x = eye->x + k[0] * vct->x;
+src/engine/shadow_simple_inters.c:  s->shade.shadow.simple_inter1.y = eye->y + k[0] * vct->y;
+src/engine/shadow_simple_inters.c:  s->shade.shadow.simple_inter1.z = eye->z + k[0] * vct->z;
+src/engine/shadow_simple_inters.c:  s->shade.shadow.simple_inter2.x = eye->x + k[1] * vct->x;
+src/engine/shadow_simple_inters.c:  s->shade.shadow.simple_inter2.y = eye->y + k[1] * vct->y;
+src/engine/shadow_simple_inters.c:  s->shade.shadow.simple_inter2.z = eye->z + k[1] * vct->z;
+src/engine/skybox.c:  color = (t_color *)img->pixels;
+src/engine/skybox.c:  u = u * img->clipable.clip_width;
+src/engine/skybox.c:  v = v * img->clipable.clip_height;
+src/engine/skybox.c:  s->final_color = color[img->clipable.clip_width * (int)v + (int)u];
+src/engine/skybox.c:  if (vct->x > 0.0)
+src/engine/skybox.c:      s->final_color.full = 0xFF0000FF;
+src/engine/skybox.c:		   (vct->z / vct->x + 1.0) * 0.5,
+src/engine/skybox.c:		   1.0 - (vct->y / vct->x + 1.0) * 0.5,
+src/engine/skybox.c:		   s->opt.skybox_right);
+src/engine/skybox.c:      s->final_color.full = 0xFF0000FF;
+src/engine/skybox.c:		   (vct->z / vct->x + 1.0) * 0.5,
+src/engine/skybox.c:		   (vct->y / vct->x + 1.0) * 0.5,
+src/engine/skybox.c:		   s->opt.skybox_left);
+src/engine/skybox.c:  if (vct->y > 0.0)
+src/engine/skybox.c:		 1.0 - (vct->x / vct->y + 1.0) * 0.5,
+src/engine/skybox.c:		 (vct->z / vct->y + 1.0) * 0.5,
+src/engine/skybox.c:		 s->opt.skybox_up);
+src/engine/skybox.c:		 (vct->x / vct->y + 1.0) * 0.5,
+src/engine/skybox.c:		 1.0 - (vct->z / vct->y + 1.0) * 0.5,
+src/engine/skybox.c:		 s->opt.skybox_down);
+src/engine/skybox.c:  if (vct->z > 0.0)
+src/engine/skybox.c:		   1.0 - (vct->x / vct->z + 1.0) * 0.5,
+src/engine/skybox.c:		   1.0 - (vct->y / vct->z + 1.0) * 0.5,
+src/engine/skybox.c:		   s->opt.skybox_forward);
+src/engine/skybox.c:		   1.0 - (vct->x / vct->z + 1.0) * 0.5,
+src/engine/skybox.c:		   (vct->y / vct->z + 1.0) * 0.5,
+src/engine/skybox.c:		   s->opt.skybox_backward);
+src/engine/skybox.c:  if (s->opt.skybox == 0)
+src/engine/skybox.c:      s->final_color.full = BLACK;
+src/engine/skybox.c:  if (fabs(vct->x) >= fabs(vct->y) && fabs(vct->x) >= fabs(vct->z))
+src/engine/skybox.c:  else if (fabs(vct->y) >= fabs(vct->x) && fabs(vct->y) >= fabs(vct->z))
+src/engine/soft_shadows.c:  while (j < s->opt.nb_rays_ss)
+src/engine/soft_shadows.c:  i = i / (double)s->opt.nb_rays_ss;
+src/engine/specular_light.c:  s->hit.r.x = 2 * s->hit.cos_theta * s->hit.nnorm.x + s->shade.nvct.x;
+src/engine/specular_light.c:  s->hit.r.y = 2 * s->hit.cos_theta * s->hit.nnorm.y + s->shade.nvct.y;
+src/engine/specular_light.c:  s->hit.r.z = 2 * s->hit.cos_theta * s->hit.nnorm.z + s->shade.nvct.z;
+src/engine/specular_light.c:  len = sqrt(pow(vision->x, 2) + pow(vision->y, 2) + pow(vision->z, 2));
+src/engine/specular_light.c:  nvision.x = - vision->x / len;
+src/engine/specular_light.c:  nvision.y = - vision->y / len;
+src/engine/specular_light.c:  nvision.z = - vision->z / len;
+src/engine/specular_light.c:  a = (nvision.x * s->hit.r.x)
+src/engine/specular_light.c:    + (nvision.y * s->hit.r.y)
+src/engine/specular_light.c:    + (nvision.z * s->hit.r.z);
+src/engine/texturize_obj.c:  s->final_color = s->hit.color1;
+src/engine/texturize_obj.c:  color = s->hit.texture1->pixels;
+src/engine/texturize_obj.c:  s->hit.texels.x = s->hit.texels.x
+src/engine/texturize_obj.c:    * s->hit.texture1->clipable.clip_width;
+src/engine/texturize_obj.c:  s->hit.texels.y = s->hit.texels.y
+src/engine/texturize_obj.c:    * s->hit.texture1->clipable.clip_height;
+src/engine/texturize_obj.c:  s->final_color = color[s->hit.texture1->clipable.clip_width
+src/engine/texturize_obj.c:			 * (int)s->hit.texels.y
+src/engine/texturize_obj.c:			 + (int)s->hit.texels.x];
+src/engine/texturize_obj.c:  s->ftabs.tex_ftab[0] = &full_color;
+src/engine/texturize_obj.c:  s->ftabs.tex_ftab[1] = &stripes;
+src/engine/texturize_obj.c:  s->ftabs.tex_ftab[2] = &checkerboard_2d;
+src/engine/texturize_obj.c:  s->ftabs.tex_ftab[3] = &planar_checkerboard;
+src/engine/texturize_obj.c:  s->ftabs.tex_ftab[4] = &checkerboard_3d;
+src/engine/texturize_obj.c:  s->ftabs.tex_ftab[5] = &smooth_noise;
+src/engine/texturize_obj.c:  s->ftabs.tex_ftab[6] = &marble_noise;
+src/engine/texturize_obj.c:  s->ftabs.tex_ftab[7] = &get_image_texel;
+src/engine/texturize_obj.c:  if (s->hit.tex_type < 9)
+src/engine/texturize_obj.c:    s->ftabs.tex_ftab[s->hit.tex_type - 1](s);
+src/engine/texturize_obj.c:    s->ftabs.tex_ftab[0](s);
+src/engine/translation.c:  pos->x += vec->x;
+src/engine/translation.c:  pos->y += vec->y;
+src/engine/translation.c:  pos->z += vec->z;
+src/engine/translation.c:  pos->x += vec->x;
+src/engine/translation.c:  pos->y += vec->y;
+src/engine/translation.c:  pos->z += vec->z;
+src/engine/update_hit_list.c:  if (s->hit.k1 > 0.000001 || s->hit.k2 > 0.000001)
+src/engine/update_hit_list.c:      if (s->obj_hit == NULL)
+src/engine/update_hit_list.c:	  if ((s->obj_hit = create_obj_list()) == NULL)
+src/engine/update_hit_list.c:	    return (-1);
+src/engine/update_hit_list.c:      if (add_obj_elem(s->obj_hit) == -1)
+src/engine/update_hit_list.c:	return (-1);
+src/engine/update_hit_list.c:      it = s->obj_hit;
+src/engine/update_hit_list.c:      it->real = 1;
+src/engine/update_hit_list.c:      while (it->next != NULL)
+src/engine/update_hit_list.c:	it = it->next;
+src/engine/update_hit_list.c:      it->datas = shape;
+src/engine/update_hit_list.c:      it->type = type;
+src/engine/update_hit_list.c:      it->k = k;
+src/engine/update_hit_list.c:      it->name = s->hit.name;
+src/engine/update_real_hit_list.c:  it = s->obj_hit;
+src/engine/update_real_hit_list.c:  while (it != NULL && it->real == 1)
+src/engine/update_real_hit_list.c:    it = it->next;
+src/engine/update_real_hit_list.c:    it->real = 1;
+src/engine/update_real_hit_list.c:  it = s->obj_hit;
+src/engine/update_real_hit_list.c:  if (s->obj_hit->next == NULL)
+src/engine/update_real_hit_list.c:  while (it->next != NULL && it->next->next != NULL)
+src/engine/update_real_hit_list.c:    it = it->next;
+src/engine/update_real_hit_list.c:  while (it->next->real == 0)
+src/engine/update_real_hit_list.c:      bunny_free(it->next);
+src/engine/update_real_hit_list.c:      it->next = NULL;
+src/engine/update_real_hit_list.c:      it = it->prev;

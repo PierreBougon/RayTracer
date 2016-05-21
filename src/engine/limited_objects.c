@@ -5,12 +5,38 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 14 16:26:45 2016 romain samuel
-** Last update Mon May  2 17:17:23 2016 romain samuel
+** Last update Sat May 21 04:11:12 2016 romain samuel
 */
 
 #include "raytracer.h"
 
-int		get_cylinder_plan_inter1(t_rt *s, t_cylinder *cylinder)
+/* int		get_cylinder_plan1_inter1(t_rt *s, t_cylinder *cylinder) */
+/* { */
+/*   t_plan	plan; */
+/*   t_acc		pos; */
+
+/*   pos.x = 0; */
+/*   pos.y = 0; */
+/*   pos.z = cylinder->height; */
+/*   end_rotation(&s->rotation, &pos, &cylinder->rot); */
+/*   plan.pos.x = cylinder->pos.x + pos.x; */
+/*   plan.pos.y = cylinder->pos.y + pos.y; */
+/*   plan.pos.z = cylinder->pos.z + pos.z; */
+/*   plan.rot.x = cylinder->rot.x; */
+/*   plan.rot.y = cylinder->rot.y; */
+/*   plan.rot.z = cylinder->rot.z; */
+/*   inter_plan(s, &plan); */
+/*   get_simple_inter(s, s->ray.vct, &s->ray.new_eye); */
+/*   end_rotation(&s->rotation, s->ray.vct, &plan.rot); */
+/*   get_norm_plan(s, &plan, &s->hit.norm1); */
+/*   s->hit.limited = 1; */
+/*   s->hit.simple_inter1.x += (double)pos.x; */
+/*   s->hit.simple_inter1.y += (double)pos.y; */
+/*   s->hit.simple_inter1.z += (double)pos.z; */
+/*   return (0); */
+/* } */
+
+int		get_cylinder_plan1_inter1(t_rt *s, t_cylinder *cylinder)
 {
   t_plan	plan;
   t_acc		pos;
@@ -21,19 +47,24 @@ int		get_cylinder_plan_inter1(t_rt *s, t_cylinder *cylinder)
   end_rotation(&s->rotation, &pos, &cylinder->rot);
   plan.pos.x = cylinder->pos.x + pos.x;
   plan.pos.y = cylinder->pos.y + pos.y;
-  plan.pos.z = cylinder->pos.z + pos.y;
+  plan.pos.z = cylinder->pos.z + pos.z;
   plan.rot.x = cylinder->rot.x;
   plan.rot.y = cylinder->rot.y;
   plan.rot.z = cylinder->rot.z;
   inter_plan(s, &plan);
-  get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
+  s->hit.simple_inter1.x = s->ray.new_eye.x + s->hit.k1 * s->ray.vct->x;
+  s->hit.simple_inter1.y = s->ray.new_eye.y + s->hit.k1 * s->ray.vct->y;
+  s->hit.simple_inter1.z = s->ray.new_eye.z + s->hit.k1 * s->ray.vct->z;
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
-  get_norm_plan(s, &plan);
-  s->hit.limited = 1;
+  get_norm_plan(s, &plan, &s->hit.norm1);
+  s->hit.simple_inter1.x += (double)pos.x;
+  s->hit.simple_inter1.y += (double)pos.y;
+  s->hit.simple_inter1.z += (double)pos.z;
   return (0);
 }
 
-int		get_cylinder_plan_inter2(t_rt *s, t_cylinder *cylinder)
+
+int		get_cylinder_plan2_inter1(t_rt *s, t_cylinder *cylinder)
 {
   t_plan	plan;
   t_acc		pos;
@@ -44,17 +75,47 @@ int		get_cylinder_plan_inter2(t_rt *s, t_cylinder *cylinder)
   end_rotation(&s->rotation, &pos, &cylinder->rot);
   plan.pos.x = cylinder->pos.x + pos.x;
   plan.pos.y = cylinder->pos.y + pos.y;
-  plan.pos.z = cylinder->pos.z + pos.y;
+  plan.pos.z = cylinder->pos.z + pos.z;
   plan.rot.x = cylinder->rot.x;
   plan.rot.y = cylinder->rot.y;
   plan.rot.z = cylinder->rot.z;
   inter_plan(s, &plan);
-  get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
+  s->hit.simple_inter1.x = s->ray.new_eye.x + s->hit.k1 * s->ray.vct->x;
+  s->hit.simple_inter1.y = s->ray.new_eye.y + s->hit.k1 * s->ray.vct->y;
+  s->hit.simple_inter1.z = s->ray.new_eye.z + s->hit.k1 * s->ray.vct->z;
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
-  get_norm_plan(s, &plan);
-  s->hit.limited = 1;
+  get_norm_plan(s, &plan, &s->hit.norm1);
+  s->hit.simple_inter1.x += (double)pos.x;
+  s->hit.simple_inter1.y += (double)pos.y;
+  s->hit.simple_inter1.z += (double)pos.z;
   return (0);
 }
+
+/* int		get_cylinder_plan2_inter1(t_rt *s, t_cylinder *cylinder) */
+/* { */
+/*   t_plan	plan; */
+/*   t_acc		pos; */
+
+/*   pos.x = 0; */
+/*   pos.y = 0; */
+/*   pos.z = - cylinder->height; */
+/*   end_rotation(&s->rotation, &pos, &cylinder->rot); */
+/*   plan.pos.x = cylinder->pos.x + pos.x; */
+/*   plan.pos.y = cylinder->pos.y + pos.y; */
+/*   plan.pos.z = cylinder->pos.z + pos.z; */
+/*   plan.rot.x = cylinder->rot.x; */
+/*   plan.rot.y = cylinder->rot.y; */
+/*   plan.rot.z = cylinder->rot.z; */
+/*   inter_plan(s, &plan); */
+/*   get_simple_inter(s, s->ray.vct, &s->ray.new_eye); */
+/*   end_rotation(&s->rotation, s->ray.vct, &plan.rot); */
+/*   get_norm_plan(s, &plan, &s->hit.norm1); */
+/*   s->hit.limited = 1; */
+/*   s->hit.simple_inter1.x += (double)pos.x; */
+/*   s->hit.simple_inter1.y += (double)pos.y; */
+/*   s->hit.simple_inter1.z += (double)pos.z; */
+/*   return (0); */
+/* } */
 
 int	limited_cylinder(t_rt *s, t_cylinder *cylinder)
 {
@@ -63,11 +124,11 @@ int	limited_cylinder(t_rt *s, t_cylinder *cylinder)
       (s->hit.simple_inter1.z > cylinder->height &&
        s->hit.simple_inter2.z > cylinder->height))
     return (-1);
-  else if (s->hit.simple_inter1.z < - cylinder->height)
-    return (get_cylinder_plan_inter2(s, cylinder));
+  if (s->hit.simple_inter1.z < - cylinder->height)
+    return (get_cylinder_plan2_inter1(s, cylinder));
   else if (s->hit.simple_inter1.z > cylinder->height)
-    return (get_cylinder_plan_inter1(s, cylinder));
-  get_norm_cylinder(s, cylinder);
+    return (get_cylinder_plan1_inter1(s, cylinder));
+  get_norm_cylinder(s, cylinder, &s->hit.norm1);
   return (0);
 }
 
@@ -89,7 +150,7 @@ int		get_cone_plan_inter(t_rt *s, t_cone *cone)
   inter_plan(s, &plan);
   get_simple_inter(s, s->ray.vct, &s->ray.new_eye);
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
-  get_norm_plan(s, &plan);
+  get_norm_plan(s, &plan, &s->hit.norm1);
   s->hit.limited = 1;
   return (0);
 }
@@ -106,6 +167,6 @@ int	limited_cone(t_rt *s, t_cone *cone)
       else
 	return (-1);
     }
-  get_norm_cone(s, cone);
+  get_norm_cone(s, cone, &s->hit.norm1);
   return (0);
 }

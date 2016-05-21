@@ -5,10 +5,21 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 17 11:55:00 2016 romain samuel
-** Last update Thu May  5 19:28:55 2016 romain samuel
+** Last update Tue May 17 03:19:48 2016 romain samuel
 */
 
 #include "raytracer.h"
+
+double		shadow_simple_inter_plan(t_rt *s,
+					 t_acc *vct,
+					 t_acc *eye,
+					 double k)
+{
+  s->shade.shadow.simple_inter1.x = eye->x + k * vct->x;
+  s->shade.shadow.simple_inter1.y = eye->y + k * vct->y;
+  s->shade.shadow.simple_inter1.z = eye->z + k * vct->z;
+  return (k);
+}
 
 double		shadow_simple_inters(t_rt *s,
 				     t_acc *vct,

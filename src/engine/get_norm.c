@@ -5,38 +5,38 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 10 22:40:50 2016 romain samuel
-** Last update Mon May  2 17:21:16 2016 romain samuel
+** Last update Wed May 18 16:19:12 2016 romain samuel
 */
 
 #include "raytracer.h"
 
-void		get_norm_plan(t_rt *s, t_plan *plan)
+void		get_norm_plan(t_rt *s, t_plan *plan, t_acc *norm)
 {
-  s->hit.norm.x = 0;
-  s->hit.norm.y = 0;
-  s->hit.norm.z = -100;
-  end_rotation(&s->rotation, &s->hit.norm, &plan->rot);
+  norm->x = 0;
+  norm->y = 0;
+  norm->z = -100;
+  end_rotation(&s->rotation, norm, &plan->rot);
 }
 
-void		get_norm_sphere(t_rt *s)
+void		get_norm_sphere(t_rt *s, t_acc *norm)
 {
-  s->hit.norm.x = s->hit.simple_inter1.x;
-  s->hit.norm.y = s->hit.simple_inter1.y;
-  s->hit.norm.z = s->hit.simple_inter1.z;
+  norm->x = s->hit.simple_inter1.x;
+  norm->y = s->hit.simple_inter1.y;
+  norm->z = s->hit.simple_inter1.z;
 }
 
-void		get_norm_cylinder(t_rt *s, t_cylinder *cylinder)
+void		get_norm_cylinder(t_rt *s, t_cylinder *cylinder, t_acc *norm)
 {
-  s->hit.norm.x = s->hit.simple_inter1.x;
-  s->hit.norm.y = s->hit.simple_inter1.y;
-  s->hit.norm.z = 0;
-  end_rotation(&s->rotation, &s->hit.norm, &cylinder->rot);
+  norm->x = s->hit.simple_inter1.x;
+  norm->y = s->hit.simple_inter1.y;
+  norm->z = 0;
+  end_rotation(&s->rotation, norm, &cylinder->rot);
 }
 
-void		get_norm_cone(t_rt *s, t_cone *cone)
+void		get_norm_cone(t_rt *s, t_cone *cone, t_acc *norm)
 {
-  s->hit.norm.x = s->hit.simple_inter1.x;
-  s->hit.norm.y = s->hit.simple_inter1.y;
-  s->hit.norm.z = - 0.1 * s->hit.simple_inter1.z;
-  end_rotation(&s->rotation, &s->hit.norm, &cone->rot);
+  norm->x = s->hit.simple_inter1.x;
+  norm->y = s->hit.simple_inter1.y;
+  norm->z = - 0.1 * s->hit.simple_inter1.z;
+  end_rotation(&s->rotation, norm, &cone->rot);
 }

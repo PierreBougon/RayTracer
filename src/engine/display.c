@@ -5,12 +5,12 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Thu May  5 20:24:45 2016 romain samuel
+** Last update Thu May 19 02:06:37 2016 romain samuel
 */
 
 #include "raytracer.h"
 
-int			inter_objects(t_rt *s)
+int			inter_objects(t_rt *s, t_object *obj)
 {
   t_object		*it;
 
@@ -19,13 +19,18 @@ int			inter_objects(t_rt *s)
   s->ftabs.inters_ftab[2] = &display_cone;
   s->ftabs.inters_ftab[3] = &display_plan;
   s->ftabs.inters_ftab[4] = &display_box;
+  s->ftabs.inters_ftab[5] = &display_csg;
   it = s->obj;
   while (it != NULL)
     {
-      s->hit.k1 = 0.0;
-      s->hit.k2 = 0.0;
-      if (it->type > 1)
-	s->ftabs.inters_ftab[it->type - 2](s, it);
+      if (obj == NULL || it != obj)
+	{
+	  s->hit.k1 = 0.0;
+	  s->hit.k2 = 0.0;
+	  if (it->type > 1 && it->type < 8)
+	    if (s->ftabs.inters_ftab[it->type - 2](s, it) == -1)
+	      return (-1);
+	}
       it = it->next;
     }
   return (0);
@@ -42,7 +47,7 @@ t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye)
     }
   s->ray.eye = eye;
   s->ray.vct = vct;
-  inter_objects(s);
+  inter_objects(s, NULL);
   order_hit_list(s->obj_hit);
   if (s->obj_hit != NULL && s->obj_hit->next != NULL)
     {

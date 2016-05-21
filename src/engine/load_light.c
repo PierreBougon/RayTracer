@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:15:43 2016 romain samuel
-** Last update Thu May  5 17:55:15 2016 romain samuel
+** Last update Tue May 10 14:41:55 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -58,5 +58,7 @@ int		load_light(t_rt *rt, t_bunny_ini *ini, char *scope)
   if (load_light_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;
+  if ((it->name = my_strdup(scope)) == NULL)
+    return (my_puterr("Could not perform malloc"));
   return (0);
 }

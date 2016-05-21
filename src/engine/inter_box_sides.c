@@ -5,86 +5,74 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May  4 15:44:38 2016 romain samuel
-** Last update Thu May  5 20:27:01 2016 romain samuel
+** Last update Sat May 21 21:03:07 2016 romain samuel
 */
 
 #include "raytracer.h"
 
-int		init_vecs(t_rt *s, t_box *box, t_acc vec[6])
+static void	set_box_simple_inter(t_acc *dest,
+				     t_acc *src)
 {
-  vec[0].x = 0;
-  vec[0].y = box->size.y;
-  vec[0].z = 0;
-  rotation(&s->rotation, &vec[0], &box->rot);
-  vec[1].x = 0;
-  vec[1].y = - box->size.y;
-  vec[1].z = 0;
-  rotation(&s->rotation, &vec[1], &box->rot);
-  vec[2].x = box->size.x;
-  vec[2].y = 0;
-  vec[2].z = 0;
-  rotation(&s->rotation, &vec[2], &box->rot);
-  vec[3].x = - box->size.x;
-  vec[3].y = 0;
-  vec[3].z = 0;
-  rotation(&s->rotation, &vec[3], &box->rot);
-  vec[4].x = 0;
-  vec[4].y = 0;
-  vec[4].z = box->size.z;
-  rotation(&s->rotation, &vec[4], &box->rot);
-  vec[5].x = 0;
-  vec[5].y = 0;
-  vec[5].z = - box->size.z;
-  rotation(&s->rotation, &vec[5], &box->rot);
-  return (0);
+  dest->x = src->x;
+  dest->y = src->y;
+  dest->z = src->z;
 }
 
-int		init_rot(t_box *box, t_pos rot[6])
+static void	check_box_inters(t_rt *s,
+				 t_acc *simple_inter,
+				 t_plan *plan,
+				 double	k[2])
 {
-  rot[0].x = box->rot.x + 90;
-  rot[0].y = box->rot.y;
-  rot[0].z = box->rot.z;
-  rot[1].x = box->rot.x + 90;
-  rot[1].y = box->rot.y;
-  rot[1].z = box->rot.z;
-  rot[2].x = box->rot.x;
-  rot[2].y = box->rot.y + 90;
-  rot[2].z = box->rot.z;
-  rot[3].x = box->rot.x;
-  rot[3].y = box->rot.y + 90;
-  rot[3].z = box->rot.z;
-  rot[4].x = box->rot.x;
-  rot[4].y = box->rot.y;
-  rot[4].z = box->rot.z;
-  rot[5].x = box->rot.x;
-  rot[5].y = box->rot.y;
-  rot[5].z = box->rot.z;
-  return (0);
+  if (s->hit.k1 > 0.00001 && s->hit.k1 < k[0]
+      && simple_inter->y < plan->height && simple_inter->y > - plan->height
+      && simple_inter->x < plan->width && simple_inter->x > - plan->width)
+    {
+      if (k[0] != 10000000)
+	{
+	  k[1] = k[0];
+	  set_box_simple_inter(&s->hit.simple_inter2, &s->hit.simple_inter1);
+	}
+      k[0] = s->hit.k1;
+      set_box_simple_inter(&s->hit.simple_inter1, simple_inter);
+      get_norm_plan(s, plan, &s->hit.norm1);
+    }
+  else if (s->hit.k1 > 0.00001 && s->hit.k1 < k[1]
+	   && simple_inter->y < plan->height && simple_inter->y > - plan->height
+	   && simple_inter->x < plan->width && simple_inter->x > - plan->width)
+    {
+      if (s->hit.k1 != k[0])
+	{
+	  k[1] = s->hit.k1;
+	  set_box_simple_inter(&s->hit.simple_inter2, simple_inter);
+	}
+    }
 }
 
 int		inter_box_sides(t_rt *s, t_box *box)
 {
-  (void)s;
-  (void)box;
-  /* t_plan	plan; */
-  /* t_acc		vec[6]; */
-  /* t_pos		rot[6]; */
-  /* int		i; */
-  /* double	k1; */
+  t_plan	plan;
+  t_acc		simple_inter;
+  int		i;
+  double	k[2];
 
-  /* i = 0; */
-  /* (void)plan; */
-  /* init_vecs(s, box, vec); */
-  /* init_rot(s, box, rot); */
-  /* while (i < 6) */
-  /*   { */
-  /*     plan.pos.x = box->pos.x + vec[i].x; */
-  /*     plan.pos.y = box->pos.y + vec[i].y; */
-  /*     plan.pos.z = box->pos.z + vec[i].z; */
-  /*     plan.rot = rot[i]; */
-  /*     inter_plan(s, &plan); */
-
-  /*     i++; */
-  /*   } */
+  i = 0;
+  k[0] = 10000000;
+  k[1] = 10000000;
+  while (i < 6)
+    {
+      s->hit.k1 = -1;
+      plan = box->plan[i];
+      inter_plan(s, &plan);
+      simple_inter.x = s->ray.new_eye.x + s->hit.k1 * s->ray.vct->x;
+      simple_inter.y = s->ray.new_eye.y + s->hit.k1 * s->ray.vct->y;
+      simple_inter.z = s->ray.new_eye.z + s->hit.k1 * s->ray.vct->z;
+      end_rotation(&s->rotation, s->ray.vct, &plan.rot);
+      check_box_inters(s, &simple_inter, &plan, k);
+      i++;
+    }
+  if (k[0] == 10000000)
+    return (-1);
+  s->hit.k1 = k[0];
+  s->hit.k2 = k[1];
   return (0);
 }

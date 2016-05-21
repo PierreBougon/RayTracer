@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Thu May  5 20:03:14 2016 romain samuel
+** Last update Sat May 21 07:48:00 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -102,6 +102,19 @@ typedef struct		s_acc
   float			z;
 }			t_acc;
 
+typedef struct		s_inter
+{
+  double		k;
+  t_acc			simple_inter;
+  t_acc			norm;
+  int			exterior;
+  int			sub;
+  int			del;
+  t_object		*obj;
+  struct s_inter	*next;
+  struct s_inter	*prev;
+}			t_inter;
+
 typedef struct		s_fresnel
 {
   double		cos_theta1;
@@ -146,6 +159,7 @@ typedef struct		s_plan
   t_fresnel		fresnel;
   double		n1;
   double		n2;
+  t_inter		*inter;
 }			t_plan;
 
 typedef struct		s_2order
@@ -201,10 +215,12 @@ typedef struct		s_sphere
   double		k2;
   t_acc			simple_inter2;
   t_acc			simple_inter1;
-  t_acc			norm;
+  t_acc			norm1;
+  t_acc			norm2;
   t_fresnel		fresnel;
   double		n1;
   double		n2;
+  t_inter		*inter;
 }			t_sphere;
 
 typedef struct		s_cone
@@ -232,15 +248,18 @@ typedef struct		s_cone
   double		k2;
   t_acc			simple_inter2;
   t_acc			simple_inter1;
-  t_acc			norm;
+  t_acc			norm1;
+  t_acc			norm2;
   int			limited;
   t_fresnel		fresnel;
   double		n1;
   double		n2;
+  t_inter		*inter;
 }			t_cone;
 
 typedef struct		s_box
 {
+  t_plan		plan[6];
   t_pos			pos;
   t_pos			rot;
   int			real;
@@ -261,11 +280,13 @@ typedef struct		s_box
   double		k2;
   t_acc			simple_inter2;
   t_acc			simple_inter1;
-  t_acc			norm;
+  t_acc			norm1;
+  t_acc			norm2;
   int			limited;
   t_fresnel		fresnel;
   double		n1;
   double		n2;
+  t_inter		*inter;
 }			t_box;
 
 typedef	struct		s_solv
@@ -310,11 +331,13 @@ typedef struct		s_cylinder
   double		k2;
   t_acc			simple_inter2;
   t_acc			simple_inter1;
-  t_acc			norm;
+  t_acc			norm1;
+  t_acc			norm2;
   int			limited;
   t_fresnel		fresnel;
   double		n1;
   double		n2;
+  t_inter		*inter;
 }			t_cylinder;
 
 typedef struct		s_tore
@@ -337,9 +360,11 @@ typedef struct		s_light
 typedef struct		s_object
 {
   void			*datas;
+  char			*name;
   int			type;
   double		k;
   int			real;
+  t_inter		*inter;
   struct s_object	*next;
   struct s_object	*prev;
 }			t_object;
@@ -382,10 +407,12 @@ typedef struct		s_ray
 
 typedef struct		s_hit
 {
+  char			*name;
   double		k1;
   double		k2;
   double		cos_theta;
-  t_acc			norm;
+  t_acc			norm1;
+  t_acc			norm2;
   t_acc			nnorm;
   t_acc			simple_inter1;
   t_acc			simple_inter2;
@@ -424,6 +451,7 @@ typedef struct		s_noise
 typedef struct		s_shade
 {
   t_acc			inter;
+  t_acc			nvision;
   t_acc			vct;
   t_acc			nvct;
   t_acc			light_pos;
@@ -438,6 +466,7 @@ typedef struct		s_shade
 typedef struct		s_ftab
 {
   int			(**inters_ftab)(t_rt *, t_object *);
+  int			(**csg_ftab)(t_rt *, t_object *);
   int			(**shadow_ftab)(t_rt *, t_object *);
   void			(**hit_ftab)(t_rt *, t_object *);
   void			(**tex_ftab)(t_rt *);
@@ -451,6 +480,18 @@ typedef struct		s_rotation
   double		roty[3][3];
   double		rotz[3][3];
 }			t_rotation;
+
+typedef struct		s_csg
+{
+  int			id;
+  int			type;
+  int			connections[2];
+  t_object		*obj;
+  t_inter		*inter;
+  struct s_csg		*up;
+  struct s_csg		*left;
+  struct s_csg		*right;
+}			t_csg;
 
 typedef struct		s_rt
 {
@@ -564,6 +605,19 @@ t_color		apply_b(t_color color,
 			double i);
 
 /*
+** create_csg_tree.c
+*/
+int		link_nodes(t_csg **tab, int i, int nb);
+int		create_csg_tree(t_csg **tab, int nb);
+
+/*
+** create_inter_list.c
+*/
+t_inter		*create_inter_list();
+t_inter		*add_inter_elem(t_inter *elem);
+t_inter		*delete_inter_elem(t_inter *elem);
+
+/*
 ** create_obj_list.c
 */
 t_object	*create_obj_list();
@@ -571,17 +625,59 @@ int		add_obj_elem(t_object *root);
 t_object	*add_obj_elem_ret(t_object *root);
 
 /*
+** csg_clean_second_list.c
+*/
+int		csg_clean_second_list(t_inter *right);
+
+/*
+** csg_intersection.c
+*/
+t_inter		*csg_intersection(t_inter *left, t_inter *right);
+
+/*
+** csg_merge_lists.c
+*/
+int		csg_merge_lists(t_inter *left, t_inter *right);
+
+/*
+** csg_operations.c
+*/
+t_inter		*csg_operations(t_csg *it, t_inter *left, t_inter *right);
+
+/*
+** csg_substraction.c
+*/
+int		csg_substraction(t_inter *left, t_inter *right);
+
+/*
+** csg_union.c
+*/
+int		csg_union(t_inter *left, t_inter *right);
+
+/*
+** delete_inter_list.c
+*/
+t_csg		*init_tree_inters(t_csg *it);
+t_csg		*free_tree_inters(t_csg *it);
+int		delete_inter_list(t_inter *left);
+
+/*
 ** diffuse_light.c
 */
 double		second_norm_brightness(t_rt *s);
-double		diffuse_light(t_rt *s, t_object *it);
+double		diffuse_light(t_rt *s);
 
 /*
 ** display.c
 */
-int		inter_objects(t_rt *s);
+int		inter_objects(t_rt *s, t_object *obj);
 t_color		display_objects(t_rt *s, t_acc *vct, t_acc eye);
 int		display(t_rt *s, t_data *data);
+
+/*
+** display_csg_objects.c
+*/
+int		display_csg_objects(t_rt *s, t_object *object);
 
 /*
 ** display_objects.c
@@ -591,6 +687,7 @@ int		display_cylinder(t_rt *s, t_object *obj);
 int		display_cone(t_rt *s, t_object *obj);
 int		display_plan(t_rt *s, t_object *obj);
 int		display_box(t_rt *s, t_object *obj);
+int		display_csg(t_rt *s, t_object *obj);
 
 /*
 ** exposure.c
@@ -600,10 +697,15 @@ double		expose(double i);
 /*
 ** get_norm.c
 */
-void		get_norm_plan(t_rt *s, t_plan *plan);
-void		get_norm_sphere(t_rt *s);
-void		get_norm_cylinder(t_rt *s, t_cylinder *cylinder);
-void		get_norm_cone(t_rt *s, t_cone *cone);
+void		get_norm_plan(t_rt *s, t_plan *plan, t_acc *norm);
+void		get_norm_sphere(t_rt *s, t_acc *norm);
+void		get_norm_cylinder(t_rt *s, t_cylinder *cylinder, t_acc *norm);
+void		get_norm_cone(t_rt *s, t_cone *cone, t_acc *norm);
+
+/*
+** get_obj.c
+*/
+t_object	*get_obj(t_rt *s, int x, int y);
 
 /*
 ** get_refracted_vec.c
@@ -627,14 +729,28 @@ void		get_texels_cylinder(t_rt *s, t_cylinder *cylinder);
 ** init_shade.c
 */
 int		init_soft_shadow(t_rt *s);
+void		check_norms(t_rt *s, t_acc *vct);
 void		init_itab(double itab[1]);
 void		init_lum(t_rt *s, t_acc *vct, t_acc eye, t_light *light);
 
 /*
 ** inter_box_sides.c
 */
-int		init_vecs(t_rt *s, t_box *box, t_acc vec[6]);
 int		inter_box_sides(t_rt *s, t_box *box);
+
+/*
+** inter_list.c
+*/
+int		fill_inter_list_sphere(t_rt *s,
+				       t_object *object);
+int		fill_inter_list_cylinder(t_rt *s,
+					 t_object *object);
+int		fill_inter_list_cone(t_rt *s,
+				     t_object *object);
+int		fill_inter_list_plan(t_rt *s,
+				     t_object *object);
+int		fill_inter_list_box(t_rt *s,
+				    t_object *object);
 
 /*
 ** inters.c
@@ -680,14 +796,61 @@ int		load_cone_datas4(t_cone *s, t_bunny_ini *ini, char *scope);
 int		load_cone(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
+** load_csg.c
+*/
+t_csg		**create_csg_tab(int len);
+int		load_csg_type(t_rt *rt,
+			      t_csg *node,
+			      t_bunny_ini *ini,
+			      char *scope);
+int		load_csg_object(t_rt *rt,
+				t_csg *node,
+				t_bunny_ini *ini,
+				char *scope);
+int		load_leaf(t_rt *rt,
+			  t_csg *node,
+			  char *scope,
+			  t_bunny_ini *ini);
+t_csg		*load_csg_datas(t_rt *rt,
+				t_bunny_ini *ini,
+				char *scope);
+int		load_csg(t_rt *s, t_bunny_ini *ini, char *scope);
+
+/*
+** load_csg_objects.c
+*/
+int		load_csg_sphere(t_rt *rt,
+				t_csg *node,
+				t_bunny_ini *ini,
+				char *scope);
+int		load_csg_cylinder(t_rt *rt,
+				  t_csg *node,
+				  t_bunny_ini *ini,
+				  char *scope);
+int		load_csg_cone(t_rt *rt,
+			      t_csg *node,
+			      t_bunny_ini *ini,
+			      char *scope);
+int		load_csg_box(t_rt *rt,
+			     t_csg *node,
+			     t_bunny_ini *ini,
+			     char *scope);
+
+/*
 ** load_cylinder.c
 */
 int		load_cylinder_datas(t_cylinder *s,
 				    t_bunny_ini *ini,
 				    char *scope);
-int		load_cylinder_datas2(t_cylinder *s, t_bunny_ini *ini, char *scope);
-int		load_cylinder_datas3(t_cylinder *s, t_bunny_ini *ini, char *scope);
-int		load_cylinder_datas4(t_cylinder *s, t_bunny_ini *ini, char *scope);
+int		load_cylinder_datas2(t_cylinder *s,
+				     t_bunny_ini *ini,
+				     char *scope);
+int		load_cylinder_datas3(t_cylinder *s,
+				     t_bunny_ini *ini,
+				     char *scope);
+int		load_cylinder_datas4(t_cylinder *s,
+				     t_bunny_ini *ini,
+				     char *scope);
 int		load_cylinder(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
@@ -710,6 +873,11 @@ int		load_light_datas(t_light *s,
 				 t_bunny_ini *ini,
 				 char *scope);
 int		load_light(t_rt *rt, t_bunny_ini *ini, char *scope);
+
+/*
+** load_plan_sides.c
+*/
+int		load_plan_sides(t_rt *s, t_box *box);
 
 /*
 ** load_plan.c
@@ -756,6 +924,23 @@ int		order_list(t_object *root);
 int		order_hit_list(t_object *root);
 
 /*
+** order_inter_list.c
+*/
+int		order_inter_list(t_inter *root);
+
+/*
+** order_solutions.c
+*/
+int		order_solutions(t_rt *s);
+
+/*
+** real_cylinder_plan_inter.c
+*/
+int		cylinder_plans_inters(t_rt *s, t_cylinder *cylinder,
+				      t_object *obj);
+int		csg_cylinder_plans_inters(t_rt *s, t_cylinder *cylinder, t_object *obj);
+
+/*
 ** rotations.c
 */
 t_acc		*rotate_x(t_rotation *r, t_acc *vct, int angle);
@@ -763,6 +948,13 @@ t_acc		*rotate_y(t_rotation *r, t_acc *vct, int angle);
 t_acc		*rotate_z(t_rotation *r, t_acc *vct, int angle);
 t_acc		*rotation(t_rotation *r, t_acc *vct, t_pos *rot);
 t_acc		*end_rotation(t_rotation *r, t_acc *vct, t_pos *rot);
+
+/*
+** second_intre_limited_objects.c
+*/
+int		get_cylinder_plan1_inter2(t_rt *s, t_cylinder *cylinder);
+int		get_cylinder_plan2_inter2(t_rt *s, t_cylinder *cylinder);
+int		limited_cylinder2(t_rt *s, t_cylinder *cylinder);
 
 /*
 ** set_hit_values.c
@@ -809,11 +1001,19 @@ double		shadow_inter_plan(t_rt *s, t_plan *plan);
 */
 double		shadow_limited_cylinder(t_rt *s, t_cylinder *cylinder, double k);
 double		shadow_limited_cone(t_rt *s, t_cone *cone, double k);
+double		shadow_limited_plan(t_rt *s, t_plan *plan, double k);
 
 /*
 ** shadow_simple_inters.c
 */
-double		shadow_simple_inters(t_rt *s, t_acc *vct, t_acc *eye, double k[2]);
+double		shadow_simple_inter_plan(t_rt *s,
+					 t_acc *vct,
+					 t_acc *eye,
+					 double k);
+double		shadow_simple_inters(t_rt *s,
+				     t_acc *vct,
+				     t_acc *eye,
+				     double k[2]);
 
 /*
 ** skybox.c

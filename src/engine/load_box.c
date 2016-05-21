@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May  4 15:28:11 2016 romain samuel
-** Last update Thu May  5 20:14:11 2016 romain samuel
+** Last update Tue May 17 00:49:33 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -118,16 +118,18 @@ int		load_box(t_rt *rt, t_bunny_ini *ini, char *scope)
 	return (-1);
     }
   else
-    {
-      if (add_obj_elem(rt->obj) == -1)
-	return (-1);
-    }
+    if (add_obj_elem(rt->obj) == -1)
+      return (-1);
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
   it->type = 6;
   if (load_box_datas(s, ini, scope) == -1)
     return (-1);
+  if (load_plan_sides(rt, s) == -1)
+    return (-1);
   it->datas = s;
+  if ((it->name = my_strdup(scope)) == NULL)
+    return (my_puterr("Could not perform malloc"));
   return (0);
 }

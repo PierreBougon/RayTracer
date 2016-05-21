@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:12:34 2016 romain samuel
-** Last update Thu May  5 19:27:55 2016 romain samuel
+** Last update Tue May 17 03:18:52 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -120,5 +120,5 @@ double		shadow_inter_plan(t_rt *s, t_plan *plan)
   if (vct.z == 0.0)
     return (0);
   k = -1.0 * ((double)eye.z / vct.z);
-  return (k);
+  return (shadow_simple_inter_plan(s, &vct, &eye, k));
 }
