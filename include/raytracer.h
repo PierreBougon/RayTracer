@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat May 21 21:28:39 2016 marc brout
+** Last update Sat May 21 21:56:10 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -137,9 +137,10 @@ typedef struct		s_fresnel
 typedef struct		s_plan
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			real;
-  int			tex_type;
   int			height;
   int			width;
   int			case_size;
@@ -147,7 +148,6 @@ typedef struct		s_plan
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_color		color1;
@@ -172,6 +172,7 @@ typedef struct		s_2order
   double		delta;
   double		root1;
   double		root2;
+  int			tab[2];
 }			t_2order;
 
 typedef struct		s_3order
@@ -198,17 +199,17 @@ typedef struct		s_4order
   double		root2;
   double		root3;
   double		root4;
-  int			tab[2];
 }			t_4order;
 
 typedef struct		s_hyper
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   double		a;
   double		b;
   double		c;
-  int			tex_type;
   char			nappe;
   double		k1;
   double		k2;
@@ -216,7 +217,6 @@ typedef struct		s_hyper
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_acc			simple_inter2;
@@ -231,10 +231,12 @@ typedef struct		s_hyper
 typedef struct		s_parab
 {
   t_pos			pos;
-  t_pos			rot;
-  int			a;
-  int			b;
+  double		reflection;
   int			tex_type;
+  t_pos			rot;
+  double		a;
+  double		b;
+  double		c;
   double		k1;
   double		k2;
   int			form;
@@ -242,7 +244,6 @@ typedef struct		s_parab
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_acc			simple_inter2;
@@ -257,14 +258,14 @@ typedef struct		s_parab
 typedef struct		s_hole_cube
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			rad;
-  int			tex_type;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_quad_inter		inter;
@@ -282,15 +283,15 @@ typedef struct		s_hole_cube
 typedef struct		s_sphere
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			real;
-  int			tex_type;
   int			size;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_color		color1;
@@ -310,16 +311,16 @@ typedef struct		s_sphere
 typedef struct		s_cone
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			real;
-  int			tex_type;
   int			angle;
   int			height;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_color		color1;
@@ -342,15 +343,15 @@ typedef struct		s_cone
 typedef struct		s_box
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			real;
-  int			tex_type;
   t_pos			size;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_color		color1;
@@ -380,16 +381,16 @@ typedef	struct		s_solv
 typedef struct		s_cylinder
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   int			real;
-  int			tex_type;
   int			size;
   int			height;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_color		color1;
@@ -412,16 +413,16 @@ typedef struct		s_cylinder
 typedef struct		s_tore
 {
   t_pos			pos;
+  double		reflection;
+  int			tex_type;
   t_pos			rot;
   double		rad;
   double		dist;
   t_quad_inter		inter;
-  int			tex_type;
   double		ka;
   double		kd;
   double		ks;
   double		brightness;
-  double		reflection;
   double		opacity;
   double		refraction;
   t_acc			simple_inter2;
@@ -1023,7 +1024,7 @@ t_acc		*end_rotation(t_rotation *r, t_acc *vct, t_pos *rot);
 ** second_order_solver.c
 */
 
-int		second_order_solver(t_2order *res);
+void		second_order_solver(t_2order *res);
 
 /*
 ** set_hit_values.c
@@ -1117,7 +1118,7 @@ void		tekpixel(t_bunny_pixelarray *pix,
 			 t_color *color);
 void		mult_tekpixel(t_bunny_pixelarray *pix,
 			 t_bunny_position *pos,
-			 t_color *color);
+			      t_color *color, int n);
 void		fill_pxlarray(t_bunny_pixelarray *pxar,
 			     unsigned int color);
 int		fill_next_lines(t_bunny_pixelarray *pxar,
@@ -1154,5 +1155,12 @@ int		keys_filter(t_bunny_keysym keysym, void *_data);
 ** src/sovler/new_method.c
 */
 void		solver_pqr(t_4order *c);
+
+/*
+** lol
+*/
+void		q_is_not_nul(t_4order *solv,
+			     double p, double q,
+			     double r);
 
 #endif /* !RAYTRACER_H_ */

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Fri May 20 20:28:26 2016 benjamin duhieu
+** Last update Sat May 21 21:48:25 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -52,8 +52,6 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
   rt->obj = NULL;
   rt->opt.aa = 1;
   rt->r_pos.x = 0;
-  if (!(rt->pixel_color = bunny_malloc(sizeof(t_color) * rt->opt.aa)))
-    return (-1);
   if (argc == 2)
     {
       if ((rt->img = bunny_new_pixelarray(rt->width, rt->height)) == NULL)

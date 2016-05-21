@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sat May 21 11:37:32 2016 marc brout
+## Last update Sat May 21 21:55:41 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -106,9 +106,12 @@ SRC		=	$(MAIN)main.c \
 			$(LIVE_ENGINE)live_shade.c \
 			$(SOLVER)cube_order_solver.c \
 			$(SOLVER)quartic_order_solver.c \
+			$(SOLVER)new_method.c \
 			$(SOLVER)second_order_solver.c \
 			$(ITFC)init_itfc.c \
+			$(ITFC)init_curs.c \
 			$(ITFC)init_ftabs.c \
+			$(ITFC)init_ftabss.c \
 			$(ITFC)interface.c \
 			$(ITFC)zoom.c \
 			$(ITFC)text.c \
@@ -147,6 +150,7 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)save_ini_obj_scope_cylinder.c \
 			$(ITFC)$(CONTEXT)save_ini_obj_scope_plane.c \
 			$(ITFC)$(CONTEXT)modif_form.c \
+			$(ITFC)$(CONTEXT)modif_form_rad.c \
 			$(ITFC)$(CONTEXT)add_form.c \
 			$(ITFC)$(CONTEXT)sub_form.c \
 			$(ITFC)$(CONTEXT)spotlight.c \
@@ -165,6 +169,14 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)delete_spot.c \
 			$(ITFC)$(CONTEXT)select_spot.c \
 			$(ITFC)$(CONTEXT)slide_light.c \
+			$(ITFC)$(CONTEXT)text_obj.c \
+			$(ITFC)$(CONTEXT)move_obj.c \
+			$(ITFC)$(CONTEXT)resize_obj.c \
+			$(ITFC)$(CONTEXT)resize_fct.c \
+			$(ITFC)$(CONTEXT)select_obj.c \
+			$(ITFC)$(CONTEXT)apply_image_obj.c \
+			$(ITFC)$(CONTEXT)apply_texture.c \
+			$(ITFC)$(CONTEXT)reset_obj.c \
 			$(FILTER)borderland_filter.c \
 			$(FILTER)boxfiltering.c \
 			$(FILTER)boxfiltering_init_kernels.c \
@@ -265,6 +277,9 @@ $(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIB) $(LIBBUNNY)
 
 all		:	$(LIB)
+ifeq ($(DEBUG), yes)
+		find . -type f -iname "*.[chS]" | xargs etags -a
+endif
 			@make -j 4 -s compile
 
 clean		:

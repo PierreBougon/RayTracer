@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 19:05:58 2016 romain samuel
-** Last update Thu May 19 10:15:55 2016 benjamin duhieu
+** Last update Sat May 21 21:53:40 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -57,7 +57,7 @@ int			live_display(t_rt *s)
 	  vct.z = 1000.0;
 	  rotation(&s->rotation, &vct, &s->eye.rot);
 	  final_color = live_display_objects(s, &vct, s->eye.pos, 0);
-	  mult_tekpixel(s->img, &pos, &final_color);
+	  mult_tekpixel(s->img, &pos, &final_color, 4);
 	  pos.x += 4;
 	}
       pos.y += 4;

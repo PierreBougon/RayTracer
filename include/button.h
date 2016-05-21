@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 21:09:55 2016 bougon_p
-** Last update Wed May 18 21:45:57 2016 bougon_p
+** Last update Sat May 21 06:51:00 2016 bougon_p
 */
 
 #ifndef BUTTON_H_
@@ -51,6 +51,25 @@
 # define NEW_BT_HGT_FIRST 100
 # define NEW_BT_DECAL 60
 # define NB_NEW_BT 3
+
+# define MOD_BT_X 140
+# define MOD_BT_Y 190
+# define MOD_BT_WDT 80
+# define MOD_BT_HGT 80
+# define MOD_DECAL 40
+# define MOD_SBT_Y 670
+# define NB_MOD_BT 4
+# define MOD_RAD_X 295
+# define MOD_RAD_Y 410
+# define MOD_RAD_WDT 25
+# define MOD_RAD_HGT 25
+# define MOD_RAD_DECAL 11
+# define NB_MOD_RAD 3
+# define MOD_REFL_X 245
+# define MOD_REFL_Y 990
+# define MOD_REFL_WDT 25
+# define MOD_REFL_HGT 25
+# define MOD_REFL_DECAL 45
 
 # define SUB_BT_X_FIRST 145
 # define SUB_BT_Y_FIRST 210
