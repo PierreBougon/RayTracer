@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Thu May 19 20:42:27 2016 marc brout
-** Last update Fri May 20 21:13:09 2016 marc brout
+** Last update Sat May 21 15:42:28 2016 marc brout
 */
 
 #include "lapin.h"
@@ -25,7 +25,7 @@ static void	apply_color(t_bunny_pixelarray *pix,
   pixels = pix->pixels;
   value = (double)pixels[pos].argb[RED_CMP] * op +
     (double)color.argb[RED_CMP] * opacity;
-  pixels[pos].argb[RED_CMP] = (value > 255) ? 255 : value ;
+  pixels[pos].argb[RED_CMP] = (value > 255) ? 255 : value;
   value = (double)pixels[pos].argb[BLUE_CMP] * op +
     (double)color.argb[BLUE_CMP] * opacity;
   pixels[pos].argb[BLUE_CMP] = (value > 255) ? 255 : value;

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri May 20 12:58:40 2016 marc brout
-** Last update Fri May 20 22:07:23 2016 marc brout
+** Last update Sat May 21 15:41:11 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -48,10 +48,11 @@ static t_bunny_pixelarray	*save_pixelarray(t_bunny_pixelarray *pix)
 }
 
 static void		restore_pixelarray(t_bunny_pixelarray **pix,
-					   t_bunny_pixelarray *save)
+					   t_bunny_pixelarray **save)
 {
   bunny_delete_clipable(&(*pix)->clipable);
-  *pix = save;
+  *pix = *save;
+  *save = NULL;
 }
 
 static void		init_filter_tab(t_data *data)
@@ -83,16 +84,14 @@ int			keys_filter(t_bunny_keysym keysym,
 	    return (1);
 	  save = 1;
 	}
-      if (keysym < BKS_9)
-	{
-	  if (data->rt.ftabs.filter_effect[(int)keysym - BKS_0]
-	      (&data->rt.img, (int)(keysym) + 1 - BKS_0))
-	    return (1);
-	}
+      if (keysym < BKS_9 &&
+	  data->rt.ftabs.filter_effect[(int)keysym - BKS_0]
+	  (&data->rt.img, (int)(keysym) + 1 - BKS_0))
+	return (1);
     }
   else if (save && keysym == BKS_N)
     {
-      restore_pixelarray(&data->rt.img, data->rt.save);
+      restore_pixelarray(&data->rt.img, &data->rt.save);
       save = 0;
     }
   return (0);

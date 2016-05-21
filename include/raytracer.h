@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Fri May 20 23:13:15 2016 marc brout
+** Last update Sat May 21 21:28:39 2016 marc brout
 */
 
 #ifndef RAYTRACER_H_
@@ -198,6 +198,7 @@ typedef struct		s_4order
   double		root2;
   double		root3;
   double		root4;
+  int			tab[2];
 }			t_4order;
 
 typedef struct		s_hyper
@@ -1145,8 +1146,13 @@ int		update_real_hit_list(t_rt *s);
 int		delete_false_hit_objects(t_rt *s);
 
 /*
-** filter.c
+** src/filter/filter.c
 */
 int		keys_filter(t_bunny_keysym keysym, void *_data);
+
+/*
+** src/sovler/new_method.c
+*/
+void		solver_pqr(t_4order *c);
 
 #endif /* !RAYTRACER_H_ */
