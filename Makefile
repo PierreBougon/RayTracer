@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sat May 21 21:52:17 2016 bougon_p
+## Last update Sat May 21 21:55:41 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -106,6 +106,7 @@ SRC		=	$(MAIN)main.c \
 			$(LIVE_ENGINE)live_shade.c \
 			$(SOLVER)cube_order_solver.c \
 			$(SOLVER)quartic_order_solver.c \
+			$(SOLVER)new_method.c \
 			$(SOLVER)second_order_solver.c \
 			$(ITFC)init_itfc.c \
 			$(ITFC)init_curs.c \

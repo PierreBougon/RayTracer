@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Sat May 21 20:47:34 2016 marc brout
-** Last update Sat May 21 21:39:41 2016 marc brout
+** Last update Sat May 21 21:40:40 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -58,5 +58,5 @@ void				solver_pqr(t_4order *c)
   if (q < 0.000001 && q > -0.000001)
     calc_roots(p, r, c);
   else
-    q_is_not_null(c, p, q, r);
+    q_is_not_nul(c, p, q, r);
 }

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Wed May 11 12:34:10 2016 benjamin duhieu
-** Last update Fri May 20 23:12:01 2016 benjamin duhieu
+** Last update Sat May 21 10:57:00 2016 benjamin duhieu
 */
 
 #include <math.h>
@@ -43,14 +43,38 @@ void	get_norm_tore(t_rt *s, t_tore *tore)
   end_rotation(&s->rotation, &s->hit.norm, &tore->rot);
 }
 
+void		get_coord_spher_parab(t_parab *parab, double *phi,
+				      double *teta)
+{
+  double	col;
+
+  col = sqrt((parab->simple_inter1.x * parab->simple_inter1.x)
+	     + (parab->simple_inter1.y * parab->simple_inter1.y)
+	     + (parab->simple_inter1.z * parab->simple_inter1.z));
+  *phi = acos(parab->simple_inter1.y / col);
+  if (parab->simple_inter1.x >= 0)
+    *teta = acos(parab->simple_inter1.z
+		 / sqrt(pow(parab->simple_inter1.z, 2)
+			+ pow(parab->simple_inter1.x, 2)));
+  else
+    *teta = (2 * M_PI)
+      - acos(parab->simple_inter1.z
+	     / sqrt(pow(parab->simple_inter1.z, 2)
+		    + pow(parab->simple_inter1.x, 2)));
+}
+
 void	get_norm_parab(t_rt *s, t_parab *parab)
 {
+  double	phi;
+  double	teta;
+
   if (parab->form == 1)
     {
-      s->hit.norm.x = (-2 * s->hit.simple_inter1.x) *
-	cos(s->hit.simple_inter1.y);
-      s->hit.norm.y = (-2 * s->hit.simple_inter1.x) *
-	sin(s->hit.simple_inter1.y);
+      phi = 0;
+      teta = 0;
+      get_coord_spher_parab(parab, &phi, &teta);
+      s->hit.norm.x = (-2 * phi) * cos(teta);
+      s->hit.norm.y = (-2 * phi) * sin(teta);
       s->hit.norm.z = parab->a;
     }
   else if (parab->form == 2)
@@ -64,25 +88,34 @@ void	get_norm_parab(t_rt *s, t_parab *parab)
   end_rotation(&s->rotation, &s->hit.norm, &parab->rot);
 }
 
-void		get_norm_hyper(t_rt *s, t_hyper *hyper)
+void		get_coord_spher_hyper(t_hyper *hyper, double *phi,
+				      double *teta)
 {
   double	col;
-  double	phi;
-  double	teta;
 
   col = sqrt((hyper->simple_inter1.x * hyper->simple_inter1.x)
 	     + (hyper->simple_inter1.y * hyper->simple_inter1.y)
 	     + (hyper->simple_inter1.z * hyper->simple_inter1.z));
-  phi = acos(hyper->simple_inter1.y / col);
+  *phi = acos(hyper->simple_inter1.y / col);
   if (hyper->simple_inter1.x >= 0)
-    teta = acos(hyper->simple_inter1.z
-		/ sqrt(pow(hyper->simple_inter1.z, 2)
-		       + pow(hyper->simple_inter1.x, 2)));
+    *teta = acos(hyper->simple_inter1.z
+		 / sqrt(pow(hyper->simple_inter1.z, 2)
+			+ pow(hyper->simple_inter1.x, 2)));
   else
-    teta = (2 * M_PI)
+    *teta = (2 * M_PI)
       - acos(hyper->simple_inter1.z
 	     / sqrt(pow(hyper->simple_inter1.z, 2)
 		    + pow(hyper->simple_inter1.x, 2)));
+}
+
+void		get_norm_hyper(t_rt *s, t_hyper *hyper)
+{
+  double	phi;
+  double	teta;
+
+  phi = 0;
+  teta = 0;
+  get_coord_spher_hyper(hyper, &phi, &teta);
   if (hyper->nappe == 1)
     {
       s->hit.norm.x = -(/* hyper->b * */ hyper->c) *

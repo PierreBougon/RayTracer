@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr 29 16:15:08 2016 romain samuel
-** Last update Sat May 21 11:57:56 2016 marc brout
+** Last update Sat May 21 21:44:26 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -19,8 +19,6 @@ int		read_texture(t_rt *s, float u, float v, t_bunny_pixelarray *img)
   color = (t_color *)img->pixels;
   u = u * img->clipable.clip_width;
   v = v * img->clipable.clip_height;
-  printf("%d %d\n", img->clipable.clip_width,
-	 img->clipable.clip_height);
   s->final_color = color[img->clipable.clip_width * (int)v + (int)u];
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat May 21 21:50:45 2016 bougon_p
+** Last update Sat May 21 21:56:10 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -172,6 +172,7 @@ typedef struct		s_2order
   double		delta;
   double		root1;
   double		root2;
+  int			tab[2];
 }			t_2order;
 
 typedef struct		s_3order
@@ -198,7 +199,6 @@ typedef struct		s_4order
   double		root2;
   double		root3;
   double		root4;
-  int			tab[2];
 }			t_4order;
 
 typedef struct		s_hyper
@@ -234,8 +234,9 @@ typedef struct		s_parab
   double		reflection;
   int			tex_type;
   t_pos			rot;
-  int			a;
-  int			b;
+  double		a;
+  double		b;
+  double		c;
   double		k1;
   double		k2;
   int			form;
@@ -1023,7 +1024,7 @@ t_acc		*end_rotation(t_rotation *r, t_acc *vct, t_pos *rot);
 ** second_order_solver.c
 */
 
-int		second_order_solver(t_2order *res);
+void		second_order_solver(t_2order *res);
 
 /*
 ** set_hit_values.c
@@ -1154,5 +1155,12 @@ int		keys_filter(t_bunny_keysym keysym, void *_data);
 ** src/sovler/new_method.c
 */
 void		solver_pqr(t_4order *c);
+
+/*
+** lol
+*/
+void		q_is_not_nul(t_4order *solv,
+			     double p, double q,
+			     double r);
 
 #endif /* !RAYTRACER_H_ */

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue May  3 13:42:58 2016 benjamin duhieu
-** Last update Thu May 19 23:32:25 2016 benjamin duhieu
+** Last update Sat May 21 21:42:41 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -66,7 +66,7 @@ void		inter_hole_cube(t_rt *s, t_hole_cube *cube)
   solv.root2 = -1;
   solv.root3 = -1;
   solv.root4 = -1;
-  resolv_4_degres(&solv);
+  solver_pqr(&solv);
   attribute_root(s, &solv);
   /* printf("RES: -R1 : %f\n    -R2 : %f\n     R3 : %f\n     -R4 : %f\n\n", s->hit.k1, s->hit.k2, s->hit.k3, s->hit.k4); */
 }
