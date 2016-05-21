@@ -5,11 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-<<<<<<< HEAD
-## Last update Sat May 21 17:50:18 2016 bougon_p
-=======
-## Last update Sat May 21 11:37:32 2016 marc brout
->>>>>>> ee1759d559181b02401e2f6a9feda7aa04823c8c
+## Last update Sat May 21 21:52:17 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -172,7 +168,6 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)delete_spot.c \
 			$(ITFC)$(CONTEXT)select_spot.c \
 			$(ITFC)$(CONTEXT)slide_light.c \
-<<<<<<< HEAD
 			$(ITFC)$(CONTEXT)text_obj.c \
 			$(ITFC)$(CONTEXT)move_obj.c \
 			$(ITFC)$(CONTEXT)resize_obj.c \
@@ -181,7 +176,6 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)apply_image_obj.c \
 			$(ITFC)$(CONTEXT)apply_texture.c \
 			$(ITFC)$(CONTEXT)reset_obj.c \
-=======
 			$(FILTER)borderland_filter.c \
 			$(FILTER)boxfiltering.c \
 			$(FILTER)boxfiltering_init_kernels.c \
@@ -194,7 +188,6 @@ SRC		=	$(MAIN)main.c \
 			$(FILTER)oil_init.c \
 			$(FILTER)sobel_filter.c \
 			$(FILTER)sobel_init.c \
->>>>>>> ee1759d559181b02401e2f6a9feda7aa04823c8c
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)

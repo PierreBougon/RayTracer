@@ -5,12 +5,12 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 12 21:54:13 2016 romain samuel
-** Last update Sat May 21 19:43:30 2016 bougon_p
+** Last update Sat May 21 21:52:47 2016 bougon_p
 */
 
 #include "raytracer.h"
 
-void	free_data(t_object *tmp)
+void	free_data(UNUSED t_object *tmp)
 {
   //des trucs
 }
