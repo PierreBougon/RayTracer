@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Wed May 11 12:34:10 2016 benjamin duhieu
-** Last update Thu May 19 10:48:07 2016 benjamin duhieu
+** Last update Fri May 20 23:12:01 2016 benjamin duhieu
 */
 
 #include <math.h>
@@ -64,26 +64,40 @@ void	get_norm_parab(t_rt *s, t_parab *parab)
   end_rotation(&s->rotation, &s->hit.norm, &parab->rot);
 }
 
-void	get_norm_hyper(t_rt *s, t_hyper *hyper)
+void		get_norm_hyper(t_rt *s, t_hyper *hyper)
 {
+  double	col;
+  double	phi;
+  double	teta;
+
+  col = sqrt((hyper->simple_inter1.x * hyper->simple_inter1.x)
+	     + (hyper->simple_inter1.y * hyper->simple_inter1.y)
+	     + (hyper->simple_inter1.z * hyper->simple_inter1.z));
+  phi = acos(hyper->simple_inter1.y / col);
+  if (hyper->simple_inter1.x >= 0)
+    teta = acos(hyper->simple_inter1.z
+		/ sqrt(pow(hyper->simple_inter1.z, 2)
+		       + pow(hyper->simple_inter1.x, 2)));
+  else
+    teta = (2 * M_PI)
+      - acos(hyper->simple_inter1.z
+	     / sqrt(pow(hyper->simple_inter1.z, 2)
+		    + pow(hyper->simple_inter1.x, 2)));
   if (hyper->nappe == 1)
     {
-      s->hit.norm.x = -(hyper->b * hyper->c) *
-	CARRE(cosh(s->hit.simple_inter1.x)) *
-	cos(s->hit.simple_inter1.y);
-      s->hit.norm.y = -(hyper->a * hyper->c) * cosh(s->hit.simple_inter1.x) *
-	sin(s->hit.simple_inter1.y);
-      s->hit.norm.z = (hyper->a * hyper->b) *
-	sinh(s->hit.simple_inter1.x) * cosh(s->hit.simple_inter1.x);
+      s->hit.norm.x = -(/* hyper->b * */ hyper->c) *
+	/* CARRE( */cosh(phi)/* ) */ *  cos(teta);
+      s->hit.norm.y = -(/* hyper->a * */ hyper->c) * /* CARRE( */cosh(phi)/* ) */
+	* sin(teta);
+      s->hit.norm.z = (hyper->a /* * hyper->b */) * sinh(phi) /* * cosh(teta) */;
     }
   else if (hyper->nappe == 2)
     {
-      s->hit.norm.x = -(hyper->b * hyper->c) *
-	sqrt(CARRE(s->hit.simple_inter1.x) - 1) *
-	cos(s->hit.simple_inter1.y);
-      s->hit.norm.y = -(hyper->a * hyper->c) *
-	sqrt(CARRE(s->hit.simple_inter1.x) - 1) *
-	sin(s->hit.simple_inter1.y);
-      s->hit.norm.z = hyper->a * hyper->b * s->hit.simple_inter1.x;
+      s->hit.norm.x = -(/* hyper->b *  */hyper->c) *
+	sqrt(CARRE(phi) - 1) * cos(teta);
+      s->hit.norm.y = -(/* hyper->a *  */hyper->c) * sqrt(CARRE(phi) - 1) *
+	sin(teta);
+      s->hit.norm.z = hyper->a /* * hyper->b  */ * phi;
     }
+  end_rotation(&s->rotation, &s->hit.norm, &hyper->rot);
 }

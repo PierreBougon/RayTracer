@@ -5,7 +5,11 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
+<<<<<<< HEAD
 ## Last update Sat May 21 17:50:18 2016 bougon_p
+=======
+## Last update Sat May 21 11:37:32 2016 marc brout
+>>>>>>> ee1759d559181b02401e2f6a9feda7aa04823c8c
 ##
 
 # USEFUL VARIABLES
@@ -33,6 +37,8 @@ LIVE_ENGINE	=	src/live_engine/
 SOLVER		=	src/solvers/
 
 ITFC		=	src/interface/
+
+FILTER		=	src/filter/
 
 CONTEXT		=	context/
 
@@ -77,8 +83,11 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)load_file.c \
 			$(ENGINE)load_light.c \
 			$(ENGINE)load_plan.c \
+			$(ENGINE)load_parab.c \
 			$(ENGINE)load_sphere.c \
 			$(ENGINE)load_tore.c \
+			$(ENGINE)load_hyper.c \
+			$(ENGINE)load_hole_cube.c \
 			$(ENGINE)noise_textures.c \
 			$(ENGINE)matrices.c \
 			$(ENGINE)order_hit_list.c \
@@ -163,6 +172,7 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)delete_spot.c \
 			$(ITFC)$(CONTEXT)select_spot.c \
 			$(ITFC)$(CONTEXT)slide_light.c \
+<<<<<<< HEAD
 			$(ITFC)$(CONTEXT)text_obj.c \
 			$(ITFC)$(CONTEXT)move_obj.c \
 			$(ITFC)$(CONTEXT)resize_obj.c \
@@ -171,6 +181,20 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)apply_image_obj.c \
 			$(ITFC)$(CONTEXT)apply_texture.c \
 			$(ITFC)$(CONTEXT)reset_obj.c \
+=======
+			$(FILTER)borderland_filter.c \
+			$(FILTER)boxfiltering.c \
+			$(FILTER)boxfiltering_init_kernels.c \
+			$(FILTER)boxfiltering_other_kernels.c \
+			$(FILTER)color_filter.c \
+			$(FILTER)filter.c \
+			$(FILTER)glass_effect.c \
+			$(FILTER)median.c \
+			$(FILTER)oil_effect.c \
+			$(FILTER)oil_init.c \
+			$(FILTER)sobel_filter.c \
+			$(FILTER)sobel_init.c \
+>>>>>>> ee1759d559181b02401e2f6a9feda7aa04823c8c
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
@@ -230,7 +254,7 @@ IFLAG	=	-Iinclude/
 CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
 
 ifeq ($(DEBUG),yes)
-CFLAGS	+=	-g  #-D LAPIN_ALLOCATOR_DEACTIVATED
+CFLAGS	+=	-g  -D LAPIN_ALLOCATOR_DEACTIVATED
 endif
 
 ifeq ($(OPTI),yes)

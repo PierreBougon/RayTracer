@@ -6,7 +6,7 @@
 *
 *
 ** Started on  Thu May 12 19:23:53 2016 benjamin duhieu
-** Last update Thu May 19 11:30:41 2016 benjamin duhieu
+** Last update Fri May 20 21:17:18 2016 benjamin duhieu
 */
 
 #include <stdio.h>
@@ -63,7 +63,7 @@ int		display_hole_cube(t_rt *s, t_object *obj)
       hole_cube->inter.k3 = s->hit.k3;
       hole_cube->inter.k4 = s->hit.k4;
       hole_cube->norm = s->hit.norm;
-      update_hit_list_complex(s, hole_cube, 7, s->hit.k1);
+      update_hit_list_complex(s, hole_cube, HOLE_CUBE, s->hit.k1);
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &hole_cube->rot);
@@ -89,7 +89,7 @@ int		display_parab(t_rt *s, t_object *obj)
       parab->k1 = s->hit.k1;
       parab->k2 = s->hit.k2;
       parab->norm = s->hit.norm;
-      update_hit_list(s, parab, 8, s->hit.k1);
+      update_hit_list(s, parab, PARAB, s->hit.k1);
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &parab->rot);
@@ -106,7 +106,6 @@ int		display_hyper(t_rt *s, t_object *obj)
   if (!(get_simple_inter(s, s->ray.vct, &s->ray.new_eye)))
     {
       end_rotation(&s->rotation, s->ray.vct, &hyper->rot);
-      end_rotation(&s->rotation, &s->hit.simple_inter1, &hyper->rot);
       get_norm_hyper(s, hyper);
       rotation(&s->rotation, &s->hit.simple_inter1, &hyper->rot);
       hyper->simple_inter1 = s->hit.simple_inter1;
@@ -114,7 +113,7 @@ int		display_hyper(t_rt *s, t_object *obj)
       hyper->k1 = s->hit.k1;
       hyper->k2 = s->hit.k2;
       hyper->norm = s->hit.norm;
-      update_hit_list(s, hyper, 10, s->hit.k1);
+      update_hit_list(s, hyper, HYPER, s->hit.k1);
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &hyper->rot);

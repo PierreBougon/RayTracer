@@ -5,10 +5,10 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed May 18 14:47:32 2016 marc brout
-** Last update Wed May 18 14:49:19 2016 marc brout
+** Last update Fri May 20 19:56:37 2016 marc brout
 */
 
-#include
+#include "sobel.h"
 
 static void		edge_cutter(t_bunny_pixelarray *pix,
 				    const int width,
@@ -66,10 +66,12 @@ static void		apply_borderland(t_bunny_pixelarray *src,
     }
 }
 
-int			borderland(t_bunny_pixelarray **pix)
+int			borderland(t_bunny_pixelarray **pix,
+				   const int value)
 {
   t_bunny_pixelarray	*sob;
 
+  (void)value;
   if (!(sob = get_sobel(*pix)))
     return (1);
   edge_cutter(sob, (*pix)->clipable.clip_width,

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Sat May 21 19:35:16 2016 bougon_p
+** Last update Sat May 21 21:48:14 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -65,7 +65,11 @@ t_bunny_response	my_key(t_bunny_event_state state,
   if (state == GO_DOWN && keysym == BKS_ESCAPE)
     return (EXIT_ON_SUCCESS);
   if (state == GO_DOWN)
-    check_key(data, state, keysym);
+    {
+      check_key(data, state, keysym);
+      if (data->itfc.rendered)
+	keys_filter(keysym, _data);
+    }
   return (GO_ON);
 }
 

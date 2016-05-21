@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat May 21 18:51:44 2016 bougon_p
+** Last update Sat May 21 21:50:45 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -63,7 +63,7 @@
 # define MARBLE_NOISE 7
 # define IMAGE 8
 
-# define NB_OBJ 6
+# define NB_OBJ 10
 
 /*
 ** includes
@@ -85,7 +85,10 @@ typedef enum	e_obj
     CONE	= 3,
     PLANE	= 4,
     TORE	= 5,
-    BOX		= 6
+    BOX		= 6,
+    HOLE_CUBE   = 7,
+    HYPER	= 8,
+    PARAB	= 9
   }		t_obj;
 
 /*
@@ -195,6 +198,7 @@ typedef struct		s_4order
   double		root2;
   double		root3;
   double		root4;
+  int			tab[2];
 }			t_4order;
 
 typedef struct		s_hyper
@@ -203,9 +207,9 @@ typedef struct		s_hyper
   double		reflection;
   int			tex_type;
   t_pos			rot;
-  int			a;
-  int			b;
-  int			c;
+  double		a;
+  double		b;
+  double		c;
   char			nappe;
   double		k1;
   double		k2;
@@ -220,6 +224,7 @@ typedef struct		s_hyper
   t_acc			norm;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
 }			t_hyper;
 
@@ -233,7 +238,7 @@ typedef struct		s_parab
   int			b;
   double		k1;
   double		k2;
-  char			form;
+  int			form;
   double		ka;
   double		kd;
   double		ks;
@@ -245,6 +250,7 @@ typedef struct		s_parab
   t_acc			norm;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
 }			t_parab;
 
@@ -269,6 +275,7 @@ typedef struct		s_hole_cube
   t_acc			norm;
   t_color		color1;
   t_color		color2;
+  char			*tex_name;
   t_bunny_pixelarray	*texture;
 }			t_hole_cube;
 
@@ -370,14 +377,6 @@ typedef	struct		s_solv
   double		e;
 }			t_solv;
 
-typedef	struct		s_int_tore
-{
-  double		k1;
-  double		k2;
-  double		k3;
-  double		k4;
-}			t_int_tore;
-
 typedef struct		s_cylinder
 {
   t_pos			pos;
@@ -418,7 +417,7 @@ typedef struct		s_tore
   t_pos			rot;
   double		rad;
   double		dist;
-  t_int_tore		inter;
+  t_quad_inter		inter;
   double		ka;
   double		kd;
   double		ks;
@@ -554,6 +553,8 @@ typedef struct		s_ftab
   int			(**shadow_ftab)(t_rt *, t_object *);
   void			(**hit_ftab)(t_rt *, t_object *);
   void			(**tex_ftab)(t_rt *);
+  int			(*filter_effect[9])(t_bunny_pixelarray **,
+					    const int);
 }			t_ftab;
 
 typedef struct		s_rotation
@@ -568,6 +569,7 @@ typedef struct		s_rotation
 typedef struct		s_rt
 {
   t_bunny_pixelarray	*img;
+  t_bunny_pixelarray	*save;
   t_bunny_position	r_pos;
   t_object		*obj;
   t_object		*obj_hit;
@@ -812,16 +814,16 @@ void		inter_hole_cube(t_rt *s, t_hole_cube *cube);
 /*
 ** inter_hyper.c
 */
-void		one_nappe(t_rt *s, t_hyper *hyper);
-void		two_nappe(t_rt *s, t_hyper *hyper);
+int		one_nappe(t_rt *s, t_hyper *hyper);
+int		two_nappe(t_rt *s, t_hyper *hyper);
 void		inter_hyper(t_rt *s, t_hyper *hyper);
 
 /*
 ** inter_parab.c
 */
 void		inter_parab(t_rt *s, t_parab *parab);
-void		parab_ellip(t_rt *s, t_parab *parab);
-void		parab_hyper(t_rt *s, t_parab *parab);
+int		parab_ellip(t_rt *s, t_parab *parab);
+int		parab_hyper(t_rt *s, t_parab *parab);
 
 /*
 ** inter_tore.c
@@ -903,6 +905,45 @@ int		load_light_datas(t_light *s,
 				 t_bunny_ini *ini,
 				 char *scope);
 int		load_light(t_rt *rt, t_bunny_ini *ini, char *scope);
+
+
+/*
+** load_hole_cube.c
+*/
+int		load_hole_cube_datas1(t_hole_cube *s, t_bunny_ini *ini,
+				      char *scope);
+int		load_hole_cube_datas2(t_hole_cube *s, t_bunny_ini *ini,
+				 char *scope);
+int		load_hole_cube_datas3(t_hole_cube *s, t_bunny_ini *ini, char *scope);
+int		load_hole_cube(t_rt *rt, t_bunny_ini *ini, char *scope);
+
+/*
+** load_hyper.c
+*/
+int		load_hyper_datas(t_hyper *s,
+				    t_bunny_ini *ini,
+				    char *scope);
+int		load_hyper_datas2(t_hyper *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_hyper_datas3(t_hyper *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_hyper_datas4(t_hyper *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_hyper(t_rt *rt, t_bunny_ini *ini, char *scope);
+
+/*
+** load_parab.c
+*/
+int		load_parab_datas(t_parab *s,
+				    t_bunny_ini *ini,
+				    char *scope);
+int		load_parab_datas2(t_parab *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_parab_datas3(t_parab *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_parab_datas4(t_parab *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_parab(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
 ** load_plan.c
@@ -992,6 +1033,9 @@ void		set_hit_values_from_cylinder(t_rt *s, t_object *obj);
 void		set_hit_values_from_cone(t_rt *s, t_object *obj);
 void		set_hit_values_from_plan(t_rt *s, t_object *obj);
 void		set_hit_values_from_tore(t_rt *s, t_object *obj);
+void		set_hit_values_from_hole_cube(t_rt *s, t_object *obj);
+void		set_hit_values_from_hyper(t_rt *s, t_object *obj);
+void		set_hit_values_from_parab(t_rt *s, t_object *obj);
 int		set_hit_values(t_rt *s, t_object *obj);
 
 /*
@@ -1100,5 +1144,15 @@ int		update_hit_list_complex(t_rt *s, void *shape, int type,
 */
 int		update_real_hit_list(t_rt *s);
 int		delete_false_hit_objects(t_rt *s);
+
+/*
+** src/filter/filter.c
+*/
+int		keys_filter(t_bunny_keysym keysym, void *_data);
+
+/*
+** src/sovler/new_method.c
+*/
+void		solver_pqr(t_4order *c);
 
 #endif /* !RAYTRACER_H_ */
