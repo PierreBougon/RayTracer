@@ -5,16 +5,13 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sat May 21 06:34:30 2016 romain samuel
-** Last update Sat May 21 07:48:24 2016 romain samuel
+** Last update Sat May 21 23:40:58 2016 romain samuel
 */
 
 #include "raytracer.h"
 
 int		delete_inter_list(t_inter *left)
 {
-  t_inter	*it;
-  t_inter	*it_next;
-
   if (left == NULL)
     return (0);
   free(left);

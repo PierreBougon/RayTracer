@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sat Apr  9 13:49:53 2016 romain samuel
-** Last update Mon Apr 25 15:17:54 2016 bougon_p
+** Last update Sat May 21 19:31:34 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -23,34 +23,43 @@ void		tekpixel(t_bunny_pixelarray *pix,
 }
 
 void		mult_tekpixel(t_bunny_pixelarray *pix,
-			 t_bunny_position *pos,
-			 t_color *color)
+			      t_bunny_position *pos,
+			      t_color *color, int n)
 {
-  int		i;
-  int		i2;
-  int		i3;
-  int		i4;
-  t_color	*col;
+  t_bunny_position	apos;
+  t_bunny_position	dpos;
 
-  col = (t_color *)pix->pixels;
-  i = pix->clipable.clip_width * pos->y + pos->x;
-  i2 = pix->clipable.clip_width * (pos->y + 1) + pos->x;
-  i3 = pix->clipable.clip_width * (pos->y + 2) + pos->x;
-  i4 = pix->clipable.clip_width * (pos->y + 3) + pos->x;
-  col[i] = *color;
-  col[i + 1] = *color;
-  col[i + 2] = *color;
-  col[i + 3] = *color;
-  col[i2] = *color;
-  col[i2 + 1] = *color;
-  col[i2 + 2] = *color;
-  col[i2 + 3] = *color;
-  col[i3] = *color;
-  col[i3 + 1] = *color;
-  col[i3 + 2] = *color;
-  col[i3 + 3] = *color;
-  col[i4] = *color;
-  col[i4 + 1] = *color;
-  col[i4 + 2] = *color;
-  col[i4 + 3] = *color;
+  apos.y = -1;
+  while (++apos.y < n)
+    {
+      apos.x = -1;
+      while (++apos.x < n)
+	{
+	  dpos.x = pos->x + apos.x;
+	  dpos.y = pos->y + apos.y;
+	  if (dpos.x < pix->clipable.clip_width
+	      && dpos.y < pix->clipable.clip_height)
+	  tekpixel(pix, &dpos, color);
+	}
+    }
+}
+
+void		pad_tekpixelx(t_bunny_pixelarray *pix,
+			      t_bunny_position *pos,
+			      t_color *color)
+{
+  t_bunny_position	apos;
+  t_bunny_position	dpos;
+
+  apos.y = -1;
+  while (++apos.y < 4)
+    {
+      apos.x = -1;
+      while (++apos.x < pix->clipable.clip_width)
+	{
+	  dpos.x = pos->x + apos.x;
+	  dpos.y = pos->y + apos.y;
+	  tekpixel(pix, &dpos, color);
+	}
+    }
 }

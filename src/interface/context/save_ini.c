@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 28 17:07:33 2016 bougon_p
-** Last update Thu May  5 21:20:47 2016 romain samuel
+** Last update Tue May 17 18:20:36 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -29,7 +29,7 @@ static void	set_objs_scopes(t_object *obj,
   while (obj != NULL)
     {
       data->itfc.save.fct_save_ini_obj
-	[obj->type - 1 % NB_OBJ](data, obj, ini, i);
+	[obj->type](data, obj, ini, i);
       obj = obj->next;
       i++;
     }

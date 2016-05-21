@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:02:53 2016 bougon_p
-** Last update Thu May  5 21:08:31 2016 romain samuel
+** Last update Sat May 21 16:09:21 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -27,6 +27,20 @@ static	void	pos_plane(t_data *data, t_plan *pla)
   pla->rot.z = 0;
 }
 
+static	void	set_plane_value(t_plan *pla)
+{
+  pla->width = 500;
+  pla->height = 500;
+  pla->ka = 1.0;
+  pla->kd = 1.0;
+  pla->ks = 1.0;
+  pla->brightness = 0.0;
+  pla->reflection = 0.0;
+  pla->opacity = 1.0;
+  pla->color1.full = WHITE;
+  pla->color2.full = BLACK;
+}
+
 static	int	add_plane_obj(t_data *data)
 {
   t_object	*new;
@@ -41,25 +55,16 @@ static	int	add_plane_obj(t_data *data)
       data->rt.obj = create_obj_list();
       new = data->rt.obj;
     }
+  set_plane_value(pla);
   pos_plane(data, pla);
   pla->tex_type = 1;
-  pla->width = 500;
-  pla->height = 500;
-  pla->ka = 1.0;
-  pla->kd = 1.0;
-  pla->ks = 1.0;
-  pla->brightness = 0.0;
-  pla->reflection = 0.0;
-  pla->opacity = 1.0;
-  pla->color1.full = WHITE;
-  pla->color2.full = BLACK;
   pla->case_size = 2000;
   new->datas = pla;
   new->type = PLANE;
   return (0);
 }
 
-int	add_plane(UNUSED t_data *data)
+int	add_plane(t_data *data)
 {
   if (data->rt.img != NULL
       && data->click_action

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
-** Last update Sat May 21 21:57:59 2016 romain samuel
+** Last update Sat May 21 23:35:24 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -17,7 +17,7 @@ int		display_sphere(t_rt *s, t_object *obj)
   s->hit.limited = 0;
   shape = (t_sphere *)obj->datas;
   inter_sphere(s, shape);
-  if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
+  if (get_simple_inter(s,s->ray.vct, &s->ray.new_eye) == 0)
     {
       end_rotation(&s->rotation, s->ray.vct, &shape->rot);
       end_rotation(&s->rotation, &s->hit.simple_inter1, &shape->rot);
@@ -29,7 +29,7 @@ int		display_sphere(t_rt *s, t_object *obj)
       shape->k2 = s->hit.k2;
       shape->norm1 = s->hit.norm1;
       s->hit.name = obj->name;
-      update_hit_list(s, shape, 2, s->hit.k1);
+      update_hit_list(s, shape, SPHERE, s->hit.k1);
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &shape->rot);
@@ -58,7 +58,7 @@ int		display_cylinder(t_rt *s, t_object *obj)
 	  shape->norm2 = s->hit.norm2;
 	  shape->limited = s->hit.limited;
 	  s->hit.name = obj->name;
-	  update_hit_list(s, shape, 3, s->hit.k1);
+	  update_hit_list(s, shape, CYLINDER, s->hit.k1);
 	}
     }
   else
@@ -85,7 +85,7 @@ int		display_cone(t_rt *s, t_object *obj)
 	  shape->norm1 = s->hit.norm1;
 	  shape->limited = s->hit.limited;
 	  s->hit.name = obj->name;
-	  update_hit_list(s, shape, 4, s->hit.k1);
+	  update_hit_list(s, shape, CONE, s->hit.k1);
 	}
     }
   else
@@ -112,7 +112,7 @@ int		display_plan(t_rt *s, t_object *obj)
 	  shape->k2 = s->hit.k2;
 	  shape->norm = s->hit.norm1;
 	  s->hit.name = obj->name;
-	  update_hit_list(s, shape, 5, s->hit.k1);
+	  update_hit_list(s, shape, PLANE, s->hit.k1);
 	}
     }
   else
@@ -134,7 +134,7 @@ int		display_box(t_rt *s, t_object *obj)
       shape->k2 = s->hit.k2;
       shape->norm1 = s->hit.norm1;
       s->hit.name = obj->name;
-      update_hit_list(s, shape, 6, s->hit.k1);
+      update_hit_list(s, shape, BOX, s->hit.k1);
     }
   return (0);
 }

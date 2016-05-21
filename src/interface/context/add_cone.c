@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:03:39 2016 bougon_p
-** Last update Thu May  5 21:07:55 2016 romain samuel
+** Last update Sat May 21 17:37:53 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -27,6 +27,19 @@ static	void	pos_cone(t_data *data, t_cone *con)
   con->rot.z = 0;
 }
 
+static	void	set_values(t_cone *con)
+{
+  con->tex_type = 1;
+  con->angle = 80;
+  con->height = 5000;
+  con->ka = 1.0;
+  con->kd = 1.0;
+  con->ks = 1.0;
+  con->brightness = 0.0;
+  con->reflection = 0.0;
+  con->opacity = 1.0;
+}
+
 static	int	add_cone_obj(t_data *data)
 {
   t_object	*new;
@@ -42,15 +55,7 @@ static	int	add_cone_obj(t_data *data)
       new = data->rt.obj;
     }
   pos_cone(data, con);
-  con->tex_type = 1;
-  con->angle = 80;
-  con->height = 5000;
-  con->ka = 1.0;
-  con->kd = 1.0;
-  con->ks = 1.0;
-  con->brightness = 0.0;
-  con->reflection = 0.0;
-  con->opacity = 1.0;
+  set_values(con);
   con->color1.full = OBJ_COLOR;
   new->datas = con;
   new->type = CONE;

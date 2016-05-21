@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon Mar 28 12:33:47 2016 bougon_p
-** Last update Thu May  5 21:13:13 2016 romain samuel
+** Last update Fri May 13 18:39:24 2016 bougon_p
 */
 
 #include "my.h"
@@ -26,7 +26,8 @@ char	**my_dup_tab(char **tab)
   j = -1;
   while (++j < act_lines)
     {
-      if ((new_tab[j] = bunny_malloc(sizeof(char) * my_strlen(tab[j]))) == NULL)
+      if ((new_tab[j] = bunny_malloc(sizeof(char)
+				     * my_strlen(tab[j]))) == NULL)
 	return (NULL);
       new_tab[j] = my_strdup(tab[j]);
     }

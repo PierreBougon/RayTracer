@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Sat May 21 21:35:40 2016 romain samuel
+** Last update Sat May 21 22:09:36 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -26,6 +26,8 @@ t_bunny_response        my_click(t_bunny_event_state state,
     }
   if (data->rt.live)
     data->itfc.fct_state[data->itfc.status](data, state, mbutton);
+  if (data->itfc.askobj_click)
+    move_stateobj(data, state, mbutton);
   if (mbutton == BMB_LEFT && state == GO_DOWN)
     {
       if (check_all_buttons(&data->itfc) == 1)
@@ -53,10 +55,21 @@ t_bunny_response        my_wheel(int wheelid,
 
 t_bunny_response	my_key(t_bunny_event_state state,
 			       t_bunny_keysym keysym,
-			       UNUSED void *_data)
+			       void *_data)
 {
+  t_data		*data;
+
+  data = _data;
+  if (data->itfc.txt.writing)
+    return (GO_ON);
   if (state == GO_DOWN && keysym == BKS_ESCAPE)
     return (EXIT_ON_SUCCESS);
+  if (state == GO_DOWN)
+    {
+      check_key(data, state, keysym);
+      if (data->itfc.rendered)
+	keys_filter(keysym, _data);
+    }
   return (GO_ON);
 }
 
@@ -90,9 +103,11 @@ int		main(int argc, char **argv, char **env)
 
   if (*env == NULL)
     return (my_puterr("Invalid environment"));
+  else
+    data.itfc.env = env;
   srand(time(NULL));
-  bunny_set_memory_check(true);
-  bunny_set_maximum_ram(600000000);
+  /* bunny_set_memory_check(true); */
+  bunny_set_maximum_ram(2000000000);
   if (init_main_data(&data) == -1 ||
       init_engine_ftabs(&data.rt.ftabs) == -1 ||
       init_rt_data(&data.rt, argc, argv) == -1 ||

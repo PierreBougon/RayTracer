@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Mon May 16 17:42:55 2016 romain samuel
+** Last update Sat May 21 22:19:08 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -16,23 +16,27 @@ int		load_type(t_rt *s,
 				       char *scope),
 			  char *scope)
 {
-  char		*tab[6];
+  char		*tab[NB_OBJ];
   int		i;
   const char	*field;
 
   i = -1;
-  if (((tab[0] = my_strdup("light")) == NULL) ||
-      ((tab[1] = my_strdup("sphere")) == NULL) ||
-      ((tab[2] = my_strdup("cylinder")) == NULL) ||
-      ((tab[3] = my_strdup("cone")) == NULL) ||
-      ((tab[4] = my_strdup("plan")) == NULL) ||
-      ((tab[5] = my_strdup("box")) == NULL) ||
-      ((tab[6] = my_strdup("csg")) == NULL))
-    return (-1);
-  while (++i < 7)
+  tab[0] = "sphere";
+  tab[1] = "cylinder";
+  tab[2] = "cone";
+  tab[3] = "plan";
+  tab[4] = "light";
+  tab[5] = "box";
+  tab[6] = "csg";
+  tab[7] = "tore";
+  tab[8] = "hole_cube";
+  tab[9] = "hyper";
+  tab[10] = "parab";
+  while (++i < NB_OBJ)
     {
       if ((field = bunny_ini_get_field(ini, scope, "type", 0)) == NULL)
 	return (my_puterr("Could not perform bunny_ini_get_field"));
+
       if (my_strcmp((char *)field, tab[i]) == 0)
 	return (ftab[i](s, ini, scope));
     }
@@ -43,15 +47,19 @@ int		load_object(t_rt *s, t_bunny_ini *ini, char *scope)
 {
   int		(**ftab)(t_rt *s, t_bunny_ini *ini, char *scope);
 
-  if ((ftab = bunny_malloc(sizeof(ftab) * 7)) == NULL)
+  if ((ftab = bunny_malloc(sizeof(ftab) * NB_OBJ)) == NULL)
     return (my_puterr("load_object: malloc failed"));
-  ftab[0] = &load_light;
-  ftab[1] = &load_sphere;
-  ftab[2] = &load_cylinder;
-  ftab[3] = &load_cone;
-  ftab[4] = &load_plan;
+  ftab[0] = &load_sphere;
+  ftab[1] = &load_cylinder;
+  ftab[2] = &load_cone;
+  ftab[3] = &load_plan;
+  ftab[4] = &load_light;
   ftab[5] = &load_box;
   ftab[6] = &load_csg;
+  ftab[7] = &load_tore;
+  ftab[8] = &load_hole_cube;
+  ftab[9] = &load_hyper;
+  ftab[10] = &load_parab;
   if (load_type(s, ini, ftab, scope) == -1)
     return (-1);
   return (0);

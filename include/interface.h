@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Thu May  5 17:13:16 2016 bougon_p
+** Last update Sat May 21 17:49:56 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -99,9 +99,23 @@ typedef enum			e_buttons
     EXIT
   }				t_buttons;
 
+typedef	enum			e_tex_state
+  {
+    FLAT,
+    PERLIN,
+    IMG
+  }				t_tex_state;
+
+typedef	enum			e_bt_state
+  {
+    YES,
+    NO
+  }				t_bt_state;
+
 typedef struct	s_data		t_data;
 typedef struct	s_rt		t_rt;
 typedef struct	s_object	t_object;
+typedef	struct	s_acc		t_acc;
 
 typedef	struct			s_move
 {
@@ -112,6 +126,7 @@ typedef	struct			s_move
 
 typedef	struct			s_text
 {
+  bool				writing;
   t_bunny_window		*win;
   t_bunny_position		txt_pos;
   t_bunny_picture		*font;
@@ -139,12 +154,16 @@ typedef	struct			s_open
 
 typedef	struct			s_past
 {
+  int				rad_state;
+  int				refl_state;
   t_bunny_position		pos;
   t_bunny_picture		*img;
 }				t_past;
 
 typedef	struct			s_gen
 {
+  t_bunny_position		pos_curs_li;
+  t_bunny_accurate_position	acc_curs_li;
   t_bunny_position		pos_curs_aa;
   t_bunny_position		pos_curs_amb;
   t_bunny_accurate_position	acc_curs_aa;
@@ -154,6 +173,14 @@ typedef	struct			s_gen
   bool				needmoving;
 }				t_gen;
 
+typedef	struct			s_key
+{
+  t_bunny_keysym		key_move[4];
+  t_bunny_keysym		key_rot[4];
+  int				(*f_key_move[4])(t_data *);
+  int				(*f_key_rot[4])(t_data *);
+}				t_key;
+
 typedef struct			s_itfc
 {
   t_move			move;
@@ -162,6 +189,9 @@ typedef struct			s_itfc
   t_open			open;
   t_past			past;
   t_gen				gen;
+  t_key				key;
+  t_object			*obj_selected;
+  t_object			*light_selected;
   t_bunny_picture		*curs;
   t_bunny_picture		*layout;
   t_bunny_picture		*context[9];
@@ -172,8 +202,12 @@ typedef struct			s_itfc
   bool				rendering;
   bool				rendered;
   bool				left_click;
+  bool				obj_click;
+  bool				askobj_click;
   bool				live;
   const	t_bunny_position	*mpos;
+  int				(*fct_resize[NB_OBJ])(t_data *, t_acc *);
+  int				(*fct_apply_image[NB_OBJ])(t_data *);
   int				(*fct_context[NB_CONTEXT])(t_data *);
   int				(*fct_button[4])(t_data *);
   int				(*fct_state[NB_STATUS])(t_data *,
@@ -181,6 +215,7 @@ typedef struct			s_itfc
 							t_bunny_mousebutton);
   int				(*fct_bt_context)(t_data *);
   int				(*fct_set_size[NB_SIZE_BT])(t_data *);
+  char				**env;
 }				t_itfc;
 
 /*
@@ -190,6 +225,31 @@ int	interface(t_data *data);
 int	nothing_selected(t_data *data);
 int	init_ftabs(t_itfc *);
 void	prerender(t_rt *, int, t_data *);
+
+/*
+** Init
+*/
+void	set_aa_curs(t_data *, t_itfc *);
+void	init_slide_pos(t_itfc *, t_data *);
+void	init_ptr_context(t_itfc *);
+void	init_ptr_button(t_itfc *);
+void	init_ptr_state(t_itfc *);
+int	init_ptr_save(t_itfc *);
+int	init_ptr_save_ini(t_itfc *);
+
+/*
+** Key actions
+*/
+int	move_up(t_data *);
+int	move_down(t_data *);
+int	move_left(t_data *);
+int	move_right(t_data *);
+int	rot_up(t_data *);
+int	rot_down(t_data *);
+int	rot_left(t_data *);
+int	rot_right(t_data *);
+int	check_key(t_data *, t_bunny_event_state, t_bunny_keysym);
+
 /*
 ** Eye
 */
@@ -197,6 +257,7 @@ void	move_eye(t_data *);
 void	rotate_eye(t_data *);
 void	zoom(t_data *, int, int);
 void	move_on_wheel(t_data *, int, int);
+
 /*
 ** State
 */
@@ -302,5 +363,47 @@ int	set_high_size(t_data *);
 int	set_hd_size(t_data *);
 int	set_xga_size(t_data *);
 int	set_vga_size(t_data *);
+
+/*
+** Delete
+*/
+int	delete_form(t_data *);
+
+/*
+** SpotLight
+*/
+int	move_spot(t_data *);
+int	add_spot(t_data *);
+int	delete_spot(t_data *);
+int	select_spot(t_data *);
+int	move_stateobj(t_data *, t_bunny_event_state,
+		      t_bunny_mousebutton);
+int	slide_light(t_data *);
+
+/*
+** Check workspace
+*/
+bool	check_workspace(const t_bunny_position *, t_rt *);
+
+/*
+** Modif obj
+*/
+int	check_rad_bt(const t_bunny_position *, t_data *);
+int	select_obj(t_data *);
+int	move_obj(t_data *);
+int	resize_obj(t_data *);
+int	texture_obj(t_data *);
+int	resize_sphere(t_data *, t_acc *);
+int	resize_cylinder(t_data *, t_acc *);
+int	resize_cone(t_data *, t_acc *);
+int	resize_plan(t_data *, t_acc *);
+int	apply_sphere(t_data *);
+int	apply_cone(t_data *);
+int	apply_cylinder(t_data *);
+int	apply_plan(t_data *);
+int	apply_flat_texture(t_data *);
+int	apply_perlin_texture(t_data *);
+int	apply_image_texture(t_data *);
+void	reset_select(t_object *, t_data *);
 
 #endif /* !INTERFACE  */

@@ -1,11 +1,11 @@
 /*
-** update_real_hit_list.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** update_real_hit_list.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 19 15:11:57 2016 romain samuel
-** Last update Thu May  5 21:14:54 2016 romain samuel
+** Last update Sat May  7 19:01:11 2016 bougon_p
 */
 
 #include "raytracer.h"

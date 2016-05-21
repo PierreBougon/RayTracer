@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May 18 19:57:39 2016 romain samuel
-** Last update Sat May 21 16:11:37 2016 romain samuel
+** Last update Sat May 21 22:40:03 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -43,19 +43,6 @@ static int	cylinder_plan1_inter2(t_rt *s, t_cylinder *cylinder)
   s->hit.simple_inter1.x += (double)pos.x;
   s->hit.simple_inter1.y += (double)pos.y;
   s->hit.simple_inter1.z += (double)pos.z;
-  return (0);
-}
-
-static int	check_real_cylinder_plan_inter(t_rt *s, t_plan *plan)
-{
-  t_acc		inter;
-  int		len;
-
-  inter.x = s->ray.vct->x * s->hit.k1 + s->ray.eye.x - (double)plan->pos.x;
-  inter.y = s->ray.vct->y * s->hit.k1 + s->ray.eye.z - (double)plan->pos.y;
-  inter.z = s->ray.vct->z * s->hit.k1 + s->ray.eye.z - (double)plan->pos.z;
-  if ((len = sqrt(CARRE(inter.x) + CARRE(inter.y) + CARRE(inter.z))) > 0)
-    return (-1);
   return (0);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 21:09:55 2016 bougon_p
-** Last update Sun May  1 19:13:58 2016 bougon_p
+** Last update Sat May 21 06:51:00 2016 bougon_p
 */
 
 #ifndef BUTTON_H_
@@ -52,5 +52,42 @@
 # define NEW_BT_DECAL 60
 # define NB_NEW_BT 3
 
+# define MOD_BT_X 140
+# define MOD_BT_Y 190
+# define MOD_BT_WDT 80
+# define MOD_BT_HGT 80
+# define MOD_DECAL 40
+# define MOD_SBT_Y 670
+# define NB_MOD_BT 4
+# define MOD_RAD_X 295
+# define MOD_RAD_Y 410
+# define MOD_RAD_WDT 25
+# define MOD_RAD_HGT 25
+# define MOD_RAD_DECAL 11
+# define NB_MOD_RAD 3
+# define MOD_REFL_X 245
+# define MOD_REFL_Y 990
+# define MOD_REFL_WDT 25
+# define MOD_REFL_HGT 25
+# define MOD_REFL_DECAL 45
+
+# define SUB_BT_X_FIRST 145
+# define SUB_BT_Y_FIRST 210
+# define SUB_BT_WDT 80
+# define SUB_BT_HGT 80
+# define SUB_DECAL_Y 85
+# define NB_SUB_BT 2
+
+# define SPOT_BT_X_FIRST 155
+# define SPOT_BT_Y_FIRST 185
+# define SPOT_BT_WDT 80
+# define SPOT_BT_HGT 80
+# define SPOT_DECAL_Y 43
+# define NB_SPOT_BT 4
+# define START_SLIDE_LI_X 180
+# define END_SLIDE_LI_X 351
+# define START_SLIDE_LI_Y 805
+# define END_SLIDE_LI_Y 830
+# define SLIDE_LI_WDT END_SLIDE_LI_X - START_SLIDE_LI_X
 
 #endif /* !BUTTON_H_ */

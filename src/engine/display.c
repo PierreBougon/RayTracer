@@ -5,12 +5,12 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Thu May 19 02:06:37 2016 romain samuel
+** Last update Sat May 21 22:39:16 2016 romain samuel
 */
 
 #include "raytracer.h"
 
-int			inter_objects(t_rt *s, t_object *obj)
+int			inter_objects(t_rt *s)
 {
   t_object		*it;
 
@@ -18,19 +18,22 @@ int			inter_objects(t_rt *s, t_object *obj)
   s->ftabs.inters_ftab[1] = &display_cylinder;
   s->ftabs.inters_ftab[2] = &display_cone;
   s->ftabs.inters_ftab[3] = &display_plan;
-  s->ftabs.inters_ftab[4] = &display_box;
-  s->ftabs.inters_ftab[5] = &display_csg;
+  s->ftabs.inters_ftab[4] = &display_tore;
+  s->ftabs.inters_ftab[5] = &display_box;
+  s->ftabs.inters_ftab[6] = &display_hole_cube;
+  s->ftabs.inters_ftab[7] = &display_hyper;
+  s->ftabs.inters_ftab[8] = &display_parab;
+  s->ftabs.inters_ftab[9] = &display_csg;
   it = s->obj;
   while (it != NULL)
     {
-      if (obj == NULL || it != obj)
-	{
-	  s->hit.k1 = 0.0;
-	  s->hit.k2 = 0.0;
-	  if (it->type > 1 && it->type < 8)
-	    if (s->ftabs.inters_ftab[it->type - 2](s, it) == -1)
-	      return (-1);
-	}
+      s->hit.k1 = 0.0;
+      s->hit.k2 = 0.0;
+      s->hit.k3 = 0.0;
+      s->hit.k4 = 0.0;
+      if (it->type != LIGHT)
+	if (s->ftabs.inters_ftab[it->type - 1](s, it) == -1)
+	  return (-1);
       it = it->next;
     }
   return (0);
@@ -47,7 +50,7 @@ t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye)
     }
   s->ray.eye = eye;
   s->ray.vct = vct;
-  inter_objects(s, NULL);
+  inter_objects(s);
   order_hit_list(s->obj_hit);
   if (s->obj_hit != NULL && s->obj_hit->next != NULL)
     {
@@ -84,12 +87,6 @@ int			display(t_rt *s, t_data *data)
   t_acc			vct;
   t_color		final_color;
 
-  s->nb_coef = 1;
-  data->ld.nb_coef = 1;
-  data->ld.curr_line = 0;
-  if ((s->shade.itab = bunny_malloc(sizeof(double) * s->opt.nb_rays_ss))
-      == NULL)
-    return (-1);
   if (s->r_pos.y < s->height)
     {
       s->r_pos.x = 0;
@@ -107,7 +104,7 @@ int			display(t_rt *s, t_data *data)
       data->itfc.rendering = false;
       data->itfc.rendered = true;
       data->ld.loading->clipable.clip_width = data->ld.save_width;
+      bunny_free(s->shade.itab);
     }
-  bunny_free(s->shade.itab);
   return (0);
 }

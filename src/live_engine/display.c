@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 19:05:58 2016 romain samuel
-** Last update Sat May 21 21:31:10 2016 romain samuel
+** Last update Sat May 21 23:37:07 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -22,7 +22,7 @@ t_color			live_display_objects(t_rt *s,
     return (s->final_color);
   s->ray.eye = eye;
   s->ray.vct = vct;
-  inter_objects(s, NULL);
+  inter_objects(s);
   order_hit_list(s->obj_hit);
   if (s->obj_hit != NULL && s->obj_hit->next != NULL)
     {
@@ -49,20 +49,13 @@ int			live_display(t_rt *s)
     {
       pos.x = 0;
       while (pos.x < s->width)
-  /* pos.y = 460; */
-  /* while (pos.y < 461) */
-  /*   { */
-  /*     pos.x = 650; */
-  /*     while (pos.x < 651) */
 	{
-	  /* printf("\n | NEW_PIXEL: |\n"); */
-	  /* printf("x = %d, y = %d\n", pos.x, pos.y); */
 	  vct.x = ((double)s->width / 2.0) - (double)pos.x;
 	  vct.y = ((double)s->height / 2.0) - (double)pos.y;
-	  vct.z = 1000;
+	  vct.z = 1000.0;
 	  rotation(&s->rotation, &vct, &s->eye.rot);
 	  final_color = live_display_objects(s, &vct, s->eye.pos, 0);
-	  mult_tekpixel(s->img, &pos, &final_color);
+	  mult_tekpixel(s->img, &pos, &final_color, 4);
 	  pos.x += 4;
 	}
       pos.y += 4;
