@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon May 16 17:03:11 2016 benjamin duhieu
-** Last update Tue May 17 17:46:28 2016 benjamin duhieu
+** Last update Thu May 19 10:35:28 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -37,7 +37,7 @@ int		load_tore_datas1(t_tore *s,
   s->rot.z = my_getnbr((char *)field);
   if ((field = bunny_ini_get_field(ini, scope, "rad", 0)) == NULL)
     return (my_puterr("load_datas: missing tore rad"));
-  s->rad = (double)my_getnbr((char *)field) / 100;
+  s->rad = (double)my_getnbr((char *)field);
   return (load_tore_datas2(s, ini, scope));
 }
 
@@ -49,7 +49,7 @@ int		load_tore_datas2(t_tore *s,
 
   if ((field = bunny_ini_get_field(ini, scope, "dist", 0)) == NULL)
     return (my_puterr("load_datas: missing tore dist"));
-  s->dist = (double)my_getnbr((char *)field) / 100;
+  s->dist = (double)my_getnbr((char *)field);
   if ((field = bunny_ini_get_field(ini, scope, "tex_type", 0)) == NULL)
     return (my_puterr("load_datas: missing tore type"));
   s->tex_type = my_getnbr((char *)field);

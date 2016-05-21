@@ -5,19 +5,20 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue May 17 14:50:20 2016 bougon_p
-** Last update Wed May 18 19:39:01 2016 bougon_p
+** Last update Fri May 20 20:50:21 2016 bougon_p
 */
 
 #include "raytracer.h"
 
-static	void move_light(t_data *data, const t_bunny_position *mpos)
+static	void	move_light(t_data *data,
+			   const t_bunny_position *mpos)
 {
   t_acc		vec;
   t_light	*light;
   t_pos		*pos;
 
   vec.z = 0;
-  if (!data->itfc.light_click || !data->itfc.light_selected)
+  if (!data->itfc.obj_click || !data->itfc.light_selected)
     return ;
   if (!data->itfc.move.needmoving)
     {
@@ -39,7 +40,7 @@ static	void move_light(t_data *data, const t_bunny_position *mpos)
     }
 }
 
-int	move_spot(t_data *data)
+int				move_spot(t_data *data)
 {
   const	t_bunny_position	*mpos;
   t_rt				*rt;

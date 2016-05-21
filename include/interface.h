@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Fri May 20 13:38:31 2016 bougon_p
+** Last update Fri May 20 22:36:11 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -109,6 +109,7 @@ typedef	enum			e_tex_state
 typedef struct	s_data		t_data;
 typedef struct	s_rt		t_rt;
 typedef struct	s_object	t_object;
+typedef	struct	s_acc		t_acc;
 
 typedef	struct			s_move
 {
@@ -192,10 +193,11 @@ typedef struct			s_itfc
   bool				rendering;
   bool				rendered;
   bool				left_click;
-  bool				light_click;
-  bool				asklight_click;
+  bool				obj_click;
+  bool				askobj_click;
   bool				live;
   const	t_bunny_position	*mpos;
+  int				(*fct_resize[NB_OBJ])(t_data *, t_acc *);
   int				(*fct_context[NB_CONTEXT])(t_data *);
   int				(*fct_button[4])(t_data *);
   int				(*fct_state[NB_STATUS])(t_data *,
@@ -353,13 +355,25 @@ int	move_spot(t_data *);
 int	add_spot(t_data *);
 int	delete_spot(t_data *);
 int	select_spot(t_data *);
-int	move_obj(t_data *, t_bunny_event_state,
-		 t_bunny_mousebutton);
+int	move_stateobj(t_data *, t_bunny_event_state,
+		      t_bunny_mousebutton);
 int	slide_light(t_data *);
 
 /*
 ** Check workspace
 */
 bool	check_workspace(const t_bunny_position *, t_rt *);
+
+/*
+** Modif obj
+*/
+int	select_obj(t_data *);
+int	move_obj(t_data *);
+int	resize_obj(t_data *);
+int	texture_obj(t_data *);
+int	resize_sphere(t_data *, t_acc *);
+int	resize_cylinder(t_data *, t_acc *);
+int	resize_cone(t_data *, t_acc *);
+int	resize_plan(t_data *, t_acc *);
 
 #endif /* !INTERFACE  */

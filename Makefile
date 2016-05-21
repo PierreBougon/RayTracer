@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Wed May 18 21:48:34 2016 bougon_p
+## Last update Fri May 20 22:39:42 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -160,6 +160,11 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)delete_spot.c \
 			$(ITFC)$(CONTEXT)select_spot.c \
 			$(ITFC)$(CONTEXT)slide_light.c \
+			$(ITFC)$(CONTEXT)text_obj.c \
+			$(ITFC)$(CONTEXT)move_obj.c \
+			$(ITFC)$(CONTEXT)resize_obj.c \
+			$(ITFC)$(CONTEXT)resize_fct.c \
+			$(ITFC)$(CONTEXT)select_obj.c \
 			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
