@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat May 21 14:27:40 2016 bougon_p
+** Last update Sat May 21 18:51:44 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -1073,7 +1073,7 @@ void		tekpixel(t_bunny_pixelarray *pix,
 			 t_color *color);
 void		mult_tekpixel(t_bunny_pixelarray *pix,
 			 t_bunny_position *pos,
-			 t_color *color);
+			      t_color *color, int n);
 void		fill_pxlarray(t_bunny_pixelarray *pxar,
 			     unsigned int color);
 int		fill_next_lines(t_bunny_pixelarray *pxar,
