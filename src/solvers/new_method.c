@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Sat May 21 20:47:34 2016 marc brout
-** Last update Sat May 21 21:28:53 2016 marc brout
+** Last update Sat May 21 21:39:41 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -31,14 +31,13 @@ static inline double		calc_r(t_4order *c)
 }
 
 static inline void		calc_roots(const double p,
-					   const double q,
 					   const double r, t_4order *c)
 {
   double			rac;
   double			rac1;
   double			rac2;
 
-  rac = sqrt((CARRE(p) / 4.0) - r)
+  rac = sqrt((CARRE(p) / 4.0) - r);
   rac1 = sqrt((p / 2.0) + rac);
   rac2 = sqrt((p / 2.0) - rac);
   c->root1 = rac1;
@@ -57,7 +56,7 @@ void				solver_pqr(t_4order *c)
   q = calc_q(c);
   r = calc_r(c);
   if (q < 0.000001 && q > -0.000001)
-    calc_roots(p, q, r, c);
+    calc_roots(p, r, c);
   else
     q_is_not_null(c, p, q, r);
 }
