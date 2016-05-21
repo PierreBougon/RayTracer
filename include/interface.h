@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sat May 21 07:01:56 2016 bougon_p
+** Last update Sat May 21 10:28:59 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -126,6 +126,7 @@ typedef	struct			s_move
 
 typedef	struct			s_text
 {
+  bool				writing;
   t_bunny_window		*win;
   t_bunny_position		txt_pos;
   t_bunny_picture		*font;

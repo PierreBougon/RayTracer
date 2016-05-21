@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 15:51:45 2016 bougon_p
-** Last update Sat May 21 02:43:29 2016 bougon_p
+** Last update Sat May 21 10:42:24 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -45,6 +45,10 @@ int	interface(t_data *data)
 {
   data->itfc.live = data->rt.live;
   check_status_selected(data);
+  if (data->itfc.button[SAVE] || data->itfc.button[OPEN])
+    data->itfc.txt.writing = true;
+  else
+    data->itfc.txt.writing = false;
   if (data->itfc.button[SAVE])
     data->itfc.save.fct_save[data->itfc.save.save_state](data);
   else if (data->itfc.button[OPEN])

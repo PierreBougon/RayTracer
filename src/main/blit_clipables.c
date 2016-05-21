@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 00:25:51 2016 bougon_p
-** Last update Sat May 21 07:10:20 2016 bougon_p
+** Last update Sat May 21 10:28:03 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -37,11 +37,11 @@ static void		aff_refl_state(t_data *data)
   if (data->itfc.obj_selected && data->itfc.button[MODIF_FORM])
     {
       itfc = &data->itfc;
-      pos.y = MOD_REFL_Y;
+      pos.y = MOD_REFL_Y - 2;
       if (itfc->past.refl_state == YES)
-	pos.x = MOD_REFL_X;
-      else if (itfc->past.rad_state == PERLIN)
-	pos.x = MOD_REFL_X + MOD_REFL_WDT + MOD_REFL_DECAL;
+	pos.x = MOD_REFL_X + 1;
+      else if (itfc->past.refl_state == NO)
+	pos.x = MOD_REFL_X + MOD_REFL_DECAL + 3;
       bunny_blit(&data->win->buffer, itfc->past.img, &pos);
     }
 }

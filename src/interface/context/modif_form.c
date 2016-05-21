@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:53:20 2016 bougon_p
-** Last update Sat May 21 08:29:04 2016 bougon_p
+** Last update Sat May 21 10:22:02 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -81,6 +81,7 @@ static	void	check_refl_bt(const t_bunny_position *mpos, t_data *data)
        && mpos->y > MOD_REFL_Y
        && mpos->y < MOD_REFL_Y + (MOD_REFL_HGT)))
     {
+      printf("YES\n");
       *reflect = 0.30;
       data->itfc.past.refl_state = YES;
     }
@@ -89,6 +90,7 @@ static	void	check_refl_bt(const t_bunny_position *mpos, t_data *data)
 	    && mpos->y > MOD_REFL_Y
 	    && mpos->y < MOD_REFL_Y + (MOD_REFL_HGT)))
     {
+      printf("NO\n");
       *reflect = 0.00;
       data->itfc.past.refl_state = NO;
     }
