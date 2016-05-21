@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon May  2 13:53:17 2016 benjamin duhieu
-** Last update Sat May 21 21:38:11 2016 benjamin duhieu
+** Last update Sat May 21 21:52:43 2016 benjamin duhieu
 */
 
 #include <stdio.h>
@@ -15,13 +15,13 @@ void		put_root(t_2order *x1, t_2order *x2,
 			 t_4order *solv)
 {
   if (x1->tab[0])
-    solv->root1 = x1->root1 - (solv->b / (4 * solv->a));
+    solv->root1 = x1->root1 - (solv->b / (4.0 * solv->a));
   if (x1->tab[1])
-    solv->root2 = x1->root2 - (solv->b / (4 * solv->a));
+    solv->root2 = x1->root2 - (solv->b / (4.0 * solv->a));
   if (x2->tab[0])
-    solv->root1 = x2->root1 - (solv->b / (4 * solv->a));
+    solv->root1 = x2->root1 - (solv->b / (4.0 * solv->a));
   if (x2->tab[1])
-    solv->root2 = x2->root2 - (solv->b / (4 * solv->a));
+    solv->root2 = x2->root2 - (solv->b / (4.0 * solv->a));
 }
 
 void		resolv_root(t_4order *solv, t_3order *res,
@@ -32,17 +32,17 @@ void		resolv_root(t_4order *solv, t_3order *res,
   double	a0;
   double	b0;
 
-  a0 = sqrt(-p + 2 * res->root1);
-  b0 = -q / (2 * a0);
+  a0 = sqrt(-p + 2.0 * res->root1);
+  b0 = -q / (2.0 * a0);
   x1.root1 = -1;
   x1.root2 = -1;
-  x1.a = 1;
+  x1.a = 1.0;
   x1.b = -a0;
   x1.c = res->root1 - b0;
   second_order_solver(&x1);
-  x2.root1 = -1;
-  x2.root2 = -1;
-  x2.a = 1;
+  x2.root1 = -1.0;
+  x2.root2 = -1.0;
+  x2.a = 1.0;
   x2.b = a0;
   x2.c = res->root1 + b0;
   second_order_solver(&x1);
@@ -57,10 +57,10 @@ void		q_is_not_nul(t_4order *solv, double p,
   res.root1 = -1;
   res.root2 = -1;
   res.root3 = -1;
-  res.a = 8;
-  res.b = -4 * p;
-  res.c = -8 * r;
-  res.d = (4 * r * p) - CARRE(q);
+  res.a = 8.0;
+  res.b = -4.0 * p;
+  res.c = -8.0 * r;
+  res.d = (4.0 * r * p) - CARRE(q);
   cube_order_solver(&res);
   resolv_root(solv, &res, p, q);
 }
