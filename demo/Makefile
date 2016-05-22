@@ -5,7 +5,7 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Thu Dec 17 13:59:43 2015 marc brout
-## Last update Mon May 16 13:52:57 2016 marc brout
+## Last update Sun May 22 23:38:47 2016 bougon_p
 ##
 
 SRC     = bmploader.c
@@ -21,7 +21,7 @@ NAME    = bmpload
 
 SAVE	= savebmp
 
-CC      = gcc -g
+CC      = gcc
 
 CFLAGS  = -W -Wall -Werror -ansi -pedantic
 
