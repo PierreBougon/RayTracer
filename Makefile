@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 14:02:14 2016 bougon_p
+## Last update Sun May 22 16:24:35 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -41,6 +41,9 @@ SOLVERS		=	src/solvers/
 SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
 			$(MAIN)free.c \
+			$(MAIN)free_obj.c \
+			$(MAIN)free_obj2.c \
+			$(MAIN)free_obj_csg.c \
 			$(MAIN)setnbr.c \
 			$(MAIN)setunsnbr.c \
 			$(MAIN)put_base.c \

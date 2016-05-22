@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun May  1 02:25:51 2016 bougon_p
-** Last update Sat May 21 19:13:20 2016 bougon_p
+** Last update Sun May 22 16:14:34 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -28,7 +28,7 @@ int	create_scene(t_data *data)
   if (data->click_action)
     {
       if (data->rt.img != NULL)
-	clear_list(data->rt.obj);
+	clear_full_list(data->rt.obj, &data->rt.ftabs);
       if ((data->rt.img =
 	   bunny_new_pixelarray(data->rt.width,
 				data->rt.height)) == NULL)

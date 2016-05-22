@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sat May 21 23:35:45 2016 romain samuel
+** Last update Sun May 22 16:44:35 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -586,6 +586,7 @@ typedef struct		s_ftab
   void			(**tex_ftab)(t_rt *);
   int			(*filter_effect[9])(t_bunny_pixelarray **,
 					    const int);
+  void			(*fct_free[NB_OBJ + 1])(t_object *);
 }			t_ftab;
 
 typedef struct		s_rotation
@@ -679,6 +680,17 @@ void	blit_clipables(t_data *);
 void	free_all(t_data *);
 void	free_tab(char **);
 void	delete_all_clipables(t_data *);
+void	free_light(t_object *);
+void	free_sphere(t_object *);
+void	free_cylinder(t_object *);
+void	free_cone(t_object *);
+void	free_plane(t_object *);
+void	free_tore(t_object *);
+void	free_box(t_object *);
+void	free_hole_cube(t_object *);
+void	free_hyper(t_object *);
+void	free_parab(t_object *);
+void	free_csg(t_object *);
 
 /*
 ** Translation
@@ -717,6 +729,7 @@ void		checkerboard_3d(t_rt *s);
 ** clear_list.c
 */
 int		clear_list(t_object *root);
+int		clear_full_list(t_object *root, t_ftab *);
 
 /*
 ** color_operations.c

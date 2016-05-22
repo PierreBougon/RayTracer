@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Sun May 22 00:01:47 2016 bougon_p
+** Last update Sun May 22 16:05:11 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -76,5 +76,16 @@ int	init_engine_ftabs(t_ftab *ftabs)
     return (my_puterr("Could not malloc ftabs"));
   if ((ftabs->tex_ftab = bunny_malloc(sizeof(ftabs->tex_ftab) * 8)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
+  ftabs->fct_free[LIGHT] = free_light;
+  ftabs->fct_free[SPHERE] = free_sphere;
+  ftabs->fct_free[CYLINDER] = free_cylinder;
+  ftabs->fct_free[CONE] = free_cone;
+  ftabs->fct_free[PLANE] = free_plane;
+  ftabs->fct_free[TORE] = free_tore;
+  ftabs->fct_free[BOX] = free_box;
+  ftabs->fct_free[HOLE_CUBE] = free_hole_cube;
+  ftabs->fct_free[HYPER] = free_hyper;
+  ftabs->fct_free[PARAB] = free_parab;
+  ftabs->fct_free[CSG] = free_csg;
   return (0);
 }
