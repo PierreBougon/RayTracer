@@ -5,12 +5,12 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Sun May 22 17:04:41 2016 marc brout
+** Last update Sun May 22 17:59:57 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
 
-t_bunny_response        my_click(t_bunny_event_state state,
+t_bunny_response	my_click(t_bunny_event_state state,
 				 t_bunny_mousebutton mbutton,
 				 void *_data)
 {
@@ -38,7 +38,7 @@ t_bunny_response        my_click(t_bunny_event_state state,
   return (GO_ON);
 }
 
-t_bunny_response        my_wheel(int wheelid,
+t_bunny_response	my_wheel(int wheelid,
 				 int delta,
 				 void *_data)
 {
@@ -73,7 +73,7 @@ t_bunny_response	my_key(t_bunny_event_state state,
   return (GO_ON);
 }
 
-t_bunny_response        mainloop(void *_data)
+t_bunny_response	mainloop(void *_data)
 {
   t_data			*data;
   UNUSED t_rt			*rt;

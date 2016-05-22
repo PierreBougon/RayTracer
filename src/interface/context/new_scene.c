@@ -1,16 +1,16 @@
 /*
-** new_scene.c for new_scene.c in /home/bougon_p/rendu/gfx_raytracer2
+1;2802;0c** new_scene.c for new_scene.c in /home/bougon_p/rendu/gfx_raytracer2
 **
 ** Made by bougon_p
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun May  1 01:17:22 2016 bougon_p
-** Last update Sat May 21 16:02:01 2016 bougon_p
+** Last update Sun May 22 18:07:35 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
 
-static void     check_hit(t_data *data, int i)
+static void	check_hit(t_data *data, int i)
 {
   if (i == 0)
     data->itfc.fct_bt_context = create_scene;
@@ -20,7 +20,7 @@ static void     check_hit(t_data *data, int i)
     data->itfc.fct_bt_context = basic_wallpaper;
 }
 
-static void     set_value_for_hit(t_data *data, int save)
+static void	set_value_for_hit(t_data *data, int save)
 {
   if (save < NB_NEW_BT)
     data->click_action = true;

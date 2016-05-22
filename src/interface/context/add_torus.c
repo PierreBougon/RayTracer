@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:08:34 2016 bougon_p
-** Last update Wed Apr 27 20:27:44 2016 bougon_p
+** Last update Sun May 22 18:13:05 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -20,10 +20,7 @@ int	add_torus(UNUSED t_data *data)
       && data->itfc.mpos->y > data->rt.pos.y
       && data->itfc.mpos->y < data->rt.pos.y +
       data->rt.img->clipable.clip_height)
-    {
-      data->click_action = false;
-      printf("ADD TORUS\n");
-    }
+    data->click_action = false;
   else
     data->click_action = false;
   return (0);
