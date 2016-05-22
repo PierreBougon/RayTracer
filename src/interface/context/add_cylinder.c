@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:04:18 2016 bougon_p
-** Last update Sat May 21 17:28:10 2016 bougon_p
+** Last update Sun May 22 15:11:00 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -54,6 +54,7 @@ static	int	add_cylinder_obj(t_data *data)
       data->rt.obj = create_obj_list();
       new = data->rt.obj;
     }
+  new->name = setnbr(g_name++);
   pos_cylinder(data, cyl);
   set_value(cyl);
   cyl->color1.full = OBJ_COLOR;

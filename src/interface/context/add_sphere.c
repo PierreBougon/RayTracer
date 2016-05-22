@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 17:59:29 2016 bougon_p
-** Last update Thu May  5 21:08:38 2016 romain samuel
+** Last update Sun May 22 15:15:56 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -26,6 +26,7 @@ static	void	pos_sphere(t_data *data, t_sphere *sph)
   sph->rot.x = 0;
   sph->rot.y = 0;
   sph->rot.z = 0;
+  sph->size = 1000;
 }
 
 static	int	add_sphere_obj(t_data *data)
@@ -42,9 +43,9 @@ static	int	add_sphere_obj(t_data *data)
       data->rt.obj = create_obj_list();
       new = data->rt.obj;
     }
+  new->name = setnbr(g_name++);
   pos_sphere(data, sph);
   sph->tex_type = 1;
-  sph->size = 1000;
   sph->ka = 1.0;
   sph->kd = 1.0;
   sph->ks = 1.0;

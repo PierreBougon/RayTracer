@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue May 17 14:50:20 2016 bougon_p
-** Last update Fri May 20 20:50:21 2016 bougon_p
+** Last update Sun May 22 14:07:53 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -31,9 +31,9 @@ static	void	move_light(t_data *data,
       pos = &light->pos;
       data->itfc.move.second_pos = *mpos;
       vec.x =
-        -((data->itfc.move.second_pos.x - data->itfc.move.first_pos.x) * 15);
+        -((data->itfc.move.second_pos.x - data->itfc.move.first_pos.x) * 35);
       vec.y =
-        -((data->itfc.move.second_pos.y - data->itfc.move.first_pos.y) * 15);
+        -((data->itfc.move.second_pos.y - data->itfc.move.first_pos.y) * 35);
       translation_obj(&data->rt.rotation, &vec,
 		      &data->rt.eye.rot, pos);
       data->itfc.move.first_pos = data->itfc.move.second_pos;

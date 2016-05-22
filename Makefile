@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sat May 21 23:49:51 2016 bougon_p
+## Last update Sun May 22 14:02:14 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -179,6 +179,7 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)save_ini_obj_scope_cylinder.c \
 			$(ITFC)$(CONTEXT)save_ini_obj_scope_plane.c \
 			$(ITFC)$(CONTEXT)modif_form.c \
+			$(ITFC)$(CONTEXT)check_reflect.c \
 			$(ITFC)$(CONTEXT)add_form.c \
 			$(ITFC)$(CONTEXT)sub_form.c \
 			$(ITFC)$(CONTEXT)spotlight.c \
