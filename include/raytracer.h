@@ -5,8 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 14:58:33 2016 benjamin duhieu
-2
+** Last update Sun May 22 15:48:08 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -25,7 +24,7 @@
 # define CARRE(val) ((val) * (val))
 # define RAD(val) (((val) * M_PI) / 180)
 # define DEG(val) (((val) * 180) / M_PI)
-# define ABS(Value) ((Value < 0) ? -Value : Value)
+# define ABS(val) (((val) < 0) ? -(val) : (val))
 
 /*
 ** WINDOW DEFINES
@@ -245,6 +244,7 @@ typedef struct		s_ellip
 
 typedef struct		s_hyper
 {
+  t_2order		res;
   t_pos			pos;
   double		reflection;
   int			tex_type;
@@ -273,6 +273,7 @@ typedef struct		s_hyper
 typedef struct		s_parab
 {
   t_pos			pos;
+  t_2order		res;
   double		reflection;
   int			tex_type;
   t_pos			rot;
@@ -1405,5 +1406,15 @@ void		solver_pqr(t_4order *c);
 void		q_is_not_nul(t_4order *solv,
 			     double p, double q,
 			     double r);
+/*
+** shadow_hyper.c
+*/
+double		shadow_inter_hyper(t_rt *s, t_hyper *h);
+
+/*
+** shadow_para.c
+*/
+double		shadow_inter_para(t_rt *s, t_parab *p);
+
 
 #endif /* !RAYTRACER_H_ */
