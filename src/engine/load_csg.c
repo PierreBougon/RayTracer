@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue May 10 18:11:07 2016 romain samuel
-** Last update Sun May 22 17:50:01 2016 marc brout
+** Last update Sun May 22 21:37:35 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -89,13 +89,15 @@ t_csg		*load_csg_datas(t_rt *rt,
 {
   const char	*field;
   t_csg		**tab;
+  t_csg		*csg;
   int		nodes;
   int		i;
 
   i = 0;
   if ((field = bunny_ini_get_field(ini, scope, "nb_nodes", 0)) == NULL)
     return (my_puterror("load_datas: missing csg node_nb"));
-  nodes = my_getnbr((char *)field);
+  if ((nodes = my_getnbr((char *)field)) == -1)
+    return (my_puterror("load_datas: invalid csg"));
   if ((tab = create_csg_tab(nodes)) == NULL)
     return (my_puterror("Could not perform bunny_malloc"));
   while (i < nodes)
@@ -108,7 +110,8 @@ t_csg		*load_csg_datas(t_rt *rt,
     }
   if (create_csg_tree(tab, nodes) == -1)
     return (my_puterror("load_dats: could not create csg"));
-  return (tab[0]);
+  csg = tab[0];
+  return (csg);
 }
 
 int		load_csg(t_rt *rt, t_bunny_ini *ini, char *scope)

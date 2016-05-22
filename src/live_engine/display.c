@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 19:05:58 2016 romain samuel
-** Last update Sun May 22 20:52:37 2016 romain samuel
+** Last update Sun May 22 21:50:06 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -44,6 +44,7 @@ int			live_display(t_rt *s)
   t_acc			vct;
   t_color		final_color;
 
+  s->search = 0;
   pos.y = 0;
   while (pos.y < s->height)
     {
