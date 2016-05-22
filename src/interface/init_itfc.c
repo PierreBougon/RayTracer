@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Sat May 21 14:17:22 2016 bougon_p
+** Last update Sun May 22 00:25:16 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -78,7 +78,7 @@ int	init_itfc_data(t_itfc *itfc, t_data *data)
   itfc->light_selected = NULL;
   itfc->obj_click = false;
   itfc->askobj_click = false;
-  itfc->obj_selected = data->rt.obj;
+  itfc->obj_selected = NULL;
   itfc->past.rad_state = 0;
   itfc->past.refl_state = NO;
   itfc->txt.writing = false;

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Sat May 21 21:48:14 2016 bougon_p
+** Last update Sun May 22 00:14:24 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -118,7 +118,7 @@ int		main(int argc, char **argv, char **env)
   bunny_set_wheel_response(my_wheel);
   bunny_set_text_response(my_txtinput);
   bunny_set_loop_main_function(mainloop);
-  bunny_loop(data.win, 30, &data);
+  bunny_loop(data.win, 45, &data);
   delete_all_clipables(&data);
   free_all(&data);
   bunny_stop(data.win);

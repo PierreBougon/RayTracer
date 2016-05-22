@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:44:39 2016 romain samuel
-** Last update Fri May 13 19:01:52 2016 bougon_p
+** Last update Sat May 21 23:58:19 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -130,5 +130,7 @@ int		load_sphere(t_rt *rt, t_bunny_ini *ini, char *scope)
   if (load_sphere_datas(s, ini, scope) == -1)
     return (-1);
   it->datas = s;
+  if ((it->name = my_strdup(scope)) == NULL)
+    return (my_puterr("Could not perform malloc"));
   return (0);
 }

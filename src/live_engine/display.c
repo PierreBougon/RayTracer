@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 19:05:58 2016 romain samuel
-** Last update Sat May 21 23:56:15 2016 benjamin duhieu
+** Last update Sun May 22 15:43:58 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -46,13 +46,12 @@ int			live_display(t_rt *s)
 
   /* if ((s->pixel_color = bunny_malloc(sizeof(t_color) * s->opt.aa)) == NULL) */
   /*   return (my_puterr("display: could not perform malloc")); */
-  pos.y = 460;
-  while (pos.y < 465)
+  pos.y = 0;
+  while (pos.y < s->height)
     {
-      pos.x = 900;
-      while (pos.x < 905)
+      pos.x = 0;
+      while (pos.x < s->width)
 	{
-	  printf("Y : %d && X : %d\n", pos.y, pos.x);
 	  vct.x = ((double)s->width / 2.0) - (double)pos.x;
 	  vct.y = ((double)s->height / 2.0) - (double)pos.y;
 	  vct.z = 1000.0;
@@ -63,6 +62,5 @@ int			live_display(t_rt *s)
 	}
       pos.y += 4;
     }
-  /* bunny_free(s->pixel_color); */
   return (0);
 }

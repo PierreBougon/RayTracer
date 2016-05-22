@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Apr 13 13:45:54 2016 marc brout
-** Last update Sat May 21 21:27:07 2016 benjamin duhieu
+** Last update Sun May 22 12:06:23 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -19,8 +19,6 @@ void		second_order_solver(t_2order *res)
     {
       res->root1 = -res->b / (2 * res->a);
       res->tab[0] = 1;
-      /* printf("\n<<<<<delta : %f && a : %f && b : %f && c : %f>>>>>>\n", res->delta, res->a, res->b, res->c); */
-      /* printf("s->k1 : %f && s->k2 : %f\n", res->root1, res->root2); */
     }
   else if (res->delta > 0)
     {
@@ -28,10 +26,5 @@ void		second_order_solver(t_2order *res)
       res->root2 = (-res->b - sqrt(res->delta)) / (2 * res->a);
       res->tab[0] = 1;
       res->tab[1] = 1;
-      /* printf("\n<<<<<delta : %f && a : %f && b : %f && c : %f>>>>>>\n", res->delta, res->a, res->b, res->c); */
-      /* printf("s->k1 : %f && s->k2 : %f\n", res->root1, res->root2); */
     }
-  /* if (res->root1 >= 0 || res->root2 >= 0) */
-  /*   { */
-    /* } */
 }

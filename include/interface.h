@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sat May 21 17:49:56 2016 bougon_p
+** Last update Sat May 21 22:09:43 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -405,5 +405,10 @@ int	apply_flat_texture(t_data *);
 int	apply_perlin_texture(t_data *);
 int	apply_image_texture(t_data *);
 void	reset_select(t_object *, t_data *);
+
+/*
+** GET OBJ
+*/
+t_object	*get_obj(t_rt *, int, int);
 
 #endif /* !INTERFACE  */

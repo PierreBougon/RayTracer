@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 10 14:03:22 2016 romain samuel
-** Last update Thu May 12 21:23:56 2016 benjamin duhieu
+** Last update Sat May 21 22:11:25 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -30,6 +30,7 @@ int		update_hit_list(t_rt *s, void *shape, int type, double k)
       it->datas = shape;
       it->type = type;
       it->k = k;
+      it->name = s->hit.name;
     }
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri May 20 11:51:37 2016 benjamin duhieu
-** Last update Fri May 20 20:33:35 2016 benjamin duhieu
+** Last update Sun May 22 13:28:42 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -68,15 +68,14 @@ int		load_hyper_datas2(t_hyper *s,
   if ((field = bunny_ini_get_field(ini, scope, "ks", 0)) == NULL)
     return (my_puterr("load_datas: missing hyper specular coef"));
   s->ks = (double)my_getnbr((char *)field) / 100;
-  return (load_hyper_datas3(s, ini, scope));
+  return (load_hyper_datas3(s, ini, scope, field));
 }
 
 int		load_hyper_datas3(t_hyper *s,
-				 t_bunny_ini *ini,
-				 char *scope)
+				  t_bunny_ini *ini,
+				  char *scope,
+				  const char *field)
 {
-  const char	*field;
-
   if ((field = bunny_ini_get_field(ini, scope, "brightness", 0)) == NULL)
     return (my_puterr("load_datas: missing hyper brightness"));
   s->brightness = (double)my_getnbr((char *)field) / 100;

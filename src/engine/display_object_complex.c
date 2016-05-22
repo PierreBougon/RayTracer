@@ -1,12 +1,11 @@
 /*
-** display_object_complex.c for complex
+** display_object_complex.c for display_object_complex
 **
 ** Made by benjamin duhieu
 ** Login   <duhieu_b@epitech.net>
-*
-*
-** Started on  Thu May 12 19:23:53 2016 benjamin duhieu
-** Last update Fri May 20 21:17:18 2016 benjamin duhieu
+**
+** Started on  Sun May 22 11:51:07 2016 benjamin duhieu
+** Last update Sun May 22 15:43:08 2016 benjamin duhieu
 */
 
 #include <stdio.h>
@@ -33,7 +32,7 @@ int		display_tore(t_rt *s, t_object *obj)
       tore->inter.k2 = s->hit.k2;
       tore->inter.k3 = s->hit.k3;
       tore->inter.k4 = s->hit.k4;
-      tore->norm = s->hit.norm;
+      tore->norm = s->hit.norm1;
       update_hit_list_complex(s, tore, TORE, s->hit.k1);
     }
   else
@@ -62,7 +61,7 @@ int		display_hole_cube(t_rt *s, t_object *obj)
       hole_cube->inter.k2 = s->hit.k2;
       hole_cube->inter.k3 = s->hit.k3;
       hole_cube->inter.k4 = s->hit.k4;
-      hole_cube->norm = s->hit.norm;
+      hole_cube->norm = s->hit.norm1;
       update_hit_list_complex(s, hole_cube, HOLE_CUBE, s->hit.k1);
     }
   else
@@ -88,7 +87,7 @@ int		display_parab(t_rt *s, t_object *obj)
       parab->simple_inter2 = s->hit.simple_inter2;
       parab->k1 = s->hit.k1;
       parab->k2 = s->hit.k2;
-      parab->norm = s->hit.norm;
+      parab->norm = s->hit.norm1;
       update_hit_list(s, parab, PARAB, s->hit.k1);
     }
   else
@@ -112,10 +111,35 @@ int		display_hyper(t_rt *s, t_object *obj)
       hyper->simple_inter2 = s->hit.simple_inter2;
       hyper->k1 = s->hit.k1;
       hyper->k2 = s->hit.k2;
-      hyper->norm = s->hit.norm;
+      hyper->norm = s->hit.norm1;
       update_hit_list(s, hyper, HYPER, s->hit.k1);
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &hyper->rot);
   return (0);
+}
+
+int		display_ellip(t_rt *s, t_object *obj)
+{
+ t_ellip	*ellip;
+
+ s->hit.limited = 0;
+ ellip = (t_ellip *)obj->datas;
+ inter_ellip(s, ellip);
+ if (!(get_simple_inter(s, s->ray.vct, &s->ray.new_eye)))
+   {
+     end_rotation(&s->rotation, s->ray.vct, &ellip->rot);
+     end_rotation(&s->rotation, &s->hit.simple_inter1, &ellip->rot);
+     get_norm_ellip(s, ellip);
+     rotation(&s->rotation, &s->hit.simple_inter1, &ellip->rot);
+     ellip->simple_inter1 = s->hit.simple_inter1;
+     ellip->simple_inter2 = s->hit.simple_inter2;
+     ellip->k1 = s->hit.k1;
+     ellip->k2 = s->hit.k2;
+     ellip->norm = s->hit.norm1;
+     update_hit_list(s, ellip, ELLIP, s->hit.k1);
+   }
+ else
+   end_rotation(&s->rotation, s->ray.vct, &ellip->rot);
+ return (0);
 }
