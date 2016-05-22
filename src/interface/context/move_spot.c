@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue May 17 14:50:20 2016 bougon_p
-** Last update Sun May 22 21:28:48 2016 benjamin duhieu
+** Last update Sun May 22 22:05:28 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -27,7 +27,7 @@ static	void	move_light(t_data *d,
     }
   else
     {
-      light = d->itfc.light_selected->ds;
+      light = d->itfc.light_selected->datas;
       pos = &light->pos;
       d->itfc.move.second_pos = *mpos;
       vec.x =
