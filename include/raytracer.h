@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 15:59:57 2016 marc brout
+** Last update Sun May 22 16:32:26 2016 marc brout
 */
 
 #ifndef RAYTRACER_H_
@@ -732,7 +732,6 @@ void		one_root(double delta, double r, double q,
 			 t_3order *solv);
 void		three_root(double r, double q, t_3order *solv);
 
-
 /*
 ** checkerboards.c
 */
@@ -879,7 +878,6 @@ void		get_norm_hyper(t_rt *s, t_hyper *hyper);
 void		get_norm_parab(t_rt *s, t_parab *parab);
 void		get_norm_tore(t_rt *s, t_tore *tore);
 void		get_norm_ellip(t_rt *s, t_ellip *ellip);
-
 
 /*
 ** get_refracted_vec.c
@@ -1102,7 +1100,6 @@ int		load_light_datas(t_light *s,
 				 char *scope);
 int		load_light(t_rt *rt, t_bunny_ini *ini, char *scope);
 
-
 /*
 ** load_ellip.c
 */
@@ -1294,11 +1291,19 @@ int		shade(t_rt *s, t_acc *vct, t_acc eye);
 /*
 ** shadow.c
 */
-int		shadow_sphere(t_rt *s, t_object *obj);
 int		shadow_cone(t_rt *s, t_object *obj);
 int		shadow_cylinder(t_rt *s, t_object *obj);
 int		shadow_plan(t_rt *s, t_object *obj);
+int		shadow_box(t_rt *s, t_object *obj);
 int		shadow(t_rt *s);
+
+/*
+** shadow_others.c
+*/
+int		shadow_sphere(t_rt *s, t_object *obj);
+int		shadow_ellipse(t_rt *s, t_object *obj);
+int		shadow_parab(t_rt *s, t_object *obj);
+int		shadow_hyper(t_rt *s, t_object *obj);
 
 /*
 ** shadow_inters.c

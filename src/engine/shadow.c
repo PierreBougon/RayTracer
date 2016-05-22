@@ -5,78 +5,10 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:49:09 2016 romain samuel
-** Last update Sun May 22 16:01:01 2016 marc brout
+** Last update Sun May 22 16:23:05 2016 marc brout
 */
 
 #include "raytracer.h"
-
-int		shadow_sphere(t_rt *s, t_object *obj)
-{
-  t_sphere	*shape;
-  double	k;
-
-  if (obj->datas == s->obj_hit->next->datas)
-    return (0);
-  shape = (t_sphere *)obj->datas;
-  k = shadow_inter_sphere(s, shape);
-  if (k > 0.000001 && k < 1)
-    {
-      s->shade.shadow.coef += shape->opacity;
-      return (1);
-    }
-  return (0);
-}
-
-int		shadow_ellipse(t_rt *s, t_object *obj)
-{
-  t_ellip	*shape;
-  double	k;
-
-  if (obj->datas == s->obj_hit->next->datas)
-    return (0);
-  shape = (t_ellip *)obj->datas;
-  k = shadow_inter_ellip(s, shape);
-  if (k > 0.000001 && k < 1)
-    {
-      s->shade.shadow.coef += shape->opacity;
-      return (1);
-    }
-  return (0);
-}
-
-int		shadow_parab(t_rt *s, t_object *obj)
-{
-  t_parab	*shape;
-  double	k;
-
-  if (obj->datas == s->obj_hit->next->datas)
-    return (0);
-  shape = (t_parab *)obj->datas;
-  k = shadow_inter_para(s, shape);
-  if (k > 0.000001 && k < 1)
-    {
-      s->shade.shadow.coef += shape->opacity;
-      return (1);
-    }
-  return (0);
-}
-
-int		shadow_hyper(t_rt *s, t_object *obj)
-{
-  t_hyper	*shape;
-  double	k;
-
-  if (obj->datas == s->obj_hit->next->datas)
-    return (0);
-  shape = (t_hyper *)obj->datas;
-  k = shadow_inter_hyper(s, shape);
-  if (k > 0.000001 && k < 1)
-    {
-      s->shade.shadow.coef += shape->opacity;
-      return (1);
-    }
-  return (0);
-}
 
 int		shadow_cone(t_rt *s, t_object *obj)
 {
@@ -142,26 +74,23 @@ int		shadow_box(t_rt *s, t_object *obj)
   double	k;
   int		i;
 
-  i = 0;
   if (obj->datas == s->obj_hit->next->datas)
     return (0);
+  i = -1;
   shape = (t_box *)obj->datas;
-  while (i < 6)
+  while (++i < 6)
     {
       plan = shape->plan[i];
       k = shadow_inter_plan(s, &plan);
       if (k > 0)
-	{
-	  if (s->shade.shadow.simple_inter1.y >= - plan.height &&
-	      s->shade.shadow.simple_inter1.y <= plan.height &&
-	      s->shade.shadow.simple_inter1.x >= - plan.width &&
-	      s->shade.shadow.simple_inter1.x <= plan.width)
-	    {
-	      s->shade.shadow.coef += shape->opacity;
-	      return (1);
-	    }
-	}
-      i++;
+	if (s->shade.shadow.simple_inter1.y >= - plan.height &&
+	    s->shade.shadow.simple_inter1.y <= plan.height &&
+	    s->shade.shadow.simple_inter1.x >= - plan.width &&
+	    s->shade.shadow.simple_inter1.x <= plan.width)
+	  {
+	    s->shade.shadow.coef += shape->opacity;
+	    return (1);
+	  }
     }
   return (0);
 }

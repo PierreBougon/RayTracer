@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon Apr 18 20:27:17 2016 bougon_p
-** Last update Thu May  5 21:09:49 2016 bougon_p
+** Last update Sun May 22 16:33:30 2016 marc brout
 */
 
 #ifndef CONTEXT_H_
@@ -21,7 +21,6 @@
 # define SAVE_FIRST_BT_Y 200
 # define SAVE_FIRST_BT_WDT 80
 # define SAVE_FIRST_BT_HGT 80
-
 
 /*
 ** GEN OPT DEFINES
