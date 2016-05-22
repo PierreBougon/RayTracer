@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 21:22:45 2016 benjamin duhieu
+** Last update Sun May 22 21:53:21 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -651,6 +651,7 @@ typedef struct		s_rt
   t_ray			ray;
   t_shade		shade;
   t_hit			hit;
+  int			search;
   t_opt			opt;
   t_eye			eye;
   t_color		final_color;
