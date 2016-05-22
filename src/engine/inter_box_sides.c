@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May  4 15:44:38 2016 romain samuel
-** Last update Sun May 22 21:36:57 2016 benjamin duhieu
+** Last update Sun May 22 22:05:02 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -30,11 +30,11 @@ static void	check_box_inters(t_rt *s,
       if (k[0] != 10000000)
 	{
 	  k[1] = k[0];
-	  set_box_s_i(&s->hit.s_i2,
-			       &s->hit.s_i1);
+	  set_box_simple_inter(&s->hit.simple_inter2,
+			       &s->hit.simple_inter1);
 	}
       k[0] = s->hit.k1;
-      set_box_s_i(&s->hit.s_i1, s_i);
+      set_box_simple_inter(&s->hit.simple_inter1, s_i);
       get_norm_plan(s, plan, &s->hit.norm1);
     }
   else if (s->hit.k1 > 0.00001 && s->hit.k1 < k[1]
@@ -44,7 +44,7 @@ static void	check_box_inters(t_rt *s,
       if (s->hit.k1 != k[0])
 	{
 	  k[1] = s->hit.k1;
-	  set_box_s_i(&s->hit.s_i2, s_i);
+	  set_box_simple_inter(&s->hit.simple_inter2, s_i);
 	}
     }
 }
