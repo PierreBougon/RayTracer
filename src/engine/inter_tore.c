@@ -5,11 +5,10 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue Apr 26 13:36:09 2016 benjamin duhieu
-** Last update Sun May 22 12:03:53 2016 benjamin duhieu
+** Last update Sun May 22 17:47:15 2016 marc brout
 */
 
 #include "raytracer.h"
-
 
 inline double		solv_tor_b(t_rt *s)
 {

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May  4 15:28:11 2016 romain samuel
-** Last update Sun May 22 17:33:03 2016 bougon_p
+** Last update Sun May 22 20:08:27 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -62,12 +62,6 @@ int		load_box_datas2(t_box *s, t_bunny_ini *ini, char *scope)
   if ((field = bunny_ini_get_field(ini, scope, "ks", 0)) == NULL)
     return (my_puterr("load_datas: missing box specular coef"));
   s->ks = (double)my_getnbr((char *)field) / 100;
-  if ((field = bunny_ini_get_field(ini, scope, "brightness", 0)) == NULL)
-    return (my_puterr("load_datas: missing box brightness"));
-  s->brightness = (double)my_getnbr((char *)field) / 100;
-  if ((field = bunny_ini_get_field(ini, scope, "opacity", 0)) == NULL)
-    return (my_puterr("load_datas: missing box opacity"));
-  s->opacity = (double)my_getnbr((char *)field) / 100;
   return (load_box_datas3(s, ini, scope));
 }
 
@@ -75,6 +69,12 @@ int		load_box_datas3(t_box *s, t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
+  if ((field = bunny_ini_get_field(ini, scope, "brightness", 0)) == NULL)
+    return (my_puterr("load_datas: missing box brightness"));
+  s->brightness = (double)my_getnbr((char *)field) / 100;
+  if ((field = bunny_ini_get_field(ini, scope, "opacity", 0)) == NULL)
+    return (my_puterr("load_datas: missing box opacity"));
+  s->opacity = (double)my_getnbr((char *)field) / 100;
   if ((field = bunny_ini_get_field(ini, scope, "refraction", 0)) == NULL)
     return (my_puterr("load_datas: missing box refraction"));
   s->refraction = atof((char *)field);

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Jan 19 21:01:47 2016 marc brout
-** Last update Fri May 13 18:22:24 2016 marc brout
+** Last update Sun May 22 19:37:08 2016 marc brout
 */
 
 #include "bmploader.h"
@@ -36,7 +36,7 @@ char			read_pixels(t_loop *loop, int fd, int h, int w)
   t_col			*col;
   t_color		*pixels;
 
-  if ((col = malloc(32)) == NULL)
+  if ((col = bunny_malloc(32)) == NULL)
     return (1);
   if ((loop->pix = bunny_new_pixelarray(w, h)) == NULL)
     return (1);

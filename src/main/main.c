@@ -5,12 +5,12 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Sun May 22 00:14:24 2016 bougon_p
+** Last update Sun May 22 19:37:50 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
 
-t_bunny_response        my_click(t_bunny_event_state state,
+t_bunny_response	my_click(t_bunny_event_state state,
 				 t_bunny_mousebutton mbutton,
 				 void *_data)
 {
@@ -38,7 +38,7 @@ t_bunny_response        my_click(t_bunny_event_state state,
   return (GO_ON);
 }
 
-t_bunny_response        my_wheel(int wheelid,
+t_bunny_response	my_wheel(int wheelid,
 				 int delta,
 				 void *_data)
 {
@@ -73,7 +73,7 @@ t_bunny_response	my_key(t_bunny_event_state state,
   return (GO_ON);
 }
 
-t_bunny_response        mainloop(void *_data)
+t_bunny_response	mainloop(void *_data)
 {
   t_data			*data;
   UNUSED t_rt			*rt;
@@ -84,10 +84,12 @@ t_bunny_response        mainloop(void *_data)
   itfc = &data->itfc;
   blit_clipables(data);
   if (data->itfc.rendering)
-    display(&data->rt, data);
+    {
+      if ((display(&data->rt, data)) == -1)
+	return (EXIT_ON_ERROR);
+    }
   else
     {
-      /* debug_pos(); */
       if (data->rt.live && data->rt.img != NULL)
 	live_display(&data->rt);
       if (interface(data) == 1)
@@ -106,7 +108,6 @@ int		main(int argc, char **argv, char **env)
   else
     data.itfc.env = env;
   srand(time(NULL));
-  /* bunny_set_memory_check(true); */
   bunny_set_maximum_ram(2000000000);
   if (init_main_data(&data) == -1 ||
       init_engine_ftabs(&data.rt.ftabs) == -1 ||
@@ -118,7 +119,8 @@ int		main(int argc, char **argv, char **env)
   bunny_set_wheel_response(my_wheel);
   bunny_set_text_response(my_txtinput);
   bunny_set_loop_main_function(mainloop);
-  bunny_loop(data.win, 45, &data);
+  if ((bunny_loop(data.win, 45, &data)) == EXIT_ON_ERROR)
+    return (1);
   delete_all_clipables(&data);
   free_all(&data);
   bunny_stop(data.win);

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Thu May 19 22:00:37 2016 benjamin duhieu
-** Last update Sun May 22 17:34:49 2016 bougon_p
+** Last update Sun May 22 20:18:15 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -82,6 +82,8 @@ int		load_hole_cube_datas3(t_hole_cube *s,
   if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
     return (my_puterr("load_datas: missing hole_cube color2"));
   s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+  s->tex_name = NULL;
+  s->texture = NULL;
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
@@ -89,11 +91,6 @@ int		load_hole_cube_datas3(t_hole_cube *s,
       s->tex_name = my_strdup((char *)field);
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid hole_cube texture1"));
-    }
-  else
-    {
-      s->tex_name = NULL;
-      s->texture = NULL;
     }
   return (0);
 }

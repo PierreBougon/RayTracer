@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon May 16 17:03:11 2016 benjamin duhieu
-** Last update Sun May 22 17:36:28 2016 bougon_p
+** Last update Sun May 22 20:20:05 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -85,6 +85,8 @@ int		load_tore_datas3(t_tore *s,
   if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
     return (my_puterr("load_datas: missing tore color2"));
   s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+  s->tex_name = NULL;
+  s->texture = NULL;
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)
@@ -92,11 +94,6 @@ int		load_tore_datas3(t_tore *s,
       s->tex_name = my_strdup((char *)field);
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid tore texture1"));
-    }
-  else
-    {
-      s->tex_name = NULL;
-      s->texture = NULL;
     }
   return (0);
 }

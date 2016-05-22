@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 21 12:09:03 2016 bougon_p
-** Last update Thu Apr 28 15:20:23 2016 bougon_p
+** Last update Sun May 22 17:58:18 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -53,7 +53,7 @@ void			text(char *str, t_itfc *itfc, int x, int y)
     blit_char(&itfc->txt, itfc->txt.font, '|');
 }
 
-t_bunny_response        my_txtinput(uint32_t unicode,
+t_bunny_response	my_txtinput(uint32_t unicode,
 				    void *_data)
 {
   t_data	*data;

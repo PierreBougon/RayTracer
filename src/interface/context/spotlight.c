@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:55:44 2016 bougon_p
-** Last update Fri May 20 17:02:37 2016 bougon_p
+** Last update Sun May 22 18:12:54 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -14,7 +14,6 @@ static void	check_sec_button_spot(t_data *data, int i)
 {
   if (i == 3)
     {
-      printf("Move spot\n");
       data->itfc.fct_bt_context = move_spot;
       data->itfc.askobj_click = true;
     }
@@ -26,20 +25,18 @@ static void	check_button_spot(t_data *data, int i)
     data->itfc.fct_bt_context = select_spot;
   else if (i == 1)
     {
-      printf("Add spot\n");
       data->itfc.fct_bt_context = add_spot;
       data->click_action = true;
     }
   else if (i == 2)
     {
-      printf("Delete spot\n");
       data->itfc.fct_bt_context = delete_spot;
       data->click_action = true;
     }
   check_sec_button_spot(data, i);
 }
 
-int     spotlight(t_data *data)
+int				spotlight(t_data *data)
 {
   int				i;
   const t_bunny_position	*mpos;

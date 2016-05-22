@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon May 16 17:57:01 2016 marc brout
-** Last update Fri May 20 23:00:17 2016 marc brout
+** Last update Sun May 22 17:51:10 2016 benjamin duhieu
 */
 
 #include "oil_effect.h"
@@ -71,12 +71,11 @@ static void		calculate_avg(t_bunny_pixelarray *pix,
 	    get_color(pix, x + i, y + j, oil);
 	    cur = (int)((((oil->red + oil->blue + oil->green) / 3.0) *
 			 (double)LEVEL) / 255.0);
-	    /* printf("cur = %d\n", cur); */
 	    oil->intensity_count[cur] += 1;
 	    oil->r_avg[cur] += oil->red;
 	    oil->b_avg[cur] += oil->blue;
 	    oil->g_avg[cur] += oil->green;
-	}
+	  }
     }
 }
 

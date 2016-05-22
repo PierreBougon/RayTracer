@@ -5,13 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 21:56:02 2016 bougon_p
-** Last update Wed May  4 18:02:08 2016 bougon_p
+** Last update Sun May 22 18:11:21 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
 
 int	filters(UNUSED t_data *data)
 {
-  printf("FCT => FILTERS\n");
   return (0);
 }

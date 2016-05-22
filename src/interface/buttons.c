@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 22:00:12 2016 bougon_p
-** Last update Tue May 17 17:53:46 2016 bougon_p
+** Last update Sun May 22 18:14:14 2016 benjamin duhieu
 */
 
 #include <unistd.h>
@@ -25,7 +25,6 @@ int	render(t_data *data)
 
 int	live(t_data *data)
 {
-  printf("FCT => LIVE\n");
   data->rt.live = true;
   data->itfc.rendered = false;
   data->itfc.rendering = false;
@@ -35,7 +34,6 @@ int	live(t_data *data)
 
 int	open_file(UNUSED t_data *data)
 {
-  printf("FCT => OPEN\n");
   return (0);
 }
 
