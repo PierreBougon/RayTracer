@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 14 16:26:45 2016 romain samuel
-** Last update Sun May 22 17:24:42 2016 romain samuel
+** Last update Sun May 22 20:53:50 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -32,9 +32,6 @@ int		get_cylinder_plan1_inter1(t_rt *s, t_cylinder *cylinder)
   s->hit.simple_inter1.z = s->ray.new_eye.z + s->hit.k1 * s->ray.vct->z;
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan, &s->hit.norm1);
-  /* s->hit.simple_inter1.x += (double)pos.x; */
-  /* s->hit.simple_inter1.y += (double)pos.y; */
-  /* s->hit.simple_inter1.z += (double)pos.z; */
   return (0);
 }
 
@@ -43,7 +40,6 @@ int		get_cylinder_plan2_inter1(t_rt *s, t_cylinder *cylinder)
   t_plan	plan;
   t_acc		pos;
 
-  /* printf("coucou\n"); */
   pos.x = 0;
   pos.y = 0;
   pos.z = - cylinder->height;
@@ -61,9 +57,6 @@ int		get_cylinder_plan2_inter1(t_rt *s, t_cylinder *cylinder)
   s->hit.simple_inter1.z = s->ray.new_eye.z + s->hit.k1 * s->ray.vct->z;
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan, &s->hit.norm1);
-  /* s->hit.simple_inter1.x += (double)pos.x; */
-  /* s->hit.simple_inter1.y += (double)pos.y; */
-  /* s->hit.simple_inter1.z += (double)pos.z; */
   return (0);
 }
 

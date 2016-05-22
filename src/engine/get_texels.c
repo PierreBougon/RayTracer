@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 24 17:59:06 2016 romain samuel
-** Last update Sun May 22 16:38:54 2016 romain samuel
+** Last update Sun May 22 17:46:16 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -47,10 +47,6 @@ void	get_texels_cyl_plan(t_rt *s, t_cylinder *cylinder)
     / 2.0;
   s->hit.texels.y = ((cylinder->simple_inter1.y / cylinder->size) + 1.0)
     / 2.0;
-  /* s->hit.texels.x = (cylinder->simple_inter1.x + (cylinder->size / 2)) */
-  /*   / cylinder->size; */
-  /* s->hit.texels.y = (cylinder->simple_inter1.y + (cylinder->size / 2)) */
-  /*   / cylinder->size; */
 }
 
 void	get_texels_cylinder(t_rt *s, t_cylinder *cylinder)

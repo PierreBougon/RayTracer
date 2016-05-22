@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:53:20 2016 bougon_p
-** Last update Sat May 21 18:40:27 2016 bougon_p
+** Last update Sun May 22 18:12:39 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -28,34 +28,8 @@ static	void		check_f_bt2(int n, t_data *data)
     }
   if (n == 1)
     {
-      printf("MOVE\n");
       data->itfc.fct_bt_context = move_obj;
       data->itfc.askobj_click = true;
-    }
-}
-
-static	void	check_refl_bt(const t_bunny_position *mpos, t_data *data)
-{
-  double		*reflect;
-
-  if (!data->itfc.obj_selected)
-    return ;
-  reflect = (double *)data->itfc.obj_selected->datas + sizeof(t_pos);
-  if ((mpos->x > MOD_REFL_X
-       && mpos->x < MOD_REFL_X + MOD_REFL_WDT
-       && mpos->y > MOD_REFL_Y
-       && mpos->y < MOD_REFL_Y + (MOD_REFL_HGT)))
-    {
-      *reflect = 0.30;
-      data->itfc.past.refl_state = YES;
-    }
-  else if ((mpos->x > MOD_REFL_X + MOD_REFL_DECAL
-	    && mpos->x < MOD_REFL_X + MOD_REFL_WDT + (MOD_REFL_DECAL)
-	    && mpos->y > MOD_REFL_Y
-	    && mpos->y < MOD_REFL_Y + (MOD_REFL_HGT)))
-    {
-      *reflect = 0.00;
-      data->itfc.past.refl_state = NO;
     }
 }
 

@@ -5,37 +5,37 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri May 20 22:29:39 2016 romain samuel
-** Last update Sat May 21 06:35:31 2016 romain samuel
+** Last update Sun May 22 19:26:06 2016 marc brout
 */
 
 #include "raytracer.h"
 
 void		set_del_intersection(t_inter *left)
 {
-  t_inter	*it_left;
-  int		count1;
-  int		count2;
+  t_inter	*i;
+  int		ct1;
+  int		ct2;
 
-  count1 = 0;
-  count2 = 0;
-  it_left = left->next;
-  while (it_left != NULL)
+  ct1 = 0;
+  ct2 = 0;
+  i = left->next;
+  while (i != NULL)
     {
-      it_left->del = 1;
-      if (it_left->sub == 0 && it_left->exterior == 1)
-	count1++;
-      else if (it_left->sub == 0 && it_left->exterior == 0)
-	count1--;
-      else if (it_left->sub == 1 && it_left->exterior == 1)
-	count2++;
+      i->del = 1;
+      if (i->sub == 0 && i->exterior == 1)
+	ct1++;
+      else if (i->sub == 0 && i->exterior == 0)
+	ct1--;
+      else if (i->sub == 1 && i->exterior == 1)
+	ct2++;
       else
-	count2--;
-      if ((it_left->sub == 0 && it_left->exterior == 1 && count1 > 0 && count2 > 0) ||
-	  (it_left->sub == 0 && it_left->exterior == 0 && count1 <= 0 && count2 > 0) ||
-	  (it_left->sub == 1 && it_left->exterior == 1 && count2 > 0 && count1 > 0) ||
-	  (it_left->sub == 1 && it_left->exterior == 0 && count2 <= 0 && count1 > 0))
-	it_left->del = 0;
-      it_left = it_left->next;
+	ct2--;
+      if ((i->sub == 0 && i->exterior == 1 && ct1 > 0 && ct2 > 0) ||
+	  (i->sub == 0 && i->exterior == 0 && ct1 <= 0 && ct2 > 0) ||
+	  (i->sub == 1 && i->exterior == 1 && ct2 > 0 && ct1 > 0) ||
+	  (i->sub == 1 && i->exterior == 0 && ct2 <= 0 && ct1 > 0))
+	i->del = 0;
+      i = i->next;
     }
 }
 

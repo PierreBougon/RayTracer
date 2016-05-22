@@ -5,43 +5,13 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 16:47:40 2016 romain samuel
-** Last update Sun May 22 20:40:05 2016 romain samuel
+** Last update Sun May 22 20:53:34 2016 romain samuel
 */
 
 #include "raytracer.h"
 
-void		set_hit_values_from_sphere(t_rt *s, t_object *obj)
+static void	set_hit_values_for_cylinder(t_rt *s, t_cylinder *cylinder)
 {
-  t_sphere	*sphere;
-
-  sphere = obj->datas;
-  s->hit.k1 = sphere->k1;
-  s->hit.k2 = sphere->k2;
-  s->hit.simple_inter1 = sphere->simple_inter1;
-  s->hit.simple_inter2 = sphere->simple_inter2;
-  s->hit.norm1 = sphere->norm1;
-  s->hit.norm2 = sphere->norm2;
-  s->hit.brightness = sphere->brightness;
-  s->hit.ka = sphere->ka;
-  s->hit.kd = sphere->kd;
-  s->hit.ks = sphere->ks;
-  s->hit.reflection = sphere->reflection;
-  s->hit.opacity = sphere->opacity;
-  s->hit.n2 = sphere->refraction;
-  s->hit.limited = 0;
-  s->final_color = sphere->color1;
-  s->hit.color1 = sphere->color1;
-  s->hit.color2 = sphere->color2;
-  s->hit.tex_type = sphere->tex_type;
-  s->hit.texture1 = sphere->texture;
-  get_texels_sphere(s, sphere);
-}
-
-void		set_hit_values_from_cylinder(t_rt *s, t_object *obj)
-{
-  t_cylinder	*cylinder;
-
-  cylinder = obj->datas;
   s->hit.k1 = cylinder->k1;
   s->hit.k2 = cylinder->k2;
   s->hit.simple_inter1 = cylinder->simple_inter1;
@@ -57,6 +27,14 @@ void		set_hit_values_from_cylinder(t_rt *s, t_object *obj)
   s->hit.n2 = cylinder->refraction;
   s->hit.limited = cylinder->limited;
   s->final_color = cylinder->color1;
+}
+
+void		set_hit_values_from_cylinder(t_rt *s, t_object *obj)
+{
+  t_cylinder	*cylinder;
+
+  cylinder = obj->datas;
+  set_hit_values_for_cylinder(s, cylinder);
   if (s->hit.limited == 0)
     {
       s->hit.color1 = cylinder->color1;

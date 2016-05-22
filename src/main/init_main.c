@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Sun May 22 16:00:38 2016 marc brout
+** Last update Sun May 22 17:06:29 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -64,7 +64,22 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
   return (0);
 }
 
-int	init_engine_ftabs(t_ftab *ftabs)
+static void	init_fct_free(t_ftab *ftabs)
+{
+  ftabs->fct_free[LIGHT] = free_light;
+  ftabs->fct_free[SPHERE] = free_sphere;
+  ftabs->fct_free[CYLINDER] = free_cylinder;
+  ftabs->fct_free[CONE] = free_cone;
+  ftabs->fct_free[PLANE] = free_plane;
+  ftabs->fct_free[TORE] = free_tore;
+  ftabs->fct_free[BOX] = free_box;
+  ftabs->fct_free[HOLE_CUBE] = free_hole_cube;
+  ftabs->fct_free[HYPER] = free_hyper;
+  ftabs->fct_free[PARAB] = free_parab;
+  ftabs->fct_free[CSG] = free_csg;
+}
+
+int		init_engine_ftabs(t_ftab *ftabs)
 {
   if ((ftabs->inters_ftab =
        bunny_malloc(sizeof(ftabs->inters_ftab) * NB_OBJ)) == NULL)
@@ -81,5 +96,6 @@ int	init_engine_ftabs(t_ftab *ftabs)
   if ((ftabs->tex_ftab =
        bunny_malloc(sizeof(ftabs->tex_ftab) * 8)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
+  init_fct_free(ftabs);
   return (0);
 }

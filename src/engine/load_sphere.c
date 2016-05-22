@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:44:39 2016 romain samuel
-** Last update Sat May 21 23:58:19 2016 bougon_p
+** Last update Sun May 22 20:19:48 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -95,6 +95,7 @@ int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini, char *scope)
     return (my_puterr("load_datas: missing sphere color2"));
   s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
   s->tex_name = NULL;
+  s->texture = NULL;
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)

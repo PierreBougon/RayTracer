@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 11:51:07 2016 benjamin duhieu
-** Last update Sun May 22 15:43:08 2016 benjamin duhieu
+** Last update Sun May 22 17:29:28 2016 marc brout
 */
 
 #include <stdio.h>
@@ -69,7 +69,6 @@ int		display_hole_cube(t_rt *s, t_object *obj)
   return (0);
 }
 
-
 int		display_parab(t_rt *s, t_object *obj)
 {
   t_parab	*parab;
@@ -106,7 +105,6 @@ int		display_hyper(t_rt *s, t_object *obj)
     {
       end_rotation(&s->rotation, s->ray.vct, &hyper->rot);
       get_norm_hyper(s, hyper);
-      rotation(&s->rotation, &s->hit.simple_inter1, &hyper->rot);
       hyper->simple_inter1 = s->hit.simple_inter1;
       hyper->simple_inter2 = s->hit.simple_inter2;
       hyper->k1 = s->hit.k1;

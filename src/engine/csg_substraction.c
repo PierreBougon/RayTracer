@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri May 20 12:09:22 2016 romain samuel
-** Last update Sat May 21 21:55:26 2016 romain samuel
+** Last update Sun May 22 18:43:53 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -53,8 +53,7 @@ int		set_del_subs(t_inter *left)
   return (0);
 }
 
-int
-del_subs(t_inter *left)
+int		del_subs(t_inter *left)
 {
   t_inter	*it_left;
 
@@ -120,15 +119,7 @@ int		csg_substraction(t_inter *left, t_inter *right)
       it_left->sub = 0;
       it_left = it_left->next;
     }
-  if (csg_clean_second_list(right) == -1)
-    return (-1);
-  if (right->next == NULL)
-    return (-1);
-  if (csg_merge_lists(left, right) == -1)
-    return (-1);
-  if (set_del_inters(left) == -1)
-    return (-1);
-  if (set_del_subs(left) == -1)
+  if ((set_csg_substraction(left, right)) == -1)
     return (-1);
   del_subs(left);
   return (0);

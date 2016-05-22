@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon May 16 16:48:46 2016 romain samuel
-** Last update Sat May 21 07:46:48 2016 romain samuel
+** Last update Sun May 22 17:19:11 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -30,7 +30,8 @@ int	link_nodes(t_csg **tab, int i, int nb)
       tab[i]->connections[1] < 1 || tab[i]->connections[1] > nb)
     return (my_puterr("could not link csg nodes: invalid connections"));
   if (tab[i]->connections[0] == i + 1 || tab[i]->connections[1] == i + 1)
-    return (my_puterr("could not link csg nodes: don't connect a node to itself you scrublord"));
+    return (my_puterr("could not link csg nodes: \
+don't connect a node to itself you scrublord"));
   if (tab[i]->left != NULL || tab[i]->right != NULL ||
       tab[tab[i]->connections[0] - 1]->up != NULL ||
       tab[tab[i]->connections[1] - 1]->up != NULL)

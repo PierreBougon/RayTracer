@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:31:08 2016 romain samuel
-** Last update Sun May 22 20:28:05 2016 romain samuel
+** Last update Sun May 22 21:15:37 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -104,7 +104,6 @@ int		inter_cylinder(t_rt *s, t_cylinder *cylinder)
 	   * s->ray.new_eye.y);
   c = CARRE(s->ray.new_eye.x) + CARRE(s->ray.new_eye.y)
     - CARRE(cylinder->size);
-  /* printf("a = %f, b = %f, c = %f\n", a, b, c); */
   if (a < 0.000001 && a > -0.000001)
     return (1);
   if ((delta = CARRE(b) - 4 * a * c) < 0.000001)

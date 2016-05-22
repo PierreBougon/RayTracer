@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Jan 22 05:11:57 2016 bougon_p
-** Last update Fri Apr 29 21:32:06 2016 bougon_p
+** Last update Sun May 22 18:01:47 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -48,7 +48,7 @@ static	char    *cleanstr(char *nbr, bool neg)
   return (clean);
 }
 
-char    *setnbr(int nbr)
+char	*setnbr(int nbr)
 {
   char  *numb;
   int   i;

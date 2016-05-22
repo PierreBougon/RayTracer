@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 17:48:12 2016 romain samuel
+## Last update Sun May 22 20:58:47 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -41,6 +41,9 @@ SOLVERS		=	src/solvers/
 SRC		=	$(MAIN)main.c \
 			$(MAIN)init_main.c \
 			$(MAIN)free.c \
+			$(MAIN)free_obj.c \
+			$(MAIN)free_obj2.c \
+			$(MAIN)free_obj_csg.c \
 			$(MAIN)setnbr.c \
 			$(MAIN)setunsnbr.c \
 			$(MAIN)put_base.c \
@@ -54,6 +57,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)clear_list.c \
 			$(ENGINE)color_operations.c \
 			$(ENGINE)create_csg_tree.c \
+			$(ENGINE)create_csg_tab.c \
 			$(ENGINE)create_inter_list.c \
 			$(ENGINE)create_obj_list.c \
 			$(ENGINE)csg_merge_lists.c \
@@ -64,6 +68,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)csg_union.c \
 			$(ENGINE)diffuse_light.c \
 			$(ENGINE)display.c \
+			$(ENGINE)display_box_csg.c \
 			$(ENGINE)display_csg_objects.c \
 			$(ENGINE)display_objects.c \
 			$(ENGINE)display_object_complex.c \
@@ -72,6 +77,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)fresnel.c \
 			$(ENGINE)get_norm.c \
 			$(ENGINE)get_norm_complex.c \
+			$(ENGINE)get_norm_4_degres.c \
 			$(ENGINE)get_obj.c \
 			$(ENGINE)get_refracted_vec.c \
 			$(ENGINE)get_simple_coords.c \
@@ -97,6 +103,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)load_hole_cube.c \
 			$(ENGINE)load_hyper.c \
 			$(ENGINE)load_light.c \
+			$(ENGINE)load_other.c \
 			$(ENGINE)load_parab.c \
 			$(ENGINE)load_plan_sides.c \
 			$(ENGINE)load_plan.c \
@@ -108,11 +115,13 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)order_inter_list.c \
 			$(ENGINE)order_solutions.c \
 			$(ENGINE)perlin.c \
+			$(ENGINE)perlin_suite.c \
 			$(ENGINE)real_cylinder_plan_inter.c \
 			$(ENGINE)rotations.c \
 			$(ENGINE)second_inter_limited_objects.c \
 			$(ENGINE)set_hit_values.c \
 			$(ENGINE)set_hit_values_next.c \
+			$(ENGINE)set_hit_values_sphere.c \
 			$(ENGINE)shade.c \
 			$(ENGINE)shadow.c \
 			$(ENGINE)shadow_inters.c \
@@ -187,6 +196,7 @@ SRC		=	$(MAIN)main.c \
 			$(ITFC)$(CONTEXT)save_ini_obj_scope_cylinder.c \
 			$(ITFC)$(CONTEXT)save_ini_obj_scope_plane.c \
 			$(ITFC)$(CONTEXT)modif_form.c \
+			$(ITFC)$(CONTEXT)check_reflect.c \
 			$(ITFC)$(CONTEXT)add_form.c \
 			$(ITFC)$(CONTEXT)sub_form.c \
 			$(ITFC)$(CONTEXT)spotlight.c \
@@ -303,6 +313,9 @@ $(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
 
 all		:	$(LIB)
 			@make -j 4 -s compile
+ifeq ($(DEBUG), yes)
+			@find . -type f -iname "*.[chS]" | xargs etags -a
+endif
 
 clean		:
 			@$(RM) $(OBJS)

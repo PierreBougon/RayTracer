@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 17:53:35 2016 romain samuel
+** Last update Sun May 22 21:13:02 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -614,6 +614,7 @@ typedef struct		s_ftab
   void			(**tex_ftab)(t_rt *);
   int			(*filter_effect[9])(t_bunny_pixelarray **,
 					    const int);
+  void			(*fct_free[NB_OBJ + 1])(t_object *);
 }			t_ftab;
 
 typedef struct		s_rotation
@@ -645,6 +646,7 @@ typedef struct		s_rt
   t_object		*obj;
   t_object		*obj_hit;
   t_color		*pixel_color;
+  t_color		return_color;
   t_ftab		ftabs;
   t_ray			ray;
   t_shade		shade;
@@ -707,6 +709,17 @@ void	blit_clipables(t_data *);
 void	free_all(t_data *);
 void	free_tab(char **);
 void	delete_all_clipables(t_data *);
+void	free_light(t_object *);
+void	free_sphere(t_object *);
+void	free_cylinder(t_object *);
+void	free_cone(t_object *);
+void	free_plane(t_object *);
+void	free_tore(t_object *);
+void	free_box(t_object *);
+void	free_hole_cube(t_object *);
+void	free_hyper(t_object *);
+void	free_parab(t_object *);
+void	free_csg(t_object *);
 
 /*
 ** Translation
@@ -718,7 +731,7 @@ void	translation_obj(t_rotation *r, t_acc *vec, t_pos *rot, t_pos *pos);
 ** antialiasing.c
 */
 t_color		melt_colors(t_rt *s, t_color *color);
-t_color		antialiasing(t_rt *s,
+int		antialiasing(t_rt *s,
 			     t_bunny_position *pos,
 			     t_acc *vct,
 			     t_color *color);
@@ -744,6 +757,7 @@ void		checkerboard_3d(t_rt *s);
 ** clear_list.c
 */
 int		clear_list(t_object *root);
+int		clear_full_list(t_object *root, t_ftab *);
 
 /*
 ** color_operations.c
@@ -792,6 +806,7 @@ t_inter		*csg_intersection(t_inter *left, t_inter *right);
 ** csg_merge_lists.c
 */
 int		csg_merge_lists(t_inter *left, t_inter *right);
+int		set_csg_substraction(t_inter *left, t_inter *right);
 
 /*
 ** csg_operations.c
@@ -802,6 +817,8 @@ t_inter		*csg_operations(t_csg *it, t_inter *left, t_inter *right);
 ** csg_substraction.c
 */
 int		csg_substraction(t_inter *left, t_inter *right);
+int		set_del_inters(t_inter *left);
+int		set_del_subs(t_inter *left);
 
 /*
 ** csg_union.c
@@ -825,7 +842,8 @@ double		diffuse_light(t_rt *s);
 ** display.c
 */
 int		inter_objects(t_rt *s);
-t_color		display_objects(t_rt *s, t_acc *vct, t_acc eye);
+int		display_objects(t_rt *s, t_acc *vct, t_acc eye,
+				t_color *col);
 int		display(t_rt *s, t_data *data);
 
 /*
@@ -840,8 +858,13 @@ int		display_sphere(t_rt *s, t_object *obj);
 int		display_cylinder(t_rt *s, t_object *obj);
 int		display_cone(t_rt *s, t_object *obj);
 int		display_plan(t_rt *s, t_object *obj);
+
+/*
+** display_box_csg.c
+*/
 int		display_box(t_rt *s, t_object *obj);
 int		display_csg(t_rt *s, t_object *obj);
+t_csg		*display_tree(t_rt *s, t_csg *it);
 
 /*
 ** exposure.c
@@ -851,7 +874,7 @@ double		expose(double i);
 /*
 ** fresnel_computation.c
 */
-int		fresnel_computation(t_rt *s);
+void		fresnel_computation(t_rt *s);
 
 /*
 ** display_object_complex.c
@@ -878,11 +901,15 @@ t_object	*get_obj(t_rt *s, int x, int y);
 /*
 ** get_norm_complex.c
 */
-void		get_norm_hole_cube(t_rt *s, t_hole_cube *hole_cube);
 void		get_norm_hyper(t_rt *s, t_hyper *hyper);
 void		get_norm_parab(t_rt *s, t_parab *parab);
-void		get_norm_tore(t_rt *s, t_tore *tore);
+
+/*
+** get_norm_4_degres.c
+*/
 void		get_norm_ellip(t_rt *s, t_ellip *ellip);
+void		get_norm_hole_cube(t_rt *s, t_hole_cube *hole_cube);
+void		get_norm_tore(t_rt *s, t_tore *tore);
 
 /*
 ** get_refracted_vec.c
@@ -1093,9 +1120,21 @@ int		load_type(t_rt *rt,
 				       char *scope),
 			  char *scope);
 int		load_object(t_rt *s, t_bunny_ini *ini, char *scope);
-int		load_eye(t_rt *s, t_bunny_ini *ini);
-int		load_scene_parameters(t_rt *s, t_bunny_ini *ini);
 int		load_file(t_rt *s, char *file);
+
+/*
+** load_other.c
+*/
+int		load_eye(t_rt *s, t_bunny_ini *ini);
+int		load_skybox_textures(t_rt *s,
+				     t_bunny_ini *ini,
+				     const char *field);
+int		load_skybox_textures2(t_rt *s,
+				      t_bunny_ini *ini,
+				      const char *field);
+int		load_scene_parameters(t_rt *s, t_bunny_ini *ini);
+int		load_shadow_params(t_rt *s,
+				   t_bunny_ini *ini);
 
 /*
 ** load_light.c
@@ -1124,7 +1163,8 @@ int		load_hole_cube_datas1(t_hole_cube *s, t_bunny_ini *ini,
 				      char *scope);
 int		load_hole_cube_datas2(t_hole_cube *s, t_bunny_ini *ini,
 				 char *scope);
-int		load_hole_cube_datas3(t_hole_cube *s, t_bunny_ini *ini, char *scope);
+int		load_hole_cube_datas3(t_hole_cube *s, t_bunny_ini *ini,
+				      char *scope);
 int		load_hole_cube(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
@@ -1231,7 +1271,8 @@ int		order_solutions(t_rt *s);
 */
 int		cylinder_plans_inters(t_rt *s, t_cylinder *cylinder,
 				      t_object *obj);
-int		csg_cylinder_plans_inters(t_rt *s, t_cylinder *cylinder, t_object *obj);
+int		csg_cylinder_plans_inters(t_rt *s, t_cylinder *cylinder,
+					  t_object *obj);
 
 /*
 ** quartic_order_solver.c
@@ -1262,7 +1303,6 @@ void		second_order_solver(t_2order *res);
 /*
 ** set_hit_values.c
 */
-void		set_hit_values_from_sphere(t_rt *s, t_object *obj);
 void		set_hit_values_from_cylinder(t_rt *s, t_object *obj);
 void		set_hit_values_from_cone(t_rt *s, t_object *obj);
 void		set_hit_values_from_plan(t_rt *s, t_object *obj);
@@ -1271,12 +1311,17 @@ int		set_hit_values(t_rt *s, t_object *obj);
 /*
 ** set_hit_values_next.c
 */
-void		set_hit_values_from_box(t_rt *s, t_object *obj);
 void		set_hit_values_from_tore(t_rt *s, t_object *obj);
 void		set_hit_values_from_hole_cube(t_rt *s, t_object *obj);
 void		set_hit_values_from_hyper(t_rt *s, t_object *obj);
 void		set_hit_values_from_parab(t_rt *s, t_object *obj);
 void		set_hit_values_from_ellip(t_rt *s, t_object *obj);
+
+/*
+** set_hit_values_sphere.c
+*/
+void		set_hit_values_from_sphere(t_rt *s, t_object *obj);
+void		set_hit_values_from_box(t_rt *s, t_object *obj);
 
 /*
 ** shade.c

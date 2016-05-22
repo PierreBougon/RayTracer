@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon May  2 13:53:17 2016 benjamin duhieu
-** Last update Sun May 22 12:05:52 2016 benjamin duhieu
+** Last update Sun May 22 18:05:14 2016 benjamin duhieu
 */
 
 #include <stdio.h>
@@ -74,7 +74,6 @@ void		q_is_not_nul(t_4order *solv, double p,
   res.c = -8.0 * r;
   res.d = (4.0 * r * p) - CARRE(q);
   cube_order_solver(&res);
-  /* printf("Y0 : %f\n y1 : %f\n y2 : %f\n\n", res.root1, res.root2, res.root3); */
   tri_sort3(&res);
   resolv_root(solv, &res, p, q);
 }

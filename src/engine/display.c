@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Sun May 22 20:49:28 2016 romain samuel
+** Last update Sun May 22 20:57:08 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -45,31 +45,32 @@ int			inter_objects(t_rt *s)
   return (0);
 }
 
-t_color			display_objects(t_rt *s, t_acc *vct, t_acc eye)
+int			display_objects(t_rt *s, t_acc *vct, t_acc eye,
+					t_color *col)
 {
-  t_color		color;
-
   if (s->rec == 2)
     {
       s->rec = 0;
-      return (s->final_color);
+      col->full = s->final_color.full;
+      return (0);
     }
   s->ray.eye = eye;
   s->ray.vct = vct;
-  inter_objects(s);
+  if ((inter_objects(s)) == -1)
+    return (-1);
   order_hit_list(s->obj_hit);
   if (s->obj_hit != NULL && s->obj_hit->next != NULL)
     {
       set_hit_values(s, s->obj_hit->next);
       shade(s, s->ray.vct, s->ray.eye);
-      color = s->final_color;
+      col->full = s->final_color.full;
       clear_list(s->obj_hit);
       s->obj_hit = NULL;
     }
   else
     skybox(s, vct);
-  color = s->final_color;
-  return (color);
+  col->full = s->final_color.full;
+  return (0);
 }
 
 void	prerender(t_rt *rt, int y, t_data *data)
@@ -91,7 +92,6 @@ void	prerender(t_rt *rt, int y, t_data *data)
 int			display(t_rt *s, t_data *data)
 {
   t_acc			vct;
-  t_color		final_color;
 
   s->rec = 0;
   if (s->r_pos.y < s->height)
@@ -100,18 +100,20 @@ int			display(t_rt *s, t_data *data)
       while (s->r_pos.x < s->width)
 	{
 	  s->rec = 0;
-	  final_color = antialiasing(s, &s->r_pos, &vct, s->pixel_color);
-	  tekpixel(s->img, &s->r_pos, &final_color);
+	  if ((antialiasing(s, &s->r_pos, &vct, s->pixel_color)) == -1)
+	    return (-1);
+	  tekpixel(s->img, &s->r_pos, &s->return_color);
 	  s->r_pos.x++;
 	}
       s->r_pos.y++;
     }
-  if (s->r_pos.y == s->height)
+  if (s->r_pos.y == s->height && data->itfc.rendering)
     {
       data->itfc.rendering = false;
       data->itfc.rendered = true;
       data->ld.loading->clipable.clip_width = data->ld.save_width;
       bunny_free(s->shade.itab);
+      bunny_free(s->pixel_color);
     }
   return (0);
 }

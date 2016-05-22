@@ -5,12 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 22:11:09 2016 bougon_p
-** Last update Fri Apr 29 22:48:39 2016 bougon_p
+** Last update Sun May 22 18:00:39 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
 
-static  char    *cleanstr(char *nbr)
+static char	*cleanstr(char *nbr)
 {
   char          *clean;
   int           p;
