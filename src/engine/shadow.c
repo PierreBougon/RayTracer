@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:49:09 2016 romain samuel
-** Last update Sun May 22 15:17:39 2016 marc brout
+** Last update Sun May 22 16:01:01 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -19,6 +19,23 @@ int		shadow_sphere(t_rt *s, t_object *obj)
     return (0);
   shape = (t_sphere *)obj->datas;
   k = shadow_inter_sphere(s, shape);
+  if (k > 0.000001 && k < 1)
+    {
+      s->shade.shadow.coef += shape->opacity;
+      return (1);
+    }
+  return (0);
+}
+
+int		shadow_ellipse(t_rt *s, t_object *obj)
+{
+  t_ellip	*shape;
+  double	k;
+
+  if (obj->datas == s->obj_hit->next->datas)
+    return (0);
+  shape = (t_ellip *)obj->datas;
+  k = shadow_inter_ellip(s, shape);
   if (k > 0.000001 && k < 1)
     {
       s->shade.shadow.coef += shape->opacity;
@@ -163,6 +180,7 @@ int			shadow(t_rt *s)
   s->ftabs.shadow_ftab[7] = &shadow_hyper;
   s->ftabs.shadow_ftab[8] = &shadow_parab;
   s->ftabs.shadow_ftab[9] = NULL;
+  s->ftabs.shadow_ftab[10] = &shadow_ellipse;
   it = s->obj;
   s->shade.shadow.coef = 0;
   while (it != NULL)

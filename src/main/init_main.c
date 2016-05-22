@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Sun May 22 14:33:46 2016 marc brout
+** Last update Sun May 22 16:00:38 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -73,7 +73,7 @@ int	init_engine_ftabs(t_ftab *ftabs)
        bunny_malloc(sizeof(ftabs->inters_ftab) * 5)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
   if ((ftabs->shadow_ftab =
-       bunny_malloc(sizeof(ftabs->shadow_ftab) * 10)) == NULL)
+       bunny_malloc(sizeof(ftabs->shadow_ftab) * 11)) == NULL)
     return (my_puterr("Could not malloc ftabs"));
   if ((ftabs->hit_ftab =
        bunny_malloc(sizeof(ftabs->hit_ftab) * NB_OBJ)) == NULL)

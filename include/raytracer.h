@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 15:48:08 2016 benjamin duhieu
+** Last update Sun May 22 15:59:57 2016 marc brout
 */
 
 #ifndef RAYTRACER_H_
@@ -1416,5 +1416,9 @@ double		shadow_inter_hyper(t_rt *s, t_hyper *h);
 */
 double		shadow_inter_para(t_rt *s, t_parab *p);
 
+/*
+** shadow_ellipse.c
+*/
+double		shadow_inter_ellip(t_rt *s, t_ellip *e);
 
 #endif /* !RAYTRACER_H_ */
