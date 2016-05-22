@@ -1,11 +1,11 @@
 /*
-** soft_shadows.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** soft_shadows.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May  4 18:52:17 2016 romain samuel
-** Last update Wed May  4 18:53:31 2016 romain samuel
+** Last update Sun May 22 21:43:27 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

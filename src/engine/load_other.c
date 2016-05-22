@@ -1,11 +1,11 @@
 /*
-** load_other.c for load_other.c in /home/duhieu_b/infographie/gfx_raytracer2
+** load_other.c for load_other.c
 **
 ** Made by benjamin duhieu
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 17:36:17 2016 benjamin duhieu
-** Last update Sun May 22 17:55:06 2016 marc brout
+** Last update Sun May 22 21:39:43 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -47,12 +47,12 @@ int		load_skybox_textures2(t_rt *s,
   if ((field = bunny_ini_get_field(ini, "RT", "sb_forward", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox forward texture"));
   s->opt.skybox_front_tex_name = my_strdup((char *)field);
-  if ((s->opt.skybox_forward = bunny_load_pixelarray((char *)field)) == NULL)
+  if (!(s->opt.skybox_forward = bunny_load_pixelarray((char *)field)))
     return (my_puterr("load_datas: invalid skybox forward texture"));
   if ((field = bunny_ini_get_field(ini, "RT", "sb_backward", 0)) == NULL)
     return (my_puterr("load_datas: missing skybox backward texture"));
   s->opt.skybox_back_tex_name = my_strdup((char *)field);
-  if ((s->opt.skybox_backward = bunny_load_pixelarray((char *)field)) == NULL)
+  if (!(s->opt.skybox_backward = bunny_load_pixelarray((char *)field)))
     return (my_puterr("load_datas: invalid skybox backward texture"));
   return (0);
 }

@@ -1,11 +1,11 @@
 /*
-** borderland_filter.c for rt2 ~/RENDU/INFOGRAPHIE/gfx_raytracer2/src/filter
+** borderland_filter.c for rt2
 **
 ** Made by marc brout
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed May 18 14:47:32 2016 marc brout
-** Last update Fri May 20 19:56:37 2016 marc brout
+** Last update Sun May 22 21:32:01 2016 benjamin duhieu
 */
 
 #include "sobel.h"

@@ -1,11 +1,11 @@
 /*
-** second_inter_limited_objects.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** second_inter_limited_objects.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May 18 16:34:15 2016 romain samuel
-** Last update Sun May 22 14:36:23 2016 romain samuel
+** Last update Sun May 22 21:42:10 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -44,9 +44,6 @@ int		get_cylinder_plan1_inter2(t_rt *s, t_cylinder *cylinder)
   s->hit.simple_inter2.z = s->ray.new_eye.z + s->hit.k2 * s->ray.vct->z;
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan, &s->hit.norm2);
-  /* s->hit.simple_inter2.x += (double)pos.x; */
-  /* s->hit.simple_inter2.y += (double)pos.y; */
-  /* s->hit.simple_inter2.z += (double)pos.z; */
   return (0);
 }
 
@@ -71,9 +68,6 @@ int		get_cylinder_plan2_inter2(t_rt *s, t_cylinder *cylinder)
   s->hit.simple_inter2.z = s->ray.new_eye.z + s->hit.k2 * s->ray.vct->z;
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan, &s->hit.norm2);
-  /* s->hit.simple_inter2.x += (double)pos.x; */
-  /* s->hit.simple_inter2.y += (double)pos.y; */
-  /* s->hit.simple_inter2.z += (double)pos.z; */
   return (0);
 }
 

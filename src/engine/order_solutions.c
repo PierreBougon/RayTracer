@@ -1,11 +1,11 @@
 /*
-** order_solutions.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** order_solutions.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May 18 20:07:00 2016 romain samuel
-** Last update Wed May 18 20:21:13 2016 romain samuel
+** Last update Sun May 22 21:41:36 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

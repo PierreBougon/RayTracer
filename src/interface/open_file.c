@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 23 15:24:05 2016 bougon_p
-** Last update Sun May 22 17:57:37 2016 benjamin duhieu
+** Last update Sun May 22 21:20:13 2016 romain samuel
 */
 
 #include "raytracer.h"

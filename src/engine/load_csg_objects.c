@@ -1,11 +1,11 @@
 /*
-** load_csg_objects.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** load_csg_objects.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sat May 14 19:53:45 2016 romain samuel
-** Last update Tue May 17 17:16:25 2016 romain samuel
+** Last update Sun May 22 21:38:54 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

@@ -1,11 +1,11 @@
 /*
-** create_csg_tab.c for rt2 in /home/brout_m/RENDU/INFOGRAPHIE/gfx_raytracer2
+** create_csg_tab.c for rt2
 **
 ** Made by marc brout
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Sun May 22 17:48:40 2016 marc brout
-** Last update Sun May 22 17:50:25 2016 marc brout
+** Last update Sun May 22 21:33:00 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

@@ -1,11 +1,11 @@
 /*
-** inter_hole_cube.c for hole_cube in /home/duhieu_b/infographie/gfx_raytracer2
+** inter_hole_cube.c for hole_cube
 **
 ** Made by benjamin duhieu
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Tue May  3 13:42:58 2016 benjamin duhieu
-** Last update Sun May 22 12:03:22 2016 benjamin duhieu
+** Last update Sun May 22 21:37:30 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

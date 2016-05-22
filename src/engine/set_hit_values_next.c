@@ -1,11 +1,11 @@
 /*
-** set_hit_values_next.c for set_next in /home/duhieu_b/infographie/gfx_raytracer2
+** set_hit_values_next.c for set_next
 **
 ** Made by benjamin duhieu
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 11:47:48 2016 benjamin duhieu
-** Last update Sun May 22 17:24:53 2016 marc brout
+** Last update Sun May 22 21:42:23 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

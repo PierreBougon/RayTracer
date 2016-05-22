@@ -1,11 +1,11 @@
 /*
-** csg_merge_lists.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** csg_merge_lists.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu May 19 02:02:17 2016 romain samuel
-** Last update Sun May 22 19:24:18 2016 marc brout
+** Last update Sun May 22 21:33:40 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

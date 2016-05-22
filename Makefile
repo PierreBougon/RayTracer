@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 21:19:11 2016 benjamin duhieu
+## Last update Sun May 22 21:23:05 2016 benjamin duhieu
 ##
 
 # USEFUL VARIABLES
@@ -75,6 +75,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)display_object_complex.c \
 			$(ENGINE)delete_inter_list.c \
 			$(ENGINE)exposure.c \
+			$(ENGINE)fresnel.c \
 			$(ENGINE)get_norm.c \
 			$(ENGINE)get_norm_complex.c \
 			$(ENGINE)get_norm_4_degres.c \

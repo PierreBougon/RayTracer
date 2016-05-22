@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue May 10 18:11:07 2016 romain samuel
-** Last update Sun May 22 17:50:01 2016 marc brout
+** Last update Sun May 22 21:38:42 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -64,10 +64,10 @@ int		load_leaf(t_rt *rt,
   node->type = my_getnbr((char *)field);
   if (node->type > 0 && node->type < 4)
     {
-      if ((field = bunny_ini_get_field(ini, scope, "connections", 0)) == NULL)
+      if (!(field = bunny_ini_get_field(ini, scope, "connections", 0)))
 	return (my_puterr("load_datas: missing csg node connections"));
       node->connections[0] = my_getnbr((char *)field);
-      if ((field = bunny_ini_get_field(ini, scope, "connections", 1)) == NULL)
+      if (!(field = bunny_ini_get_field(ini, scope, "connections", 1)))
 	return (my_puterr("load_datas: missing csg node connections"));
       node->connections[1] = my_getnbr((char *)field);
     }

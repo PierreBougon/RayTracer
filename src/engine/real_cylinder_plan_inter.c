@@ -1,11 +1,11 @@
 /*
-** real_cylinder_plan_inter.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** real_cylinder_plan_inter.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May 18 19:57:39 2016 romain samuel
-** Last update Sun May 22 14:53:42 2016 romain samuel
+** Last update Sun May 22 21:41:58 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -40,9 +40,6 @@ static int	cylinder_plan1_inter2(t_rt *s, t_cylinder *cylinder)
   get_si(s);
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan, &s->hit.norm1);
-  s->hit.simple_inter1.x += (double)pos.x;
-  s->hit.simple_inter1.y += (double)pos.y;
-  s->hit.simple_inter1.z += (double)pos.z;
   return (0);
 }
 
@@ -68,9 +65,6 @@ static int	cylinder_plan2_inter2(t_rt *s, t_cylinder *cylinder)
   get_si(s);
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan, &s->hit.norm1);
-  s->hit.simple_inter1.x += (double)pos.x;
-  s->hit.simple_inter1.y += (double)pos.y;
-  s->hit.simple_inter1.z += (double)pos.z;
   return (0);
 }
 
@@ -89,11 +83,12 @@ int	cylinder_plans_inters(t_rt *s, t_cylinder *cylinder, t_object *obj)
   cylinder->norm2 = s->hit.norm2;
   cylinder->limited = s->hit.limited;
   s->hit.name = obj->name;
-  update_hit_list(s, cylinder, 3, s->hit.k1);
+  update_hit_list(s, cylinder, CYLINDER, s->hit.k1);
   return (0);
 }
 
-int	csg_cylinder_plans_inters(t_rt *s, t_cylinder *cylinder, t_object *obj)
+int	csg_cylinder_plans_inters(t_rt *s, t_cylinder *cylinder,
+				  t_object *obj)
 {
   end_rotation(&s->rotation, s->ray.vct, &cylinder->rot);
   if (cylinder_plan1_inter2(s, cylinder) == -1 ||

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed May  4 18:01:50 2016 bougon_p
-** Last update Sun May 22 18:12:23 2016 benjamin duhieu
+** Last update Sun May 22 21:27:26 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -43,7 +43,8 @@ int				gen_opt(t_data *data)
       if (mpos->x > CHOSE_SIZE_X
 	  && mpos->x < CHOSE_SIZE_X + CHOSE_SIZE_WDT
 	  && mpos->y > CHOSE_SIZE_Y + CHOSE_SIZE_DECAL_Y * i
-	  && mpos->y < CHOSE_SIZE_Y + CHOSE_SIZE_HGT + CHOSE_SIZE_DECAL_Y * i)
+	  && mpos->y < CHOSE_SIZE_Y + CHOSE_SIZE_HGT +
+	  CHOSE_SIZE_DECAL_Y * i)
 	data->itfc.fct_set_size[i](data);
       i++;
     }

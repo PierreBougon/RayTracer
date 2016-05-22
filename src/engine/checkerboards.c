@@ -1,11 +1,11 @@
 /*
-** checkerboards.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** checkerboards.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 28 12:30:35 2016 romain samuel
-** Last update Thu Apr 28 12:54:03 2016 romain samuel
+** Last update Sun May 22 21:32:39 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

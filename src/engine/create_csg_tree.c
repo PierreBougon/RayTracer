@@ -1,11 +1,11 @@
 /*
-** create_csg_tree.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** create_csg_tree.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon May 16 16:48:46 2016 romain samuel
-** Last update Sun May 22 17:19:11 2016 benjamin duhieu
+** Last update Sun May 22 21:34:22 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -35,7 +35,8 @@ don't connect a node to itself you scrublord"));
   if (tab[i]->left != NULL || tab[i]->right != NULL ||
       tab[tab[i]->connections[0] - 1]->up != NULL ||
       tab[tab[i]->connections[1] - 1]->up != NULL)
-    return (my_puterr("could not link csg nodes: node connected two times"));
+    return (my_puterr("could not link csg nodes: \
+node connected two times"));
   tab[i]->left = tab[tab[i]->connections[0] - 1];
   tab[i]->right = tab[tab[i]->connections[1] - 1];
   tab[tab[i]->connections[0] - 1]->up = tab[i];

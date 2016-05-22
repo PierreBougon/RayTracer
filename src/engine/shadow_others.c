@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Sun May 22 16:21:43 2016 marc brout
-** Last update Sun May 22 16:22:06 2016 marc brout
+** Last update Sun May 22 20:08:49 2016 romain samuel
 */
 
 #include "raytracer.h"

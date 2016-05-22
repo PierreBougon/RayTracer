@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 18:49:47 2016 bougon_p
-** Last update Tue May 17 16:20:49 2016 bougon_p
+** Last update Sun May 22 21:26:26 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -39,12 +39,17 @@ void				rotate_eye(t_data *data)
   mpos = data->itfc.mpos;
   if (mpos->x > ((((MAX_WORK_SPACE_X - WORK_SPACE_X) / 2) + WORK_SPACE_X) -
 		 (rt->img->clipable.clip_width / 2))
-      && mpos->x < ((((MAX_WORK_SPACE_X - WORK_SPACE_X) / 2) + WORK_SPACE_X) -
-  		    (rt->img->clipable.clip_width / 2) + rt->img->clipable.clip_width)
-      && mpos->y > ((((MAX_WORK_SPACE_Y - WORK_SPACE_Y) / 2) + WORK_SPACE_Y) -
+      && mpos->x < ((((MAX_WORK_SPACE_X - WORK_SPACE_X) / 2) +
+		     WORK_SPACE_X) -
+  		    (rt->img->clipable.clip_width / 2) +
+		    rt->img->clipable.clip_width)
+      && mpos->y > ((((MAX_WORK_SPACE_Y - WORK_SPACE_Y) / 2) +
+		     WORK_SPACE_Y) -
   		    (rt->img->clipable.clip_height / 2))
-      && mpos->y < ((((MAX_WORK_SPACE_Y - WORK_SPACE_Y) / 2) + WORK_SPACE_Y) -
-  		    (rt->img->clipable.clip_height / 2)) + rt->img->clipable.clip_height)
+      && mpos->y < ((((MAX_WORK_SPACE_Y - WORK_SPACE_Y) / 2) +
+		     WORK_SPACE_Y) -
+  		    (rt->img->clipable.clip_height / 2)) +
+      rt->img->clipable.clip_height)
     {
       rotate(data, mpos);
     }

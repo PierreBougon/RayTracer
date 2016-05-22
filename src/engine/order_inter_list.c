@@ -1,11 +1,11 @@
 /*
-** order_inter_list.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** order_inter_list.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu May 19 12:41:52 2016 romain samuel
-** Last update Thu May 19 12:48:12 2016 romain samuel
+** Last update Sun May 22 21:41:30 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
