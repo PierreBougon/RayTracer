@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 17:10:43 2016 benjamin duhieu
-** Last update Sun May 22 17:13:44 2016 benjamin duhieu
+** Last update Sun May 22 19:26:36 2016 marc brout
 */
 
 #include "raytracer.h"
