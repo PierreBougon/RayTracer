@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sat May 21 22:09:43 2016 bougon_p
+** Last update Sun May 22 16:31:39 2016 marc brout
 */
 
 #ifndef INTERFACE_H_
@@ -347,7 +347,6 @@ int	add_perf_cube(t_data *);
 int	create_scene(t_data *);
 int	basic_plane(t_data *);
 int	basic_wallpaper(t_data *);
-
 
 /*
 ** Slide Bar

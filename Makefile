@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 16:02:46 2016 marc brout
+## Last update Sun May 22 16:25:54 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -115,6 +115,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)shade.c \
 			$(ENGINE)shadow.c \
 			$(ENGINE)shadow_inters.c \
+			$(ENGINE)shadow_others.c \
 			$(ENGINE)shadow_hyper.c \
 			$(ENGINE)shadow_para.c \
 			$(ENGINE)shadow_ellipse.c \
