@@ -1,11 +1,11 @@
 /*
-1;2802;0c** new_scene.c for new_scene.c in /home/bougon_p/rendu/gfx_raytracer2
+** new_scene.c for new_scene.c in /home/bougon_p/rendu/gfx_raytracer2
 **
 ** Made by bougon_p
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun May  1 01:17:22 2016 bougon_p
-** Last update Sun May 22 18:07:35 2016 benjamin duhieu
+** Last update Sun May 22 19:32:46 2016 marc brout
 */
 
 #include "raytracer.h"
