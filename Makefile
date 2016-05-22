@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 15:48:40 2016 benjamin duhieu
+## Last update Sun May 22 15:50:59 2016 benjamin duhieu
 ##
 
 # USEFUL VARIABLES
@@ -212,7 +212,6 @@ SRC		=	$(MAIN)main.c \
 			$(SOLVERS)new_method.c \
 			$(SOLVERS)quartic_order_solver.c \
 			$(SOLVERS)second_order_solver.c \
-			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
 

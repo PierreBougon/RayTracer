@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 15:48:08 2016 benjamin duhieu
+** Last update Sun May 22 16:44:28 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -874,12 +874,16 @@ t_object	*get_obj(t_rt *s, int x, int y);
 /*
 ** get_norm_complex.c
 */
-void		get_norm_hole_cube(t_rt *s, t_hole_cube *hole_cube);
 void		get_norm_hyper(t_rt *s, t_hyper *hyper);
 void		get_norm_parab(t_rt *s, t_parab *parab);
-void		get_norm_tore(t_rt *s, t_tore *tore);
-void		get_norm_ellip(t_rt *s, t_ellip *ellip);
 
+
+/*
+** get_norm_4_degres.c
+*/
+void		get_norm_ellip(t_rt *s, t_ellip *ellip);
+void		get_norm_hole_cube(t_rt *s, t_hole_cube *hole_cube);
+void		get_norm_tore(t_rt *s, t_tore *tore);
 
 /*
 ** get_refracted_vec.c
