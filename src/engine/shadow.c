@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:49:09 2016 romain samuel
-** Last update Sun May 22 22:08:21 2016 benjamin duhieu
+** Last update Sun May 22 22:08:42 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -98,6 +98,7 @@ int		shadow_box(t_rt *s, t_object *obj)
 int			shadow(t_rt *s)
 {
   t_object		*it;
+
   s->ftabs.shadow_ftab[0] = &shadow_sphere;
   s->ftabs.shadow_ftab[1] = &shadow_cylinder;
   s->ftabs.shadow_ftab[2] = &shadow_cone;
@@ -113,7 +114,6 @@ int			shadow(t_rt *s)
   s->shade.shadow.coef = 0;
   while (it != NULL)
     {
-      printf("it->type : %d", it->type);
       if (it->type != LIGHT && s->ftabs.shadow_ftab[it->type - 1])
 	s->ftabs.shadow_ftab[it->type - 1](s, it);
       if (s->shade.shadow.coef >= 1)
