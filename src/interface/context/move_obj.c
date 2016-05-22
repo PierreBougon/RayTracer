@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri May 20 15:33:32 2016 bougon_p
-** Last update Sat May 21 16:02:40 2016 bougon_p
+** Last update Sun May 22 00:26:41 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -39,7 +39,6 @@ static	void			move_object(t_data *data)
 
 int	move_obj(t_data *data)
 {
-  data->itfc.obj_selected = data->rt.obj;
   if (check_workspace(data->itfc.mpos, &data->rt) &&
       (data->itfc.obj_click && data->itfc.obj_selected))
     {
