@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue May 17 14:53:45 2016 bougon_p
-** Last update Wed May 18 21:41:42 2016 bougon_p
+** Last update Sun May 22 15:10:40 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -46,6 +46,7 @@ int	add_spot(t_data *data)
 	  data->rt.obj = create_obj_list();
 	  new = data->rt.obj;
 	}
+      new->name = setnbr(g_name++);
       new->type = LIGHT;
       new->real = 1;
       new->datas = fill_light(data, light);

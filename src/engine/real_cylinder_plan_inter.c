@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May 18 19:57:39 2016 romain samuel
-** Last update Sat May 21 22:40:03 2016 romain samuel
+** Last update Sun May 22 14:53:42 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -80,6 +80,7 @@ int	cylinder_plans_inters(t_rt *s, t_cylinder *cylinder, t_object *obj)
   if (cylinder_plan1_inter2(s, cylinder) == -1 ||
       cylinder_plan2_inter2(s, cylinder) == -1)
     return (0);
+  s->hit.limited = 1;
   cylinder->simple_inter1 = s->hit.simple_inter1;
   cylinder->simple_inter2 = s->hit.simple_inter2;
   cylinder->k1 = s->hit.k1;

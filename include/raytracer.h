@@ -5,7 +5,11 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
+<<<<<<< HEAD
 ** Last update Sun May 22 16:44:28 2016 benjamin duhieu
+=======
+** Last update Sun May 22 16:49:51 2016 bougon_p
+>>>>>>> 40762cc1fb1c372be199b6f76951b8f8e3ac8871
 */
 
 #ifndef RAYTRACER_H_
@@ -614,6 +618,7 @@ typedef struct		s_ftab
   void			(**tex_ftab)(t_rt *);
   int			(*filter_effect[9])(t_bunny_pixelarray **,
 					    const int);
+  void			(*fct_free[NB_OBJ + 1])(t_object *);
 }			t_ftab;
 
 typedef struct		s_rotation
@@ -707,6 +712,17 @@ void	blit_clipables(t_data *);
 void	free_all(t_data *);
 void	free_tab(char **);
 void	delete_all_clipables(t_data *);
+void	free_light(t_object *);
+void	free_sphere(t_object *);
+void	free_cylinder(t_object *);
+void	free_cone(t_object *);
+void	free_plane(t_object *);
+void	free_tore(t_object *);
+void	free_box(t_object *);
+void	free_hole_cube(t_object *);
+void	free_hyper(t_object *);
+void	free_parab(t_object *);
+void	free_csg(t_object *);
 
 /*
 ** Translation
@@ -732,7 +748,6 @@ void		one_root(double delta, double r, double q,
 			 t_3order *solv);
 void		three_root(double r, double q, t_3order *solv);
 
-
 /*
 ** checkerboards.c
 */
@@ -745,6 +760,7 @@ void		checkerboard_3d(t_rt *s);
 ** clear_list.c
 */
 int		clear_list(t_object *root);
+int		clear_full_list(t_object *root, t_ftab *);
 
 /*
 ** color_operations.c
@@ -876,7 +892,6 @@ t_object	*get_obj(t_rt *s, int x, int y);
 */
 void		get_norm_hyper(t_rt *s, t_hyper *hyper);
 void		get_norm_parab(t_rt *s, t_parab *parab);
-
 
 /*
 ** get_norm_4_degres.c
@@ -1106,7 +1121,6 @@ int		load_light_datas(t_light *s,
 				 char *scope);
 int		load_light(t_rt *rt, t_bunny_ini *ini, char *scope);
 
-
 /*
 ** load_ellip.c
 */
@@ -1298,11 +1312,19 @@ int		shade(t_rt *s, t_acc *vct, t_acc eye);
 /*
 ** shadow.c
 */
-int		shadow_sphere(t_rt *s, t_object *obj);
 int		shadow_cone(t_rt *s, t_object *obj);
 int		shadow_cylinder(t_rt *s, t_object *obj);
 int		shadow_plan(t_rt *s, t_object *obj);
+int		shadow_box(t_rt *s, t_object *obj);
 int		shadow(t_rt *s);
+
+/*
+** shadow_others.c
+*/
+int		shadow_sphere(t_rt *s, t_object *obj);
+int		shadow_ellipse(t_rt *s, t_object *obj);
+int		shadow_parab(t_rt *s, t_object *obj);
+int		shadow_hyper(t_rt *s, t_object *obj);
 
 /*
 ** shadow_inters.c
@@ -1420,5 +1442,9 @@ double		shadow_inter_hyper(t_rt *s, t_hyper *h);
 */
 double		shadow_inter_para(t_rt *s, t_parab *p);
 
+/*
+** shadow_ellipse.c
+*/
+double		shadow_inter_ellip(t_rt *s, t_ellip *e);
 
 #endif /* !RAYTRACER_H_ */

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 16:40:36 2016 benjamin duhieu
-** Last update Sun May 22 16:44:39 2016 benjamin duhieu
+** Last update Sun May 22 17:00:18 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -27,8 +27,7 @@ static void		get_coord_spher_tore(t_tore *tore, double *phi,
   double	col;
 
   col = sqrt((tore->simple_inter1.x * tore->simple_inter1.x)
-	     + (tore->simple_inter1.y * tore->simple_i
-		nter1.y)
+	     + (tore->simple_inter1.y * tore->simple_inter1.y)
 	     + (tore->simple_inter1.z * tore->simple_inter1.z));
   *phi = acos(tore->simple_inter1.y / col);
   if (tore->simple_inter1.x >= 0)

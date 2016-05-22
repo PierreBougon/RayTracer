@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:02:53 2016 bougon_p
-** Last update Sat May 21 16:09:21 2016 bougon_p
+** Last update Sun May 22 15:10:54 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -55,6 +55,7 @@ static	int	add_plane_obj(t_data *data)
       data->rt.obj = create_obj_list();
       new = data->rt.obj;
     }
+  new->name = setnbr(g_name++);
   set_plane_value(pla);
   pos_plane(data, pla);
   pla->tex_type = 1;

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed Apr 27 18:33:51 2016 romain samuel
-** Last update Thu Apr 28 16:59:09 2016 romain samuel
+** Last update Sun May 22 16:33:15 2016 marc brout
 */
 
 #ifndef PERLIN_H_
@@ -18,8 +18,8 @@
 # define NM 0xfff
 # define s_curve(t) (t * t * (3. - 2. * t))
 # define lerp(t, a, b) (a + t * (b - a))
-# define at2(rx,ry) (rx * q[0] + ry * q[1])
-# define at3(rx,ry,rz,q) (rx * q[0] + ry * q[1] + rz * q[2])
+# define at2(rx, ry) (rx * q[0] + ry * q[1])
+# define at3(rx, ry, rz, q) (rx * q[0] + ry * q[1] + rz * q[2])
 
 typedef struct	s_noise_3d
 {

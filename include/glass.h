@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed May 18 16:24:11 2016 marc brout
-** Last update Fri May 20 19:55:31 2016 marc brout
+** Last update Sun May 22 16:33:56 2016 marc brout
 */
 
 #ifndef GLASS_H_
@@ -32,6 +32,5 @@ int	glass(t_bunny_pixelarray **pix,
 	      const int value);
 int	median_filter(t_bunny_pixelarray **pix,
 		      const int value);
-
 
 #endif /* !GLASS_H_ */

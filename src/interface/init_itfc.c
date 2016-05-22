@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:33:13 2016 bougon_p
-** Last update Sun May 22 00:25:16 2016 bougon_p
+** Last update Sun May 22 15:00:30 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -82,6 +82,7 @@ int	init_itfc_data(t_itfc *itfc, t_data *data)
   itfc->past.rad_state = 0;
   itfc->past.refl_state = NO;
   itfc->txt.writing = false;
+  g_name = 0;
   data->ld.save_width = data->ld.loading->clipable.clip_width;
   return (0);
 }

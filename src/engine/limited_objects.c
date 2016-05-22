@@ -5,42 +5,17 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 14 16:26:45 2016 romain samuel
-** Last update Sat May 21 04:11:12 2016 romain samuel
+** Last update Sun May 22 15:01:51 2016 romain samuel
 */
 
 #include "raytracer.h"
-
-/* int		get_cylinder_plan1_inter1(t_rt *s, t_cylinder *cylinder) */
-/* { */
-/*   t_plan	plan; */
-/*   t_acc		pos; */
-
-/*   pos.x = 0; */
-/*   pos.y = 0; */
-/*   pos.z = cylinder->height; */
-/*   end_rotation(&s->rotation, &pos, &cylinder->rot); */
-/*   plan.pos.x = cylinder->pos.x + pos.x; */
-/*   plan.pos.y = cylinder->pos.y + pos.y; */
-/*   plan.pos.z = cylinder->pos.z + pos.z; */
-/*   plan.rot.x = cylinder->rot.x; */
-/*   plan.rot.y = cylinder->rot.y; */
-/*   plan.rot.z = cylinder->rot.z; */
-/*   inter_plan(s, &plan); */
-/*   get_simple_inter(s, s->ray.vct, &s->ray.new_eye); */
-/*   end_rotation(&s->rotation, s->ray.vct, &plan.rot); */
-/*   get_norm_plan(s, &plan, &s->hit.norm1); */
-/*   s->hit.limited = 1; */
-/*   s->hit.simple_inter1.x += (double)pos.x; */
-/*   s->hit.simple_inter1.y += (double)pos.y; */
-/*   s->hit.simple_inter1.z += (double)pos.z; */
-/*   return (0); */
-/* } */
 
 int		get_cylinder_plan1_inter1(t_rt *s, t_cylinder *cylinder)
 {
   t_plan	plan;
   t_acc		pos;
 
+  /* printf("coucou\n"); */
   pos.x = 0;
   pos.y = 0;
   pos.z = cylinder->height;
@@ -52,23 +27,24 @@ int		get_cylinder_plan1_inter1(t_rt *s, t_cylinder *cylinder)
   plan.rot.y = cylinder->rot.y;
   plan.rot.z = cylinder->rot.z;
   inter_plan(s, &plan);
+  s->hit.limited = 1;
   s->hit.simple_inter1.x = s->ray.new_eye.x + s->hit.k1 * s->ray.vct->x;
   s->hit.simple_inter1.y = s->ray.new_eye.y + s->hit.k1 * s->ray.vct->y;
   s->hit.simple_inter1.z = s->ray.new_eye.z + s->hit.k1 * s->ray.vct->z;
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan, &s->hit.norm1);
-  s->hit.simple_inter1.x += (double)pos.x;
-  s->hit.simple_inter1.y += (double)pos.y;
-  s->hit.simple_inter1.z += (double)pos.z;
+  /* s->hit.simple_inter1.x += (double)pos.x; */
+  /* s->hit.simple_inter1.y += (double)pos.y; */
+  /* s->hit.simple_inter1.z += (double)pos.z; */
   return (0);
 }
-
 
 int		get_cylinder_plan2_inter1(t_rt *s, t_cylinder *cylinder)
 {
   t_plan	plan;
   t_acc		pos;
 
+  /* printf("coucou\n"); */
   pos.x = 0;
   pos.y = 0;
   pos.z = - cylinder->height;
@@ -80,42 +56,17 @@ int		get_cylinder_plan2_inter1(t_rt *s, t_cylinder *cylinder)
   plan.rot.y = cylinder->rot.y;
   plan.rot.z = cylinder->rot.z;
   inter_plan(s, &plan);
+  s->hit.limited = 1;
   s->hit.simple_inter1.x = s->ray.new_eye.x + s->hit.k1 * s->ray.vct->x;
   s->hit.simple_inter1.y = s->ray.new_eye.y + s->hit.k1 * s->ray.vct->y;
   s->hit.simple_inter1.z = s->ray.new_eye.z + s->hit.k1 * s->ray.vct->z;
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan, &s->hit.norm1);
-  s->hit.simple_inter1.x += (double)pos.x;
-  s->hit.simple_inter1.y += (double)pos.y;
-  s->hit.simple_inter1.z += (double)pos.z;
+  /* s->hit.simple_inter1.x += (double)pos.x; */
+  /* s->hit.simple_inter1.y += (double)pos.y; */
+  /* s->hit.simple_inter1.z += (double)pos.z; */
   return (0);
 }
-
-/* int		get_cylinder_plan2_inter1(t_rt *s, t_cylinder *cylinder) */
-/* { */
-/*   t_plan	plan; */
-/*   t_acc		pos; */
-
-/*   pos.x = 0; */
-/*   pos.y = 0; */
-/*   pos.z = - cylinder->height; */
-/*   end_rotation(&s->rotation, &pos, &cylinder->rot); */
-/*   plan.pos.x = cylinder->pos.x + pos.x; */
-/*   plan.pos.y = cylinder->pos.y + pos.y; */
-/*   plan.pos.z = cylinder->pos.z + pos.z; */
-/*   plan.rot.x = cylinder->rot.x; */
-/*   plan.rot.y = cylinder->rot.y; */
-/*   plan.rot.z = cylinder->rot.z; */
-/*   inter_plan(s, &plan); */
-/*   get_simple_inter(s, s->ray.vct, &s->ray.new_eye); */
-/*   end_rotation(&s->rotation, s->ray.vct, &plan.rot); */
-/*   get_norm_plan(s, &plan, &s->hit.norm1); */
-/*   s->hit.limited = 1; */
-/*   s->hit.simple_inter1.x += (double)pos.x; */
-/*   s->hit.simple_inter1.y += (double)pos.y; */
-/*   s->hit.simple_inter1.z += (double)pos.z; */
-/*   return (0); */
-/* } */
 
 int	limited_cylinder(t_rt *s, t_cylinder *cylinder)
 {

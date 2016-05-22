@@ -5,7 +5,11 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 19:05:58 2016 romain samuel
+<<<<<<< HEAD
 ** Last update Sun May 22 16:18:13 2016 benjamin duhieu
+=======
+** Last update Sun May 22 16:46:17 2016 romain samuel
+>>>>>>> 40762cc1fb1c372be199b6f76951b8f8e3ac8871
 */
 
 #include "raytracer.h"
@@ -44,8 +48,6 @@ int			live_display(t_rt *s)
   t_acc			vct;
   t_color		final_color;
 
-  /* if ((s->pixel_color = bunny_malloc(sizeof(t_color) * s->opt.aa)) == NULL) */
-  /*   return (my_puterr("display: could not perform malloc")); */
   pos.y = 0;
   while (pos.y < s->height)
     {

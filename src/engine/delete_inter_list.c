@@ -5,16 +5,25 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sat May 21 06:34:30 2016 romain samuel
-** Last update Sat May 21 23:40:58 2016 romain samuel
+** Last update Sun May 22 13:38:04 2016 romain samuel
 */
 
 #include "raytracer.h"
 
-int		delete_inter_list(t_inter *left)
+int		delete_inter_list(t_inter *root)
 {
-  if (left == NULL)
+  t_inter	*it;
+  t_inter	*tmp;
+
+  if (root == NULL)
     return (0);
-  free(left);
+  it = root;
+  while (it != NULL)
+    {
+      tmp = it;
+      it = it->next;
+      bunny_free(tmp);
+    }
   return (0);
 }
 
@@ -39,10 +48,12 @@ t_csg		*free_tree_inters(t_csg *it)
 {
   if (it->type == 0)
     {
+      delete_inter_list(it->obj->inter);
       it->obj->inter = NULL;
     }
   if (it->left != NULL && it->right != NULL)
     {
+      delete_inter_list(it->inter);
       it->inter = NULL;
       if ((it->left = free_tree_inters(it->left)) == NULL)
 	return (NULL);

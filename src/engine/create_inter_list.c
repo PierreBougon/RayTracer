@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sat May 14 17:31:51 2016 romain samuel
-** Last update Sat May 21 01:55:46 2016 romain samuel
+** Last update Sun May 22 13:32:16 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -25,7 +25,7 @@ t_inter		*add_inter_elem(t_inter *elem)
 {
   t_inter	*new;
 
-  if ((new = malloc(sizeof(t_inter))) == NULL)
+  if ((new = bunny_malloc(sizeof(t_inter))) == NULL)
     return (NULL);
   new->prev = elem;
   if (elem->next != NULL)
@@ -52,13 +52,13 @@ t_inter		*delete_inter_elem(t_inter *elem)
     {
       previous = elem->prev;
       previous->next = NULL;
-      free(elem);
+      bunny_free(elem);
       return (previous);
     }
   previous = elem->prev;
   next = elem->next;
   previous->next = next;
   next->prev = previous;
-  free(elem);
+  bunny_free(elem);
   return (previous);
 }

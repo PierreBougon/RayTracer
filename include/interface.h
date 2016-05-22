@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sat May 21 22:09:43 2016 bougon_p
+** Last update Sun May 22 16:49:59 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -111,6 +111,8 @@ typedef	enum			e_bt_state
     YES,
     NO
   }				t_bt_state;
+
+int				g_name;
 
 typedef struct	s_data		t_data;
 typedef struct	s_rt		t_rt;
@@ -348,7 +350,6 @@ int	create_scene(t_data *);
 int	basic_plane(t_data *);
 int	basic_wallpaper(t_data *);
 
-
 /*
 ** Slide Bar
 */
@@ -405,6 +406,7 @@ int	apply_flat_texture(t_data *);
 int	apply_perlin_texture(t_data *);
 int	apply_image_texture(t_data *);
 void	reset_select(t_object *, t_data *);
+void	check_refl_bt(const t_bunny_position *, t_data *);
 
 /*
 ** GET OBJ

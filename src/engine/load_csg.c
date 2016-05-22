@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue May 10 18:11:07 2016 romain samuel
-** Last update Sat May 21 01:58:53 2016 romain samuel
+** Last update Sun May 22 13:59:20 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -65,7 +65,10 @@ int		load_csg_type(t_rt *rt,
   return (0);
 }
 
-int		load_csg_object(t_rt *rt, t_csg *node, t_bunny_ini *ini, char *scope)
+int		load_csg_object(t_rt *rt,
+				t_csg *node,
+				t_bunny_ini *ini,
+				char *scope)
 {
   if (load_csg_type(rt, node, ini, scope) == -1)
     return (-1);
@@ -151,7 +154,7 @@ int		load_csg(t_rt *rt, t_bunny_ini *ini, char *scope)
   it = rt->obj;
   while (it->next != NULL)
     it = it->next;
-  it->type = 7;
+  it->type = CSG;
   if ((s = load_csg_datas(rt, ini, scope)) == NULL)
     return (-1);
   it->datas = s;
