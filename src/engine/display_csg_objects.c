@@ -1,12 +1,11 @@
 /*
-** display_csg_objects.c for RAYTRACER
-
+** display_csg_objects.c for RAYTRACER in /home/samuel_r/gfx_raytracer2
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
-** Started on  Tue May 17 15:46:36 2016 romain samuel
-** Last update Sun May 22 21:44:04 2016 benjamin duhieu
+** Started on  Sun May 22 22:00:44 2016 romain samuel
+** Last update Sun May 22 22:00:46 2016 romain samuel
 */
 
 #include "raytracer.h"

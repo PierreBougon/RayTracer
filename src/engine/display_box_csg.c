@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 17:10:43 2016 benjamin duhieu
-** Last update Sun May 22 21:47:54 2016 romain samuel
+** Last update Sun May 22 22:00:03 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -62,7 +62,6 @@ int		display_csg(t_rt *s, t_object *obj)
     return (-1);
   if (shape->inter && shape->inter->next)
     {
-      s->hit.k2 = 0.0;
       it = shape->inter->next;
       while (it)
   	{

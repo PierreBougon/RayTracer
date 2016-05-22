@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sat May 14 19:53:45 2016 romain samuel
-** Last update Sun May 22 21:38:54 2016 benjamin duhieu
+** Last update Sun May 22 22:14:30 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -22,7 +22,7 @@ int		load_csg_sphere(t_rt *rt,
     return (my_puterr("Could not perform malloc"));
   if ((s = bunny_malloc(sizeof(t_sphere))) == NULL)
     return (my_puterr("Could not perform malloc"));
-  node->obj->type = 2;
+  node->obj->type = SPHERE;
   if (load_sphere_datas(s, ini, scope) == -1)
     return (-1);
   node->obj->datas = s;
@@ -43,7 +43,7 @@ int		load_csg_cylinder(t_rt *rt,
     return (my_puterr("Could not perform malloc"));
   if ((s = bunny_malloc(sizeof(t_cylinder))) == NULL)
     return (my_puterr("Could not perform malloc"));
-  node->obj->type = 3;
+  node->obj->type = CYLINDER;
   if (load_cylinder_datas(s, ini, scope) == -1)
     return (-1);
   node->obj->datas = s;
@@ -64,7 +64,7 @@ int		load_csg_cone(t_rt *rt,
     return (my_puterr("Could not perform malloc"));
   if ((s = bunny_malloc(sizeof(t_cone))) == NULL)
     return (my_puterr("Could not perform malloc"));
-  node->obj->type = 4;
+  node->obj->type = CONE;
   if (load_cone_datas(s, ini, scope) == -1)
     return (-1);
   node->obj->datas = s;
@@ -84,7 +84,7 @@ int		load_csg_box(t_rt *rt,
     return (my_puterr("Could not perform malloc"));
   if ((s = bunny_malloc(sizeof(t_box))) == NULL)
     return (my_puterr("Could not perform malloc"));
-  node->obj->type = 6;
+  node->obj->type = BOX;
   if (load_box_datas(s, ini, scope) == -1)
     return (-1);
   if (load_plan_sides(rt, s) == -1)
