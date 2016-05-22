@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri May 20 20:33:05 2016 benjamin duhieu
-** Last update Sun May 22 13:59:49 2016 romain samuel
+** Last update Sun May 22 16:42:21 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -68,15 +68,14 @@ int		load_parab_datas2(t_parab *s,
   if ((field = bunny_ini_get_field(ini, scope, "ks", 0)) == NULL)
     return (my_puterr("load_datas: missing parab specular coef"));
   s->ks = (double)my_getnbr((char *)field) / 100;
-  return (load_parab_datas3(s, ini, scope));
+  return (load_parab_datas3(s, ini, scope, field));
 }
 
 int		load_parab_datas3(t_parab *s,
 				  t_bunny_ini *ini,
-				  char *scope)
+				  char *scope,
+				  const char *field)
 {
-  const char	*field;
-
   if ((field = bunny_ini_get_field(ini, scope, "brightness", 0)) == NULL)
     return (my_puterr("load_datas: missing parab brightness"));
   s->brightness = (double)my_getnbr((char *)field) / 100;

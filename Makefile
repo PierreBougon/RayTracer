@@ -5,7 +5,11 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
+<<<<<<< HEAD
 ## Last update Sun May 22 13:42:37 2016 romain samuel
+=======
+## Last update Sun May 22 16:02:46 2016 marc brout
+>>>>>>> a6080950b720800f0e6c189344688e096fb23739
 ##
 
 # USEFUL VARIABLES
@@ -77,6 +81,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)get_texels.c \
 			$(ENGINE)inter_box_sides.c \
 			$(ENGINE)init_shade.c \
+			$(ENGINE)inter_ellip.c \
 			$(ENGINE)inter_hole_cube.c \
 			$(ENGINE)inter_hyper.c \
 			$(ENGINE)inter_list.c \
@@ -90,6 +95,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)load_csg.c \
 			$(ENGINE)load_csg_objects.c \
 			$(ENGINE)load_cylinder.c \
+			$(ENGINE)load_ellip.c \
 			$(ENGINE)load_file.c \
 			$(ENGINE)load_hole_cube.c \
 			$(ENGINE)load_hyper.c \
@@ -109,9 +115,13 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)rotations.c \
 			$(ENGINE)second_inter_limited_objects.c \
 			$(ENGINE)set_hit_values.c \
+			$(ENGINE)set_hit_values_next.c \
 			$(ENGINE)shade.c \
 			$(ENGINE)shadow.c \
 			$(ENGINE)shadow_inters.c \
+			$(ENGINE)shadow_hyper.c \
+			$(ENGINE)shadow_para.c \
+			$(ENGINE)shadow_ellipse.c \
 			$(ENGINE)shadow_limited_objects.c \
 			$(ENGINE)shadow_simple_inters.c \
 			$(ENGINE)skybox.c \
@@ -207,7 +217,6 @@ SRC		=	$(MAIN)main.c \
 			$(SOLVERS)new_method.c \
 			$(SOLVERS)quartic_order_solver.c \
 			$(SOLVERS)second_order_solver.c \
-			src/debug.c \
 
 OBJS    	=	$(SRC:.c=.o)
 

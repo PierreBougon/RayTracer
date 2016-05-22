@@ -1,11 +1,15 @@
 /*
-** display_objects.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/RAYTRACER
+** display_objects.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
+<<<<<<< HEAD
 ** Last update Sun May 22 15:02:05 2016 romain samuel
+=======
+** Last update Sun May 22 15:46:55 2016 benjamin duhieu
+>>>>>>> a6080950b720800f0e6c189344688e096fb23739
 */
 
 #include "raytracer.h"
@@ -29,7 +33,8 @@ int		display_sphere(t_rt *s, t_object *obj)
       shape->k2 = s->hit.k2;
       shape->norm1 = s->hit.norm1;
       s->hit.name = obj->name;
-      update_hit_list(s, shape, SPHERE, s->hit.k1);
+      if ((update_hit_list(s, shape, SPHERE, s->hit.k1)) == -1)
+	return (1);
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &shape->rot);
@@ -61,7 +66,8 @@ int		display_cylinder(t_rt *s, t_object *obj)
 	  shape->norm2 = s->hit.norm2;
 	  shape->limited = s->hit.limited;
 	  s->hit.name = obj->name;
-	  update_hit_list(s, shape, CYLINDER, s->hit.k1);
+	  if ((update_hit_list(s, shape, CYLINDER, s->hit.k1)) == -1)
+	    return (1);
 	}
     }
   else
@@ -88,7 +94,8 @@ int		display_cone(t_rt *s, t_object *obj)
 	  shape->norm1 = s->hit.norm1;
 	  shape->limited = s->hit.limited;
 	  s->hit.name = obj->name;
-	  update_hit_list(s, shape, CONE, s->hit.k1);
+	  if ((update_hit_list(s, shape, CONE, s->hit.k1)) == -1)
+	    return (1);
 	}
     }
   else
@@ -115,7 +122,8 @@ int		display_plan(t_rt *s, t_object *obj)
 	  shape->k2 = s->hit.k2;
 	  shape->norm = s->hit.norm1;
 	  s->hit.name = obj->name;
-	  update_hit_list(s, shape, PLANE, s->hit.k1);
+	  if ((update_hit_list(s, shape, PLANE, s->hit.k1)) == -1)
+	    return (1);
 	}
     }
   else
@@ -137,7 +145,8 @@ int		display_box(t_rt *s, t_object *obj)
       shape->k2 = s->hit.k2;
       shape->norm1 = s->hit.norm1;
       s->hit.name = obj->name;
-      update_hit_list(s, shape, BOX, s->hit.k1);
+      if ((update_hit_list(s, shape, BOX, s->hit.k1)) == -1)
+	return (1);
     }
   return (0);
 }
