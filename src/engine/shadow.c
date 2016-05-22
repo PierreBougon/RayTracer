@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:49:09 2016 romain samuel
-** Last update Sun May 22 22:08:42 2016 benjamin duhieu
+** Last update Sun May 22 23:10:41 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -112,7 +112,7 @@ int			shadow(t_rt *s)
   s->ftabs.shadow_ftab[10] = &shadow_ellipse;
   it = s->obj;
   s->shade.shadow.coef = 0;
-  while (it != NULL)
+  while (it)
     {
       if (it->type != LIGHT && s->ftabs.shadow_ftab[it->type - 1])
 	s->ftabs.shadow_ftab[it->type - 1](s, it);

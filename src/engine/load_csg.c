@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue May 10 18:11:07 2016 romain samuel
-** Last update Sun May 22 21:52:57 2016 romain samuel
+** Last update Sun May 22 23:12:28 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -119,6 +119,7 @@ int		load_csg(t_rt *rt, t_bunny_ini *ini, char *scope)
   t_object	*it;
   t_csg		*s;
 
+  rt->select = false;
   if ((s = bunny_malloc(sizeof(t_csg))) == NULL)
     return (-1);
   if (rt->obj == NULL)

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun May 22 22:00:44 2016 romain samuel
-** Last update Sun May 22 22:00:46 2016 romain samuel
+** Last update Sun May 22 22:53:29 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -119,9 +119,13 @@ int	display_csg_objects(t_rt *s, t_object *object)
   s->ftabs.csg_ftab[3] = &csg_display_box;
   s->hit.k1 = 0.0;
   s->hit.k2 = 0.0;
-  if (object->type == 6)
+  if (object->type == BOX)
     s->ftabs.csg_ftab[3](s, object);
-  else if (object->type > 1 && object->type < 6)
-    s->ftabs.csg_ftab[object->type - 2](s, object);
+  else if (object->type == SPHERE)
+    s->ftabs.csg_ftab[0](s, object);
+  else if (object->type == CYLINDER)
+    s->ftabs.csg_ftab[1](s, object);
+  else if (object->type == CONE)
+    s->ftabs.csg_ftab[2](s, object);
   return (0);
 }
