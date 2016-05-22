@@ -5,10 +5,11 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Sun May 22 17:36:30 2016 marc brout
-** Last update Sun May 22 17:37:09 2016 marc brout
+** Last update Sun May 22 17:41:10 2016 marc brout
 */
 
 #include <math.h>
+#include "perlin.h"
 
 void		setup_r(double vec[3], int i, float *r0, float *r1)
 {
