@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:43:34 2016 romain samuel
-** Last update Sun May 22 17:17:59 2016 benjamin duhieu
+** Last update Sun May 22 19:27:15 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -36,7 +36,7 @@ t_color			melt_colors(t_rt *s, t_color *color)
   return (final_color);
 }
 
-t_color			antialiasing(t_rt *s,
+int			antialiasing(t_rt *s,
 				     t_bunny_position *pos,
 				     t_acc *vct,
 				     t_color *color)
@@ -49,21 +49,19 @@ t_color			antialiasing(t_rt *s,
   i = -1;
   k = 0;
   x = sqrt(s->opt.aa);
-  while (++i < x)
-    {
-      j = -1;
-      while (++j < x)
-	{
-	  vct->x = ((double)s->width / 2.0)
-	    - ((double)pos->x + (1.0 / (double)x) * j);
-	  vct->y = ((double)s->height / 2.0)
-	    - ((double)pos->y + (1.0 / (double)x) * i);
-	  vct->z = 1000;
-	  rotation(&s->rotation, vct, &s->eye.rot);
-	  s->rec = 0;
-	  color[k++] = display_objects(s, vct, s->eye.pos);
-	}
-    }
+  while (++i < x && (j = -1))
+    while (++j < x)
+      {
+	vct->x = ((double)s->width / 2.0)
+	  - ((double)pos->x + (1.0 / (double)x) * j);
+	vct->y = ((double)s->height / 2.0)
+	  - ((double)pos->y + (1.0 / (double)x) * i);
+	vct->z = 1000;
+	rotation(&s->rotation, vct, &s->eye.rot);
+	s->rec = 0;
+	if ((display_objects(s, vct, s->eye.pos, &color[k++])) == -1)
+	  return (-1);
+      }
   color[0] = melt_colors(s, color);
-  return (color[0]);
+  return (s->return_color = color[0], 0);
 }

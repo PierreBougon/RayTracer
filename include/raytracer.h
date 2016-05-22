@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 17:42:26 2016 benjamin duhieu
+** Last update Sun May 22 19:39:09 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -646,6 +646,7 @@ typedef struct		s_rt
   t_object		*obj;
   t_object		*obj_hit;
   t_color		*pixel_color;
+  t_color		return_color;
   t_ftab		ftabs;
   t_ray			ray;
   t_shade		shade;
@@ -730,7 +731,7 @@ void	translation_obj(t_rotation *r, t_acc *vec, t_pos *rot, t_pos *pos);
 ** antialiasing.c
 */
 t_color		melt_colors(t_rt *s, t_color *color);
-t_color		antialiasing(t_rt *s,
+int		antialiasing(t_rt *s,
 			     t_bunny_position *pos,
 			     t_acc *vct,
 			     t_color *color);
@@ -841,7 +842,8 @@ double		diffuse_light(t_rt *s);
 ** display.c
 */
 int		inter_objects(t_rt *s);
-t_color		display_objects(t_rt *s, t_acc *vct, t_acc eye);
+int		display_objects(t_rt *s, t_acc *vct, t_acc eye,
+				t_color *col);
 int		display(t_rt *s, t_data *data);
 
 /*
