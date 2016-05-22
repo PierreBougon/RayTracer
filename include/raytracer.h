@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 21:53:21 2016 romain samuel
+** Last update Sun May 22 23:11:44 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -644,6 +644,7 @@ typedef struct		s_rt
   t_bunny_pixelarray	*save;
   t_bunny_position	r_pos;
   t_object		*obj;
+  bool			select;
   t_object		*obj_hit;
   t_color		*pixel_color;
   t_color		return_color;

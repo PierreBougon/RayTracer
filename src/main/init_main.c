@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Sun May 22 21:21:37 2016 benjamin duhieu
+** Last update Sun May 22 23:12:07 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -46,6 +46,7 @@ int	init_rt_data(t_rt *rt, int argc, char **argv)
   rt->width = FULL_WIDTH;
   rt->height = FULL_HEIGHT;
   rt->img = NULL;
+  rt->select = true;
   rt->live = true;
   rt->coef_load = (float)rt->height / 100.0f;
   init_cos_sin(&rt->rotation);

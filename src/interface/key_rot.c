@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon May 16 18:43:04 2016 bougon_p
-** Last update Tue May 17 16:16:14 2016 bougon_p
+** Last update Sun May 22 21:56:12 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -24,12 +24,12 @@ int	rot_down(t_data *data)
 
 int	rot_left(t_data *data)
 {
-  data->rt.eye.rot.y = (data->rt.eye.rot.y - 3) % 360;;
+  data->rt.eye.rot.y = (data->rt.eye.rot.y - 3) % 360;
   return (0);
 }
 
 int	rot_right(t_data *data)
 {
-  data->rt.eye.rot.y = (data->rt.eye.rot.y + 3) % 360;;
+  data->rt.eye.rot.y = (data->rt.eye.rot.y + 3) % 360;
   return (0);
 }

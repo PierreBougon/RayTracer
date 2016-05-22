@@ -1,12 +1,11 @@
 /*
-** display_csg_objects.c for RAYTRACER
-
+** display_csg_objects.c for RAYTRACER in /home/samuel_r/gfx_raytracer2
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
-** Started on  Tue May 17 15:46:36 2016 romain samuel
-** Last update Sun May 22 22:52:40 2016 benjamin duhieu
+** Started on  Sun May 22 22:00:44 2016 romain samuel
+** Last update Sun May 22 23:24:13 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -120,13 +119,13 @@ int	display_csg_objects(t_rt *s, t_object *object)
   s->ftabs.csg_ftab[3] = &csg_display_box;
   s->hit.k1 = 0.0;
   s->hit.k2 = 0.0;
-  if (object->type == 6)
-    {
-      if ((s->ftabs.csg_ftab[3](s, object)) == -1)
-	return (-1);
-    }
-  else if (object->type > 1 && object->type < 6)
-    if ((s->ftabs.csg_ftab[object->type - 2](s, object)) == -1)
-      return (-1);
+  if (object->type == BOX)
+    s->ftabs.csg_ftab[3](s, object);
+  else if (object->type == SPHERE)
+    s->ftabs.csg_ftab[0](s, object);
+  else if (object->type == CYLINDER)
+    s->ftabs.csg_ftab[1](s, object);
+  else if (object->type == CONE)
+    s->ftabs.csg_ftab[2](s, object);
   return (0);
 }

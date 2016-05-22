@@ -5,7 +5,11 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 17:10:43 2016 benjamin duhieu
+<<<<<<< HEAD
 ** Last update Sun May 22 23:19:52 2016 benjamin duhieu
+=======
+** Last update Sun May 22 22:15:27 2016 romain samuel
+>>>>>>> 4532d89b665783de2b64eec582674f48f8d58b58
 */
 
 #include "raytracer.h"
@@ -54,8 +58,6 @@ int		display_csg(t_rt *s, t_object *obj)
   t_csg		*shape;
   t_inter	*it;
 
-  if (s->search == 1)
-    return (0);
   s->hit.limited = 0;
   shape = (t_csg *)obj->datas;
   free_tree_inters(shape);
@@ -63,7 +65,6 @@ int		display_csg(t_rt *s, t_object *obj)
     return (-1);
   if (shape->inter && shape->inter->next)
     {
-      s->hit.k2 = 0.0;
       it = shape->inter->next;
       while (it)
   	{
