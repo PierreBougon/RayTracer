@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 17:40:12 2016 benjamin duhieu
+## Last update Sun May 22 17:43:25 2016 benjamin duhieu
 ##
 
 # USEFUL VARIABLES
@@ -113,11 +113,13 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)order_inter_list.c \
 			$(ENGINE)order_solutions.c \
 			$(ENGINE)perlin.c \
+			$(ENGINE)perlin_suite.c \
 			$(ENGINE)real_cylinder_plan_inter.c \
 			$(ENGINE)rotations.c \
 			$(ENGINE)second_inter_limited_objects.c \
 			$(ENGINE)set_hit_values.c \
 			$(ENGINE)set_hit_values_next.c \
+			$(ENGINE)set_hit_values_sphere.c \
 			$(ENGINE)shade.c \
 			$(ENGINE)shadow.c \
 			$(ENGINE)shadow_inters.c \
