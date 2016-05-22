@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 23 15:24:05 2016 bougon_p
-** Last update Sat May 21 14:09:03 2016 bougon_p
+** Last update Sun May 22 17:57:37 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -28,7 +28,7 @@ static	void	reset_var_open(t_data *data)
   data->itfc.open.curs = 0;
 }
 
-int     f_open_file(t_data *data)
+int	f_open_file(t_data *data)
 {
   char	*name;
 
