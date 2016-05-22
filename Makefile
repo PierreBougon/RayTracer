@@ -5,11 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-<<<<<<< HEAD
-## Last update Sun May 22 13:42:37 2016 romain samuel
-=======
-## Last update Sun May 22 16:02:46 2016 marc brout
->>>>>>> a6080950b720800f0e6c189344688e096fb23739
+## Last update Sun May 22 16:44:12 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
