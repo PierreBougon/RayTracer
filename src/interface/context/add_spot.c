@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue May 17 14:53:45 2016 bougon_p
-** Last update Sun May 22 15:10:40 2016 bougon_p
+** Last update Sun May 22 18:29:34 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -37,7 +37,7 @@ int	add_spot(t_data *data)
 
   if (data->click_action)
     {
-      if (!(light = malloc(sizeof(t_light))))
+      if (!(light = bunny_malloc(sizeof(t_light))))
 	return (1);
       if (data->rt.obj)
 	new = add_obj_elem_ret(data->rt.obj);

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri May 20 20:33:05 2016 benjamin duhieu
-** Last update Sun May 22 16:42:21 2016 romain samuel
+** Last update Sun May 22 20:29:27 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -91,6 +91,7 @@ int		load_parab_datas3(t_parab *s,
   if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
     return (my_puterr("load_datas: missing parab color2"));
   s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+  s->tex_name = NULL, s->texture = NULL;
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)

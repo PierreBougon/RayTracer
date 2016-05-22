@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri May 20 11:51:37 2016 benjamin duhieu
-** Last update Sun May 22 13:28:42 2016 benjamin duhieu
+** Last update Sun May 22 20:28:58 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -91,6 +91,7 @@ int		load_hyper_datas3(t_hyper *s,
   if ((field = bunny_ini_get_field(ini, scope, "color2", 0)) == NULL)
     return (my_puterr("load_datas: missing hyper color2"));
   s->color2.full = my_getcolor((char *)field, "0123456789ABCDEF");
+  s->tex_name = NULL, s->texture = NULL;
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)

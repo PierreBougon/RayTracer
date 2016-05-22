@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:03:56 2016 romain samuel
-** Last update Sat May 21 22:15:11 2016 romain samuel
+** Last update Sun May 22 20:24:28 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -95,6 +95,7 @@ int		load_plan_datas4(t_plan *s, t_bunny_ini *ini, char *scope)
     return (my_puterr("load_datas: missing plan case_size"));
   s->case_size = my_getnbr((char *)field);
   s->tex_name = NULL;
+  s->texture = NULL;
   if (s->tex_type == IMAGE)
     {
       if ((field = bunny_ini_get_field(ini, scope, "texture", 0)) == NULL)

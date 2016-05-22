@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Sun May 22 19:42:21 2016 benjamin duhieu
+** Last update Sun May 22 20:57:08 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -93,6 +93,7 @@ int			display(t_rt *s, t_data *data)
 {
   t_acc			vct;
 
+  s->rec = 0;
   if (s->r_pos.y < s->height)
     {
       s->r_pos.x = 0;
@@ -106,12 +107,13 @@ int			display(t_rt *s, t_data *data)
 	}
       s->r_pos.y++;
     }
-  if (s->r_pos.y == s->height)
+  if (s->r_pos.y == s->height && data->itfc.rendering)
     {
       data->itfc.rendering = false;
       data->itfc.rendered = true;
       data->ld.loading->clipable.clip_width = data->ld.save_width;
       bunny_free(s->shade.itab);
+      bunny_free(s->pixel_color);
     }
   return (0);
 }

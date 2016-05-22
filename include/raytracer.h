@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 19:39:09 2016 benjamin duhieu
+** Last update Sun May 22 21:13:02 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -872,6 +872,11 @@ t_csg		*display_tree(t_rt *s, t_csg *it);
 double		expose(double i);
 
 /*
+** fresnel_computation.c
+*/
+void		fresnel_computation(t_rt *s);
+
+/*
 ** display_object_complex.c
 */
 int		display_hole_cube(t_rt *s, t_object *obj);
@@ -1158,7 +1163,8 @@ int		load_hole_cube_datas1(t_hole_cube *s, t_bunny_ini *ini,
 				      char *scope);
 int		load_hole_cube_datas2(t_hole_cube *s, t_bunny_ini *ini,
 				 char *scope);
-int		load_hole_cube_datas3(t_hole_cube *s, t_bunny_ini *ini, char *scope);
+int		load_hole_cube_datas3(t_hole_cube *s, t_bunny_ini *ini,
+				      char *scope);
 int		load_hole_cube(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
@@ -1265,7 +1271,8 @@ int		order_solutions(t_rt *s);
 */
 int		cylinder_plans_inters(t_rt *s, t_cylinder *cylinder,
 				      t_object *obj);
-int		csg_cylinder_plans_inters(t_rt *s, t_cylinder *cylinder, t_object *obj);
+int		csg_cylinder_plans_inters(t_rt *s, t_cylinder *cylinder,
+					  t_object *obj);
 
 /*
 ** quartic_order_solver.c

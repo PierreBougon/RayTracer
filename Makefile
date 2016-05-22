@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 17:51:58 2016 marc brout
+## Last update Sun May 22 20:58:47 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -74,6 +74,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)display_object_complex.c \
 			$(ENGINE)delete_inter_list.c \
 			$(ENGINE)exposure.c \
+			$(ENGINE)fresnel.c \
 			$(ENGINE)get_norm.c \
 			$(ENGINE)get_norm_complex.c \
 			$(ENGINE)get_norm_4_degres.c \
@@ -312,6 +313,9 @@ $(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
 
 all		:	$(LIB)
 			@make -j 4 -s compile
+ifeq ($(DEBUG), yes)
+			@find . -type f -iname "*.[chS]" | xargs etags -a
+endif
 
 clean		:
 			@$(RM) $(OBJS)

@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
-** Last update Sun May 22 17:45:42 2016 marc brout
+** Last update Sun May 22 20:56:37 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -66,7 +66,7 @@ int		display_cylinder(t_rt *s, t_object *obj)
   shape = (t_cylinder *)obj->datas;
   if (inter_cylinder(s, shape) == 1)
     return (cylinder_plans_inters(s, shape, obj));
-  if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
+  else if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
     {
       if (set_value_cylinder(s, shape, obj))
 	return (1);

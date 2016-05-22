@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 18 20:20:50 2016 romain samuel
-** Last update Sun May 22 16:33:44 2016 marc brout
+** Last update Sun May 22 21:13:13 2016 romain samuel
 */
 
 #ifndef LIVE_ENGINE_H_
@@ -17,7 +17,10 @@ typedef	struct	s_rt	t_rt;
 /*
 ** display.c
 */
-t_color			live_display_objects(t_rt *s, t_acc *vct, t_acc eye, int rec);
+t_color			live_display_objects(t_rt *s,
+					     t_acc *vct,
+					     t_acc eye,
+					     int rec);
 int			live_display(t_rt *s);
 
 /*
