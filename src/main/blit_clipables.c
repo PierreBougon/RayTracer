@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 00:25:51 2016 bougon_p
-** Last update Sat May 21 10:28:03 2016 bougon_p
+** Last update Sun May 22 17:11:43 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -46,6 +46,27 @@ static void		aff_refl_state(t_data *data)
     }
 }
 
+static void		blit_suite(t_data *data)
+{
+  t_rt			*rt;
+  t_itfc		*itfc;
+
+  rt = &data->rt;
+  itfc = &data->itfc;
+  if (data->itfc.button[GEN_OPT])
+    {
+      bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_aa);
+      bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_amb);
+    }
+  if (data->itfc.button[SPOTLIGHT])
+    bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_li);
+  if ((data->ld.loading != NULL) &&
+      (data->itfc.rendered || data->itfc.rendering)
+      && !rt->live && !itfc->button[SAVE] && !itfc->button[OPEN]
+      && rt->r_pos.x)
+    prerender(&data->rt, data->rt.r_pos.y, data);
+}
+
 void			blit_clipables(t_data *data)
 {
   t_rt			*rt;
@@ -62,18 +83,6 @@ void			blit_clipables(t_data *data)
   if ((data->itfc.button[ADD_FORM] && data->itfc.past.pos.x != 0)
       || (data->itfc.button[GEN_OPT] && data->itfc.past.pos.x != 0))
     bunny_blit(&data->win->buffer, itfc->past.img, &itfc->past.pos);
-  aff_tex_state(data);
-  aff_refl_state(data);
-  if (data->itfc.button[GEN_OPT])
-    {
-      bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_aa);
-      bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_amb);
-    }
-  if (data->itfc.button[SPOTLIGHT])
-    bunny_blit(&data->win->buffer, itfc->curs, &itfc->gen.pos_curs_li);
-  if ((data->ld.loading != NULL) &&
-    (data->itfc.rendered || data->itfc.rendering)
-      && !rt->live && !itfc->button[SAVE] && !itfc->button[OPEN]
-      && rt->r_pos.x != 0)
-    prerender(&data->rt, data->rt.r_pos.y, data);
+  aff_tex_state(data), aff_refl_state(data);
+  blit_suite(data);
 }

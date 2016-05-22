@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
 <<<<<<< HEAD
-** Last update Sun May 22 16:44:28 2016 benjamin duhieu
+** Last update Sun May 22 17:26:39 2016 marc brout
 =======
 ** Last update Sun May 22 16:49:51 2016 bougon_p
 >>>>>>> 40762cc1fb1c372be199b6f76951b8f8e3ac8871
@@ -1278,7 +1278,6 @@ void		second_order_solver(t_2order *res);
 /*
 ** set_hit_values.c
 */
-void		set_hit_values_from_sphere(t_rt *s, t_object *obj);
 void		set_hit_values_from_cylinder(t_rt *s, t_object *obj);
 void		set_hit_values_from_cone(t_rt *s, t_object *obj);
 void		set_hit_values_from_plan(t_rt *s, t_object *obj);
@@ -1287,12 +1286,17 @@ int		set_hit_values(t_rt *s, t_object *obj);
 /*
 ** set_hit_values_next.c
 */
-void		set_hit_values_from_box(t_rt *s, t_object *obj);
 void		set_hit_values_from_tore(t_rt *s, t_object *obj);
 void		set_hit_values_from_hole_cube(t_rt *s, t_object *obj);
 void		set_hit_values_from_hyper(t_rt *s, t_object *obj);
 void		set_hit_values_from_parab(t_rt *s, t_object *obj);
 void		set_hit_values_from_ellip(t_rt *s, t_object *obj);
+
+/*
+** set_hit_values_sphere.c
+*/
+void		set_hit_values_from_sphere(t_rt *s, t_object *obj);
+void		set_hit_values_from_box(t_rt *s, t_object *obj);
 
 /*
 ** shade.c

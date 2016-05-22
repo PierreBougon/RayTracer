@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 11:51:07 2016 benjamin duhieu
-** Last update Sun May 22 16:41:34 2016 benjamin duhieu
+** Last update Sun May 22 17:29:28 2016 marc brout
 */
 
 #include <stdio.h>
@@ -68,7 +68,6 @@ int		display_hole_cube(t_rt *s, t_object *obj)
     end_rotation(&s->rotation, s->ray.vct, &hole_cube->rot);
   return (0);
 }
-
 
 int		display_parab(t_rt *s, t_object *obj)
 {
