@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
-** Last update Sat May 21 23:35:24 2016 romain samuel
+** Last update Sun May 22 15:02:05 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -50,6 +50,9 @@ int		display_cylinder(t_rt *s, t_object *obj)
       if (limited_cylinder(s, shape) == 0
 	  && limited_cylinder2(s, shape) == 0 && order_solutions(s) == 0)
 	{
+	  /* printf("simple1.x = %f, simple1.y = %f, simple1.z = %f\n", s->hit.simple_inter1.x, s->hit.simple_inter1.y, s->hit.simple_inter1.z); */
+	  /* printf("simple2.x = %f, simple2.y = %f, simple2.z = %f\n", s->hit.simple_inter2.x, s->hit.simple_inter2.y, s->hit.simple_inter2.z); */
+	  /* printf("limited = %d\n", s->hit.limited); */
 	  shape->simple_inter1 = s->hit.simple_inter1;
 	  shape->simple_inter2 = s->hit.simple_inter2;
 	  shape->k1 = s->hit.k1;

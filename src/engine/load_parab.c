@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri May 20 20:33:05 2016 benjamin duhieu
-** Last update Sat May 21 10:41:07 2016 benjamin duhieu
+** Last update Sun May 22 13:59:49 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -72,8 +72,8 @@ int		load_parab_datas2(t_parab *s,
 }
 
 int		load_parab_datas3(t_parab *s,
-				 t_bunny_ini *ini,
-				 char *scope)
+				  t_bunny_ini *ini,
+				  char *scope)
 {
   const char	*field;
 

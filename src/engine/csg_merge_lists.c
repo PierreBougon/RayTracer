@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu May 19 02:02:17 2016 romain samuel
-** Last update Sat May 21 16:45:23 2016 romain samuel
+** Last update Sun May 22 13:36:07 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -39,5 +39,6 @@ int		csg_merge_lists(t_inter *left, t_inter *right)
       it_right = it_right->next;
     }
   order_inter_list(left);
+  delete_inter_elem(right);
   return (0);
 }

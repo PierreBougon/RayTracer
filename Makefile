@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sat May 21 23:49:51 2016 bougon_p
+## Last update Sun May 22 13:42:37 2016 romain samuel
 ##
 
 # USEFUL VARIABLES
@@ -263,7 +263,7 @@ NAME	=	raytracer
 
 IFLAG	=	-Iinclude/
 
-CFLAGS  =	-W -Wall -Wextra #-D LAPIN_ALLOCATOR_OVERLOAD
+CFLAGS  =	-W -Wall -Wextra -g #-D LAPIN_ALLOCATOR_DEACTIVATED
 
 ifeq ($(DEBUG),yes)
 CFLAGS	+=	-g

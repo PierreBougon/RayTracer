@@ -5,11 +5,10 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon May 16 17:03:11 2016 benjamin duhieu
-** Last update Fri May 20 12:01:19 2016 benjamin duhieu
+** Last update Sun May 22 13:57:03 2016 romain samuel
 */
 
 #include "raytracer.h"
-
 
 int		load_tore_datas1(t_tore *s,
 				 t_bunny_ini *ini,

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Wed May 11 12:34:10 2016 benjamin duhieu
-** Last update Sat May 21 23:00:27 2016 romain samuel
+** Last update Sun May 22 14:16:36 2016 romain samuel
 */
 
 #include <math.h>
@@ -119,10 +119,10 @@ void		get_norm_hyper(t_rt *s, t_hyper *hyper)
   if (hyper->nappe == 1)
     {
       s->hit.norm1.x = -(/* hyper->b * */ hyper->c) *
-	/* CARRE( */cosh(phi)/* ) */ *  cos(teta);
-      s->hit.norm1.y = -(/* hyper->a * */ hyper->c) * /* CARRE( */cosh(phi)/* ) */
-	* sin(teta);
-      s->hit.norm1.z = (hyper->a /* * hyper->b */) * sinh(phi) /* * cosh(teta) */;
+	/* CARRE( */cosh(teta)/* ) */ *  cos(phi);
+      s->hit.norm1.y = -(/* hyper->a * */ hyper->c) * /* CARRE( */cosh(teta)/* ) */
+	* sin(phi);
+      s->hit.norm1.z = (hyper->a /* * hyper->b */) * sinh(teta) /* * cosh(teta) */;
     }
   else if (hyper->nappe == 2)
     {
