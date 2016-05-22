@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 16:51:34 2016 bougon_p
+## Last update Sun May 22 19:52:25 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -306,6 +306,9 @@ $(CC)\n\n>>>>>>>>>>\t DONE\n$(WHITE)"
 
 all		:	$(LIB)
 			@make -j 4 -s compile
+ifeq ($(DEBUG), yes)
+			@find . -type f -iname "*.[chS]" | xargs etags -a
+endif
 
 clean		:
 			@$(RM) $(OBJS)

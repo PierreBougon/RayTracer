@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 16:47:06 2016 romain samuel
-** Last update Sat May 21 22:19:37 2016 romain samuel
+** Last update Sun May 22 17:34:19 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -111,6 +111,13 @@ int		load_cylinder_datas4(t_cylinder *s, t_bunny_ini *ini, char *scope)
       s->tex2_name = my_strdup((char *)field);
       if ((s->texture1 = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid cylinder texture2"));
+    }
+  else
+    {
+      s->tex1_name = NULL;
+      s->texture1 = NULL;
+      s->tex2_name = NULL;
+      s->texture2 = NULL;
     }
   return (0);
 }

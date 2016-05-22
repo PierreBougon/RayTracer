@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon May 16 17:03:11 2016 benjamin duhieu
-** Last update Sun May 22 13:57:03 2016 romain samuel
+** Last update Sun May 22 17:36:28 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -92,6 +92,11 @@ int		load_tore_datas3(t_tore *s,
       s->tex_name = my_strdup((char *)field);
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid tore texture1"));
+    }
+  else
+    {
+      s->tex_name = NULL;
+      s->texture = NULL;
     }
   return (0);
 }

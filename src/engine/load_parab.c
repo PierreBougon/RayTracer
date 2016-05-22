@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Fri May 20 20:33:05 2016 benjamin duhieu
-** Last update Sun May 22 16:42:21 2016 romain samuel
+** Last update Sun May 22 17:37:01 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -98,6 +98,11 @@ int		load_parab_datas3(t_parab *s,
       s->tex_name = my_strdup((char *)field);
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid parab texture1"));
+    }
+  else
+    {
+      s->tex_name = NULL;
+      s->texture = NULL;
     }
   return (0);
 }

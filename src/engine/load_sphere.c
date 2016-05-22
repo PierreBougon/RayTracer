@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:44:39 2016 romain samuel
-** Last update Sat May 21 23:58:19 2016 bougon_p
+** Last update Sun May 22 17:31:23 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -102,6 +102,11 @@ int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini, char *scope)
       s->tex_name = my_strdup((char *)field);
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid sphere texture"));
+    }
+  else
+    {
+      s->tex_name = NULL;
+      s->texture = NULL;
     }
   return (0);
 }

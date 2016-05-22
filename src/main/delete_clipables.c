@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 02:44:00 2016 bougon_p
-** Last update Sat May 21 11:48:20 2016 marc brout
+** Last update Sun May 22 17:38:45 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -43,11 +43,11 @@ void	delete_all_clipables(t_data *data)
       ** Bug while freeing this on create scene
       */
 
-      /* bunny_delete_clipable(&data->rt.opt.skybox_right->clipable); */
-      /* bunny_delete_clipable(&data->rt.opt.skybox_up->clipable); */
-      /* bunny_delete_clipable(&data->rt.opt.skybox_down->clipable); */
-      /* bunny_delete_clipable(&data->rt.opt.skybox_left->clipable); */
-      /* bunny_delete_clipable(&data->rt.opt.skybox_forward->clipable); */
-      /* bunny_delete_clipable(&data->rt.opt.skybox_backward->clipable); */
+      bunny_delete_clipable(&data->rt.opt.skybox_right->clipable);
+      bunny_delete_clipable(&data->rt.opt.skybox_up->clipable);
+      bunny_delete_clipable(&data->rt.opt.skybox_down->clipable);
+      bunny_delete_clipable(&data->rt.opt.skybox_left->clipable);
+      bunny_delete_clipable(&data->rt.opt.skybox_forward->clipable);
+      bunny_delete_clipable(&data->rt.opt.skybox_backward->clipable);
     }
 }

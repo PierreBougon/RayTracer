@@ -5,14 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun May 22 16:22:55 2016 bougon_p
-** Last update Sun May 22 16:47:17 2016 bougon_p
+** Last update Sun May 22 17:21:15 2016 bougon_p
 */
 
 #include "raytracer.h"
 
-void	free_csg(t_object *obj)
+void	free_csg(UNUSED t_object *obj)
 {
-  t_csg	*csg;
-
-  csg = obj->datas;
+  return ;
 }

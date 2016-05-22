@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:03:56 2016 romain samuel
-** Last update Sat May 21 22:15:11 2016 romain samuel
+** Last update Sun May 22 17:36:03 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -102,6 +102,11 @@ int		load_plan_datas4(t_plan *s, t_bunny_ini *ini, char *scope)
       s->tex_name = my_strdup((char *)field);
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid plan texture"));
+    }
+  else
+    {
+      s->tex_name = NULL;
+      s->texture = NULL;
     }
   return (0);
 }

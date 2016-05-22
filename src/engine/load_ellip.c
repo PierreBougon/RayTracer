@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 13:28:16 2016 benjamin duhieu
-** Last update Sun May 22 13:30:06 2016 benjamin duhieu
+** Last update Sun May 22 17:34:32 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -94,6 +94,11 @@ int		load_ellip_datas3(t_ellip *s,
       s->tex_name = my_strdup((char *)field);
       if ((s->texture = bunny_load_pixelarray((char *)field)) == NULL)
 	return (my_puterr("load_datas: invalid ellip texture1"));
+    }
+  else
+    {
+      s->tex_name = NULL;
+      s->texture = NULL;
     }
   return (0);
 }

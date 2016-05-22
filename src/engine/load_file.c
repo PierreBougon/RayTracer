@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:28:05 2016 romain samuel
-** Last update Sun May 22 13:27:59 2016 benjamin duhieu
+** Last update Sun May 22 18:17:17 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -212,6 +212,7 @@ int		load_file(t_rt *s, char *file)
 	return (-1);
       i++;
     }
+  bunny_delete_ini(ini);
   s->obj_hit = NULL;
   return (0);
 }
