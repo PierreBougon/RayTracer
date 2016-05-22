@@ -1,11 +1,11 @@
 /*
-** delete_inter_list.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** delete_inter_list.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sat May 21 06:34:30 2016 romain samuel
-** Last update Sun May 22 13:38:04 2016 romain samuel
+** Last update Sun May 22 21:34:05 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

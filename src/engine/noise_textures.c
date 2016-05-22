@@ -1,11 +1,11 @@
 /*
-** noise_textures.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** noise_textures.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 28 12:31:13 2016 romain samuel
-** Last update Thu May  5 19:31:15 2016 romain samuel
+** Last update Sun May 22 21:41:20 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

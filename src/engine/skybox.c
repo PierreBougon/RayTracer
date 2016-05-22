@@ -5,12 +5,13 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr 29 16:15:08 2016 romain samuel
-** Last update Sat May 21 22:22:36 2016 marc brout
+** Last update Sun May 22 21:43:21 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
 
-int		read_texture(t_rt *s, float u, float v, t_bunny_pixelarray *img)
+int		read_texture(t_rt *s, float u, float v,
+			     t_bunny_pixelarray *img)
 {
   t_color	*color;
 

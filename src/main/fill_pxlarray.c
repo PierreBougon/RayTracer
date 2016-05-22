@@ -1,11 +1,11 @@
 /*
-** fill_pxlarray.c for FILL PIXEL ARRAY in /home/bougon_p/rendu/gfx_raytracer2
+** fill_pxlarray.c for FILL PIXEL ARRAY
 **
 ** Made by bougon_p
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sat Apr 16 18:45:46 2016 bougon_p
-** Last update Wed Apr 20 17:00:57 2016 bougon_p
+** Last update Sun May 22 21:30:41 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

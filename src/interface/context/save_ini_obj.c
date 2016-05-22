@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 00:46:59 2016 bougon_p
-** Last update Thu May  5 21:10:48 2016 romain samuel
+** Last update Sun May 22 21:29:23 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -17,7 +17,8 @@ char	*sphere_name(UNUSED t_data *data, int nbr)
 
   num = setnbr(nbr);
   if ((name = bunny_malloc(sizeof(char) *
-			   my_strlen("sphere") + my_strlen(num) + 1)) == NULL)
+			   my_strlen("sphere") + my_strlen(num) + 1))
+      == NULL)
     return (NULL);
   my_bzero(name, my_strlen("sphere") + my_strlen(num) + 1);
   my_strcpy(name, "sphere");

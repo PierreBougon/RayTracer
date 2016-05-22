@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 10 14:03:22 2016 romain samuel
-** Last update Sat May 21 22:11:25 2016 romain samuel
+** Last update Sun May 22 21:43:49 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -35,7 +35,8 @@ int		update_hit_list(t_rt *s, void *shape, int type, double k)
   return (0);
 }
 
-int		update_hit_list_complex(t_rt *s, void *shape, int type, double k)
+int		update_hit_list_complex(t_rt *s, void *shape, int type,
+					double k)
 {
   t_object	*it;
 

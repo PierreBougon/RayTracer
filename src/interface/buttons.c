@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 15 22:00:12 2016 bougon_p
-** Last update Sun May 22 18:14:14 2016 benjamin duhieu
+** Last update Sun May 22 21:24:31 2016 benjamin duhieu
 */
 
 #include <unistd.h>
@@ -52,7 +52,8 @@ int	help(t_data *data)
       if (execve("/usr/bin/firefox", url, data->itfc.env) == -1)
       	{
 	  url[0] = "chromium";
-	  if (execve("/usr/bin/chromium-browser", url, data->itfc.env) == -1)
+	  if (execve("/usr/bin/chromium-browser", url, data->itfc.env)
+	      == -1)
 	    {
 	      my_puterr("Could not open firefox nor chormium.");
 	      exit (1);

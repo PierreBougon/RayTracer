@@ -5,13 +5,14 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 19 11:35:43 2016 romain samuel
-** Last update Sat May 21 22:10:16 2016 romain samuel
+** Last update Sun May 22 21:31:38 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
 #include "live_engine.h"
 
-void		live_init_lum(t_rt *s, t_acc *vct, t_acc eye, t_light *light)
+void		live_init_lum(t_rt *s, t_acc *vct, t_acc eye,
+			      t_light *light)
 {
   int		len;
 
@@ -61,6 +62,7 @@ int		live_shade(t_rt *s, t_acc *vct, t_acc eye)
   i += s->opt.ambient * s->hit.ka;
   if (i > 1)
     i = 1;
-  s->final_color = apply_b(s->final_color, light_color, s->hit.brightness, i);
+  s->final_color = apply_b(s->final_color, light_color,
+			   s->hit.brightness, i);
   return (0);
 }

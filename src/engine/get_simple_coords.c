@@ -1,11 +1,11 @@
 /*
-** get_simple_coords.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/RAYTRACER
+** get_simple_coords.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 10 22:46:15 2016 romain samuel
-** Last update Fri May 13 12:57:48 2016 benjamin duhieu
+** Last update Sun May 22 21:35:35 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

@@ -1,11 +1,11 @@
 /*
-** limited_objects.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** limited_objects.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 14 16:26:45 2016 romain samuel
-** Last update Sun May 22 20:53:50 2016 romain samuel
+** Last update Sun May 22 21:37:49 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

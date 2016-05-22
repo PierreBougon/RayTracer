@@ -1,11 +1,11 @@
 /*
-** csg_cleanèsecond_list.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** csg_cleanèsecond_list.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri May 20 13:02:06 2016 romain samuel
-** Last update Fri May 20 23:00:44 2016 romain samuel
+** Last update Sun May 22 21:33:23 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

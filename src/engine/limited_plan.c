@@ -1,11 +1,11 @@
 /*
-** limited_plan.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** limited_plan.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 25 17:38:32 2016 romain samuel
-** Last update Wed May 18 16:26:48 2016 romain samuel
+** Last update Sun May 22 21:37:58 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

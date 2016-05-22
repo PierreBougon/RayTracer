@@ -1,11 +1,11 @@
 /*
-** texturize_obj.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** texturize_obj.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 24 15:39:17 2016 romain samuel
-** Last update Sun May 22 20:52:53 2016 romain samuel
+** Last update Sun May 22 21:43:34 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

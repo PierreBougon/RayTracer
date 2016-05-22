@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 21:48:47 2016 romain samuel
+** Last update Sun May 22 21:53:21 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -942,6 +942,11 @@ void		get_texels_plan(t_rt *s, t_plan *plan);
 void		get_texels_sphere(t_rt *s, t_sphere *sphere);
 void		get_texels_cyl_plan(t_rt *s, t_cylinder *cylinder);
 void		get_texels_cylinder(t_rt *s, t_cylinder *cylinder);
+
+/*
+** init_pixelarray.c
+*/
+void		init_array(t_data *data);
 
 /*
 ** init_shade.c

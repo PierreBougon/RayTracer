@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:44:39 2016 romain samuel
-** Last update Sun May 22 20:19:48 2016 bougon_p
+** Last update Sun May 22 21:40:35 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -37,7 +37,8 @@ int		load_sphere_datas(t_sphere *s,
   return (load_sphere_datas2(s, ini, scope));
 }
 
-int		load_sphere_datas2(t_sphere *s, t_bunny_ini *ini, char *scope)
+int		load_sphere_datas2(t_sphere *s,
+				   t_bunny_ini *ini, char *scope)
 {
   const	char	*field;
 
@@ -53,7 +54,8 @@ int		load_sphere_datas2(t_sphere *s, t_bunny_ini *ini, char *scope)
     return (0);
 }
 
-int		load_sphere_datas3(t_sphere *s, t_bunny_ini *ini, char *scope)
+int		load_sphere_datas3(t_sphere *s,
+				   t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 
@@ -81,7 +83,8 @@ int		load_sphere_datas3(t_sphere *s, t_bunny_ini *ini, char *scope)
   return (load_sphere_datas4(s, ini, scope));
 }
 
-int		load_sphere_datas4(t_sphere *s, t_bunny_ini *ini, char *scope)
+int		load_sphere_datas4(t_sphere *s,
+				   t_bunny_ini *ini, char *scope)
 {
   const char	*field;
 

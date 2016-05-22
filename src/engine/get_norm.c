@@ -1,11 +1,11 @@
 /*
-** get_norm.c<RAYTRACER> for RAYTRACER in /home/samuel_r/EPITECH/GFX/RAYTRACER
+** get_norm.c<RAYTRACER> for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 10 22:40:50 2016 romain samuel
-** Last update Sat May 21 22:20:45 2016 romain samuel
+** Last update Sun May 22 21:35:19 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

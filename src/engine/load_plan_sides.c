@@ -1,11 +1,11 @@
 /*
-** load_plan_sides.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** load_plan_sides.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue May 17 00:39:59 2016 romain samuel
-** Last update Tue May 17 02:54:03 2016 romain samuel
+** Last update Sun May 22 21:40:01 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

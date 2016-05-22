@@ -1,11 +1,11 @@
 /*
-** real_cylinder_plan_inter.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** real_cylinder_plan_inter.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May 18 19:57:39 2016 romain samuel
-** Last update Sun May 22 21:15:08 2016 romain samuel
+** Last update Sun May 22 21:41:58 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -87,7 +87,8 @@ int	cylinder_plans_inters(t_rt *s, t_cylinder *cylinder, t_object *obj)
   return (0);
 }
 
-int	csg_cylinder_plans_inters(t_rt *s, t_cylinder *cylinder, t_object *obj)
+int	csg_cylinder_plans_inters(t_rt *s, t_cylinder *cylinder,
+				  t_object *obj)
 {
   end_rotation(&s->rotation, s->ray.vct, &cylinder->rot);
   if (cylinder_plan1_inter2(s, cylinder) == -1 ||

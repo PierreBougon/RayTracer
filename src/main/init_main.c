@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 23:20:17 2016 bougon_p
-** Last update Sun May 22 17:06:29 2016 marc brout
+** Last update Sun May 22 21:21:37 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -13,6 +13,7 @@
 
 int	init_main_data(t_data *data)
 {
+  init_array(data);
   if ((data->win = bunny_start(WIN_WIDTH, WIN_HEIGHT,
 			       false, "RAYTRACER")) == NULL)
     return (my_puterr("Could not perform bunny_start"));

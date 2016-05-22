@@ -1,11 +1,11 @@
 /*
-** inter_ellip.c for inter_ellip in /home/duhieu_b/infographie/gfx_raytracer2
+** inter_ellip.c for inter_ellip
 **
 ** Made by benjamin duhieu
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 13:38:20 2016 benjamin duhieu
-** Last update Sun May 22 16:08:38 2016 marc brout
+** Last update Sun May 22 21:37:24 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

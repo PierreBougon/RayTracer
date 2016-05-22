@@ -1,11 +1,11 @@
 /*
-** second_inter_limited_objects.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** second_inter_limited_objects.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May 18 16:34:15 2016 romain samuel
-** Last update Sun May 22 21:14:16 2016 romain samuel
+** Last update Sun May 22 21:42:10 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

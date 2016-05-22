@@ -5,12 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue May 17 14:50:20 2016 bougon_p
-** Last update Sun May 22 14:07:53 2016 bougon_p
+** Last update Sun May 22 21:28:48 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
 
-static	void	move_light(t_data *data,
+static	void	move_light(t_data *d,
 			   const t_bunny_position *mpos)
 {
   t_acc		vec;
@@ -18,25 +18,25 @@ static	void	move_light(t_data *data,
   t_pos		*pos;
 
   vec.z = 0;
-  if (!data->itfc.obj_click || !data->itfc.light_selected)
+  if (!d->itfc.obj_click || !d->itfc.light_selected)
     return ;
-  if (!data->itfc.move.needmoving)
+  if (!d->itfc.move.needmoving)
     {
-      data->itfc.move.first_pos = *mpos;
-      data->itfc.move.needmoving = true;
+      d->itfc.move.first_pos = *mpos;
+      d->itfc.move.needmoving = true;
     }
   else
     {
-      light = data->itfc.light_selected->datas;
+      light = d->itfc.light_selected->ds;
       pos = &light->pos;
-      data->itfc.move.second_pos = *mpos;
+      d->itfc.move.second_pos = *mpos;
       vec.x =
-        -((data->itfc.move.second_pos.x - data->itfc.move.first_pos.x) * 35);
+        -((d->itfc.move.second_pos.x - d->itfc.move.first_pos.x) * 35);
       vec.y =
-        -((data->itfc.move.second_pos.y - data->itfc.move.first_pos.y) * 35);
-      translation_obj(&data->rt.rotation, &vec,
-		      &data->rt.eye.rot, pos);
-      data->itfc.move.first_pos = data->itfc.move.second_pos;
+        -((d->itfc.move.second_pos.y - d->itfc.move.first_pos.y) * 35);
+      translation_obj(&d->rt.rotation, &vec,
+		      &d->rt.eye.rot, pos);
+      d->itfc.move.first_pos = d->itfc.move.second_pos;
     }
 }
 

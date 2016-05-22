@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Apr 14 02:25:05 2016 bougon_p
-** Last update Wed May  4 23:59:47 2016 bougon_p
+** Last update Sun May 22 21:25:06 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -30,7 +30,8 @@ void	status_button(t_itfc *itfc, const t_bunny_position *mpos)
   while (nb_bt < START_STATUS + NB_STATUS)
     {
       if (mpos->x >= OPT_X + (OPT_WDT * (nb_bt - 11)) + 7 * (nb_bt - 11)
-	  && mpos->x <= OPT_X + OPT_WDT + (OPT_WDT * (nb_bt - 11)) + 7 * (nb_bt - 11)
+	  && mpos->x <=
+	  OPT_X + OPT_WDT + (OPT_WDT * (nb_bt - 11)) + 7 * (nb_bt - 11)
 	  && mpos->y >= OPT_Y
 	  && mpos->y <= OPT_Y + OPT_HGT)
 	{
@@ -54,7 +55,8 @@ void	opt_button(t_itfc *itfc, const t_bunny_position *mpos)
   while (nb_bt < 16)
     {
       if (mpos->x >= OPT_X + (OPT_WDT * (nb_bt - 11)) + 7 * (nb_bt - 11)
-	  && mpos->x <= OPT_X + OPT_WDT + (OPT_WDT * (nb_bt - 11)) + 7 * (nb_bt - 11)
+	  && mpos->x <=
+	  OPT_X + OPT_WDT + (OPT_WDT * (nb_bt - 11)) + 7 * (nb_bt - 11)
 	  && mpos->y >= OPT_Y
 	  && mpos->y <= OPT_Y + OPT_HGT)
 	{

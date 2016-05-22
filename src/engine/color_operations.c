@@ -1,11 +1,11 @@
 /*
-** color_operations.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** color_operations.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 19 12:50:14 2016 romain samuel
-** Last update Sun May 22 19:15:51 2016 romain samuel
+** Last update Sun May 22 21:32:52 2016 benjamin duhieu
 */
 
 #include "raytracer.h"

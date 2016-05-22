@@ -1,11 +1,11 @@
 /*
-** csg_substraction.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** csg_substraction.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri May 20 12:09:22 2016 romain samuel
-** Last update Sun May 22 18:43:53 2016 marc brout
+** Last update Sun May 22 21:33:56 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
