@@ -1,11 +1,11 @@
 /*
-** shadow_simple_inters.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2/src
+** shadow_simple_inters.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sun Apr 17 11:55:00 2016 romain samuel
-** Last update Tue May 17 03:19:48 2016 romain samuel
+** Last update Sun May 22 17:49:42 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
