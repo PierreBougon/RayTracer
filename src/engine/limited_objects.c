@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Thu Apr 14 16:26:45 2016 romain samuel
-** Last update Sun May 22 15:01:51 2016 romain samuel
+** Last update Sun May 22 17:24:42 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -15,7 +15,6 @@ int		get_cylinder_plan1_inter1(t_rt *s, t_cylinder *cylinder)
   t_plan	plan;
   t_acc		pos;
 
-  /* printf("coucou\n"); */
   pos.x = 0;
   pos.y = 0;
   pos.z = cylinder->height;

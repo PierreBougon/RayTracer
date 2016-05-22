@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 19 12:50:14 2016 romain samuel
-** Last update Sat Apr 23 18:48:57 2016 romain samuel
+** Last update Sun May 22 19:15:51 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -18,11 +18,11 @@ t_color			compute_colors(t_color color1,
   unsigned int		g;
   unsigned int		b;
 
-  r = ((color1.full & 0xFF) * (1 - coef))
+  r = ((color1.full & 0xFF) * (1.0 - coef))
     + (((color2.full & 0xFF)) * coef);
-  g = (((color1.full >> 8) & 0xFF) * (1 - coef))
+  g = (((color1.full >> 8) & 0xFF) * (1.0 - coef))
     + ((((color2.full >> 8) & 0xFF)) * coef);
-  b = (((color1.full >> 16) & 0xFF) * (1 - coef))
+  b = (((color1.full >> 16) & 0xFF) * (1.0 - coef))
     + ((((color2.full >> 16) & 0xFF)) * coef);
   if (r > 255)
     r = 255;

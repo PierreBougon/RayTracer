@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
-** Last update Sun May 22 16:44:13 2016 romain samuel
+** Last update Sun May 22 20:26:31 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -45,12 +45,13 @@ int		display_cylinder(t_rt *s, t_object *obj)
   shape = (t_cylinder *)obj->datas;
   if (inter_cylinder(s, shape) == 1)
     return (cylinder_plans_inters(s, shape, obj));
-  if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
+  else if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
     {
       end_rotation(&s->rotation, s->ray.vct, &shape->rot);
       if (limited_cylinder(s, shape) == 0
 	  && limited_cylinder2(s, shape) == 0 && order_solutions(s) == 0)
 	{
+	  /* printf("k1 = %f, k2 = %f\n", s->hit.k1, s->hit.k2); */
 	  /* printf("simple1.x = %f, simple1.y = %f, simple1.z = %f\n", s->hit.simple_inter1.x, s->hit.simple_inter1.y, s->hit.simple_inter1.z); */
 	  /* printf("simple2.x = %f, simple2.y = %f, simple2.z = %f\n", s->hit.simple_inter2.x, s->hit.simple_inter2.y, s->hit.simple_inter2.z); */
 	  /* printf("limited = %d\n", s->hit.limited); */

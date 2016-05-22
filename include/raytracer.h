@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 16:32:26 2016 marc brout
+** Last update Sun May 22 17:53:35 2016 romain samuel
 */
 
 #ifndef RAYTRACER_H_
@@ -847,6 +847,11 @@ int		display_csg(t_rt *s, t_object *obj);
 ** exposure.c
 */
 double		expose(double i);
+
+/*
+** fresnel_computation.c
+*/
+int		fresnel_computation(t_rt *s);
 
 /*
 ** display_object_complex.c

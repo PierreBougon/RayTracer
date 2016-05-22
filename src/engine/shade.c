@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Mon Apr 11 15:22:45 2016 romain samuel
-** Last update Sat May 21 22:12:02 2016 romain samuel
+** Last update Sun May 22 20:48:10 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -32,6 +32,8 @@ void		get_final_color(t_rt *s, t_color light_color, double *itab)
   i = get_soft_intensity(s, itab) + s->opt.ambient * s->hit.ka;
   i = expose(i);
   s->final_color = apply_b(s->final_color, light_color, s->hit.brightness, i);
+  if (s->hit.reflection > 0.0)
+    fresnel_computation(s);
 }
 
 void		fill_itab(t_rt *s,
