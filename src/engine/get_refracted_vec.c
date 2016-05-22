@@ -1,11 +1,11 @@
 /*
-** get_refracted_vec.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/gfx_raytracer2
+** get_refracted_vec.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr 19 18:49:28 2016 romain samuel
-** Last update Sun Apr 24 11:45:50 2016 romain samuel
+** Last update Sun May 22 17:45:27 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -48,7 +48,8 @@ int		reflection(t_fresnel *f, t_acc *nnorm, t_acc *nvct)
   return (0);
 }
 
-t_fresnel       get_refracted_vec(t_rt *s, t_acc *norm, double n1, double n2)
+t_fresnel	get_refracted_vec(t_rt *s, t_acc *norm,
+				  double n1, double n2)
 {
   t_acc		nvct;
   double	len;
