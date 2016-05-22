@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Sat May 21 20:47:34 2016 marc brout
-** Last update Sat May 21 22:23:18 2016 benjamin duhieu
+** Last update Sat May 21 23:56:42 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -24,26 +24,23 @@ static inline double		calc_q(t_4order *c)
 
 static inline double		calc_r(t_4order *c)
 {
-  return ((-3.0 * (QUARTIC(c->b / (4.0 * c->a)))) +
-	  ((CARRE(c->b) * c->c) / (16.0 * CUBE(c->a))) +
-	  ((c->b * c->d) / (4.0 * CARRE(c->a))) +
+  return ((-3.0 * QUARTIC((c->b / 4.0) / c->a)) +
+	  (c->c * (CARRE(c->b / 4.0) / CUBE(c->a))) -
+	  (((c->b * c->d) * (1.0 / 4.0)) / CARRE(c->a)) +
 	  (c->e / c->a));
 }
 
 static inline void		calc_roots(const double p,
 					   const double r, t_4order *c)
 {
-  double			rac;
-  double			rac1;
-  double			rac2;
-
-  rac = sqrt((CARRE(p) / 4.0) - r);
-  rac1 = sqrt((p / 2.0) + rac);
-  rac2 = sqrt((p / 2.0) - rac);
-  c->root1 = rac1;
-  c->root2 = -rac1;
-  c->root3 = rac2;
-  c->root4 = -rac2;
+  c->root1 = sqrt((-p - sqrt(CARRE(p) - (4.0 * r))) / 2.0) -
+    (c->b / (4.0 * c->a));
+  c->root2 = -sqrt((-p - sqrt(CARRE(p) - (4.0 * r))) / 2.0) -
+    (c->b / (4.0 * c->a));
+  c->root3 = sqrt((-p + sqrt(CARRE(p) - (4.0 * r))) / 2.0) -
+    (c->b / (4.0 * c->a));
+  c->root4 = -sqrt((-p + sqrt(CARRE(p) - (4.0 * r))) / 2.0) -
+    (c->b / (4.0 * c->a));
 }
 
 void				solver_pqr(t_4order *c)
@@ -55,7 +52,7 @@ void				solver_pqr(t_4order *c)
   p = calc_p(c);
   q = calc_q(c);
   r = calc_r(c);
-  printf("p : %f\nq : %f\n r : %f\n\n ", p, q, r);
+  printf("p : %f\n q : %f\n r : %f\n", p, q, r);
   if (q < 0.000001 && q > -0.000001)
     calc_roots(p, r, c);
   else

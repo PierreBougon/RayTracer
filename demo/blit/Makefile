@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Wed Apr 20 17:50:40 2016 bougon_p
+## Last update Sat May 21 12:08:38 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -37,9 +37,9 @@ LIBBUNNY     =		-L/home/${USER}/.froot/lib/ -llapin \
 			-lstdc++ -ldl \
 			-lm
 
-LIBPATH =       ../lib/
+LIBPATH =       ../../lib/
 
-LIB	=	../lib/libmy.a
+LIB	=	../../lib/libmy.a
 
 SRCLIB	=	$(LIBPATH)my/get_next_line.c \
 		$(LIBPATH)my/my_getnbr.c \
@@ -75,9 +75,9 @@ OBJSLIB	=	$(SRCLIB:.c=.o)
 
 NAME	=	my_blit
 
-IFLAG	=	-I../include/
+IFLAG	=	-I../../include/
 
-CFLAGS  =	-W -Wall -Wextra -g
+CFLAGS  =	-W -Wall -Wextra
 
 CC      =	gcc $(CFLAGS) $(IFLAG)
 

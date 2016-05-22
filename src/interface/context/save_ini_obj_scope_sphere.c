@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 17:08:46 2016 bougon_p
-** Last update Fri May 13 21:57:55 2016 bougon_p
+** Last update Sat May 21 16:08:33 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -67,6 +67,23 @@ static	void	sphere_coef(t_sphere *sph,
   bunny_free(value);
 }
 
+static void	sphere_value(t_sphere *sph,
+			     t_bunny_ini *ini, char *scope)
+{
+  char		*value;
+
+  value = setnbr(sph->size);
+  bunny_ini_set_field(ini, scope, "size", 0, value);
+  bunny_free(value);
+  sphere_coef(sph, ini, scope);
+  value = put_base(sph->color1.full, "0123456789ABCDEF");
+  bunny_ini_set_field(ini, scope, "color1", 0, value);
+  bunny_free(value);
+  value = put_base(sph->color2.full, "0123456789ABCDEF");
+  bunny_ini_set_field(ini, scope, "color2", 0, value);
+  bunny_free(value);
+}
+
 void		sphere_obj(t_data *data, t_object *obj,
 			   t_bunny_ini *ini, int i)
 {
@@ -88,14 +105,5 @@ void		sphere_obj(t_data *data, t_object *obj,
   value = setnbr(sph->refraction);
   bunny_ini_set_field(ini, scope, "refraction", 0, value);
   bunny_free(value);
-  value = setnbr(sph->size);
-  bunny_ini_set_field(ini, scope, "size", 0, value);
-  bunny_free(value);
-  sphere_coef(sph, ini, scope);
-  value = put_base(sph->color1.full, "0123456789ABCDEF");
-  bunny_ini_set_field(ini, scope, "color1", 0, value);
-  bunny_free(value);
-  value = put_base(sph->color2.full, "0123456789ABCDEF");
-  bunny_ini_set_field(ini, scope, "color2", 0, value);
-  bunny_free(value);
+  sphere_value(sph, ini, scope);
 }

@@ -5,14 +5,15 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed May 18 16:37:38 2016 bougon_p
-** Last update Wed May 18 16:40:21 2016 bougon_p
+** Last update Fri May 20 17:12:51 2016 bougon_p
 */
 
 #include "raytracer.h"
 
 bool	check_workspace(const t_bunny_position *mpos, t_rt *rt)
 {
-  if (mpos->x > ((((MAX_WORK_SPACE_X - WORK_SPACE_X) / 2) + WORK_SPACE_X) -
+  if (rt->img &&
+      mpos->x > ((((MAX_WORK_SPACE_X - WORK_SPACE_X) / 2) + WORK_SPACE_X) -
                  (rt->img->clipable.clip_width / 2))
       && mpos->x < ((((MAX_WORK_SPACE_X - WORK_SPACE_X) / 2) + WORK_SPACE_X) -
                     (rt->img->clipable.clip_width / 2) +

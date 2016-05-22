@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 14:24:28 2016 romain samuel
-** Last update Fri May 20 23:12:47 2016 marc brout
+** Last update Sat May 21 21:48:14 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -26,8 +26,8 @@ t_bunny_response        my_click(t_bunny_event_state state,
     }
   if (data->rt.live)
     data->itfc.fct_state[data->itfc.status](data, state, mbutton);
-  if (data->itfc.asklight_click)
-    move_obj(data, state, mbutton);
+  if (data->itfc.askobj_click)
+    move_stateobj(data, state, mbutton);
   if (mbutton == BMB_LEFT && state == GO_DOWN)
     {
       if (check_all_buttons(&data->itfc) == 1)
@@ -60,6 +60,8 @@ t_bunny_response	my_key(t_bunny_event_state state,
   t_data		*data;
 
   data = _data;
+  if (data->itfc.txt.writing)
+    return (GO_ON);
   if (state == GO_DOWN && keysym == BKS_ESCAPE)
     return (EXIT_ON_SUCCESS);
   if (state == GO_DOWN)

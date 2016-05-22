@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Wed May 18 21:37:04 2016 bougon_p
+** Last update Sat May 21 17:49:56 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -99,9 +99,23 @@ typedef enum			e_buttons
     EXIT
   }				t_buttons;
 
+typedef	enum			e_tex_state
+  {
+    FLAT,
+    PERLIN,
+    IMG
+  }				t_tex_state;
+
+typedef	enum			e_bt_state
+  {
+    YES,
+    NO
+  }				t_bt_state;
+
 typedef struct	s_data		t_data;
 typedef struct	s_rt		t_rt;
 typedef struct	s_object	t_object;
+typedef	struct	s_acc		t_acc;
 
 typedef	struct			s_move
 {
@@ -112,6 +126,7 @@ typedef	struct			s_move
 
 typedef	struct			s_text
 {
+  bool				writing;
   t_bunny_window		*win;
   t_bunny_position		txt_pos;
   t_bunny_picture		*font;
@@ -139,6 +154,8 @@ typedef	struct			s_open
 
 typedef	struct			s_past
 {
+  int				rad_state;
+  int				refl_state;
   t_bunny_position		pos;
   t_bunny_picture		*img;
 }				t_past;
@@ -185,10 +202,12 @@ typedef struct			s_itfc
   bool				rendering;
   bool				rendered;
   bool				left_click;
-  bool				light_click;
-  bool				asklight_click;
+  bool				obj_click;
+  bool				askobj_click;
   bool				live;
   const	t_bunny_position	*mpos;
+  int				(*fct_resize[NB_OBJ])(t_data *, t_acc *);
+  int				(*fct_apply_image[NB_OBJ])(t_data *);
   int				(*fct_context[NB_CONTEXT])(t_data *);
   int				(*fct_button[4])(t_data *);
   int				(*fct_state[NB_STATUS])(t_data *,
@@ -206,6 +225,17 @@ int	interface(t_data *data);
 int	nothing_selected(t_data *data);
 int	init_ftabs(t_itfc *);
 void	prerender(t_rt *, int, t_data *);
+
+/*
+** Init
+*/
+void	set_aa_curs(t_data *, t_itfc *);
+void	init_slide_pos(t_itfc *, t_data *);
+void	init_ptr_context(t_itfc *);
+void	init_ptr_button(t_itfc *);
+void	init_ptr_state(t_itfc *);
+int	init_ptr_save(t_itfc *);
+int	init_ptr_save_ini(t_itfc *);
 
 /*
 ** Key actions
@@ -346,13 +376,34 @@ int	move_spot(t_data *);
 int	add_spot(t_data *);
 int	delete_spot(t_data *);
 int	select_spot(t_data *);
-int	move_obj(t_data *, t_bunny_event_state,
-		 t_bunny_mousebutton);
+int	move_stateobj(t_data *, t_bunny_event_state,
+		      t_bunny_mousebutton);
 int	slide_light(t_data *);
 
 /*
 ** Check workspace
 */
 bool	check_workspace(const t_bunny_position *, t_rt *);
+
+/*
+** Modif obj
+*/
+int	check_rad_bt(const t_bunny_position *, t_data *);
+int	select_obj(t_data *);
+int	move_obj(t_data *);
+int	resize_obj(t_data *);
+int	texture_obj(t_data *);
+int	resize_sphere(t_data *, t_acc *);
+int	resize_cylinder(t_data *, t_acc *);
+int	resize_cone(t_data *, t_acc *);
+int	resize_plan(t_data *, t_acc *);
+int	apply_sphere(t_data *);
+int	apply_cone(t_data *);
+int	apply_cylinder(t_data *);
+int	apply_plan(t_data *);
+int	apply_flat_texture(t_data *);
+int	apply_perlin_texture(t_data *);
+int	apply_image_texture(t_data *);
+void	reset_select(t_object *, t_data *);
 
 #endif /* !INTERFACE  */

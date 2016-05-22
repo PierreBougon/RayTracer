@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 18:18:29 2016 bougon_p
-** Last update Fri May 13 22:16:50 2016 bougon_p
+** Last update Sat May 21 17:36:07 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -67,21 +67,11 @@ static	void	plane_coef(t_plan *pla,
   bunny_free(value);
 }
 
-void		plane_obj(t_data *data, t_object *obj,
-			  t_bunny_ini *ini, int i)
+static	void	set_values(t_plan *pla,
+			   t_bunny_ini *ini, char *scope)
 {
   char		*value;
-  char		*scope;
-  t_plan	*pla;
 
-  pla = obj->datas;
-  scope = data->itfc.save.obj_names[i];
-  bunny_ini_set_field(ini, scope, "type", 0, "plan");
-  plane_pos(pla, ini, scope);
-  plane_rot(pla, ini, scope);
-  value = setnbr(pla->tex_type);
-  bunny_ini_set_field(ini, scope, "tex_type", 0, value);
-  bunny_free(value);
   value = setnbr(pla->height * 2);
   bunny_ini_set_field(ini, scope, "height", 0, value);
   bunny_free(value);
@@ -99,6 +89,24 @@ void		plane_obj(t_data *data, t_object *obj,
   bunny_ini_set_field(ini, scope, "refraction", 0, value);
   bunny_free(value);
   bunny_ini_set_field(ini, scope, "case_size", 0, "2000");
+}
+
+void		plane_obj(t_data *data, t_object *obj,
+			  t_bunny_ini *ini, int i)
+{
+  char		*value;
+  char		*scope;
+  t_plan	*pla;
+
+  pla = obj->datas;
+  scope = data->itfc.save.obj_names[i];
+  bunny_ini_set_field(ini, scope, "type", 0, "plan");
+  plane_pos(pla, ini, scope);
+  plane_rot(pla, ini, scope);
+  value = setnbr(pla->tex_type);
+  bunny_ini_set_field(ini, scope, "tex_type", 0, value);
+  bunny_free(value);
+  set_values(pla, ini, scope);
   if (pla->tex_name)
     bunny_ini_set_field(ini, scope, "texture", 0, pla->tex_name);
 }

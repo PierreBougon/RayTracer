@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 24 18:04:18 2016 bougon_p
-** Last update Thu May  5 21:08:09 2016 romain samuel
+** Last update Sat May 21 17:28:10 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -27,6 +27,19 @@ static	void	pos_cylinder(t_data *data, t_cylinder *cyl)
   cyl->rot.z = 0;
 }
 
+static	void	set_value(t_cylinder *cyl)
+{
+  cyl->tex_type = 1;
+  cyl->size = 2000;
+  cyl->height = 5000;
+  cyl->ka = 1.0;
+  cyl->kd = 1.0;
+  cyl->ks = 1.0;
+  cyl->brightness = 0.0;
+  cyl->reflection = 0.0;
+  cyl->opacity = 1.0;
+}
+
 static	int	add_cylinder_obj(t_data *data)
 {
   t_object	*new;
@@ -42,15 +55,7 @@ static	int	add_cylinder_obj(t_data *data)
       new = data->rt.obj;
     }
   pos_cylinder(data, cyl);
-  cyl->tex_type = 1;
-  cyl->size = 2000;
-  cyl->height = 5000;
-  cyl->ka = 1.0;
-  cyl->kd = 1.0;
-  cyl->ks = 1.0;
-  cyl->brightness = 0.0;
-  cyl->reflection = 0.0;
-  cyl->opacity = 1.0;
+  set_value(cyl);
   cyl->color1.full = OBJ_COLOR;
   new->datas = cyl;
   new->type = CYLINDER;

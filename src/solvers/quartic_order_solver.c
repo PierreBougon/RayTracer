@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon May  2 13:53:17 2016 benjamin duhieu
-** Last update Sat May 21 21:52:43 2016 benjamin duhieu
+** Last update Sat May 21 23:56:52 2016 benjamin duhieu
 */
 
 #include <stdio.h>
@@ -19,9 +19,9 @@ void		put_root(t_2order *x1, t_2order *x2,
   if (x1->tab[1])
     solv->root2 = x1->root2 - (solv->b / (4.0 * solv->a));
   if (x2->tab[0])
-    solv->root1 = x2->root1 - (solv->b / (4.0 * solv->a));
+    solv->root3 = x2->root1 - (solv->b / (4.0 * solv->a));
   if (x2->tab[1])
-    solv->root2 = x2->root2 - (solv->b / (4.0 * solv->a));
+    solv->root4 = x2->root2 - (solv->b / (4.0 * solv->a));
 }
 
 void		resolv_root(t_4order *solv, t_3order *res,
@@ -45,8 +45,20 @@ void		resolv_root(t_4order *solv, t_3order *res,
   x2.a = 1.0;
   x2.b = a0;
   x2.c = res->root1 + b0;
-  second_order_solver(&x1);
+  second_order_solver(&x2);
   put_root(&x1, &x2, solv);
+}
+
+void		tri_sort3(t_3order *res)
+{
+  double	tmp;
+
+  if (res->root1 < 0 && res->root2 > 0)
+    {
+      tmp = res->root2;
+      res->root2 = res->root1;
+      res->root1 = tmp;
+    }
 }
 
 void		q_is_not_nul(t_4order *solv, double p,
@@ -62,6 +74,8 @@ void		q_is_not_nul(t_4order *solv, double p,
   res.c = -8.0 * r;
   res.d = (4.0 * r * p) - CARRE(q);
   cube_order_solver(&res);
+  printf("Y0 : %f\n y1 : %f\n y2 : %f\n\n", res.root1, res.root2, res.root3);
+  tri_sort3(&res);
   resolv_root(solv, &res, p, q);
 }
 
