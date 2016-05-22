@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 17:10:43 2016 benjamin duhieu
-** Last update Sun May 22 21:47:54 2016 romain samuel
+** Last update Sun May 22 23:19:52 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -34,7 +34,8 @@ t_csg		*display_tree(t_rt *s, t_csg *it)
 {
   if (it->type == 0)
     {
-      display_csg_objects(s, it->obj);
+      if ((display_csg_objects(s, it->obj)) == -1)
+	return (NULL);
       it->inter = it->obj->inter;
     }
   if (it->left != NULL && it->right != NULL)
