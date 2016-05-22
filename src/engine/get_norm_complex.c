@@ -5,11 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Wed May 11 12:34:10 2016 benjamin duhieu
-<<<<<<< HEAD
-** Last update Sun May 22 16:45:04 2016 benjamin duhieu
-=======
-** Last update Sun May 22 16:43:04 2016 romain samuel
->>>>>>> 40762cc1fb1c372be199b6f76951b8f8e3ac8871
+** Last update Sun May 22 17:34:02 2016 benjamin duhieu
 */
 
 #include <math.h>

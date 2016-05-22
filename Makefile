@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 16:58:54 2016 benjamin duhieu
+## Last update Sun May 22 17:40:12 2016 benjamin duhieu
 ##
 
 # USEFUL VARIABLES
@@ -67,6 +67,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)csg_union.c \
 			$(ENGINE)diffuse_light.c \
 			$(ENGINE)display.c \
+			$(ENGINE)display_box_csg.c \
 			$(ENGINE)display_csg_objects.c \
 			$(ENGINE)display_objects.c \
 			$(ENGINE)display_object_complex.c \
@@ -100,6 +101,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)load_hole_cube.c \
 			$(ENGINE)load_hyper.c \
 			$(ENGINE)load_light.c \
+			$(ENGINE)load_other.c \
 			$(ENGINE)load_parab.c \
 			$(ENGINE)load_plan_sides.c \
 			$(ENGINE)load_plan.c \

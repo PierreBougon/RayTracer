@@ -5,11 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-<<<<<<< HEAD
-** Last update Sun May 22 16:44:28 2016 benjamin duhieu
-=======
-** Last update Sun May 22 16:49:51 2016 bougon_p
->>>>>>> 40762cc1fb1c372be199b6f76951b8f8e3ac8871
+** Last update Sun May 22 17:39:38 2016 benjamin duhieu
 */
 
 #ifndef RAYTRACER_H_
@@ -809,6 +805,7 @@ t_inter		*csg_intersection(t_inter *left, t_inter *right);
 ** csg_merge_lists.c
 */
 int		csg_merge_lists(t_inter *left, t_inter *right);
+int		set_csg_substraction(t_inter *left, t_inter *right);
 
 /*
 ** csg_operations.c
@@ -819,6 +816,8 @@ t_inter		*csg_operations(t_csg *it, t_inter *left, t_inter *right);
 ** csg_substraction.c
 */
 int		csg_substraction(t_inter *left, t_inter *right);
+int		set_del_inters(t_inter *left);
+int		set_del_subs(t_inter *left);
 
 /*
 ** csg_union.c
@@ -857,8 +856,13 @@ int		display_sphere(t_rt *s, t_object *obj);
 int		display_cylinder(t_rt *s, t_object *obj);
 int		display_cone(t_rt *s, t_object *obj);
 int		display_plan(t_rt *s, t_object *obj);
+
+/*
+** display_box_csg.c
+*/
 int		display_box(t_rt *s, t_object *obj);
 int		display_csg(t_rt *s, t_object *obj);
+t_csg		*display_tree(t_rt *s, t_csg *it);
 
 /*
 ** exposure.c
@@ -1109,9 +1113,21 @@ int		load_type(t_rt *rt,
 				       char *scope),
 			  char *scope);
 int		load_object(t_rt *s, t_bunny_ini *ini, char *scope);
-int		load_eye(t_rt *s, t_bunny_ini *ini);
-int		load_scene_parameters(t_rt *s, t_bunny_ini *ini);
 int		load_file(t_rt *s, char *file);
+
+/*
+** load_other.c
+*/
+int		load_eye(t_rt *s, t_bunny_ini *ini);
+int		load_skybox_textures(t_rt *s,
+				     t_bunny_ini *ini,
+				     const char *field);
+int		load_skybox_textures2(t_rt *s,
+				      t_bunny_ini *ini,
+				      const char *field);
+int		load_scene_parameters(t_rt *s, t_bunny_ini *ini);
+int		load_shadow_params(t_rt *s,
+				   t_bunny_ini *ini);
 
 /*
 ** load_light.c
