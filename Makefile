@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 17:43:25 2016 benjamin duhieu
+## Last update Sun May 22 17:51:58 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -57,6 +57,7 @@ SRC		=	$(MAIN)main.c \
 			$(ENGINE)clear_list.c \
 			$(ENGINE)color_operations.c \
 			$(ENGINE)create_csg_tree.c \
+			$(ENGINE)create_csg_tab.c \
 			$(ENGINE)create_inter_list.c \
 			$(ENGINE)create_obj_list.c \
 			$(ENGINE)csg_merge_lists.c \

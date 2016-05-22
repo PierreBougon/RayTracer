@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
-** Last update Sun May 22 17:23:44 2016 benjamin duhieu
+** Last update Sun May 22 17:45:42 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -17,7 +17,7 @@ int		display_sphere(t_rt *s, t_object *obj)
   s->hit.limited = 0;
   shape = (t_sphere *)obj->datas;
   inter_sphere(s, shape);
-  if (get_simple_inter(s,s->ray.vct, &s->ray.new_eye) == 0)
+  if (get_simple_inter(s, s->ray.vct, &s->ray.new_eye) == 0)
     {
       end_rotation(&s->rotation, s->ray.vct, &shape->rot);
       end_rotation(&s->rotation, &s->hit.simple_inter1, &shape->rot);
