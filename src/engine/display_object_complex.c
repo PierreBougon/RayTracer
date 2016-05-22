@@ -1,12 +1,11 @@
 /*
-** display_object_complex.c for complex
+** display_object_complex.c for display_object_complex
 **
 ** Made by benjamin duhieu
 ** Login   <duhieu_b@epitech.net>
-*
-*
-** Started on  Thu May 12 19:23:53 2016 benjamin duhieu
-** Last update Sat May 21 22:56:07 2016 romain samuel
+**
+** Started on  Sun May 22 11:51:07 2016 benjamin duhieu
+** Last update Sun May 22 15:43:08 2016 benjamin duhieu
 */
 
 #include <stdio.h>
@@ -118,4 +117,29 @@ int		display_hyper(t_rt *s, t_object *obj)
   else
     end_rotation(&s->rotation, s->ray.vct, &hyper->rot);
   return (0);
+}
+
+int		display_ellip(t_rt *s, t_object *obj)
+{
+ t_ellip	*ellip;
+
+ s->hit.limited = 0;
+ ellip = (t_ellip *)obj->datas;
+ inter_ellip(s, ellip);
+ if (!(get_simple_inter(s, s->ray.vct, &s->ray.new_eye)))
+   {
+     end_rotation(&s->rotation, s->ray.vct, &ellip->rot);
+     end_rotation(&s->rotation, &s->hit.simple_inter1, &ellip->rot);
+     get_norm_ellip(s, ellip);
+     rotation(&s->rotation, &s->hit.simple_inter1, &ellip->rot);
+     ellip->simple_inter1 = s->hit.simple_inter1;
+     ellip->simple_inter2 = s->hit.simple_inter2;
+     ellip->k1 = s->hit.k1;
+     ellip->k2 = s->hit.k2;
+     ellip->norm = s->hit.norm1;
+     update_hit_list(s, ellip, ELLIP, s->hit.k1);
+   }
+ else
+   end_rotation(&s->rotation, s->ray.vct, &ellip->rot);
+ return (0);
 }

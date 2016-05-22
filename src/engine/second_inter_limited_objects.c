@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May 18 16:34:15 2016 romain samuel
-** Last update Sat May 21 04:18:37 2016 romain samuel
+** Last update Sun May 22 14:36:23 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -28,9 +28,6 @@ int		get_cylinder_plan1_inter2(t_rt *s, t_cylinder *cylinder)
   t_plan	plan;
   t_acc		pos;
 
-  /* s->hit.k2 = s->hit.k1; */
-  /* s->hit.simple_inter2 = s->hit.simple_inter1; */
-  /* s->hit.norm2 = s->hit.norm1; */
   pos.x = 0;
   pos.y = 0;
   pos.z = cylinder->height;
@@ -47,9 +44,9 @@ int		get_cylinder_plan1_inter2(t_rt *s, t_cylinder *cylinder)
   s->hit.simple_inter2.z = s->ray.new_eye.z + s->hit.k2 * s->ray.vct->z;
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan, &s->hit.norm2);
-  s->hit.simple_inter2.x += (double)pos.x;
-  s->hit.simple_inter2.y += (double)pos.y;
-  s->hit.simple_inter2.z += (double)pos.z;
+  /* s->hit.simple_inter2.x += (double)pos.x; */
+  /* s->hit.simple_inter2.y += (double)pos.y; */
+  /* s->hit.simple_inter2.z += (double)pos.z; */
   return (0);
 }
 
@@ -58,9 +55,6 @@ int		get_cylinder_plan2_inter2(t_rt *s, t_cylinder *cylinder)
   t_plan	plan;
   t_acc		pos;
 
-  /* s->hit.k2 = s->hit.k1; */
-  /* s->hit.simple_inter2 = s->hit.simple_inter1; */
-  /* s->hit.norm2 = s->hit.norm1; */
   pos.x = 0;
   pos.y = 0;
   pos.z = - cylinder->height;
@@ -71,16 +65,15 @@ int		get_cylinder_plan2_inter2(t_rt *s, t_cylinder *cylinder)
   plan.rot.x = cylinder->rot.x;
   plan.rot.y = cylinder->rot.y;
   plan.rot.z = cylinder->rot.z;
-  /* printf("plan.pos.x = %d, plan.pos.y = %d, plan.pos.z = %d\n", plan.pos.x, plan.pos.y, plan.pos.z); */
   inter_plan2(s, &plan);
   s->hit.simple_inter2.x = s->ray.new_eye.x + s->hit.k2 * s->ray.vct->x;
   s->hit.simple_inter2.y = s->ray.new_eye.y + s->hit.k2 * s->ray.vct->y;
   s->hit.simple_inter2.z = s->ray.new_eye.z + s->hit.k2 * s->ray.vct->z;
   end_rotation(&s->rotation, s->ray.vct, &plan.rot);
   get_norm_plan(s, &plan, &s->hit.norm2);
-  s->hit.simple_inter2.x += (double)pos.x;
-  s->hit.simple_inter2.y += (double)pos.y;
-  s->hit.simple_inter2.z += (double)pos.z;
+  /* s->hit.simple_inter2.x += (double)pos.x; */
+  /* s->hit.simple_inter2.y += (double)pos.y; */
+  /* s->hit.simple_inter2.z += (double)pos.z; */
   return (0);
 }
 

@@ -1,11 +1,11 @@
 /*
-** display_objects.c for RAYTRACER in /home/samuel_r/EPITECH/GFX/RAYTRACER
+** display_objects.c for RAYTRACER
 **
 ** Made by romain samuel
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 18:02:23 2016 romain samuel
-** Last update Sat May 21 23:35:24 2016 romain samuel
+** Last update Sun May 22 16:44:13 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -29,7 +29,8 @@ int		display_sphere(t_rt *s, t_object *obj)
       shape->k2 = s->hit.k2;
       shape->norm1 = s->hit.norm1;
       s->hit.name = obj->name;
-      update_hit_list(s, shape, SPHERE, s->hit.k1);
+      if ((update_hit_list(s, shape, SPHERE, s->hit.k1)) == -1)
+	return (1);
     }
   else
     end_rotation(&s->rotation, s->ray.vct, &shape->rot);
@@ -50,6 +51,9 @@ int		display_cylinder(t_rt *s, t_object *obj)
       if (limited_cylinder(s, shape) == 0
 	  && limited_cylinder2(s, shape) == 0 && order_solutions(s) == 0)
 	{
+	  /* printf("simple1.x = %f, simple1.y = %f, simple1.z = %f\n", s->hit.simple_inter1.x, s->hit.simple_inter1.y, s->hit.simple_inter1.z); */
+	  /* printf("simple2.x = %f, simple2.y = %f, simple2.z = %f\n", s->hit.simple_inter2.x, s->hit.simple_inter2.y, s->hit.simple_inter2.z); */
+	  /* printf("limited = %d\n", s->hit.limited); */
 	  shape->simple_inter1 = s->hit.simple_inter1;
 	  shape->simple_inter2 = s->hit.simple_inter2;
 	  shape->k1 = s->hit.k1;
@@ -58,7 +62,8 @@ int		display_cylinder(t_rt *s, t_object *obj)
 	  shape->norm2 = s->hit.norm2;
 	  shape->limited = s->hit.limited;
 	  s->hit.name = obj->name;
-	  update_hit_list(s, shape, CYLINDER, s->hit.k1);
+	  if ((update_hit_list(s, shape, CYLINDER, s->hit.k1)) == -1)
+	    return (1);
 	}
     }
   else
@@ -85,7 +90,8 @@ int		display_cone(t_rt *s, t_object *obj)
 	  shape->norm1 = s->hit.norm1;
 	  shape->limited = s->hit.limited;
 	  s->hit.name = obj->name;
-	  update_hit_list(s, shape, CONE, s->hit.k1);
+	  if ((update_hit_list(s, shape, CONE, s->hit.k1)) == -1)
+	    return (1);
 	}
     }
   else
@@ -112,7 +118,8 @@ int		display_plan(t_rt *s, t_object *obj)
 	  shape->k2 = s->hit.k2;
 	  shape->norm = s->hit.norm1;
 	  s->hit.name = obj->name;
-	  update_hit_list(s, shape, PLANE, s->hit.k1);
+	  if ((update_hit_list(s, shape, PLANE, s->hit.k1)) == -1)
+	    return (1);
 	}
     }
   else
@@ -134,7 +141,8 @@ int		display_box(t_rt *s, t_object *obj)
       shape->k2 = s->hit.k2;
       shape->norm1 = s->hit.norm1;
       s->hit.name = obj->name;
-      update_hit_list(s, shape, BOX, s->hit.k1);
+      if ((update_hit_list(s, shape, BOX, s->hit.k1)) == -1)
+	return (1);
     }
   return (0);
 }

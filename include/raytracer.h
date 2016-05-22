@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Fri Apr  1 19:50:30 2016 romain samuel
-** Last update Sun May 22 16:44:35 2016 bougon_p
+** Last update Sun May 22 16:49:51 2016 bougon_p
 */
 
 #ifndef RAYTRACER_H_
@@ -24,7 +24,7 @@
 # define CARRE(val) ((val) * (val))
 # define RAD(val) (((val) * M_PI) / 180)
 # define DEG(val) (((val) * 180) / M_PI)
-# define ABS(Value) ((Value < 0) ? -Value : Value)
+# define ABS(val) (((val) < 0) ? -(val) : (val))
 
 /*
 ** WINDOW DEFINES
@@ -63,7 +63,7 @@
 # define MARBLE_NOISE 7
 # define IMAGE 8
 
-# define NB_OBJ 10
+# define NB_OBJ 11
 
 /*
 ** includes
@@ -89,7 +89,8 @@ typedef enum	e_obj
     HOLE_CUBE   = 7,
     HYPER	= 8,
     PARAB	= 9,
-    CSG		= 10
+    CSG		= 10,
+    ELLIP	= 11
   }		t_obj;
 
 /*
@@ -196,7 +197,6 @@ typedef struct		s_3order
   double		b;
   double		c;
   double		d;
-  double		delta;
   double		root1;
   double		root2;
   double		root3;
@@ -216,8 +216,35 @@ typedef struct		s_4order
   double		root4;
 }			t_4order;
 
+typedef struct		s_ellip
+{
+  t_pos			pos;
+  double		reflection;
+  int			tex_type;
+  t_pos			rot;
+  double		a;
+  double		b;
+  double		c;
+  double		k1;
+  double		k2;
+  double		ka;
+  double		kd;
+  double		ks;
+  double		brightness;
+  double		opacity;
+  double		refraction;
+  t_acc			simple_inter2;
+  t_acc			simple_inter1;
+  t_acc			norm;
+  t_color		color1;
+  t_color		color2;
+  char			*tex_name;
+  t_bunny_pixelarray	*texture;
+}			t_ellip;
+
 typedef struct		s_hyper
 {
+  t_2order		res;
   t_pos			pos;
   double		reflection;
   int			tex_type;
@@ -246,6 +273,7 @@ typedef struct		s_hyper
 typedef struct		s_parab
 {
   t_pos			pos;
+  t_2order		res;
   double		reflection;
   int			tex_type;
   t_pos			rot;
@@ -716,7 +744,6 @@ void		one_root(double delta, double r, double q,
 			 t_3order *solv);
 void		three_root(double r, double q, t_3order *solv);
 
-
 /*
 ** checkerboards.c
 */
@@ -841,6 +868,7 @@ int		display_hole_cube(t_rt *s, t_object *obj);
 int		display_hyper(t_rt *s, t_object *obj);
 int		display_parab(t_rt *s, t_object *obj);
 int		display_tore(t_rt *s, t_object *obj);
+int		display_ellip(t_rt *s, t_object *obj);
 
 /*
 ** get_norm.c
@@ -862,8 +890,7 @@ void		get_norm_hole_cube(t_rt *s, t_hole_cube *hole_cube);
 void		get_norm_hyper(t_rt *s, t_hyper *hyper);
 void		get_norm_parab(t_rt *s, t_parab *parab);
 void		get_norm_tore(t_rt *s, t_tore *tore);
-
-
+void		get_norm_ellip(t_rt *s, t_ellip *ellip);
 
 /*
 ** get_refracted_vec.c
@@ -932,6 +959,11 @@ int		inter_plan(t_rt *s, t_plan *plan);
 int		inter_sphere(t_rt *s, t_sphere *sphere);
 int		inter_cone(t_rt *s, t_cone *cone);
 int		inter_cylinder(t_rt *s, t_cylinder *cylinder);
+
+/*
+** inter_ellip.c
+*/
+int		inter_ellip(t_rt *s, t_ellip *ellip);
 
 /*
 ** inter_hole_cube.c
@@ -1081,6 +1113,17 @@ int		load_light_datas(t_light *s,
 				 char *scope);
 int		load_light(t_rt *rt, t_bunny_ini *ini, char *scope);
 
+/*
+** load_ellip.c
+*/
+int		load_ellip_datas(t_ellip *s,
+				    t_bunny_ini *ini,
+				    char *scope);
+int		load_ellip_datas2(t_ellip *s, t_bunny_ini *ini,
+				     char *scope);
+int		load_ellip_datas3(t_ellip *s, t_bunny_ini *ini,
+				  char *scope, const char *field);
+int		load_ellip(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
 ** load_hole_cube.c
@@ -1101,9 +1144,7 @@ int		load_hyper_datas(t_hyper *s,
 int		load_hyper_datas2(t_hyper *s, t_bunny_ini *ini,
 				     char *scope);
 int		load_hyper_datas3(t_hyper *s, t_bunny_ini *ini,
-				     char *scope);
-int		load_hyper_datas4(t_hyper *s, t_bunny_ini *ini,
-				     char *scope);
+				  char *scope, const char *field);
 int		load_hyper(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
@@ -1115,9 +1156,7 @@ int		load_parab_datas(t_parab *s,
 int		load_parab_datas2(t_parab *s, t_bunny_ini *ini,
 				     char *scope);
 int		load_parab_datas3(t_parab *s, t_bunny_ini *ini,
-				     char *scope);
-int		load_parab_datas4(t_parab *s, t_bunny_ini *ini,
-				     char *scope);
+				  char *scope, const char *field);
 int		load_parab(t_rt *rt, t_bunny_ini *ini, char *scope);
 
 /*
@@ -1235,11 +1274,17 @@ void		set_hit_values_from_sphere(t_rt *s, t_object *obj);
 void		set_hit_values_from_cylinder(t_rt *s, t_object *obj);
 void		set_hit_values_from_cone(t_rt *s, t_object *obj);
 void		set_hit_values_from_plan(t_rt *s, t_object *obj);
+int		set_hit_values(t_rt *s, t_object *obj);
+
+/*
+** set_hit_values_next.c
+*/
+void		set_hit_values_from_box(t_rt *s, t_object *obj);
 void		set_hit_values_from_tore(t_rt *s, t_object *obj);
 void		set_hit_values_from_hole_cube(t_rt *s, t_object *obj);
 void		set_hit_values_from_hyper(t_rt *s, t_object *obj);
 void		set_hit_values_from_parab(t_rt *s, t_object *obj);
-int		set_hit_values(t_rt *s, t_object *obj);
+void		set_hit_values_from_ellip(t_rt *s, t_object *obj);
 
 /*
 ** shade.c
@@ -1259,11 +1304,19 @@ int		shade(t_rt *s, t_acc *vct, t_acc eye);
 /*
 ** shadow.c
 */
-int		shadow_sphere(t_rt *s, t_object *obj);
 int		shadow_cone(t_rt *s, t_object *obj);
 int		shadow_cylinder(t_rt *s, t_object *obj);
 int		shadow_plan(t_rt *s, t_object *obj);
+int		shadow_box(t_rt *s, t_object *obj);
 int		shadow(t_rt *s);
+
+/*
+** shadow_others.c
+*/
+int		shadow_sphere(t_rt *s, t_object *obj);
+int		shadow_ellipse(t_rt *s, t_object *obj);
+int		shadow_parab(t_rt *s, t_object *obj);
+int		shadow_hyper(t_rt *s, t_object *obj);
 
 /*
 ** shadow_inters.c
@@ -1371,5 +1424,19 @@ void		solver_pqr(t_4order *c);
 void		q_is_not_nul(t_4order *solv,
 			     double p, double q,
 			     double r);
+/*
+** shadow_hyper.c
+*/
+double		shadow_inter_hyper(t_rt *s, t_hyper *h);
+
+/*
+** shadow_para.c
+*/
+double		shadow_inter_para(t_rt *s, t_parab *p);
+
+/*
+** shadow_ellipse.c
+*/
+double		shadow_inter_ellip(t_rt *s, t_ellip *e);
 
 #endif /* !RAYTRACER_H_ */

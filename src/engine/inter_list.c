@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Sat May 14 17:48:07 2016 romain samuel
-** Last update Sat May 21 19:28:06 2016 romain samuel
+** Last update Sun May 22 13:28:50 2016 romain samuel
 */
 
 #include "raytracer.h"
@@ -46,7 +46,6 @@ int		fill_inter_list_cylinder(t_rt *s,
   object->inter->next->k = s->hit.k1;
   object->inter->next->simple_inter = s->hit.simple_inter1;
   object->inter->next->norm = s->hit.norm1;
-  /* printf("k1 = %f\n", object->inter->next->k); */
   if (s->hit.k2 < 0)
     object->inter->next->exterior = 0;
   else
@@ -61,7 +60,6 @@ int		fill_inter_list_cylinder(t_rt *s,
       object->inter->next->next->obj = object;
     }
   object->inter->next->obj = object;
-  object->inter->next->next->next = NULL;
   return (0);
 }
 

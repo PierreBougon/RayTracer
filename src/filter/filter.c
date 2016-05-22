@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Fri May 20 12:58:40 2016 marc brout
-** Last update Sat May 21 15:41:11 2016 marc brout
+** Last update Sun May 22 00:47:16 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -85,8 +85,8 @@ int			keys_filter(t_bunny_keysym keysym,
 	  save = 1;
 	}
       if (keysym < BKS_9 &&
-	  data->rt.ftabs.filter_effect[(int)keysym - BKS_0]
-	  (&data->rt.img, (int)(keysym) + 1 - BKS_0))
+	  data->rt.ftabs.filter_effect[(int)keysym - BKS_0 - 1]
+	  (&data->rt.img, (int)(keysym) - BKS_0))
 	return (1);
     }
   else if (save && keysym == BKS_N)

@@ -5,15 +5,13 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Sat May 21 22:39:16 2016 romain samuel
+** Last update Sun May 22 13:26:33 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
 
-int			inter_objects(t_rt *s)
+static void		affect_tab(t_rt *s)
 {
-  t_object		*it;
-
   s->ftabs.inters_ftab[0] = &display_sphere;
   s->ftabs.inters_ftab[1] = &display_cylinder;
   s->ftabs.inters_ftab[2] = &display_cone;
@@ -24,6 +22,14 @@ int			inter_objects(t_rt *s)
   s->ftabs.inters_ftab[7] = &display_hyper;
   s->ftabs.inters_ftab[8] = &display_parab;
   s->ftabs.inters_ftab[9] = &display_csg;
+  s->ftabs.inters_ftab[10] = &display_ellip;
+}
+
+int			inter_objects(t_rt *s)
+{
+  t_object		*it;
+
+  affect_tab(s);
   it = s->obj;
   while (it != NULL)
     {
