@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sun May 22 17:36:17 2016 benjamin duhieu
-** Last update Sun May 22 17:36:35 2016 benjamin duhieu
+** Last update Sun May 22 17:55:06 2016 marc brout
 */
 
 #include "raytracer.h"
@@ -127,10 +127,7 @@ int		load_scene_parameters(t_rt *s, t_bunny_ini *ini)
   if (aa != (int)aa)
     return (my_puterr("load_file: invalid antialiasing settings"));
   if ((field = bunny_ini_get_field(ini, "RT", "skybox", 0)) == NULL)
-    {
-      s->opt.skybox = 0;
-      return (0);
-    }
+    return (s->opt.skybox = 0);
   s->opt.skybox = my_getnbr((char *)field);
   return (load_skybox_textures(s, ini, field));
 }
