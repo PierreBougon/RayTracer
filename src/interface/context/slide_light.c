@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed May 18 21:09:40 2016 bougon_p
-** Last update Wed May 18 21:36:55 2016 bougon_p
+** Last update Sun May 22 18:13:17 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -15,9 +15,6 @@ static void		check_percentage(t_data *data)
   t_light	*light;
 
   light = data->itfc.light_selected->datas;
-  printf("INTENSITY = %f\n",
-	 (data->itfc.gen.pos_curs_li.x -
-	  START_SLIDE_LI_X) / 1.71);
   light->intensity = ((data->itfc.gen.pos_curs_li.x  -
 		       START_SLIDE_LI_X) / 1.71) / 100.0;
   if (light->intensity > 100.0)

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Sun Apr 17 01:53:20 2016 bougon_p
-** Last update Sun May 22 13:52:11 2016 bougon_p
+** Last update Sun May 22 18:12:39 2016 benjamin duhieu
 */
 
 #include "raytracer.h"
@@ -28,7 +28,6 @@ static	void		check_f_bt2(int n, t_data *data)
     }
   if (n == 1)
     {
-      printf("MOVE\n");
       data->itfc.fct_bt_context = move_obj;
       data->itfc.askobj_click = true;
     }
