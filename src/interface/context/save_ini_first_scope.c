@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Apr 29 16:39:20 2016 bougon_p
-** Last update Sun May 22 21:29:16 2016 benjamin duhieu
+** Last update Mon May 23 02:05:27 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -48,12 +48,15 @@ static	int	set_first_scope_obj(t_data *data, t_bunny_ini *ini)
   data->itfc.save.obj_names[0] = NULL;
   while (obj != NULL)
     {
-      name = data->itfc.save.fct_save_ini_name
-	[obj->type](data, i);
-      bunny_ini_set_field(ini, "RT", "objs", i, name);
-      data->itfc.save.obj_names =
-	my_realloc_tab(data->itfc.save.obj_names, 1);
-      data->itfc.save.obj_names[i] = name;
+      if (obj->type <= PLANE)
+	{
+	  name = data->itfc.save.fct_save_ini_name
+	    [obj->type](data, i);
+	  bunny_ini_set_field(ini, "RT", "objs", i, name);
+	  data->itfc.save.obj_names =
+	    my_realloc_tab(data->itfc.save.obj_names, 1);
+	  data->itfc.save.obj_names[i] = name;
+	}
       obj = obj->next;
       i++;
     }

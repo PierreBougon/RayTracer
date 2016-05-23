@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Apr 13 22:53:18 2016 bougon_p
-** Last update Sun May 22 16:49:59 2016 bougon_p
+** Last update Mon May 23 02:07:01 2016 bougon_p
 */
 
 #ifndef INTERFACE_H_
@@ -145,6 +145,7 @@ typedef	struct			s_save
   char				*file;
   bool				need_save;
   char				**obj_names;
+  bool				free;
 }				t_save;
 
 typedef	struct			s_open

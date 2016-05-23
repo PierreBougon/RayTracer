@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Sun May 22 21:23:05 2016 benjamin duhieu
+## Last update Mon May 23 00:35:10 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -20,7 +20,7 @@ ECHO	=	echo -e
 
 DEBUG	=	no
 
-OPTI	=	no
+OPTI	=	yes
 
 # RT VARIABLES
 
