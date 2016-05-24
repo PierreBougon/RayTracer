@@ -20,16 +20,16 @@ To run the program :
 ###Features
 
 * Objects
-  -Sphere
-  -Plan
-  -Cube
-  -Cone
-  -Cylinder
-  -Hyperboloid
-  -Paraboloid
-  -Helicoid
-  --Tore (Coming soon)
-  --Hole Cube (Coming soon)
+  - Sphere
+  - Plan
+  - Cube
+  - Cone
+  - Cylinder
+  - Hyperboloid
+  - Paraboloid
+  - Helicoid
+  -- Tore (Coming soon)
+  -- Hole Cube (Coming soon)
 
 * Constructive Solid Geometry
 * Soft Shadows
@@ -60,4 +60,4 @@ To run the program :
 
 
 
-Project realized with Marc Brout, Benjamin Duhieu and Romain Samuel.
+####Project realized with Marc Brout, Benjamin Duhieu and Romain Samuel.
