@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Mon May 23 00:35:10 2016 bougon_p
+## Last update Tue May 24 18:34:15 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -317,6 +317,10 @@ all		:	$(LIB)
 ifeq ($(DEBUG), yes)
 			@find . -type f -iname "*.[chS]" | xargs etags -a
 endif
+
+install		:
+			@./lib/liblapin/install.sh
+			@make -s all
 
 clean		:
 			@$(RM) $(OBJS)

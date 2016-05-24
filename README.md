@@ -2,17 +2,21 @@
 ####3D Engine with RayTracing technique
 
 RayTracing implementation in c. Use our own ini format for the scenes.
+
 This is a school project we realized in 1 month.
+
+100% HandMade using LibLapin 1.8 which is minimal school grafical library.
 
 Check out the [site](http://raytracer.strikingly.com/) to see more informations and images.
 
 
 ##Build & Usage
 
-Run 'make' in the src directory to compile the program.
+* Run `make install` to install dependecies and the program.
+* Run `make` if you want to compile the progrman alone.
 
-To run the program :
-'./raytracer [scene.ini]'
+* To run the program :
+   - `./raytracer [scene.ini]`
 
 
 ##Engine implementation
@@ -28,9 +32,8 @@ To run the program :
   - Hyperboloid
   - Paraboloid
   - Helicoid
-  -- Tore (Coming soon)
-  -- Hole Cube (Coming soon)
-
+  - Tore (Coming soon)
+  - Hole Cube (Coming soon)
 * Constructive Solid Geometry
 * Soft Shadows
 * Anti-Aliasing
@@ -47,8 +50,13 @@ To run the program :
 ###Perlin noise
 ![Engine](assets/screenshots/perlin_noise.png?raw=true "Perlin view")
 
+###Soft Shadows
+![Engine](assets/screenshots/soft_shadows.png?raw=true "Perlin view")
+
 
 ##GUI Interface
+
+* Check out the [Documentation on the site](http://raytracer.strikingly.com/) if you want to learn how to use the interface. 
 
 ###Use the interface to create your own scenes
 ![Interface](assets/screenshots/itfc.png?raw=true "Interface view")
@@ -60,4 +68,4 @@ To run the program :
 
 
 
-####Project realized with Marc Brout, Benjamin Duhieu and Romain Samuel.
+#####Project realized with Marc Brout, Benjamin Duhieu and Romain Samuel.
