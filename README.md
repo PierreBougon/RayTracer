@@ -14,21 +14,11 @@ Run 'make' in the src directory to compile the program.
 To run the program :
 './raytracer [scene.ini]'
 
-###Use the interface to create your own scenes
-![Interface](assets/screenshots/itfc.png?raw=true "Interface view")
-
-
-
 
 ##Engine implementation
 
-###Reflection
-![Engine](assets/screenshots/reflect.png?raw=true "Reflection view")
-
-###Perlin noise
-![Engine](assets/screenshots/perlin_noise.png?raw=true "Perlin view")
-
 ###Features
+
 * Objects
   -Sphere
   -Plan
@@ -49,10 +39,25 @@ To run the program :
 * Phong
 * Perlin Noise
 * Brightness
-* 
+* Limited Objects
 
-### Rendered final scenes
+###Reflection
+![Engine](assets/screenshots/reflect.png?raw=true "Reflection view")
+
+###Perlin noise
+![Engine](assets/screenshots/perlin_noise.png?raw=true "Perlin view")
+
+
+##GUI Interface
+
+###Use the interface to create your own scenes
+![Interface](assets/screenshots/itfc.png?raw=true "Interface view")
+
+
+## Rendered final scenes
 ![scene](assets/screenshots/glass1.png?raw=true "Basic view")
 ![scene](assets/screenshots/csg.png?raw=true "Csg view")
+
+
 
 Project realized with Marc Brout, Benjamin Duhieu and Romain Samuel.
