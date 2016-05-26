@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Tue Apr  5 17:40:57 2016 romain samuel
-** Last update Sun May 22 23:10:40 2016 romain samuel
+** Last update Thu May 26 15:29:44 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -48,7 +48,7 @@ int			inter_objects(t_rt *s)
 int			display_objects(t_rt *s, t_acc *vct, t_acc eye,
 					t_color *col)
 {
-  if (s->rec == 2)
+  if (s->rec == 10)
     {
       s->rec = 0;
       col->full = s->final_color.full;

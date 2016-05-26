@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon May  2 01:52:59 2016 bougon_p
-** Last update Sat May 21 14:23:22 2016 bougon_p
+** Last update Thu May 26 15:12:59 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -50,6 +50,7 @@ static	int	add_basplane_obj(t_data *data)
   pla->case_size = 2000;
   new->datas = pla;
   new->type = PLANE;
+  new->name = setnbr(g_name++);
   return (0);
 }
 

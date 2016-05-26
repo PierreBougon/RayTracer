@@ -1,5 +1,6 @@
 # RayTracer
 ####3D Engine with RayTracing technique
+![Logo](assets/screenshots/logo2_0.png?raw=true "Logo")
 
 RayTracing implementation in c. Use our own ini format for the scenes.
 

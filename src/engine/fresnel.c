@@ -5,7 +5,7 @@
 ** Login   <samuel_r@epitech.net>
 **
 ** Started on  Wed May  4 18:50:48 2016 romain samuel
-** Last update Sun May 22 21:06:33 2016 romain samuel
+** Last update Thu May 26 15:30:04 2016 bougon_p
 */
 
 #include "raytracer.h"
@@ -21,7 +21,7 @@ void		fresnel_computation(t_rt *s)
   t_acc		inter;
 
   s->rec++;
-  if (s->rec > 1)
+  if (s->rec > 9)
     return;
   diffuse_color = s->final_color;
   f = get_refracted_vec(s, &s->hit.norm1, 1, s->hit.n2);
