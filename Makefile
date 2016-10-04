@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Wed Apr 20 17:06:08 2016 bougon_p
-## Last update Tue May 24 18:34:15 2016 bougon_p
+## Last update Tue Oct  4 11:09:12 2016 pierre
 ##
 
 # USEFUL VARIABLES
@@ -319,7 +319,7 @@ ifeq ($(DEBUG), yes)
 endif
 
 install		:
-			@./lib/liblapin/install.sh
+			@./lib/deps/install.sh
 			@make -s all
 
 clean		:

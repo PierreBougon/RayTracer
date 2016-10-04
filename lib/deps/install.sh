@@ -60,12 +60,12 @@ test_and_add_csh()
 
 mkdir -p ~/.froot/lib ~/.froot/include	|| get_out "Failed to create installation directories."
 
-cp -r lib/liblapin/lib/SFML ~/.froot/include/	|| get_out "Failed to install SFML headers."
-cp -r lib/liblapin/include/*.h ~/.froot/include/	|| get_out "Failed to install Lapin headers."
-cp -r lib/liblapin/include/lapin/ ~/.froot/include/	|| get_out "Failed to install Lapin headers."
+cp -r lib/deps/lib/SFML ~/.froot/include/	|| get_out "Failed to install SFML headers."
+cp -r lib/deps/include/*.h ~/.froot/include/	|| get_out "Failed to install Lapin headers."
+cp -r lib/deps/include/lapin/ ~/.froot/include/	|| get_out "Failed to install Lapin headers."
 
 
-cp -r lib/liblapin/liblapin.a lib/liblapin/lib/*.so* ~/.froot/lib	|| get_out "Failed to install SFML & Lapin binaries"
+cp -r lib/deps/liblapin.a lib/deps/lib/*.so* ~/.froot/lib	|| get_out "Failed to install SFML & Lapin binaries"
 
 chmod 644 ~/.froot/include/*.h*		|| get_out "Failed to change mode of headers."
 chmod 644 ~/.froot/include/*/*.h*	|| get_out "Failed to change mode of headers."
