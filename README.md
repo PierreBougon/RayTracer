@@ -1,5 +1,5 @@
 # RayTracer
-####3D Engine with RayTracing technique
+#### 3D Engine with RayTracing technique
 ![Logo](assets/screenshots/logo2_0.png?raw=true "Logo")
 
 RayTracing implementation in c. Use our own ini format for the scenes.
@@ -11,7 +11,7 @@ This is a school project we realized in 1 month.
 Check out the [site](http://raytracer.strikingly.com/) to see more informations and images.
 
 
-##Build & Usage
+## Build & Usage
 
 * Run `make install` to install dependecies and the program.
 * Run `make` if you want to compile the progrman alone.
@@ -20,9 +20,9 @@ Check out the [site](http://raytracer.strikingly.com/) to see more informations 
    - `./raytracer [scene.ini]`
 
 
-##Engine implementation
+## Engine implementation
 
-###Features
+### Features
 
 * Objects
   - Sphere
@@ -45,21 +45,21 @@ Check out the [site](http://raytracer.strikingly.com/) to see more informations 
 * Brightness
 * Limited Objects
 
-###Reflection
+### Reflection
 ![Engine](assets/screenshots/reflect.png?raw=true "Reflection view")
 
-###Perlin noise
+### Perlin noise
 ![Engine](assets/screenshots/perlin_noise.png?raw=true "Perlin view")
 
-###Soft Shadows
+### Soft Shadows
 ![Engine](assets/screenshots/soft_shadows.png?raw=true "Perlin view")
 
 
-##GUI Interface
+## GUI Interface
 
 * Check out the [Documentation on the site](http://raytracer.strikingly.com/) if you want to learn how to use the interface. 
 
-###Use the interface to create your own scenes
+### Use the interface to create your own scenes
 ![Interface](assets/screenshots/itfc.png?raw=true "Interface view")
 
 
@@ -69,4 +69,4 @@ Check out the [site](http://raytracer.strikingly.com/) to see more informations 
 
 
 
-#####Project realized with Marc Brout, Benjamin Duhieu and Romain Samuel.
+##### Project realized with Marc Brout, Benjamin Duhieu and Romain Samuel.
